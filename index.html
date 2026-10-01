@@ -644,8 +644,8 @@
   /* --- Intro: full-screen rental hero --- */
   .intro {
     width: 100%;
-    min-height: calc(100vh - 64px);
-    min-height: calc(100svh - 64px);
+    min-height: 62vh;
+    min-height: 62svh;
     display: flex;
     flex-direction: column;
     margin-bottom: 56px;
@@ -659,7 +659,7 @@
     background: var(--panel);
     color: var(--ink);
     border-radius: 22px;
-    padding: clamp(32px, 6vw, 80px) clamp(24px, 6vw, 96px);
+    padding: clamp(28px, 4.5vw, 60px) clamp(24px, 6vw, 96px) clamp(48px, 5vw, 72px);
     box-shadow: 0 18px 44px var(--paper-shadow);
     display: flex;
     align-items: center;
@@ -673,7 +673,7 @@
   .intro-card h2 {
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
-    font-size: clamp(32px, 5.5vw, 64px);
+    font-size: clamp(30px, 4.2vw, 52px);
     line-height: 1.05;
     margin: 0 0 20px;
   }
@@ -706,7 +706,7 @@
 
   .intro-logo {
     flex: 0 0 auto;
-    width: clamp(160px, 32vw, 420px);
+    width: clamp(140px, 22vw, 300px);
     aspect-ratio: 1;
     object-fit: contain;
   }
@@ -808,6 +808,18 @@
   .field-error { font-size: 12.5px; color: #B42318; margin: -4px 0 12px; min-height: 0; }
 
   .rent-modal .primary-btn { width: 100%; margin-top: 4px; }
+  .rent-modal .primary-btn:disabled { opacity: 0.6; cursor: wait; transform: none; }
+
+  .rent-done { text-align: center; padding: 10px 0 4px; }
+  .rent-done[hidden], #rentForm[hidden] { display: none; }
+  .rent-done-icon {
+    width: 56px; height: 56px; margin: 0 auto 14px;
+    border-radius: 50%; background: var(--android-tag-soft); color: var(--android-tag);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px; font-weight: 700;
+  }
+  .rent-done-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 20px; margin: 0 0 6px; }
+  .rent-done-sub { font-size: 14px; line-height: 1.5; color: var(--ink-soft); margin: 0 0 20px; }
 
   @media (max-width: 420px) { .field-row { grid-template-columns: 1fr; } }
 
@@ -1038,7 +1050,7 @@
     <h2 id="rentTitle">Solicitar alquiler</h2>
     <button class="close-btn" id="rentClose" aria-label="Cerrar">✕</button>
   </div>
-  <p class="lead">Cuéntanos qué necesitas y se abrirá tu correo con la solicitud lista para enviar.</p>
+  <p class="lead">Cuéntanos qué necesitas y te responderemos por correo lo antes posible.</p>
   <form id="rentForm" novalidate>
     <div class="field">
       <label for="rentName">Nombre</label>
@@ -1063,8 +1075,14 @@
       <textarea id="rentMsg" placeholder="Ej.: 4 iPad y 2 portátiles para un evento" required></textarea>
     </div>
     <p class="field-error" id="rentError" role="alert"></p>
-    <button type="submit" class="primary-btn">Enviar solicitud</button>
+    <button type="submit" class="primary-btn" id="rentSubmit">Enviar solicitud</button>
   </form>
+  <div class="rent-done" id="rentDone" hidden>
+    <div class="rent-done-icon" aria-hidden="true">✓</div>
+    <p class="rent-done-title">¡Solicitud enviada!</p>
+    <p class="rent-done-sub">Gracias. Te contestaremos lo antes posible al correo que nos has indicado.</p>
+    <button type="button" class="primary-btn" id="rentDoneClose">Cerrar</button>
+  </div>
 </div>
 
 </div>
@@ -2071,7 +2089,8 @@ setupFilters(document.getElementById("gridSurface"), [
 ]);
 
 // --- Intro + rental request ---
-const RENTAL_EMAIL = "m3hervasspotify@gmail.com";
+// FormSubmit reenvía las solicitudes al correo (o alias) indicado al final de la URL
+const FORM_ENDPOINT = "https://formsubmit.co/ajax/m3hervasspotify@gmail.com";
 
 const intro = document.getElementById("intro");
 document.getElementById("introLogo").src = document.querySelector(".brand-header img").src;
@@ -2081,7 +2100,12 @@ const rentScrim = document.getElementById("rentScrim");
 const rentForm = document.getElementById("rentForm");
 const rentError = document.getElementById("rentError");
 
+const rentDone = document.getElementById("rentDone");
+const rentSubmit = document.getElementById("rentSubmit");
+
 function openRent() {
+  rentForm.hidden = false;
+  rentDone.hidden = true;
   rentScrim.classList.add("open");
   rentModal.classList.add("open");
   document.getElementById("rentName").focus();
@@ -2096,11 +2120,12 @@ document.getElementById("openRent").addEventListener("click", openRent);
 document.getElementById("scrollHint").addEventListener("click", () =>
   document.querySelector("header").scrollIntoView({ behavior: "smooth" }));
 document.getElementById("rentClose").addEventListener("click", closeRent);
+document.getElementById("rentDoneClose").addEventListener("click", closeRent);
 rentScrim.addEventListener("click", closeRent);
 document.addEventListener("keydown", e => { if (e.key === "Escape") closeRent(); });
 rentForm.addEventListener("input", () => { rentError.textContent = ""; });
 
-rentForm.addEventListener("submit", e => {
+rentForm.addEventListener("submit", async e => {
   e.preventDefault();
   const name = document.getElementById("rentName").value.trim();
   const email = document.getElementById("rentEmail").value.trim();
@@ -2121,17 +2146,33 @@ rentForm.addEventListener("submit", e => {
     return;
   }
 
-  const subject = `Solicitud de alquiler — ${name}`;
-  const body = [
-    `Nombre: ${name}`,
-    `Correo: ${email}`,
-    `Fechas: ${from || "—"} a ${to || "—"}`,
-    "",
-    msg
-  ].join("\n");
-
-  window.location.href = `mailto:${RENTAL_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  closeRent();
+  rentSubmit.disabled = true;
+  rentSubmit.textContent = "Enviando…";
+  try {
+    const res = await fetch(FORM_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify({
+        _subject: `Solicitud de alquiler — ${name}`,
+        _template: "table",
+        _captcha: "false",
+        Nombre: name,
+        email: email,
+        Fechas: `${from || "—"} a ${to || "—"}`,
+        "Qué necesita": msg
+      })
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok || String(data.success) !== "true") throw new Error(data.message || res.status);
+    rentForm.reset();
+    rentForm.hidden = true;
+    rentDone.hidden = false;
+  } catch (err) {
+    rentError.textContent = "No se ha podido enviar la solicitud. Inténtalo de nuevo en unos minutos.";
+  } finally {
+    rentSubmit.disabled = false;
+    rentSubmit.textContent = "Enviar solicitud";
+  }
 });
 
 // Show the view that matches the address; the intro only appears on the landing view
