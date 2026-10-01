@@ -641,6 +641,176 @@
     background: #1B4A78;
   }
 
+  /* --- Intro: full-screen rental hero --- */
+  .intro {
+    width: 100%;
+    min-height: calc(100vh - 64px);
+    min-height: calc(100svh - 64px);
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 56px;
+  }
+
+  .intro[hidden] { display: none !important; }
+
+  .intro-card {
+    flex: 1;
+    width: 100%;
+    background: var(--panel);
+    color: var(--ink);
+    border-radius: 22px;
+    padding: clamp(32px, 6vw, 80px) clamp(24px, 6vw, 96px);
+    box-shadow: 0 18px 44px var(--paper-shadow);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(24px, 5vw, 72px);
+    position: relative;
+  }
+
+  .intro-text { flex: 1 1 0; max-width: 620px; }
+
+  .intro-card h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: clamp(32px, 5.5vw, 64px);
+    line-height: 1.05;
+    margin: 0 0 20px;
+  }
+
+  .intro-card p {
+    font-size: clamp(15px, 1.6vw, 19px);
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin: 0 0 32px;
+    max-width: 52ch;
+  }
+
+  .primary-btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 12px 26px;
+    border-radius: 999px;
+    border: none;
+    background: var(--accent);
+    color: #FFFFFF;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+
+  .intro-card .primary-btn { font-size: 17px; padding: 16px 36px; }
+
+  .primary-btn:hover { background: #1F64A5; transform: translateY(-1px); }
+  .primary-btn:focus-visible { outline: 3px solid #BFE0FF; outline-offset: 3px; }
+
+  .intro-logo {
+    flex: 0 0 auto;
+    width: clamp(160px, 32vw, 420px);
+    aspect-ratio: 1;
+    object-fit: contain;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    left: 50%;
+    bottom: 22px;
+    transform: translateX(-50%);
+    background: none;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    cursor: pointer;
+    animation: hint-bob 1.8s ease-in-out infinite;
+  }
+
+  @keyframes hint-bob {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, 6px); }
+  }
+
+  @media (max-width: 720px) {
+    .intro-card { flex-direction: column-reverse; justify-content: center; text-align: center; padding-bottom: 64px; }
+    .intro-card p { margin-left: auto; margin-right: auto; }
+    .intro-logo { width: 140px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) { .scroll-hint { animation: none; } }
+
+  /* --- Rental request modal --- */
+  .rent-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -46%);
+    width: min(460px, calc(100% - 32px));
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    background: var(--panel);
+    color: var(--ink);
+    border-radius: 18px;
+    padding: 26px 24px 24px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+    z-index: 21;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .rent-modal.open { opacity: 1; pointer-events: auto; transform: translate(-50%, -50%); }
+
+  .rent-scrim { z-index: 20; }
+
+  .rent-modal h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    margin: 0;
+  }
+
+  .rent-modal .lead {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    margin: 6px 0 18px;
+  }
+
+  .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  .field label {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .field input, .field textarea {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: var(--ink);
+    background: #F5F7FA;
+    border: 1.5px solid var(--panel-line);
+    border-radius: 10px;
+    padding: 10px 12px;
+    width: 100%;
+  }
+
+  .field textarea { min-height: 90px; resize: vertical; }
+
+  .field input:focus, .field textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: #FFFFFF;
+  }
+
+  .field-error { font-size: 12.5px; color: #B42318; margin: -4px 0 12px; min-height: 0; }
+
+  .rent-modal .primary-btn { width: 100%; margin-top: 4px; }
+
+  @media (max-width: 420px) { .field-row { grid-template-columns: 1fr; } }
+
   footer {
     margin-top: 44px;
     font-size: 12.5px;
@@ -665,6 +835,18 @@
 <div id="dynamicHero"></div>
 
 <div id="pageContent">
+
+<section class="intro" id="intro">
+  <div class="intro-card">
+    <div class="intro-text">
+      <h2>Alquiler de dispositivos para eventos y producciones</h2>
+      <p>Tablets, móviles, ordenadores y accesorios listos para tu evento, rodaje o producción. Elige el equipo que necesitas y te lo preparamos configurado y revisado.</p>
+      <button class="primary-btn" id="openRent">Alquilar ahora</button>
+    </div>
+    <img class="intro-logo" id="introLogo" alt="Logo Soporte TV">
+    <button class="scroll-hint" id="scrollHint">Ver catálogo ↓</button>
+  </div>
+</section>
 
 <header>
   <p class="eyebrow">Catálogo interno</p>
@@ -855,6 +1037,41 @@
 
 <div class="scrim" id="scrim"></div>
 <div class="panel" id="panel" role="dialog" aria-modal="true" aria-labelledby="panel-name"></div>
+
+<div class="scrim rent-scrim" id="rentScrim"></div>
+<div class="rent-modal" id="rentModal" role="dialog" aria-modal="true" aria-labelledby="rentTitle">
+  <div class="panel-top">
+    <h2 id="rentTitle">Solicitar alquiler</h2>
+    <button class="close-btn" id="rentClose" aria-label="Cerrar">✕</button>
+  </div>
+  <p class="lead">Cuéntanos qué necesitas y se abrirá tu correo con la solicitud lista para enviar.</p>
+  <form id="rentForm" novalidate>
+    <div class="field">
+      <label for="rentName">Nombre</label>
+      <input id="rentName" type="text" autocomplete="name" required>
+    </div>
+    <div class="field">
+      <label for="rentEmail">Tu correo</label>
+      <input id="rentEmail" type="email" autocomplete="email" required>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label for="rentFrom">Desde</label>
+        <input id="rentFrom" type="date">
+      </div>
+      <div class="field">
+        <label for="rentTo">Hasta</label>
+        <input id="rentTo" type="date">
+      </div>
+    </div>
+    <div class="field">
+      <label for="rentMsg">¿Qué necesitas?</label>
+      <textarea id="rentMsg" placeholder="Ej.: 4 iPad y 2 portátiles para un evento" required></textarea>
+    </div>
+    <p class="field-error" id="rentError" role="alert"></p>
+    <button type="submit" class="primary-btn">Enviar solicitud</button>
+  </form>
+</div>
 
 </div>
 
@@ -1834,6 +2051,76 @@ setupFilters(document.getElementById("gridSurface"), [
   { select: document.getElementById("surfaceCpuSelect"), attr: "cpu" },
   { select: document.getElementById("surfaceStorageSelect"), attr: "storage" }
 ]);
+
+// --- Intro + rental request ---
+const RENTAL_EMAIL = "CORREO@PENDIENTE.com";
+
+const intro = document.getElementById("intro");
+document.getElementById("introLogo").src = document.querySelector(".brand-header img").src;
+
+const rentModal = document.getElementById("rentModal");
+const rentScrim = document.getElementById("rentScrim");
+const rentForm = document.getElementById("rentForm");
+const rentError = document.getElementById("rentError");
+
+function openRent() {
+  rentScrim.classList.add("open");
+  rentModal.classList.add("open");
+  document.getElementById("rentName").focus();
+}
+
+function closeRent() {
+  rentScrim.classList.remove("open");
+  rentModal.classList.remove("open");
+}
+
+document.getElementById("openRent").addEventListener("click", openRent);
+document.getElementById("scrollHint").addEventListener("click", () =>
+  document.querySelector("header").scrollIntoView({ behavior: "smooth" }));
+document.getElementById("rentClose").addEventListener("click", closeRent);
+rentScrim.addEventListener("click", closeRent);
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeRent(); });
+rentForm.addEventListener("input", () => { rentError.textContent = ""; });
+
+rentForm.addEventListener("submit", e => {
+  e.preventDefault();
+  const name = document.getElementById("rentName").value.trim();
+  const email = document.getElementById("rentEmail").value.trim();
+  const from = document.getElementById("rentFrom").value;
+  const to = document.getElementById("rentTo").value;
+  const msg = document.getElementById("rentMsg").value.trim();
+
+  if (!name || !email || !msg) {
+    rentError.textContent = "Rellena tu nombre, tu correo y qué necesitas.";
+    return;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    rentError.textContent = "Revisa tu correo, no parece válido.";
+    return;
+  }
+  if (from && to && to < from) {
+    rentError.textContent = "La fecha final no puede ser anterior a la inicial.";
+    return;
+  }
+
+  const subject = `Solicitud de alquiler — ${name}`;
+  const body = [
+    `Nombre: ${name}`,
+    `Correo: ${email}`,
+    `Fechas: ${from || "—"} a ${to || "—"}`,
+    "",
+    msg
+  ].join("\n");
+
+  window.location.href = `mailto:${RENTAL_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  closeRent();
+});
+
+// Show the intro only on the landing view
+document.querySelectorAll(".category-card").forEach(c =>
+  c.addEventListener("click", () => { intro.hidden = true; }));
+document.querySelectorAll("[data-back]").forEach(b =>
+  b.addEventListener("click", () => { intro.hidden = false; }));
 </script>
 
 </body>
