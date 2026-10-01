@@ -861,33 +861,27 @@
   <button class="category-card" id="goTablets">
     <div class="category-icon" id="tabletIconLarge"></div>
     <span class="category-label">Tablets</span>
-    <span class="category-count">13 disponibles</span>
   </button>
   <button class="category-card" id="goPhones">
     <div class="category-icon" id="phoneIconLarge"></div>
     <span class="category-label">Móviles</span>
-    <span class="category-count">9 disponibles</span>
   </button>
   <button class="category-card" id="goAccessories">
     <div class="category-icon" id="accessoryIconLarge"></div>
     <span class="category-label">Accesorios</span>
-    <span class="category-count">10 disponibles</span>
   </button>
   <button class="category-card" id="goComputers">
     <div class="category-icon" id="computerIconLarge"></div>
     <span class="category-label">Ordenadores</span>
-    <span class="category-count">18 disponibles</span>
   </button>
   <button class="category-card" id="goSurface">
     <div class="category-icon" id="surfaceIconLarge"></div>
     <span class="category-label">Surface</span>
-    <span class="category-count">5 disponibles</span>
   </button>
   <button class="category-card is-test" id="goTest">
     <span class="test-badge">PRUEBA</span>
     <div class="category-icon" id="testIconLarge"></div>
     <span class="category-label">Productos en PRUEBA</span>
-    <span class="category-count">Próximamente</span>
   </button>
 </div>
 
@@ -1982,21 +1976,45 @@ window.addEventListener("scroll", updateHeroOpacity, { passive: true });
 document.body.addEventListener("scroll", updateHeroOpacity, { passive: true });
 document.addEventListener("scroll", updateHeroOpacity, { passive: true });
 
-document.getElementById("goTablets").addEventListener("click", () => showView("tablets"));
-document.getElementById("goPhones").addEventListener("click", () => showView("phones"));
-document.getElementById("goAccessories").addEventListener("click", () => showView("accessories"));
-document.getElementById("goComputers").addEventListener("click", () => showView("computers"));
-document.getElementById("goSurface").addEventListener("click", () => showView("surface"));
-document.getElementById("goTest").addEventListener("click", () => showView("test"));
+function showLanding() {
+  Object.values(views).forEach(v => v.hidden = true);
+  viewLanding.hidden = false;
+  deactivateHero();
+}
+
+// --- Routing: each category has its own address (#ordenadores, #tablets...) ---
+const ROUTES = {
+  tablets: "tablets",
+  moviles: "phones",
+  accesorios: "accessories",
+  ordenadores: "computers",
+  surface: "surface",
+  prueba: "test"
+};
+const SLUGS = Object.fromEntries(Object.entries(ROUTES).map(([slug, key]) => [key, slug]));
+let navigatedFromLanding = false;
+
+function goTo(key) {
+  history.pushState(null, "", "#" + SLUGS[key]);
+  navigatedFromLanding = true;
+  route();
+}
+
+document.getElementById("goTablets").addEventListener("click", () => goTo("tablets"));
+document.getElementById("goPhones").addEventListener("click", () => goTo("phones"));
+document.getElementById("goAccessories").addEventListener("click", () => goTo("accessories"));
+document.getElementById("goComputers").addEventListener("click", () => goTo("computers"));
+document.getElementById("goSurface").addEventListener("click", () => goTo("surface"));
+document.getElementById("goTest").addEventListener("click", () => goTo("test"));
 
 document.querySelectorAll("[data-back]").forEach(btn => {
   btn.addEventListener("click", () => {
-    Object.values(views).forEach(v => v.hidden = true);
-    viewLanding.hidden = false;
-    deactivateHero();
-    window.scrollTo(0, 0);
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
+    if (navigatedFromLanding) {
+      history.back();
+    } else {
+      history.replaceState(null, "", location.pathname + location.search);
+      route();
+    }
   });
 });
 
@@ -2053,7 +2071,7 @@ setupFilters(document.getElementById("gridSurface"), [
 ]);
 
 // --- Intro + rental request ---
-const RENTAL_EMAIL = "CORREO@PENDIENTE.com";
+const RENTAL_EMAIL = "m3hervasspotify@gmail.com";
 
 const intro = document.getElementById("intro");
 document.getElementById("introLogo").src = document.querySelector(".brand-header img").src;
@@ -2116,11 +2134,23 @@ rentForm.addEventListener("submit", e => {
   closeRent();
 });
 
-// Show the intro only on the landing view
-document.querySelectorAll(".category-card").forEach(c =>
-  c.addEventListener("click", () => { intro.hidden = true; }));
-document.querySelectorAll("[data-back]").forEach(b =>
-  b.addEventListener("click", () => { intro.hidden = false; }));
+// Show the view that matches the address; the intro only appears on the landing view
+function route() {
+  const key = ROUTES[decodeURIComponent(location.hash.slice(1))];
+  if (key) {
+    intro.hidden = true;
+    showView(key);
+  } else {
+    const wasInCategory = viewLanding.hidden;
+    intro.hidden = false;
+    showLanding();
+    if (wasInCategory) document.querySelector("header").scrollIntoView();
+  }
+}
+
+window.addEventListener("popstate", route);
+window.addEventListener("hashchange", route);
+route();
 </script>
 
 </body>
