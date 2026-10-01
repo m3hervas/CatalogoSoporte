@@ -7,7 +7,7 @@
 Uso:  python build_wordpress.py            -> catalogo-wordpress.html (imágenes desde GitHub Pages)
       python build_wordpress.py --local    -> prueba-local.html (imágenes desde ../img, para probar)
 """
-import base64, hashlib, io, os, re, sys
+import base64, hashlib, io, json, os, re, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -145,36 +145,64 @@ js_rep('document.querySelector(".brand-header img")', 'catRoot.querySelector(".b
 js_rep('document.querySelectorAll(".category-card")', 'catRoot.querySelectorAll(".category-card")', 1)
 js_rep('document.querySelectorAll("[data-back]")', 'catRoot.querySelectorAll("[data-back]")')
 
-js = f"""(function () {{
-const catRoot = document.getElementById("catalogo-soporte");
+# Dentro del Shadow DOM, las búsquedas de elementos se hacen en la "burbuja"
+js = re.sub(r"document\.(getElementById|querySelector|querySelectorAll)\(", r"shadow.\1(", js)
+
+# El contenedor ya ocupa todo el ancho del host
+scoped += f"""
+  :host {{ all: initial; display: block; }}
+  {SCOPE} {{ width: 100%; max-width: none; margin: 0; }}
+"""
+
+font_urls = re.findall(r'<link href="([^"]+)" rel="stylesheet">', fonts)
+html_body = f'<div id="catalogo-soporte">\n{body.strip()}\n</div>'
+
+loader = f"""/* Catálogo Soporte TV para WordPress — generado desde index.html con build_wordpress.py */
+(function () {{
+const host = document.getElementById("catalogo-soporte-app");
+if (!host || host.shadowRoot) return;
+
+{json.dumps(font_urls)}.forEach(href => {{
+  if (!document.querySelector(`link[href="${{href}}"]`)) {{
+    const l = document.createElement("link");
+    l.rel = "stylesheet"; l.href = href;
+    document.head.appendChild(l);
+  }}
+}});
+
+const shadow = host.attachShadow({{ mode: "open" }});
+shadow.innerHTML = "<style>" + {json.dumps(scoped)} + "</style>" + {json.dumps(html_body)};
+const catRoot = shadow.getElementById("catalogo-soporte");
 
 // Ocupar todo el ancho de la ventana aunque el tema meta el contenido en una columna
 function fitFullWidth() {{
-  catRoot.style.marginLeft = "0px";
-  catRoot.style.marginRight = "0px";
+  const st = host.style;
+  st.setProperty("display", "block", "important");
+  st.setProperty("margin-left", "0px", "important");
+  st.setProperty("margin-right", "0px", "important");
+  st.setProperty("padding", "0", "important");
   const w = document.documentElement.clientWidth;
-  const left = catRoot.getBoundingClientRect().left;
-  catRoot.style.width = w + "px";
-  catRoot.style.maxWidth = w + "px";
-  catRoot.style.marginLeft = -left + "px";
+  const left = host.getBoundingClientRect().left;
+  st.setProperty("width", w + "px", "important");
+  st.setProperty("max-width", w + "px", "important");
+  st.setProperty("margin-left", -left + "px", "important");
 }}
 fitFullWidth();
 window.addEventListener("resize", fitFullWidth);
 {js}
-}})();"""
-
-snippet = f"""<!-- Catálogo Soporte TV — versión WordPress (generado desde index.html) -->
-{fonts}
-<style>{scoped}</style>
-<div id="catalogo-soporte">
-{body.strip()}
-</div>
-<script>{js}</script>
+}})();
 """
 
-name = "prueba-local.html" if local else "catalogo-wordpress.html"
-out = os.path.join(HERE, name)
+SNIPPET = '<div id="catalogo-soporte-app"></div>\n<script src="{src}"></script>\n'
+
 if local:
-    snippet = io.open(os.path.join(HERE, "simulador-wordpress.html"), encoding="utf-8").read().replace("<!--CATALOGO-->", snippet)
-io.open(out, "w", encoding="utf-8").write(snippet)
-print(f"{name}: {len(snippet.encode('utf-8'))/1024:.0f} KB, imágenes en {IMG_DIR}: {len(os.listdir(IMG_DIR))}")
+    io.open(os.path.join(HERE, "catalogo-local.js"), "w", encoding="utf-8").write(loader)
+    page = io.open(os.path.join(HERE, "simulador-wordpress.html"), encoding="utf-8").read()
+    page = page.replace("<!--CATALOGO-->", SNIPPET.format(src="catalogo-local.js"))
+    io.open(os.path.join(HERE, "prueba-local.html"), "w", encoding="utf-8").write(page)
+    print("prueba-local.html + catalogo-local.js")
+else:
+    io.open(os.path.join(HERE, "catalogo.js"), "w", encoding="utf-8").write(loader)
+    io.open(os.path.join(HERE, "catalogo-wordpress.html"), "w", encoding="utf-8").write(
+        SNIPPET.format(src="https://m3hervas.github.io/CatalogoSoporte/wordpress/catalogo.js"))
+    print(f"catalogo.js: {len(loader.encode('utf-8'))/1024:.0f} KB; catalogo-wordpress.html actualizado")
