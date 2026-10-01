@@ -9,8 +9,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #12181F;
-    --bg-deep: #0A0E13;
+    --bg: #1F4A75;
+    --bg-deep: #163A5E;
     --panel: #FFFFFF;
     --panel-line: #E4E8ED;
     --ink: #1B222B;
@@ -38,16 +38,16 @@
 
   @media (prefers-color-scheme: light) {
     :root:not([data-theme="dark"]) {
-      --bg: #E7EAEE;
-      --bg-deep: #D6DBE2;
+      --bg: #1F4A75;
+      --bg-deep: #163A5E;
       --panel: #FFFFFF;
       --ink: #1B222B;
     }
   }
 
   :root[data-theme="dark"] {
-    --bg: #12181F;
-    --bg-deep: #0A0E13;
+    --bg: #1F4A75;
+    --bg-deep: #163A5E;
     --panel: #FFFFFF;
     --ink: #1B222B;
   }
@@ -65,9 +65,10 @@
 
   body {
     min-height: 100%;
-    background: radial-gradient(circle at 12% -10%, rgba(20,184,166,0.08), transparent 45%),
-                radial-gradient(circle at 92% 105%, rgba(255,255,255,0.03), transparent 50%),
-                var(--bg);
+    background: radial-gradient(ellipse at 15% 0%, rgba(120,190,255,0.35), transparent 55%),
+                radial-gradient(ellipse at 90% 100%, rgba(70,150,230,0.30), transparent 60%),
+                linear-gradient(180deg, #2A5D8F 0%, var(--bg) 60%, #19406A 100%);
+    background-attachment: fixed;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -92,6 +93,36 @@
     opacity: 1;
   }
 
+  .bg-power {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: min(70vw, 520px);
+    height: min(70vw, 520px);
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.22;
+    filter: blur(14px);
+  }
+
+  .bg-power svg { width: 100%; height: 100%; }
+
+  .category-card.is-test { position: relative; }
+
+  .test-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: #FFF1CC;
+    color: #8A5A00;
+  }
+
   #pageContent {
     position: relative;
     z-index: 1;
@@ -113,7 +144,7 @@
     font-size: 13px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--accent);
+    color: #BFE0FF;
     margin: 0 0 12px;
   }
 
@@ -281,7 +312,7 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.04em;
-    color: #8A96A8;
+    color: #BFD3E8;
     white-space: nowrap;
     flex-shrink: 0;
   }
@@ -613,7 +644,7 @@
   footer {
     margin-top: 44px;
     font-size: 12.5px;
-    color: #7C8896;
+    color: #BFD3E8;
     text-align: center;
   }
 
@@ -623,6 +654,13 @@
 </style>
 </head>
 <body>
+
+<div class="bg-power" aria-hidden="true">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#8CC8FF" stroke-width="9" stroke-linecap="round">
+    <path d="M32 26a32 32 0 1 0 36 0"/>
+    <path d="M50 12v36"/>
+  </svg>
+</div>
 
 <div id="dynamicHero"></div>
 
@@ -662,6 +700,12 @@
     <div class="category-icon" id="surfaceIconLarge"></div>
     <span class="category-label">Surface</span>
     <span class="category-count">5 disponibles</span>
+  </button>
+  <button class="category-card is-test" id="goTest">
+    <span class="test-badge">PRUEBA</span>
+    <div class="category-icon" id="testIconLarge"></div>
+    <span class="category-label">Productos en PRUEBA</span>
+    <span class="category-count">Próximamente</span>
   </button>
 </div>
 
@@ -798,6 +842,15 @@
   <div class="grid" id="gridSurface"></div>
 </div>
 
+<div class="catalog-view" id="viewTest" hidden>
+  <button class="back-btn" data-back>← Volver</button>
+  <div class="empty-state">
+    <div class="empty-icon" id="testIconEmpty"></div>
+    <p class="empty-title">Productos en PRUEBA</p>
+    <p class="empty-sub">Aquí aparecerán los equipos que estamos probando antes de añadirlos al catálogo de alquiler.</p>
+  </div>
+</div>
+
 <footer>Soporte TV — catálogo interno de equipos disponibles para alquiler.</footer>
 
 <div class="scrim" id="scrim"></div>
@@ -872,6 +925,13 @@ function desktopIcon(accent) {
     <rect x="20" y="16" width="80" height="46" rx="1.5" fill="#D9DEE4"/>
     <rect x="48" y="68" width="24" height="10" fill="${accent}"/>
     <rect x="34" y="78" width="52" height="6" rx="2" fill="${accent}"/>
+  </svg>`;
+}
+
+function testIcon(accent) {
+  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="${accent}" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M38 12h24M42 12v26L22 76a8 8 0 0 0 7 12h42a8 8 0 0 0 7-12L58 38V12"/>
+    <path d="M30 64h40" stroke-width="4"/>
   </svg>`;
 }
 
@@ -1641,6 +1701,8 @@ document.getElementById("phoneIconLarge").innerHTML = phoneIcon("#2B79C2");
 document.getElementById("accessoryIconLarge").innerHTML = accessoryIcon("#2B79C2");
 document.getElementById("computerIconLarge").innerHTML = desktopIcon("#2B79C2");
 document.getElementById("surfaceIconLarge").innerHTML = surfaceIcon("#2B79C2");
+document.getElementById("testIconLarge").innerHTML = testIcon("#2B79C2");
+document.getElementById("testIconEmpty").innerHTML = testIcon("#8CC8FF");
 
 const viewLanding = document.getElementById("viewLanding");
 const views = {
@@ -1648,7 +1710,8 @@ const views = {
   phones: document.getElementById("viewPhones"),
   accessories: document.getElementById("viewAccessories"),
   computers: document.getElementById("viewComputers"),
-  surface: document.getElementById("viewSurface")
+  surface: document.getElementById("viewSurface"),
+  test: document.getElementById("viewTest")
 };
 
 const dynamicHero = document.getElementById("dynamicHero");
@@ -1707,6 +1770,7 @@ document.getElementById("goPhones").addEventListener("click", () => showView("ph
 document.getElementById("goAccessories").addEventListener("click", () => showView("accessories"));
 document.getElementById("goComputers").addEventListener("click", () => showView("computers"));
 document.getElementById("goSurface").addEventListener("click", () => showView("surface"));
+document.getElementById("goTest").addEventListener("click", () => showView("test"));
 
 document.querySelectorAll("[data-back]").forEach(btn => {
   btn.addEventListener("click", () => {
