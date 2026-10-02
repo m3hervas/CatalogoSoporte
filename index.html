@@ -825,6 +825,90 @@
 
   @media (max-width: 420px) { .field-row { grid-template-columns: 1fr; } }
 
+  /* --- Storage: wide cards, two per row --- */
+  .storage-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+    width: 100%;
+    max-width: 940px;
+  }
+
+  @media (max-width: 720px) {
+    .storage-grid { grid-template-columns: minmax(0, 1fr); }
+  }
+
+  .storage-card {
+    background: var(--panel);
+    color: var(--ink);
+    border: 2.5px solid var(--accent);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 22px var(--paper-shadow);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 260px;
+  }
+
+  .storage-card.hidden { display: none; }
+
+  .storage-photo {
+    background: #F3F5F7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+  }
+
+  .storage-photo svg, .storage-photo img { width: 100%; height: 100%; object-fit: contain; }
+
+  .storage-info {
+    padding: 22px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 0;
+  }
+
+  .storage-info .brand-line { display: flex; align-items: center; gap: 8px; }
+  .storage-info h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.2;
+    margin: 0;
+  }
+  .storage-info .cat-chip { align-self: flex-start; background: var(--accent-soft); color: #1B4A78; }
+
+  .storage-icons {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: auto;
+  }
+
+  .storage-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    background: var(--accent-soft);
+    color: #1B4A78;
+    border-radius: 10px;
+    padding: 8px 4px;
+    text-align: center;
+  }
+
+  .storage-icon svg { width: 22px; height: 22px; }
+  .storage-icon-wide { grid-column: 1 / -1; flex-direction: row; justify-content: center; gap: 8px; padding: 8px 10px; }
+  .storage-icons { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .storage-icon span { font-size: 11px; font-weight: 700; line-height: 1.2; }
+
+  @media (max-width: 420px) {
+    .storage-card { grid-template-columns: 1fr; }
+    .storage-photo { aspect-ratio: 4 / 3; }
+  }
+
   footer {
     margin-top: 44px;
     font-size: 12.5px;
@@ -899,6 +983,10 @@
   <button class="category-card" id="goConnectivity">
     <div class="category-icon" id="connectivityIconLarge"></div>
     <span class="category-label">Conectividad</span>
+  </button>
+  <button class="category-card" id="goStorage">
+    <div class="category-icon" id="storageIconLarge"></div>
+    <span class="category-label">Almacenamiento</span>
   </button>
   <button class="category-card is-test" id="goTest">
     <span class="test-badge">PRUEBA</span>
@@ -1100,6 +1188,11 @@
   <div class="grid" id="gridConnectivity"></div>
 </div>
 
+<div class="catalog-view" id="viewStorage" hidden>
+  <button class="back-btn" data-back>← Volver</button>
+  <div class="storage-grid" id="gridStorage"></div>
+</div>
+
 <div class="catalog-view" id="viewTest" hidden>
   <button class="back-btn" data-back>← Volver</button>
   <div class="empty-state">
@@ -1269,6 +1362,65 @@ function accessPointIcon(accent) {
     <circle cx="50" cy="72" r="3" fill="${accent}"/>
   </svg>`;
 }
+
+function driveIcon(accent) {
+  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="22" y="12" width="56" height="76" rx="12" fill="#EDEFF2" stroke="${accent}" stroke-width="3.5"/>
+    <rect x="32" y="24" width="36" height="40" rx="5" fill="#D9DEE4"/>
+    <circle cx="50" cy="76" r="3.5" fill="${accent}"/>
+  </svg>`;
+}
+
+// Drawn drive (until real photos are added): label, body colour, accent colour and shape
+function driveArt(label, body, accent, shape = "loop") {
+  const text = (y, size = 13) => `<text x="80" y="${y}" text-anchor="middle" font-family="Inter, sans-serif" font-size="${size}" font-weight="700" fill="#E9ECEF">${label}</text>`;
+  if (shape === "desk") {
+    return `<svg viewBox="0 0 160 120" xmlns="http://www.w3.org/2000/svg">
+      <rect x="40" y="8" width="80" height="104" rx="14" fill="${body}"/>
+      <rect x="40" y="96" width="80" height="16" rx="8" fill="${accent}"/>
+      ${text(60, 12)}
+    </svg>`;
+  }
+  if (shape === "blade") {
+    return `<svg viewBox="0 0 160 120" xmlns="http://www.w3.org/2000/svg">
+      <rect x="14" y="40" width="132" height="40" rx="8" fill="${body}"/>
+      <rect x="14" y="40" width="18" height="40" rx="6" fill="${accent}"/>
+      ${text(65, 11)}
+    </svg>`;
+  }
+  if (shape === "raid") {
+    const bays = Array.from({ length: 8 }, (_, i) => `<rect x="${30 + i * 13}" y="34" width="9" height="52" rx="2" fill="${accent}"/>`).join("");
+    return `<svg viewBox="0 0 160 120" xmlns="http://www.w3.org/2000/svg">
+      <rect x="18" y="16" width="124" height="88" rx="10" fill="${body}"/>
+      ${bays}
+      ${text(100, 9)}
+    </svg>`;
+  }
+  if (shape === "dock") {
+    return `<svg viewBox="0 0 160 120" xmlns="http://www.w3.org/2000/svg">
+      <rect x="32" y="10" width="96" height="100" rx="16" fill="${body}"/>
+      <circle cx="80" cy="50" r="22" fill="none" stroke="${accent}" stroke-width="4"/>
+      ${text(96, 11)}
+    </svg>`;
+  }
+  const detail = shape === "phone"
+    ? `<circle cx="80" cy="60" r="26" fill="none" stroke="${accent}" stroke-width="4" opacity="0.8"/>`
+    : `<path d="M110 14h10a18 18 0 0 1 18 18v10h-12a16 16 0 0 0-16-16z" fill="${accent}"/>
+       <circle cx="124" cy="28" r="5" fill="${body}"/>`;
+  return `<svg viewBox="0 0 160 120" xmlns="http://www.w3.org/2000/svg">
+    <rect x="22" y="14" width="116" height="92" rx="18" fill="${body}"/>
+    <rect x="28" y="20" width="104" height="80" rx="14" fill="#FFFFFF" opacity="0.07"/>
+    ${detail}
+    ${text(66)}
+    <rect x="70" y="102" width="20" height="4" rx="2" fill="#1E2126"/>
+  </svg>`;
+}
+
+const STORAGE_ICONS = {
+  capacity: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5.5" rx="7.5" ry="2.5"/><path d="M4.5 5.5v13c0 1.4 3.4 2.5 7.5 2.5s7.5-1.1 7.5-2.5v-13"/><path d="M4.5 12c0 1.4 3.4 2.5 7.5 2.5s7.5-1.1 7.5-2.5"/></svg>`,
+  speed: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3 5 14h6l-1 7 8-11h-6z"/></svg>`,
+  port: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8.5" width="18" height="7" rx="3.5"/><path d="M8 12h8"/></svg>`
+};
 
 function surfaceIcon(accent) {
   return `<svg viewBox="0 0 110 100" xmlns="http://www.w3.org/2000/svg">
@@ -2040,6 +2192,109 @@ CONNECTIVITY.push({
   ]
 });
 
+// Each disk model (one card per model). Variants of the same model are listed together.
+// Data taken from each model's page on sandisk.com.
+const SANDISK = { brand: "SanDisk", brandCode: "S", brandColor: "#ED1C24" };
+const SANDISK_PRO = { brand: "SanDisk Professional", brandCode: "P", brandColor: "#1D1D1F" };
+const WD_BLACK = { brand: "WD_BLACK", brandCode: "W", brandColor: "#111111" };
+const WD = { brand: "WD", brandCode: "W", brandColor: "#0067B4" };
+
+const STORAGE = [
+  // --- SanDisk ---
+  { ...SANDISK, model: "SanDisk Extreme PRO Portable SSD (V3)", catLabel: "SSD externo portátil",
+    art: driveArt("SanDisk", "#26292E", "#8A9099"),
+    capacities: ["2 TB", "4 TB", "8 TB"], speed: "Hasta 4000 MB/s", port: "USB-C" },
+  { ...SANDISK, model: "SanDisk Extreme PRO con USB4", catLabel: "SSD externo portátil",
+    art: driveArt("SanDisk", "#26292E", "#C9A227"),
+    capacities: ["2 TB", "4 TB"], speed: "Hasta 3800 MB/s", port: "USB4 (compatible Thunderbolt 4)" },
+  { ...SANDISK, model: "SanDisk Extreme PRO Portable SSD", catLabel: "SSD externo portátil",
+    art: driveArt("SanDisk", "#2B2F36", "#9AA0A8"),
+    capacities: ["1 TB", "2 TB", "4 TB"], speed: "Hasta 2000 MB/s", port: "USB-C (USB 3.2 Gen 2x2)" },
+  { ...SANDISK, model: "SanDisk Extreme Portable SSD", catLabel: "SSD externo portátil",
+    art: driveArt("SanDisk", "#2B2F36", "#F26B21"),
+    capacities: ["500 GB", "1 TB", "2 TB", "4 TB", "8 TB"], speed: "Hasta 1050 MB/s", port: "USB-C (USB 3.2 Gen 2)" },
+  { ...SANDISK, model: "SanDisk Creator Pro Portable SSD", catLabel: "SSD externo portátil · Creator",
+    art: driveArt("SanDisk", "#2B2F36", "#7B5CD6"),
+    capacities: ["1 TB", "2 TB", "4 TB"], speed: "Hasta 2000 MB/s", port: "USB-C (USB 3.2 Gen 2x2)" },
+  { ...SANDISK, model: "SanDisk Portable SSD (V3)", catLabel: "SSD externo portátil",
+    art: driveArt("SanDisk", "#2B2F36", "#ED1C24"),
+    capacities: ["500 GB", "1 TB", "2 TB"], speed: "Hasta 1000 MB/s", port: "USB-C (USB 3.2 Gen 2)" },
+  { ...SANDISK, model: "SanDisk Portable SSD (firmware actualizado)", catLabel: "SSD externo portátil",
+    art: driveArt("SanDisk", "#33373E", "#ED1C24"),
+    capacities: ["1 TB", "2 TB"], speed: "Hasta 800 MB/s", port: "USB-C (USB 3.2 Gen 2)" },
+  { ...SANDISK, model: "SanDisk Portable Drive", catLabel: "SSD externo portátil",
+    art: driveArt("SanDisk", "#3A3F47", "#B8BEC6"),
+    capacities: ["500 GB", "1 TB"], speed: "Hasta 600 MB/s", port: "USB-C (USB 3.2 Gen 2)" },
+  { ...SANDISK, model: "SanDisk Phone SSD", catLabel: "SSD para móvil · MagSafe",
+    art: driveArt("SanDisk", "#2F343B", "#C9CED6", "phone"),
+    capacities: ["1 TB", "2 TB"], speed: "Hasta 1000 MB/s", port: "USB-C · MagSafe" },
+  { ...SANDISK, model: "SanDisk Creator Phone SSD", catLabel: "SSD para móvil · MagSafe · Creator",
+    art: driveArt("SanDisk", "#2F343B", "#7B5CD6", "phone"),
+    capacities: ["1 TB", "2 TB"], speed: "Hasta 1000 MB/s", port: "USB-C (USB 3.2 Gen 2) · MagSafe" },
+  { ...SANDISK, model: "SanDisk Desk Drive", catLabel: "SSD de escritorio",
+    art: driveArt("SanDisk", "#2B2F36", "#ED1C24", "desk"),
+    capacities: ["4 TB", "8 TB"], speed: "Hasta 1000 MB/s", port: "USB-C (USB 3.2 Gen 2)" },
+  { ...SANDISK, model: "SanDisk Creator Desk Drive", catLabel: "SSD de escritorio · Creator",
+    art: driveArt("SanDisk", "#2B2F36", "#7B5CD6", "desk"),
+    capacities: ["4 TB", "8 TB"], speed: "Hasta 1000 MB/s", port: "USB 3.2 Gen 2" },
+
+  // --- SanDisk Professional ---
+  { ...SANDISK_PRO, model: "SanDisk Professional PRO-G40 SSD", catLabel: "SSD portátil · exFAT / APFS",
+    art: driveArt("PRO-G40", "#1F2226", "#6C737C"),
+    capacities: ["1 TB", "2 TB", "4 TB"], speed: "Hasta 2700–3000 MB/s", port: "Thunderbolt 3 · USB-C (USB 3.2 Gen 2)" },
+  { ...SANDISK_PRO, model: "PRO-BLADE SSD Mag", catLabel: "Módulo SSD · ecosistema PRO-BLADE",
+    art: driveArt("PRO-BLADE", "#2A2D31", "#6C737C", "blade"),
+    capacities: ["1 TB", "2 TB", "4 TB"], speed: "Hasta 2000 MB/s (TRANSPORT) · 3000 MB/s (STATION)", port: "PRO-BLADE TRANSPORT / STATION" },
+  { ...SANDISK_PRO, model: "PRO-BLADE TRANSPORT", catLabel: "Carcasa portátil para PRO-BLADE SSD Mag",
+    art: driveArt("TRANSPORT", "#2A2D31", "#6C737C"),
+    capacities: ["Vacía", "1 TB", "2 TB", "4 TB"], speed: "Hasta 2000 MB/s", port: "USB-C" },
+  { ...SANDISK_PRO, model: "G-RAID SHUTTLE SSD", catLabel: "RAID SSD transportable",
+    art: driveArt("G-RAID SHUTTLE", "#2A2D31", "#6C737C", "raid"),
+    capacities: ["16 TB", "32 TB"], speed: "Hasta 2800 MB/s", port: "Thunderbolt 3" },
+
+  // --- WD_BLACK ---
+  { ...WD_BLACK, model: "WD_BLACK P50 Game Drive SSD", catLabel: "SSD portátil para gaming",
+    art: driveArt("WD_BLACK", "#141518", "#3A3D42"),
+    capacities: ["500 GB", "1 TB", "2 TB", "4 TB"], speed: "Hasta 2000 MB/s", port: "USB-C (USB 3.2 Gen 2x2)" },
+  { ...WD_BLACK, model: "WD_BLACK P40 Game Drive SSD", catLabel: "SSD portátil para gaming",
+    art: driveArt("WD_BLACK", "#141518", "#B07CFF"),
+    capacities: ["1 TB", "2 TB"], speed: "Hasta 2000 MB/s", port: "USB-C (USB 3.2 Gen 2x2)" },
+  { ...WD_BLACK, model: "WD_BLACK D30 Game Drive SSD", catLabel: "SSD para consola",
+    art: driveArt("WD_BLACK", "#141518", "#3A3D42", "desk"),
+    capacities: ["2 TB"], speed: "Hasta 900 MB/s", port: "USB-C (USB 3.2 Gen 2)" },
+  { ...WD_BLACK, model: "WD_BLACK D50 Game Dock NVMe SSD", catLabel: "Dock con SSD NVMe",
+    art: driveArt("WD_BLACK", "#141518", "#B07CFF", "dock"),
+    capacities: ["1 TB", "2 TB"], speed: "Hasta 3000 MB/s", port: "Thunderbolt 3" },
+
+  // --- WD ---
+  { ...WD, model: "WD Elements SE SSD", catLabel: "SSD externo portátil",
+    art: driveArt("WD", "#1E2126", "#0067B4"),
+    capacities: ["1 TB", "2 TB"], speed: "Hasta 400 MB/s", port: "Micro-B (USB 3.0)" }
+];
+
+function renderStorage(items, gridEl) {
+  items.forEach(d => {
+    const card = document.createElement("article");
+    card.className = "storage-card";
+    card.dataset.type = d.type;
+    const media = d.photo ? `<img src="${d.photo}" alt="${d.model}">` : d.art;
+    card.innerHTML = `
+      <div class="storage-photo">${media}</div>
+      <div class="storage-info">
+        <div class="brand-line">${badgeMarkup(d)}</div>
+        <h3>${d.model}</h3>
+        <span class="cat-chip">${d.catLabel}</span>
+        <div class="storage-icons">
+          <div class="storage-icon storage-icon-wide" title="Capacidades">${STORAGE_ICONS.capacity}<span>${d.capacities.join(" · ")}</span></div>
+          <div class="storage-icon" title="Velocidad">${STORAGE_ICONS.speed}<span>${d.speed}</span></div>
+          <div class="storage-icon" title="Conexión">${STORAGE_ICONS.port}<span>${d.port}</span></div>
+        </div>
+      </div>
+    `;
+    gridEl.appendChild(card);
+  });
+}
+
 const scrim = document.getElementById("scrim");
 const panel = document.getElementById("panel");
 
@@ -2122,6 +2377,7 @@ renderGrid(COMPUTERS, document.getElementById("gridComputers"));
 renderGrid(SURFACE, document.getElementById("gridSurface"));
 renderGrid(MONITORS, document.getElementById("gridMonitors"));
 renderGrid(CONNECTIVITY, document.getElementById("gridConnectivity"));
+renderStorage(STORAGE, document.getElementById("gridStorage"));
 
 // --- View navigation ---
 document.getElementById("tabletIconLarge").innerHTML = tabletIconLarge("#2B79C2");
@@ -2131,6 +2387,7 @@ document.getElementById("computerIconLarge").innerHTML = desktopIcon("#2B79C2");
 document.getElementById("surfaceIconLarge").innerHTML = surfaceIcon("#2B79C2");
 document.getElementById("monitorIconLarge").innerHTML = monitorIcon("#2B79C2");
 document.getElementById("connectivityIconLarge").innerHTML = routerIcon("#2B79C2");
+document.getElementById("storageIconLarge").innerHTML = driveIcon("#2B79C2");
 document.getElementById("testIconLarge").innerHTML = testIcon("#2B79C2");
 document.getElementById("testIconEmpty").innerHTML = testIcon("#8CC8FF");
 
@@ -2143,6 +2400,7 @@ const views = {
   surface: document.getElementById("viewSurface"),
   monitors: document.getElementById("viewMonitors"),
   connectivity: document.getElementById("viewConnectivity"),
+  storage: document.getElementById("viewStorage"),
   test: document.getElementById("viewTest")
 };
 
@@ -2222,6 +2480,7 @@ const ROUTES = {
   surface: "surface",
   monitores: "monitors",
   conectividad: "connectivity",
+  almacenamiento: "storage",
   prueba: "test"
 };
 const SLUGS = Object.fromEntries(Object.entries(ROUTES).map(([slug, key]) => [key, slug]));
@@ -2240,6 +2499,7 @@ document.getElementById("goComputers").addEventListener("click", () => goTo("com
 document.getElementById("goSurface").addEventListener("click", () => goTo("surface"));
 document.getElementById("goMonitors").addEventListener("click", () => goTo("monitors"));
 document.getElementById("goConnectivity").addEventListener("click", () => goTo("connectivity"));
+document.getElementById("goStorage").addEventListener("click", () => goTo("storage"));
 document.getElementById("goTest").addEventListener("click", () => goTo("test"));
 
 document.querySelectorAll("[data-back]").forEach(btn => {
