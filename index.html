@@ -1933,12 +1933,14 @@
       <div class="filter-row">
         <span class="filter-label">Almacenamiento</span>
         <select class="filter-select" id="storageSelect">
-          <option value="all">Todos</option>
-          <option value="32 GB">32 GB</option>
-          <option value="64 GB">64 GB</option>
-          <option value="128 GB">128 GB</option>
-          <option value="256 GB">256 GB</option>
-        </select>
+            <option value="all">Todos</option>
+            <option value="32 GB">32 GB</option>
+            <option value="64 GB">64 GB</option>
+            <option value="128 GB">128 GB</option>
+            <option value="256 GB">256 GB</option>
+            <option value="512 GB">512 GB</option>
+            <option value="1 TB">1 TB</option>
+          </select>
       </div>
       <button class="filter-reset" type="button">Quitar filtros</button>
     </aside>
@@ -2434,10 +2436,11 @@ function surfaceIcon(accent) {
   </svg>`;
 }
 
+// Storage options: every capacity of each model (official Apple / Samsung / Lenovo specs)
 const PRODUCTS = [
   {
     cat: "android", catLabel: "Tablet Android", brand: "Lenovo", brandCode: "L", brandColor: "var(--lenovo)",
-    model: "Lenovo Tab",
+    model: "Lenovo Tab", storages: ["64 GB", "128 GB"],
     photo: "img/8e1960cc2518.webp",
     storage: "128 GB",
     icon: tabletIcon("#E2231A"),
@@ -2451,7 +2454,7 @@ const PRODUCTS = [
   },
   {
     cat: "android", catLabel: "Tablet Android", brand: "Samsung", brandCode: "S", brandColor: "var(--samsung)",
-    model: "Galaxy Tab A8",
+    model: "Galaxy Tab A8", storages: ["32 GB", "64 GB", "128 GB"],
     photo: "img/32ab31015f6d.webp",
     storage: "64 GB",
     icon: tabletIcon("#1428A0"),
@@ -2464,7 +2467,7 @@ const PRODUCTS = [
   },
   {
     cat: "android", catLabel: "Tablet Android", brand: "Samsung", brandCode: "S", brandColor: "var(--samsung)",
-    model: "Galaxy Tab S9 Ultra",
+    model: "Galaxy Tab S9 Ultra", storages: ["256 GB", "512 GB", "1 TB"],
     storage: "256 GB",
     photo: "img/d8dff3425faf.webp",
     icon: tabletIcon("#1428A0"),
@@ -2477,7 +2480,7 @@ const PRODUCTS = [
   },
   {
     cat: "ipad", catLabel: "iPad", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "iPad (5.ª generación)",
+    model: "iPad (5.ª generación)", storages: ["32 GB", "128 GB"],
     photo: "img/a15b07509bed.webp",
     storage: "No especificado",
     icon: ipadIcon("#5B6470"),
@@ -2489,7 +2492,7 @@ const PRODUCTS = [
   },
   {
     cat: "ipad", catLabel: "iPad", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "iPad (6.ª generación)",
+    model: "iPad (6.ª generación)", storages: ["32 GB", "128 GB"],
     storage: "32 GB",
     photo: "img/91c90cb13796.webp",
     icon: ipadIcon("#5B6470"),
@@ -2502,7 +2505,7 @@ const PRODUCTS = [
   },
   {
     cat: "ipad", catLabel: "iPad", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "iPad (7.ª generación)",
+    model: "iPad (7.ª generación)", storages: ["32 GB", "128 GB"],
     photo: "img/9bcd7f77dd4a.webp",
     storage: "32 GB",
     icon: ipadIcon("#5B6470"),
@@ -2515,7 +2518,7 @@ const PRODUCTS = [
   },
   {
     cat: "ipad", catLabel: "iPad", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "iPad (9.ª generación)",
+    model: "iPad (9.ª generación)", storages: ["64 GB", "256 GB"],
     storage: "64 GB",
     photo: "img/67735d535de7.webp",
     icon: ipadIcon("#5B6470"),
@@ -2528,7 +2531,7 @@ const PRODUCTS = [
   },
   {
     cat: "ipad", catLabel: "iPad", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "iPad A16 (11.ª generación)",
+    model: "iPad A16 (11.ª generación)", storages: ["128 GB", "256 GB", "512 GB"],
     photo: "img/c66b71f8c552.webp",
     storage: "128 GB",
     icon: ipadIcon("#5B6470"),
@@ -2541,7 +2544,7 @@ const PRODUCTS = [
   },
   {
     cat: "ipad", catLabel: "iPad", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "iPad Air",
+    model: "iPad Air", storages: ["64 GB", "256 GB"],
     photo: "img/b72c91bd6aa0.webp",
     storage: "64 GB",
     icon: ipadIcon("#5B6470"),
@@ -2554,7 +2557,7 @@ const PRODUCTS = [
   },
   {
     cat: "ipad", catLabel: "iPad", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "iPad Air (M2)",
+    model: "iPad Air (M2)", storages: ["128 GB", "256 GB", "512 GB", "1 TB"],
     photo: "img/aec32ce438e6.webp",
     storage: "128 GB",
     icon: ipadIcon("#5B6470"),
@@ -2568,7 +2571,7 @@ const PRODUCTS = [
   },
   {
     cat: "ipad", catLabel: "iPad", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "iPad Pro",
+    model: "iPad Pro", storages: ["128 GB", "256 GB", "512 GB", "1 TB"],
     storage: "128 GB",
     photo: "img/b6e3d7465e9c.webp",
     icon: ipadIcon("#5B6470"),
@@ -2581,7 +2584,7 @@ const PRODUCTS = [
   },
   {
     cat: "ipad", catLabel: "iPad", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "iPad Pro (4.ª generación)",
+    model: "iPad Pro (4.ª generación)", storages: ["128 GB", "256 GB", "512 GB", "1 TB"],
     photo: "img/3b9d1e8e7485.webp",
     storage: "128 GB",
     icon: ipadIcon("#5B6470"),
@@ -2594,7 +2597,7 @@ const PRODUCTS = [
   },
   {
     cat: "ipad", catLabel: "iPad", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "iPad Pro",
+    model: "iPad Pro", storages: ["128 GB", "256 GB", "512 GB", "1 TB"],
     storage: "256 GB",
     photo: "img/b6e3d7465e9c.webp",
     icon: ipadIcon("#5B6470"),
@@ -3356,6 +3359,11 @@ function groupByModel(items) {
       const configs = variants.map(v => [...differing, "Almacenamiento"].map(l => (v.specs.find(([x]) => x === l) || [])[1]).filter(Boolean).join(" · "));
       specs.push(["Configuraciones", configs.join("<br>")]);
     }
+    if (storages.length) {
+      const row = specs.find(([l]) => l === "Almacenamiento");
+      if (row) row[1] = storages.join(" / ");
+      else specs.splice(1, 0, ["Almacenamiento", storages.join(" / ")]);
+    }
     const allValues = attr => [...new Set(variants.map(v => v[attr]).filter(Boolean))].join("|");
     return {
       ...first, variants, storages, specs,
@@ -3370,6 +3378,13 @@ const specOf = (p, label) => (p.specs.find(([l]) => l === label) || [])[1] || ""
 // What each category shows in the info box of its cards
 const CARD_INFO = {
   storage: p => ({ icon: STORAGE_ICONS.capacity, title: "Almacenamiento", text: p.storages.length ? p.storages.join(" · ") : "Consultar" }),
+  // Phones and tablets: storage options + screen size
+  device: p => {
+    const boxes = [CARD_INFO.storage(p)];
+    const screen = specOf(p, "Pantalla").replace(/\s*''$/, "''");
+    if (screen) boxes.push({ icon: STORAGE_ICONS.screen, title: "Pantalla", text: screen });
+    return boxes;
+  },
   computer: p => {
     const parts = [specOf(p, "Procesador") || specOf(p, "Chip"), specOf(p, "RAM"), specOf(p, "Almacenamiento")].filter(Boolean);
     if (p.variants.length > 1) {
@@ -3397,14 +3412,14 @@ function renderModelCards(items, gridEl, info = CARD_INFO.storage) {
     card.setAttribute("aria-haspopup", "dialog");
     const media = p.photo ? `<img src="${p.photo}" alt="${p.model}" loading="lazy" decoding="async">` : p.icon;
     const box = info(p);
+    const boxes = Array.isArray(box) ? box : [box];
     card.innerHTML = `
       <div class="storage-photo">${media}</div>
       <div class="storage-info">
         ${p.brand ? `<div class="brand-line">${badgeMarkup(p)}</div>` : ""}
         <h3>${p.model}</h3>
-        <span class="cat-chip">${p.catLabel}</span>
         <div class="storage-icons">
-          <div class="storage-icon storage-icon-wide" title="${box.title}">${box.icon}<span>${box.text}</span></div>
+          ${boxes.map(b => `<div class="storage-icon storage-icon-wide" title="${b.title}">${b.icon}<span>${b.text}</span></div>`).join("")}
         </div>
         <span class="card-hint">Toca para ver la ficha técnica</span>
       </div>
@@ -3467,8 +3482,8 @@ const TABLET_ORDER = [
   "Lenovo Tab"
 ];
 const rankIn = list => p => { const i = list.indexOf(p.model); return i === -1 ? list.length : i; };
-renderModelCards([...PRODUCTS].sort((a, b) => rankIn(TABLET_ORDER)(a) - rankIn(TABLET_ORDER)(b)), document.getElementById("grid"));
-renderModelCards(PHONES, document.getElementById("gridPhones"));
+renderModelCards([...PRODUCTS].sort((a, b) => rankIn(TABLET_ORDER)(a) - rankIn(TABLET_ORDER)(b)), document.getElementById("grid"), CARD_INFO.device);
+renderModelCards(PHONES, document.getElementById("gridPhones"), CARD_INFO.device);
 renderModelCards(ACCESSORIES, document.getElementById("gridAccessories"), CARD_INFO.accessory);
 renderModelCards(COMPUTERS, document.getElementById("gridComputers"), CARD_INFO.computer);
 renderModelCards(SURFACE, document.getElementById("gridSurface"), CARD_INFO.computer);
