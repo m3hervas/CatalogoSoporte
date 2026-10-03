@@ -1255,20 +1255,8 @@
 
   .ghost-btn:active { transform: scale(0.97); }
 
-  .intro-stats {
-    display: flex;
-    flex-wrap: wrap;
-    gap: clamp(20px, 4vw, 52px);
-    margin: 36px 0 0;
-    padding-top: 26px;
-    border-top: 1px solid var(--line);
-  }
-
-  .intro-stats dt { font-family: var(--font-display); font-size: clamp(34px, 3.4vw, 46px); line-height: 1; color: #FFFFFF; font-variant-numeric: tabular-nums; }
-  .intro-stats dd { margin: 6px 0 0; color: var(--mute); font-size: 13px; }
-
   @media (max-width: 720px) {
-    .intro-actions, .intro-stats { justify-content: center; }
+    .intro-actions { justify-content: center; }
   }
 
   .intro-logo {
@@ -1751,11 +1739,6 @@
         <button class="primary-btn" id="openRent">Alquilar ahora</button>
         <a class="ghost-btn" href="#catalogo" data-nav="catalog">Ver catálogo</a>
       </div>
-      <dl class="intro-stats">
-        <div><dt data-count="models">83</dt><dd>modelos disponibles</dd></div>
-        <div><dt data-count="categories">8</dt><dd>categorías</dd></div>
-        <div><dt data-count="brands">20</dt><dd>marcas</dd></div>
-      </dl>
     </div>
     <img class="intro-logo" id="introLogo" alt="Logo Soporte TV">
     <button class="scroll-hint" id="scrollHint">Ver catálogo ↓</button>
@@ -3878,34 +3861,6 @@ route();
     items.forEach(el => io.observe(el));
     setTimeout(showAll, 6000);   // safety net: never leave content hidden
   }, "reveal");
-
-  safe(() => {
-    const brands = new Set();
-    [...PRODUCTS, ...PHONES, ...ACCESSORIES, ...COMPUTERS, ...SURFACE, ...MONITORS, ...CONNECTIVITY, ...STORAGE].forEach(p =>
-      (p.brand || "").split("/").map(b => b.trim()).filter(b => b && b !== "Multimarca" && b !== "Sin marca").forEach(b => brands.add(b)));
-    const values = {
-      models: document.querySelectorAll(".catalog-view .storage-card").length,
-      categories: Object.keys(views).length,
-      brands: brands.size
-    };
-    const counters = [...document.querySelectorAll("[data-count]")];
-    counters.forEach(el => { el.textContent = values[el.dataset.count]; });
-    const run = el => {
-      const target = values[el.dataset.count];
-      const start = performance.now();
-      const step = now => {
-        const t = Math.min(1, (now - start) / 1200);
-        el.textContent = Math.round(target * (1 - Math.pow(1 - t, 3)));
-        if (t < 1) requestAnimationFrame(step);
-      };
-      requestAnimationFrame(step);
-    };
-    if (!("IntersectionObserver" in window)) return;
-    const io = new IntersectionObserver(entries => entries.forEach(entry => {
-      if (entry.isIntersecting) { run(entry.target); io.unobserve(entry.target); }
-    }), { threshold: 0.05 });
-    counters.forEach(el => io.observe(el));
-  }, "counters");
 
   safe(() => {
     const bar = document.getElementById("scrollProgress");
