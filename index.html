@@ -767,7 +767,7 @@
   /* --- Storage: wide cards, two per row --- */
   /* Cards keep their size (459px); up to 3 per row when the screen is wide enough */
   #viewStorage, #viewTablets, #viewPhones, #viewAccessories, #viewComputers,
-  #viewMac, #viewMonitors, #viewConnectivity { max-width: none; }
+  #viewMac, #viewCabins, #viewVideoconf, #viewPrinters, #viewMonitors, #viewConnectivity { max-width: none; }
 
   .storage-grid {
     display: grid;
@@ -1378,6 +1378,13 @@
 
   }
 
+  /* Phones: filters two per row and "Quitar filtros" below, no sideways scrolling */
+  @media (max-width: 640px) {
+    .filter-panel { flex-wrap: wrap; overflow-x: visible; position: static; }
+    .filter-panel .filter-row { min-width: 0; flex: 1 1 calc(50% - 6px); }
+    .filter-reset { flex-basis: 100%; }
+  }
+
   /* Featured models slider */
   .featured { width: min(1440px, 100%); margin: 0 0 72px; }
   .featured-head { text-align: center; margin-bottom: 26px; }
@@ -1790,10 +1797,13 @@
         <a href="#moviles" data-route="moviles">Móviles<small>Android y iPhone</small></a>
         <a href="#mac" data-route="mac">Mac<small>MacBook, iMac, Mac mini y Studio</small></a>
         <a href="#ordenadores" data-route="ordenadores">Ordenadores<small>Portátiles, Surface, AIO y CPU</small></a>
-        <a href="#monitores" data-route="monitores">Monitores<small>LED, 4K y estudio</small></a>
+        <a href="#monitores" data-route="monitores">Monitores / TV<small>LED, 4K, estudio y TV</small></a>
         <a href="#almacenamiento" data-route="almacenamiento">Almacenamiento<small>SSD portátiles y de escritorio</small></a>
+        <a href="#cabinas" data-route="cabinas">Cabinas<small>Cabinas de discos y NAS</small></a>
         <a href="#conectividad" data-route="conectividad">Conectividad<small>MiFi, routers y Wi-Fi</small></a>
         <a href="#accesorios" data-route="accesorios">Accesorios<small>Estabilizadores, luz, audio</small></a>
+        <a href="#videoconferencia" data-route="videoconferencia">Videoconferencia PRO<small>Videoconferencia, intercom y walkies</small></a>
+        <a href="#impresoras" data-route="impresoras">Impresoras<small>Multifunción A4 / A3 con coste por página</small></a>
       </div>
     </div>
     <a class="nav-link" href="#contacto" data-nav="contact">Contacto</a>
@@ -1912,7 +1922,7 @@
   </button>
   <button class="category-card" id="goMonitors">
     <div class="category-icon" id="monitorIconLarge"></div>
-    <span class="category-label">Monitores</span>
+    <span class="category-label">Monitores / TV</span>
   </button>
   <button class="category-card" id="goConnectivity">
     <div class="category-icon" id="connectivityIconLarge"></div>
@@ -1921,6 +1931,18 @@
   <button class="category-card" id="goStorage">
     <div class="category-icon" id="storageIconLarge"></div>
     <span class="category-label">Almacenamiento</span>
+  </button>
+  <button class="category-card" id="goCabins">
+    <div class="category-icon" id="cabinIconLarge"></div>
+    <span class="category-label">Cabinas</span>
+  </button>
+  <button class="category-card" id="goVideoconf">
+    <div class="category-icon" id="videoconfIconLarge"></div>
+    <span class="category-label">Videoconferencia PRO</span>
+  </button>
+  <button class="category-card" id="goPrinters">
+    <div class="category-icon" id="printerIconLarge"></div>
+    <span class="category-label">Impresoras</span>
   </button>
 </div>
 
@@ -2185,6 +2207,95 @@
   </div>
 </div>
 
+<div class="catalog-view" id="viewCabins" hidden>
+  <button class="back-btn" data-back>← Volver</button>
+
+  <div class="catalog-layout">
+    <aside class="filter-panel" aria-label="Filtros">
+      <p class="filter-panel-title">Filtrar</p>
+      <div class="filter-row">
+        <span class="filter-label">Tipo</span>
+        <select class="filter-select" id="cabinTypeSelect">
+          <option value="all">Todos</option>
+          <option value="Cabina de discos">Cabina de discos</option>
+          <option value="NAS">NAS</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Marca</span>
+        <select class="filter-select" id="cabinBrandSelect">
+          <option value="all">Todas las marcas</option>
+          <option value="Areca">Areca</option>
+          <option value="QNAP">QNAP</option>
+          <option value="Stardom">Stardom</option>
+          <option value="Synology">Synology</option>
+          <option value="TerraMaster">TerraMaster</option>
+        </select>
+      </div>
+      <button class="filter-reset" type="button">Quitar filtros</button>
+    </aside>
+    <div class="storage-grid" id="gridCabins"></div>
+  </div>
+</div>
+
+<div class="catalog-view" id="viewVideoconf" hidden>
+  <button class="back-btn" data-back>← Volver</button>
+
+  <div class="catalog-layout">
+    <aside class="filter-panel" aria-label="Filtros">
+      <p class="filter-panel-title">Filtrar</p>
+      <div class="filter-row">
+        <span class="filter-label">Tipo</span>
+        <select class="filter-select" id="videoconfTypeSelect">
+          <option value="all">Todos</option>
+          <option value="Videoconferencia">Videoconferencia</option>
+          <option value="Intercom">Intercom</option>
+          <option value="Walkies">Walkies</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Marca</span>
+        <select class="filter-select" id="videoconfBrandSelect">
+          <option value="all">Todos</option>
+          <option value="Hollyland">Hollyland</option>
+          <option value="Jabra">Jabra</option>
+          <option value="Motorola">Motorola</option>
+        </select>
+      </div>
+      <button class="filter-reset" type="button">Quitar filtros</button>
+    </aside>
+    <div class="storage-grid" id="gridVideoconf"></div>
+  </div>
+</div>
+
+<div class="catalog-view" id="viewPrinters" hidden>
+  <button class="back-btn" data-back>← Volver</button>
+
+  <div class="catalog-layout">
+    <aside class="filter-panel" aria-label="Filtros">
+      <p class="filter-panel-title">Filtrar</p>
+      <div class="filter-row">
+        <span class="filter-label">Formato</span>
+        <select class="filter-select" id="printerSizeSelect">
+          <option value="all">Todos</option>
+          <option value="A3">A3</option>
+          <option value="A4">A4</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Impresión</span>
+        <select class="filter-select" id="printerColorSelect">
+          <option value="all">Todos</option>
+          <option value="B/N">B/N</option>
+          <option value="Color">Color</option>
+        </select>
+      </div>
+      <button class="filter-reset" type="button">Quitar filtros</button>
+    </aside>
+    <div class="storage-grid" id="gridPrinters"></div>
+  </div>
+</div>
+
 <footer class="site-footer reveal" id="contacto">
   <div class="footer-grid">
     <div class="footer-brand">
@@ -2204,10 +2315,13 @@
     </div>
     <div class="footer-col">
       <h4>Más equipos</h4>
-      <a href="#monitores" data-route="monitores">Monitores</a>
+      <a href="#monitores" data-route="monitores">Monitores / TV</a>
       <a href="#almacenamiento" data-route="almacenamiento">Almacenamiento</a>
+      <a href="#cabinas" data-route="cabinas">Cabinas</a>
       <a href="#conectividad" data-route="conectividad">Conectividad</a>
       <a href="#accesorios" data-route="accesorios">Accesorios</a>
+      <a href="#videoconferencia" data-route="videoconferencia">Videoconferencia PRO</a>
+      <a href="#impresoras" data-route="impresoras">Impresoras</a>
     </div>
   </div>
   <div class="footer-bottom">
@@ -2241,7 +2355,7 @@
       <li><strong>MiFi portátil</strong> — «Huawei E5576-320 4G Reise-Hotspot LTE-Router», por www.digitalpush.net. Licencia <a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="noopener">CC BY 4.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Huawei-E5576-320-4G-Reise-Hotspot-LTE-Router.1.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
       <li><strong>Router con SIM</strong> — «Mikrotik Chateau LTE-5G modem+router», por Yerachmiel C. Licencia <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Mikrotik_Chateau_LTE-5G_modem%2Brouter.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
   </ul>
-  <p class="credits-note">Las fotos de accesorios y conectividad genéricos son orientativas: el equipo entregado puede ser de otra marca o modelo equivalente. Resto de fotos de producto: imágenes oficiales de los fabricantes (Apple, Samsung, Microsoft, HP, Dell, Lenovo, SanDisk / Western Digital, Zhiyun, Wacom, Celly, Targus y Ubiquiti) o aportadas por Soporte TV.</p>
+  <p class="credits-note">Las fotos de accesorios y conectividad genéricos son orientativas: el equipo entregado puede ser de otra marca o modelo equivalente. Resto de fotos de producto: imágenes oficiales de los fabricantes (Apple, Samsung, LG, JVC, Microsoft, HP, Dell, Lenovo, SanDisk / Western Digital, Areca, Stardom, TerraMaster, QNAP, Synology, Jabra, Hollyland, Motorola, Ricoh, Zhiyun, Wacom, Celly, Targus y Ubiquiti) o aportadas por Soporte TV.</p>
 </div>
 <div class="scrim rent-scrim" id="rentScrim"></div>
 <div class="rent-modal" id="rentModal" role="dialog" aria-modal="true" aria-labelledby="rentTitle">
@@ -2392,6 +2506,48 @@ function accessPointIcon(accent) {
   </svg>`;
 }
 
+// Video conferencing: screen with a camera bar on top
+function videoconfIcon(accent) {
+  return `<svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="10" y="20" width="100" height="58" rx="4" fill="#EDEFF2" stroke="${accent}" stroke-width="3.5"/>
+    <rect x="17" y="27" width="86" height="44" rx="1.5" fill="#D9DEE4"/>
+    <rect x="38" y="6" width="44" height="11" rx="5.5" fill="#EDEFF2" stroke="${accent}" stroke-width="3"/>
+    <circle cx="60" cy="11.5" r="3" fill="${accent}"/>
+    <circle cx="48" cy="45" r="7" fill="#EDEFF2"/><path d="M38 64c1.5-7 18.5-7 20 0" fill="#EDEFF2"/>
+    <circle cx="72" cy="45" r="7" fill="#EDEFF2"/><path d="M62 64c1.5-7 18.5-7 20 0" fill="#EDEFF2"/>
+    <path d="M52 78h16l3 10H49z" fill="${accent}"/>
+    <rect x="40" y="88" width="40" height="5" rx="2.5" fill="${accent}"/>
+  </svg>`;
+}
+
+// Multifunction printer: scanner lid, body, paper tray and output sheet
+function printerIcon(accent) {
+  return `<svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="30" y="8" width="60" height="22" rx="2" fill="#FFFFFF" stroke="${accent}" stroke-width="3"/>
+    <rect x="12" y="28" width="96" height="40" rx="7" fill="#EDEFF2" stroke="${accent}" stroke-width="3.5"/>
+    <rect x="22" y="38" width="22" height="7" rx="2" fill="#D9DEE4"/>
+    <circle cx="94" cy="41" r="3" fill="${accent}"/>
+    <rect x="18" y="68" width="84" height="22" rx="3" fill="#D9DEE4" stroke="${accent}" stroke-width="3"/>
+    <rect x="34" y="56" width="52" height="30" rx="1.5" fill="#FFFFFF" stroke="${accent}" stroke-width="2.5"/>
+    <path d="M42 66h36M42 73h36M42 80h24" stroke="#D9DEE4" stroke-width="3" stroke-linecap="round"/>
+  </svg>`;
+}
+
+// Disk enclosure: a box with four drive bays
+function cabinIcon(accent) {
+  return `<svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="22" y="8" width="76" height="84" rx="8" fill="#EDEFF2" stroke="${accent}" stroke-width="3.5"/>
+    <rect x="32" y="20" width="56" height="12" rx="2.5" fill="#D9DEE4"/>
+    <rect x="32" y="37" width="56" height="12" rx="2.5" fill="#D9DEE4"/>
+    <rect x="32" y="54" width="56" height="12" rx="2.5" fill="#D9DEE4"/>
+    <rect x="32" y="71" width="56" height="12" rx="2.5" fill="#D9DEE4"/>
+    <circle cx="81" cy="26" r="2.5" fill="${accent}"/>
+    <circle cx="81" cy="43" r="2.5" fill="${accent}"/>
+    <circle cx="81" cy="60" r="2.5" fill="${accent}"/>
+    <circle cx="81" cy="77" r="2.5" fill="${accent}"/>
+  </svg>`;
+}
+
 function driveIcon(accent) {
   return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
     <rect x="22" y="12" width="56" height="76" rx="12" fill="#EDEFF2" stroke="${accent}" stroke-width="3.5"/>
@@ -2452,7 +2608,9 @@ const STORAGE_ICONS = {
   tag: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>`,
   capacity: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5.5" rx="7.5" ry="2.5"/><path d="M4.5 5.5v13c0 1.4 3.4 2.5 7.5 2.5s7.5-1.1 7.5-2.5v-13"/><path d="M4.5 12c0 1.4 3.4 2.5 7.5 2.5s7.5-1.1 7.5-2.5"/></svg>`,
   speed: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3 5 14h6l-1 7 8-11h-6z"/></svg>`,
-  port: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8.5" width="18" height="7" rx="3.5"/><path d="M8 12h8"/></svg>`
+  port: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8.5" width="18" height="7" rx="3.5"/><path d="M8 12h8"/></svg>`,
+  bays: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h8"/></svg>`,
+  raid: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>`
 };
 
 // iMac-style computer with the Apple logo on the screen
@@ -3165,7 +3323,7 @@ const MACS = [
 const MONITORS = [
   {
     cat: "monitor", catLabel: "Monitor LED", type: "LED", group: "24''", brand: "Samsung / HP", brandCode: "S", brandColor: "var(--samsung)",
-    model: "Monitor LED 24''",
+    model: "Monitor LED 24''", photo: "img/mon-24.webp",
     icon: monitorIcon("#1428A0"),
     specs: [
       ["Categoría", "Monitor LED"],
@@ -3175,7 +3333,7 @@ const MONITORS = [
   },
   {
     cat: "monitor", catLabel: "Monitor LED", type: "LED", group: "27''", brand: "LG / Nilox", brandCode: "L", brandColor: "#A50034",
-    model: "Monitor LED 27''",
+    model: "Monitor LED 27''", photo: "img/mon-27.webp",
     icon: monitorIcon("#A50034"),
     specs: [
       ["Categoría", "Monitor LED"],
@@ -3185,7 +3343,7 @@ const MONITORS = [
   },
   {
     cat: "monitor", catLabel: "Monitor 4K", type: "4K", group: "27''", brand: "Samsung", brandCode: "S", brandColor: "var(--samsung)",
-    model: "Samsung Odyssey 27''",
+    model: "Samsung Odyssey 27''", photo: "img/mon-odyssey.webp",
     icon: monitorIcon("#1428A0"),
     specs: [
       ["Categoría", "Monitor 4K"],
@@ -3197,7 +3355,7 @@ const MONITORS = [
   },
   {
     cat: "monitor", catLabel: "Monitor de estudio 4K", type: "Estudio 4K", group: "24''", brand: "JVC", brandCode: "J", brandColor: "#004098",
-    model: "Monitor de estudio JVC 24''",
+    model: "Monitor de estudio JVC 24''", photo: "img/mon-jvc.webp",
     icon: monitorIcon("#004098"),
     specs: [
       ["Categoría", "Monitor de estudio 4K"],
@@ -3208,7 +3366,7 @@ const MONITORS = [
   },
   {
     cat: "monitor", catLabel: "Monitor 4K", type: "4K", group: "65''", brand: "LG", brandCode: "L", brandColor: "#A50034",
-    model: "Monitor LG 65'' 4K",
+    model: "Monitor LG 65'' 4K", photo: "img/mon-lg65.webp",
     icon: monitorIcon("#A50034"),
     specs: [
       ["Categoría", "Monitor 4K"],
@@ -3254,6 +3412,85 @@ CONNECTIVITY.push({
     ["Incluye", "Instalación"]
   ]
 });
+
+const VIDEOCONF = [
+  {
+    cat: "videoconf", catLabel: "Videoconferencia", type: "Videoconferencia", brand: "Jabra", brandCode: "J", brandColor: "#1A1A1A",
+    model: "Jabra PanaCast 50", photo: "img/vc-jabra.webp",
+    icon: videoconfIcon("#1A1A1A"),
+    info: [["screen", "Vídeo", "4K panorámico 180°", 1], ["signal", "Audio", "8 micros · 4 altavoces", 1], ["port", "Conexión", "USB-C · USB-A · Ethernet"]],
+    specs: [["Categoría", "Barra de videoconferencia para salas"], ["Marca", "Jabra"], ["Cámara", "3 cámaras de 13 MP · 4K panorámico (3840 × 1080) · campo de visión 180°"], ["Audio", "8 micrófonos con beamforming · 4 altavoces estéreo"], ["Funciones", "Seguimiento de quien habla, zoom inteligente, vista de galería y cámara de pizarra"], ["Compatibilidad", "Microsoft Teams Rooms y Zoom Rooms certificados · salas medianas (hasta 4,5 × 6 m)"], ["Conexión", "USB-C · USB-A · Ethernet RJ45"]]
+  },
+  {
+    cat: "videoconf", catLabel: "Intercom", type: "Intercom", brand: "Hollyland", brandCode: "H", brandColor: "#E60012",
+    model: "Hollyland Solidcom C1 Pro", photo: "img/vc-hollyland.webp",
+    icon: videoconfIcon("#E60012"),
+    info: [["tag", "Sets", "De 2 a 8 cascos", 1], ["signal", "Alcance", "350 m", 1], ["speed", "Batería", "Más de 10 h por casco"]],
+    specs: [["Categoría", "Intercom inalámbrico (cascos)"], ["Marca", "Hollyland"], ["Sets disponibles", "2, 3, 4, 6 u 8 cascos (1 principal + remotos)"], ["Conversación", "Full dúplex: todos hablan a la vez, sin estación base · botón TALK / MUTE"], ["Audio", "Doble micrófono con cancelación de ruido (ENC) y de eco"], ["Alcance", "Hasta 350 m con visión directa · DECT 1,9 GHz"], ["Batería", "Más de 10 h (casco remoto) · más de 5 h (casco principal) · carga en unas 2,5 h"], ["Peso", "Unos 170 g por casco"]]
+  },
+  {
+    cat: "videoconf", catLabel: "Walkies", type: "Walkies", brand: "Motorola", brandCode: "M", brandColor: "#005EB8",
+    model: "Motorola DP4400", photo: "img/vc-motorola.webp",
+    icon: videoconfIcon("#005EB8"),
+    info: [["signal", "Tecnología", "Digital DMR + analógico", 1], ["tag", "Canales", "64", 1], ["speed", "Batería", "Hasta 28 h · IP68"]],
+    specs: [["Categoría", "Walkie-talkie profesional (MOTOTRBO)"], ["Marca", "Motorola Solutions"], ["Tecnología", "Digital DMR y analógico"], ["Canales", "64 (sin teclado ni pantalla)"], ["Potencia", "VHF 1 / 5 W · UHF 1 / 4 W"], ["Batería", "Hasta 28 h"], ["Resistencia", "IP68 (sumergible) y estándar militar"], ["Otros", "Botón de emergencia y cancelación de ruido"]]
+  }
+];
+
+const PRINTERS = [
+  {
+    cat: "printer", catLabel: "B/N|Color", type: "B/N|Color", group: "A4|A3", brand: "", brandCode: "", brandColor: "#5C6672",
+    model: "Impresora multifunción", photo: "img/prn-multifuncion.webp",
+    icon: printerIcon("#5C6672"),
+    info: [["tag", "Formato", "A4 · A3", 1], ["screen", "Impresión", "B/N · Color", 1], ["capacity", "Tarifa", "Coste por página"]],
+    specs: [["Categoría", "Impresora multifunción láser"], ["Formato", "A4 y A3"], ["Impresión", "Blanco y negro o color"], ["Funciones", "Imprimir, copiar, escanear (a correo, carpeta o USB) y fax opcional"], ["Otros", "Doble cara automática, alimentador de documentos, pantalla táctil y acceso con PIN"], ["Conexión", "Red (Ethernet) · Wi-Fi opcional · impresión desde móvil"], ["Tarifa", "Coste por página impresa (consúltanos)"]]
+  }
+];
+
+const CABINS = [
+  {
+    cat: "cabin", catLabel: "Cabina de discos", type: "Cabina de discos", brand: "Areca", brandCode: "A", brandColor: "#C8102E",
+    model: "Areca ARC-8050T3U", photo: "img/cab-areca.webp",
+    icon: cabinIcon("#C8102E"),
+    info: [["bays", "Bahías", "4 · 6 · 8", 1], ["raid", "RAID", "0, 1, 5, 6, 10", 1], ["port", "Conexión", "Thunderbolt 3 · USB-C"]],
+    specs: [["Categoría", "Cabina de discos (DAS) con RAID por hardware"], ["Marca", "Areca"], ["Modelos", "ARC-8050T3U-4 / -6 / -8"], ["Bahías", "4 / 6 / 8 · discos 3,5'' / 2,5'' SAS o SATA"], ["Conexión", "2 × Thunderbolt 3 (40 Gb/s, USB-C) · en USB-C normal funciona como USB 3.2 Gen 2 (10 Gb/s) · DisplayPort"], ["RAID", "0, 1, 3, 5, 6, 10, JBOD (30 / 50 / 60 desde 6 bahías)"]]
+  },
+  {
+    cat: "cabin", catLabel: "Cabina de discos", type: "Cabina de discos", brand: "Stardom", brandCode: "S", brandColor: "#1F6FB2",
+    model: "Stardom SOHORAID", photo: "img/cab-stardom.webp",
+    icon: cabinIcon("#1F6FB2"),
+    info: [["bays", "Bahías", "Desde 2", 1], ["raid", "RAID", "0, 1, JBOD", 1], ["port", "Conexión", "USB-C (USB 3.2 Gen 2)"]],
+    specs: [["Categoría", "Cabina de discos (DAS)"], ["Marca", "Stardom (RAIDON)"], ["Modelos", "ST2-B31A (2 bahías) · ST4R-B32 / ST4-B32 (4 bahías)"], ["Bahías", "Desde 2 · discos 3,5'' / 2,5'' SATA, extraíbles en caliente"], ["Conexión", "USB-C · USB 3.2 Gen 2 (10 Gb/s) en 2 bahías, Gen 2x2 (20 Gb/s) en 4 bahías · compatible Thunderbolt 3/4"], ["RAID", "0, 1, JBOD, BIG"]]
+  },
+  {
+    cat: "cabin", catLabel: "Cabina de discos", type: "Cabina de discos", brand: "TerraMaster", brandCode: "T", brandColor: "#E95513",
+    model: "TerraMaster D5 / D8", photo: "img/cab-terramaster.webp",
+    icon: cabinIcon("#E95513"),
+    info: [["bays", "Bahías", "5 · 8", 1], ["raid", "RAID", "0, 1, 5, 10", 1], ["port", "Conexión", "Thunderbolt 3 (40 Gb/s)"]],
+    specs: [["Categoría", "Cabina de discos (DAS) con RAID por hardware"], ["Marca", "TerraMaster"], ["Modelos", "D5 Thunderbolt 3 · D8-332"], ["Bahías", "5 / 8 · discos 3,5'' SATA o SSD 2,5''"], ["Conexión", "2 × Thunderbolt 3 (40 Gb/s), encadenable · solo equipos Thunderbolt 3/4"], ["Velocidad", "Hasta 1035 MB/s (D5) · hasta 1600 MB/s (D8-332)"], ["RAID", "0, 1, 5, 10, JBOD, Single"], ["Capacidad máxima", "120 TB (D5) · 160 TB (D8-332)"]]
+  },
+  {
+    cat: "cabin", catLabel: "NAS", type: "NAS", brand: "QNAP", brandCode: "Q", brandColor: "#2F6BB3",
+    model: "QNAP TS-464", photo: "img/nas-qnap-desktop.webp",
+    icon: cabinIcon("#2F6BB3"),
+    info: [["bays", "Bahías", "4 + 2 M.2", 1], ["raid", "RAID", "0, 1, 5, 6, 10", 1], ["port", "Conexión", "2 × 2,5 GbE (10 GbE opcional)"]],
+    specs: [["Categoría", "NAS de sobremesa"], ["Marca", "QNAP"], ["Bahías", "4 × 3,5'' / 2,5'' SATA · 2 × M.2 NVMe (caché SSD)"], ["Procesador", "Intel Celeron N5095 (4 núcleos, hasta 2,9 GHz)"], ["RAM", "8 GB DDR4 (máx. 16 GB)"], ["Conexión", "2 × 2,5 GbE · 10 GbE opcional (PCIe) · 2 × USB 3.2 Gen 2 · HDMI"], ["RAID", "0, 1, 5, 6, 10, JBOD, Single"]]
+  },
+  {
+    cat: "cabin", catLabel: "NAS", type: "NAS", brand: "QNAP", brandCode: "Q", brandColor: "#2F6BB3",
+    model: "QNAP TS-1264U-RP", photo: "img/nas-qnap-rack.webp",
+    icon: cabinIcon("#2F6BB3"),
+    info: [["bays", "Bahías", "12 · rack 2U", 1], ["raid", "RAID", "0–60", 1], ["port", "Conexión", "2 × 2,5 GbE (10 GbE opcional)"]],
+    specs: [["Categoría", "NAS de rack 2U"], ["Marca", "QNAP"], ["Bahías", "12 × 3,5'' / 2,5'' SATA, extraíbles en caliente"], ["Procesador", "Intel Celeron N5095 (4 núcleos, hasta 2,9 GHz)"], ["RAM", "8 GB DDR4 (máx. 16 GB)"], ["Conexión", "2 × 2,5 GbE · 10 GbE opcional (PCIe) · 2 × USB 3.2 Gen 2"], ["Alimentación", "Doble fuente redundante de 300 W"], ["RAID", "0, 1, 5, 6, 10, 50, 60, JBOD, Single"]]
+  },
+  {
+    cat: "cabin", catLabel: "NAS", type: "NAS", brand: "Synology", brandCode: "S", brandColor: "#4B4B4B",
+    model: "Synology DiskStation DS1825+", photo: "img/nas-synology.webp",
+    icon: cabinIcon("#4B4B4B"),
+    info: [["bays", "Bahías", "8 (hasta 18)", 1], ["raid", "RAID", "SHR, 0, 1, 5, 6, 10", 1], ["port", "Conexión", "2 × 2,5 GbE (10/25 GbE opcional)"]],
+    specs: [["Categoría", "NAS de sobremesa"], ["Marca", "Synology"], ["Bahías", "8 × 3,5'' / 2,5'' SATA (hasta 18 con 2 × DX525) · 2 × M.2 NVMe"], ["Procesador", "AMD Ryzen V1500B (4 núcleos, 2,2 GHz)"], ["RAM", "8 GB DDR4 ECC (máx. 32 GB)"], ["Conexión", "2 × 2,5 GbE · 10 / 25 GbE opcional (PCIe)"], ["Velocidad", "Hasta 2239 MB/s lectura · 1573 MB/s escritura"], ["RAID", "SHR, Basic, JBOD, 0, 1, 5, 6, 10"]]
+  }
+];
 
 // Each disk model (one card per model). Variants of the same model are listed together.
 // Data taken from each model's page on sandisk.com.
@@ -3446,6 +3683,8 @@ const CARD_INFO = {
     { small: true, icon: STORAGE_ICONS.signal, title: "Velocidad", text: p.group.split("|").join(" · ") },
     { small: true, icon: STORAGE_ICONS.capacity, title: "Datos", text: p.storages.join(" · ") }
   ] : { icon: STORAGE_ICONS.signal, title: "Conexión", text: `Wi-Fi · Incluye ${specOf(p, "Incluye").toLowerCase()}` },
+  // Products that list their own boxes: [icon, title, text, small?]
+  custom: p => p.info.map(([icon, title, text, small]) => ({ icon: STORAGE_ICONS[icon], title, text, small: !!small })),
   accessory: p => ({ icon: STORAGE_ICONS.tag, title: "Uso", text: p.group ? "Para " + p.group.split("|").join(" / ") : p.catLabel })
 };
 
@@ -3542,6 +3781,9 @@ renderModelCards(MONITORS, document.getElementById("gridMonitors"), CARD_INFO.mo
 renderModelCards(CONNECTIVITY, document.getElementById("gridConnectivity"), CARD_INFO.connectivity);
 renderStorage(STORAGE, document.getElementById("gridStorage"));
 setupStorageFilters();
+renderModelCards(CABINS, document.getElementById("gridCabins"), CARD_INFO.custom);
+renderModelCards(VIDEOCONF, document.getElementById("gridVideoconf"), CARD_INFO.custom);
+renderModelCards(PRINTERS, document.getElementById("gridPrinters"), CARD_INFO.custom);
 
 // Capacity options come from the data; speed is grouped in ranges (max read speed of each model)
 function setupStorageFilters() {
@@ -3584,6 +3826,9 @@ document.getElementById("macIconLarge").innerHTML = macIcon("#2B79C2");
 document.getElementById("monitorIconLarge").innerHTML = monitorIcon("#2B79C2");
 document.getElementById("connectivityIconLarge").innerHTML = routerIcon("#2B79C2");
 document.getElementById("storageIconLarge").innerHTML = driveIcon("#2B79C2");
+document.getElementById("cabinIconLarge").innerHTML = cabinIcon("#2B79C2");
+document.getElementById("videoconfIconLarge").innerHTML = videoconfIcon("#2B79C2");
+document.getElementById("printerIconLarge").innerHTML = printerIcon("#2B79C2");
 
 const viewLanding = document.getElementById("viewLanding");
 const views = {
@@ -3594,7 +3839,10 @@ const views = {
   mac: document.getElementById("viewMac"),
   monitors: document.getElementById("viewMonitors"),
   connectivity: document.getElementById("viewConnectivity"),
-  storage: document.getElementById("viewStorage")
+  storage: document.getElementById("viewStorage"),
+  cabins: document.getElementById("viewCabins"),
+  videoconf: document.getElementById("viewVideoconf"),
+  printers: document.getElementById("viewPrinters")
 };
 
 // Name shown at the top of each category
@@ -3604,9 +3852,12 @@ const CATEGORY_INFO = {
   accessories: "Accesorios",
   computers: "Ordenadores",
   mac: "Mac",
-  monitors: "Monitores",
+  monitors: "Monitores / TV",
   connectivity: "Conectividad",
-  storage: "Almacenamiento"
+  storage: "Almacenamiento",
+  cabins: "Cabinas",
+  videoconf: "Videoconferencia PRO",
+  printers: "Impresoras"
 };
 const HEADER_DEFAULT = ["Catálogo de alquiler", "Soporte TV", "Elige una categoría para ver los productos disponibles para alquiler."];
 
@@ -3653,7 +3904,10 @@ const ROUTES = {
   mac: "mac",
   monitores: "monitors",
   conectividad: "connectivity",
-  almacenamiento: "storage"
+  almacenamiento: "storage",
+  cabinas: "cabins",
+  videoconferencia: "videoconf",
+  impresoras: "printers"
 };
 const SLUGS = Object.fromEntries(Object.entries(ROUTES).map(([slug, key]) => [key, slug]));
 let navigatedFromLanding = false;
@@ -3672,6 +3926,9 @@ document.getElementById("goMac").addEventListener("click", () => goTo("mac"));
 document.getElementById("goMonitors").addEventListener("click", () => goTo("monitors"));
 document.getElementById("goConnectivity").addEventListener("click", () => goTo("connectivity"));
 document.getElementById("goStorage").addEventListener("click", () => goTo("storage"));
+document.getElementById("goCabins").addEventListener("click", () => goTo("cabins"));
+document.getElementById("goVideoconf").addEventListener("click", () => goTo("videoconf"));
+document.getElementById("goPrinters").addEventListener("click", () => goTo("printers"));
 
 document.querySelectorAll("[data-back]").forEach(btn => {
   btn.addEventListener("click", () => {
@@ -3739,6 +3996,21 @@ setupFilters(document.getElementById("gridMac"), [
 setupFilters(document.getElementById("gridMonitors"), [
   { select: document.getElementById("monitorTypeSelect"), attr: "type" },
   { select: document.getElementById("monitorSizeSelect"), attr: "group" }
+]);
+
+setupFilters(document.getElementById("gridVideoconf"), [
+  { select: document.getElementById("videoconfTypeSelect"), attr: "type" },
+  { select: document.getElementById("videoconfBrandSelect"), attr: "brand" }
+]);
+
+setupFilters(document.getElementById("gridPrinters"), [
+  { select: document.getElementById("printerSizeSelect"), attr: "group" },
+  { select: document.getElementById("printerColorSelect"), attr: "type" }
+]);
+
+setupFilters(document.getElementById("gridCabins"), [
+  { select: document.getElementById("cabinTypeSelect"), attr: "type" },
+  { select: document.getElementById("cabinBrandSelect"), attr: "brand" }
 ]);
 
 setupFilters(document.getElementById("gridConnectivity"), [
