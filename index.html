@@ -83,23 +83,30 @@
   /* Category banner: framed, rounded card that fades in with a soft zoom and fades out on scroll */
   #dynamicHero {
     position: fixed;
-    top: 84px;
-    left: 50%;
-    width: min(1440px, calc(100% - 32px));
-    height: 360px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 480px;
     z-index: 0;
-    border-radius: 24px;
     overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.14);
-    box-shadow: 0 24px 60px rgba(4,12,24,0.45);
     opacity: 0;
-    transform: translateX(-50%) translateY(var(--hero-shift, 0px));
+    transform: translateY(var(--hero-shift, 0px));
     transition: opacity 0.5s ease;
     pointer-events: none;
   }
 
   #dynamicHero.active { opacity: 1; }
-  #dynamicHero.featured { height: 520px; }
+  #dynamicHero.featured { height: 480px; }
+
+  /* Soft fade into the page colour at the bottom of the full-width banner */
+  #dynamicHero::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 45%;
+    background: linear-gradient(180deg, rgba(10,18,34,0) 0%, var(--bg) 100%);
+    pointer-events: none;
+  }
 
   .hero-media, .hero-shade {
     position: absolute;
@@ -116,8 +123,8 @@
   #dynamicHero.active .hero-media { transform: scale(1); }
 
   @media (max-width: 720px) {
-    #dynamicHero { top: 72px; width: calc(100% - 20px); border-radius: 18px; height: 300px; }
-    #dynamicHero.featured { height: 420px; }
+    #dynamicHero { top: 0; width: 100%; height: 380px; }
+    #dynamicHero.featured { height: 380px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -1398,6 +1405,76 @@
     .footer-brand { grid-column: 1 / -1; }
   }
 
+  /* Catalog layout: filters in a sticky left sidebar, always visible while scrolling */
+  .catalog-layout {
+    display: grid;
+    grid-template-columns: 250px minmax(0, 1fr);
+    gap: 28px;
+    width: 100%;
+    align-items: start;
+  }
+
+  .filter-panel {
+    position: sticky;
+    top: 96px;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px;
+    border-radius: 18px;
+    background: rgba(12,20,38,0.82);
+    border: 1px solid var(--line);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 18px 44px rgba(0,0,0,0.3);
+  }
+
+  .filter-panel-title { margin: 0; color: #FFFFFF; font: 700 12px 'Inter', sans-serif; letter-spacing: 0.14em; text-transform: uppercase; }
+
+  .filter-panel .filter-row,
+  .filter-panel .filter-row:last-of-type {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    margin: 0;
+    width: auto;
+  }
+
+  .filter-panel .filter-select { width: 100%; min-width: 0; }
+
+  .filter-reset {
+    align-self: flex-start;
+    background: none;
+    border: 0;
+    padding: 4px 0;
+    color: #A9C9F5;
+    font: 600 13px 'Inter', sans-serif;
+    cursor: pointer;
+    transition: color 150ms ease;
+  }
+
+  @media (hover: hover) and (pointer: fine) { .filter-reset:hover { color: #FFFFFF; } }
+
+  .catalog-layout .storage-grid { justify-content: start; }
+
+  @media (max-width: 900px) {
+    .catalog-layout { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+    .filter-panel {
+      top: 76px;
+      flex-direction: row;
+      align-items: flex-end;
+      gap: 12px;
+      padding: 12px;
+      overflow-x: auto;
+      border-radius: 14px;
+    }
+    .filter-panel-title { display: none; }
+    .filter-panel .filter-row { min-width: 170px; }
+    .filter-reset { align-self: center; white-space: nowrap; }
+    .catalog-layout .storage-grid { justify-content: center; }
+  }
+
   /* Featured models slider */
   .featured { width: min(1440px, 100%); margin: 0 0 72px; }
   .featured-head { text-align: center; margin-bottom: 26px; }
@@ -1558,11 +1635,52 @@
   }
 
   /* Photo credits */
-  .photo-credits { margin-top: 36px; padding-top: 22px; border-top: 1px solid var(--line); font-size: 12.5px; color: var(--mute); }
-  .photo-credits h4 { margin: 0 0 8px; color: #F5F7FA; font: 600 13px 'Inter', sans-serif; letter-spacing: 0.08em; text-transform: uppercase; }
-  .photo-credits p { margin: 0 0 8px; }
-  .photo-credits ul { margin: 0 0 10px; padding-left: 18px; line-height: 1.7; }
-  .photo-credits a { color: #A9C9F5; }
+  .credits-link {
+    background: none;
+    border: 0;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: rgba(147,166,191,0.4);
+    text-underline-offset: 3px;
+    cursor: pointer;
+    transition: color 150ms ease;
+  }
+
+  @media (hover: hover) and (pointer: fine) { .credits-link:hover { color: #FFFFFF; } }
+
+  .credits-scrim { z-index: 30; }
+
+  .credits-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: min(620px, calc(100% - 32px));
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
+    padding: 22px 24px 20px;
+    border-radius: 18px;
+    background: #0E1830;
+    border: 1px solid var(--line);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.55);
+    color: #A9B8CC;
+    font-size: 12.5px;
+    line-height: 1.6;
+    z-index: 31;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(0.96);
+    transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out);
+  }
+
+  .credits-modal.open { opacity: 1; pointer-events: auto; transform: translate(-50%, -50%) scale(1); }
+  .credits-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .credits-modal h2 { margin: 0; color: #FFFFFF; font: 700 16px 'Inter', sans-serif; letter-spacing: -0.01em; }
+  .credits-modal p { margin: 14px 0 6px; color: #E3EAF4; font-weight: 600; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
+  .credits-modal p.credits-note { text-transform: none; letter-spacing: 0; font-weight: 400; color: var(--mute); margin-top: 16px; }
+  .credits-modal ul { margin: 0; padding-left: 18px; }
+  .credits-modal a { color: #A9C9F5; }
 
   /* Reveal on scroll (content stays visible if JS doesn't run: only hidden once JS is ready) */
   #pageContent.js-ready .reveal {
@@ -1762,217 +1880,248 @@
 <div class="catalog-view" id="viewTablets" hidden>
   <button class="back-btn" data-back>← Volver</button>
 
-  <div class="filter-row">
-    <span class="filter-label">Marca</span>
-    <select class="filter-select" id="brandSelect">
-      <option value="all">Todas las marcas</option>
-      <option value="Lenovo">Lenovo</option>
-      <option value="Samsung">Samsung</option>
-      <option value="Apple">Apple</option>
-    </select>
+  <div class="catalog-layout">
+    <aside class="filter-panel" aria-label="Filtros">
+      <p class="filter-panel-title">Filtrar</p>
+      <div class="filter-row">
+        <span class="filter-label">Marca</span>
+        <select class="filter-select" id="brandSelect">
+          <option value="all">Todas las marcas</option>
+          <option value="Lenovo">Lenovo</option>
+          <option value="Samsung">Samsung</option>
+          <option value="Apple">Apple</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Almacenamiento</span>
+        <select class="filter-select" id="storageSelect">
+          <option value="all">Todos</option>
+          <option value="32 GB">32 GB</option>
+          <option value="64 GB">64 GB</option>
+          <option value="128 GB">128 GB</option>
+          <option value="256 GB">256 GB</option>
+        </select>
+      </div>
+      <button class="filter-reset" type="button">Quitar filtros</button>
+    </aside>
+    <div class="storage-grid" id="grid"></div>
   </div>
-
-  <div class="filter-row">
-    <span class="filter-label">Almacenamiento</span>
-    <select class="filter-select" id="storageSelect">
-      <option value="all">Todos</option>
-      <option value="32 GB">32 GB</option>
-      <option value="64 GB">64 GB</option>
-      <option value="128 GB">128 GB</option>
-      <option value="256 GB">256 GB</option>
-    </select>
-  </div>
-
-  <div class="storage-grid" id="grid"></div>
 </div>
 
 <div class="catalog-view" id="viewPhones" hidden>
   <button class="back-btn" data-back>← Volver</button>
 
-  <div class="filter-row">
-    <span class="filter-label">Marca</span>
-    <select class="filter-select" id="phoneBrandSelect">
-      <option value="all">Todas las marcas</option>
-      <option value="Xiaomi">Xiaomi</option>
-      <option value="Samsung">Samsung</option>
-      <option value="Apple">Apple</option>
-    </select>
+  <div class="catalog-layout">
+    <aside class="filter-panel" aria-label="Filtros">
+      <p class="filter-panel-title">Filtrar</p>
+      <div class="filter-row">
+        <span class="filter-label">Marca</span>
+        <select class="filter-select" id="phoneBrandSelect">
+          <option value="all">Todas las marcas</option>
+          <option value="Xiaomi">Xiaomi</option>
+          <option value="Samsung">Samsung</option>
+          <option value="Apple">Apple</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Almacenamiento</span>
+        <select class="filter-select" id="phoneStorageSelect">
+          <option value="all">Todos</option>
+          <option value="128 GB">128 GB</option>
+          <option value="256 GB">256 GB</option>
+          <option value="512 GB">512 GB</option>
+        </select>
+      </div>
+      <button class="filter-reset" type="button">Quitar filtros</button>
+    </aside>
+    <div class="storage-grid" id="gridPhones"></div>
   </div>
-
-  <div class="filter-row">
-    <span class="filter-label">Almacenamiento</span>
-    <select class="filter-select" id="phoneStorageSelect">
-      <option value="all">Todos</option>
-      <option value="128 GB">128 GB</option>
-      <option value="256 GB">256 GB</option>
-      <option value="512 GB">512 GB</option>
-    </select>
-  </div>
-
-  <div class="storage-grid" id="gridPhones"></div>
 </div>
 
 <div class="catalog-view" id="viewAccessories" hidden>
   <button class="back-btn" data-back>← Volver</button>
 
-  <div class="filter-row">
-    <span class="filter-label">Tipo</span>
-    <select class="filter-select" id="accessoryTypeSelect">
-      <option value="all">Todos</option>
-      <option value="Móvil/Cámara">Móvil / Cámara</option>
-      <option value="iPad">iPad</option>
-    </select>
+  <div class="catalog-layout">
+    <aside class="filter-panel" aria-label="Filtros">
+      <p class="filter-panel-title">Filtrar</p>
+      <div class="filter-row">
+        <span class="filter-label">Tipo</span>
+        <select class="filter-select" id="accessoryTypeSelect">
+          <option value="all">Todos</option>
+          <option value="Móvil/Cámara">Móvil / Cámara</option>
+          <option value="iPad">iPad</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Marca</span>
+        <select class="filter-select" id="accessoryBrandSelect">
+          <option value="all">Todas las marcas</option>
+          <option value="Apple">Apple</option>
+          <option value="Zhiyun">Zhiyun</option>
+          <option value="Celly">Celly</option>
+          <option value="Wacom">Wacom</option>
+          <option value="Sin marca">Sin marca</option>
+        </select>
+      </div>
+      <button class="filter-reset" type="button">Quitar filtros</button>
+    </aside>
+    <div class="storage-grid" id="gridAccessories"></div>
   </div>
-
-  <div class="filter-row">
-    <span class="filter-label">Marca</span>
-    <select class="filter-select" id="accessoryBrandSelect">
-      <option value="all">Todas las marcas</option>
-      <option value="Apple">Apple</option>
-      <option value="Zhiyun">Zhiyun</option>
-      <option value="Celly">Celly</option>
-      <option value="Wacom">Wacom</option>
-      <option value="Sin marca">Sin marca</option>
-    </select>
-  </div>
-
-  <div class="storage-grid" id="gridAccessories"></div>
 </div>
 
 <div class="catalog-view" id="viewComputers" hidden>
   <button class="back-btn" data-back>← Volver</button>
 
-  <div class="filter-row">
-    <span class="filter-label">Tipo</span>
-    <select class="filter-select" id="computerTypeSelect">
-      <option value="all">Todos</option>
-      <option value="Portátil">Portátil</option>
-      <option value="AIO">AIO (Todo en uno)</option>
-      <option value="iMac">iMac</option>
-      <option value="CPU">CPU</option>
-      <option value="CPU + Monitor">CPU + Monitor</option>
-    </select>
+  <div class="catalog-layout">
+    <aside class="filter-panel" aria-label="Filtros">
+      <p class="filter-panel-title">Filtrar</p>
+      <div class="filter-row">
+        <span class="filter-label">Tipo</span>
+        <select class="filter-select" id="computerTypeSelect">
+          <option value="all">Todos</option>
+          <option value="Portátil">Portátil</option>
+          <option value="AIO">AIO (Todo en uno)</option>
+          <option value="iMac">iMac</option>
+          <option value="CPU">CPU</option>
+          <option value="CPU + Monitor">CPU + Monitor</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Marca</span>
+        <select class="filter-select" id="computerBrandSelect">
+          <option value="all">Todas las marcas</option>
+          <option value="Apple">Apple</option>
+          <option value="HP">HP</option>
+          <option value="Multimarca">Multimarca (Dell/HP/Lenovo)</option>
+        </select>
+      </div>
+      <button class="filter-reset" type="button">Quitar filtros</button>
+    </aside>
+    <div class="storage-grid" id="gridComputers"></div>
   </div>
-
-  <div class="filter-row">
-    <span class="filter-label">Marca</span>
-    <select class="filter-select" id="computerBrandSelect">
-      <option value="all">Todas las marcas</option>
-      <option value="Apple">Apple</option>
-      <option value="HP">HP</option>
-      <option value="Multimarca">Multimarca (Dell/HP/Lenovo)</option>
-    </select>
-  </div>
-
-  <div class="storage-grid" id="gridComputers"></div>
 </div>
 
 <div class="catalog-view" id="viewSurface" hidden>
   <button class="back-btn" data-back>← Volver</button>
 
-  <div class="filter-row">
-    <span class="filter-label">Procesador</span>
-    <select class="filter-select" id="surfaceCpuSelect">
-      <option value="all">Todos</option>
-      <option value="i5">Intel Core i5</option>
-      <option value="i7">Intel Core i7</option>
-    </select>
+  <div class="catalog-layout">
+    <aside class="filter-panel" aria-label="Filtros">
+      <p class="filter-panel-title">Filtrar</p>
+      <div class="filter-row">
+        <span class="filter-label">Procesador</span>
+        <select class="filter-select" id="surfaceCpuSelect">
+          <option value="all">Todos</option>
+          <option value="i5">Intel Core i5</option>
+          <option value="i7">Intel Core i7</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Almacenamiento</span>
+        <select class="filter-select" id="surfaceStorageSelect">
+          <option value="all">Todos</option>
+          <option value="128 GB">128 GB</option>
+          <option value="256 GB">256 GB</option>
+          <option value="512 GB">512 GB</option>
+        </select>
+      </div>
+      <button class="filter-reset" type="button">Quitar filtros</button>
+    </aside>
+    <div class="storage-grid" id="gridSurface"></div>
   </div>
-
-  <div class="filter-row">
-    <span class="filter-label">Almacenamiento</span>
-    <select class="filter-select" id="surfaceStorageSelect">
-      <option value="all">Todos</option>
-      <option value="128 GB">128 GB</option>
-      <option value="256 GB">256 GB</option>
-      <option value="512 GB">512 GB</option>
-    </select>
-  </div>
-
-  <div class="storage-grid" id="gridSurface"></div>
 </div>
 
 <div class="catalog-view" id="viewMonitors" hidden>
   <button class="back-btn" data-back>← Volver</button>
 
-  <div class="filter-row">
-    <span class="filter-label">Tipo</span>
-    <select class="filter-select" id="monitorTypeSelect">
-      <option value="all">Todos</option>
-      <option value="LED">LED</option>
-      <option value="4K">4K</option>
-      <option value="Estudio 4K">Estudio 4K</option>
-    </select>
+  <div class="catalog-layout">
+    <aside class="filter-panel" aria-label="Filtros">
+      <p class="filter-panel-title">Filtrar</p>
+      <div class="filter-row">
+        <span class="filter-label">Tipo</span>
+        <select class="filter-select" id="monitorTypeSelect">
+          <option value="all">Todos</option>
+          <option value="LED">LED</option>
+          <option value="4K">4K</option>
+          <option value="Estudio 4K">Estudio 4K</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Tamaño</span>
+        <select class="filter-select" id="monitorSizeSelect">
+          <option value="all">Todos</option>
+          <option value="24''">24''</option>
+          <option value="27''">27''</option>
+          <option value="65''">65''</option>
+        </select>
+      </div>
+      <button class="filter-reset" type="button">Quitar filtros</button>
+    </aside>
+    <div class="storage-grid" id="gridMonitors"></div>
   </div>
-
-  <div class="filter-row">
-    <span class="filter-label">Tamaño</span>
-    <select class="filter-select" id="monitorSizeSelect">
-      <option value="all">Todos</option>
-      <option value="24''">24''</option>
-      <option value="27''">27''</option>
-      <option value="65''">65''</option>
-    </select>
-  </div>
-
-  <div class="storage-grid" id="gridMonitors"></div>
 </div>
 
 <div class="catalog-view" id="viewConnectivity" hidden>
   <button class="back-btn" data-back>← Volver</button>
 
-  <div class="filter-row">
-    <span class="filter-label">Tipo</span>
-    <select class="filter-select" id="connTypeSelect">
-      <option value="all">Todos</option>
-      <option value="MiFi">MiFi</option>
-      <option value="Router">Router</option>
-      <option value="Punto de acceso">Punto de acceso</option>
-    </select>
+  <div class="catalog-layout">
+    <aside class="filter-panel" aria-label="Filtros">
+      <p class="filter-panel-title">Filtrar</p>
+      <div class="filter-row">
+        <span class="filter-label">Tipo</span>
+        <select class="filter-select" id="connTypeSelect">
+          <option value="all">Todos</option>
+          <option value="MiFi">MiFi</option>
+          <option value="Router">Router</option>
+          <option value="Punto de acceso">Punto de acceso</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Red</span>
+        <select class="filter-select" id="connNetSelect">
+          <option value="all">Todas</option>
+          <option value="4G">4G</option>
+          <option value="5G">5G</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Datos</span>
+        <select class="filter-select" id="connDataSelect">
+          <option value="all">Todos</option>
+          <option value="240 GB">Tarjeta de datos 240 GB</option>
+          <option value="Ilimitados">Datos ilimitados</option>
+        </select>
+      </div>
+      <button class="filter-reset" type="button">Quitar filtros</button>
+    </aside>
+    <div class="storage-grid" id="gridConnectivity"></div>
   </div>
-
-  <div class="filter-row">
-    <span class="filter-label">Red</span>
-    <select class="filter-select" id="connNetSelect">
-      <option value="all">Todas</option>
-      <option value="4G">4G</option>
-      <option value="5G">5G</option>
-    </select>
-  </div>
-
-  <div class="filter-row">
-    <span class="filter-label">Datos</span>
-    <select class="filter-select" id="connDataSelect">
-      <option value="all">Todos</option>
-      <option value="240 GB">Tarjeta de datos 240 GB</option>
-      <option value="Ilimitados">Datos ilimitados</option>
-    </select>
-  </div>
-
-  <div class="storage-grid" id="gridConnectivity"></div>
 </div>
 
 <div class="catalog-view" id="viewStorage" hidden>
   <button class="back-btn" data-back>← Volver</button>
 
-  <div class="filter-row">
-    <span class="filter-label">Almacenamiento</span>
-    <select class="filter-select" id="storageCapSelect">
-      <option value="all">Todas las capacidades</option>
-    </select>
+  <div class="catalog-layout">
+    <aside class="filter-panel" aria-label="Filtros">
+      <p class="filter-panel-title">Filtrar</p>
+      <div class="filter-row">
+        <span class="filter-label">Almacenamiento</span>
+        <select class="filter-select" id="storageCapSelect">
+          <option value="all">Todas las capacidades</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Velocidad</span>
+        <select class="filter-select" id="storageSpeedSelect">
+          <option value="all">Todas</option>
+          <option value="0-1000">Hasta 1000 MB/s</option>
+          <option value="1000-2000">De 1000 a 2000 MB/s</option>
+          <option value="2000-99999">Más de 2000 MB/s</option>
+        </select>
+      </div>
+      <button class="filter-reset" type="button">Quitar filtros</button>
+    </aside>
+    <div class="storage-grid" id="gridStorage"></div>
   </div>
-
-  <div class="filter-row">
-    <span class="filter-label">Velocidad</span>
-    <select class="filter-select" id="storageSpeedSelect">
-      <option value="all">Todas</option>
-      <option value="0-1000">Hasta 1000 MB/s</option>
-      <option value="1000-2000">De 1000 a 2000 MB/s</option>
-      <option value="2000-99999">Más de 2000 MB/s</option>
-    </select>
-  </div>
-
-  <div class="storage-grid" id="gridStorage"></div>
 </div>
 
 <div class="catalog-view" id="viewTest" hidden>
@@ -2009,26 +2158,38 @@
       <a href="#accesorios" data-route="accesorios">Accesorios</a>
     </div>
   </div>
-  <section class="photo-credits" id="creditos" aria-labelledby="creditosTitle">
-    <h4 id="creditosTitle">Créditos de fotos</h4>
-    <p>Fotografías de «Modelos destacados»:</p>
-    <ul>
-      <li><strong>MacBook Air 13,6'' M1</strong> — «Macbook Air 2020 (M1) - 1», por KKPCW. Licencia <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Macbook_Air_2020_(M1)_-_1.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
-      <li><strong>iPad Pro</strong> — «IPad Pro 2018 backside», por MIKI Yoshihito. Licencia <a href="https://creativecommons.org/licenses/by/2.0" target="_blank" rel="noopener">CC BY 2.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:IPad_Pro_2018_backside.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
-      <li><strong>iPhone 16 Pro</strong> — «IPhone 16 Pro (54251031612)», por メイド理世. Licencia <a href="https://creativecommons.org/licenses/by-sa/2.0" target="_blank" rel="noopener">CC BY-SA 2.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:IPhone_16_Pro_(54251031612).jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
-      <li><strong>SanDisk Extreme Portable SSD</strong> — «SanDisk Extreme Portable SSD - 1TB, USB-C», por Tony Webster. Licencia <a href="https://creativecommons.org/licenses/by/2.0" target="_blank" rel="noopener">CC BY 2.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:SanDisk_Extreme_Portable_SSD_-_1TB,_USB-C_(41036158305).jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
-    </ul>
-    <p>Fotos de producto de Almacenamiento: imágenes oficiales de SanDisk / Western Digital publicadas en sandisk.com. Resto de fotografías: aportadas por Soporte TV.</p>
-  </section>
   <div class="footer-bottom">
     <span>© <span id="footerYear">2026</span> Soporte TV</span>
-    <span>Catálogo interno de equipos disponibles para alquiler</span>
+    <span>Catálogo interno de equipos disponibles para alquiler · <button class="credits-link" id="openCredits" type="button">Créditos de fotos</button></span>
   </div>
 </footer>
 
 <div class="scrim" id="scrim"></div>
 <div class="panel" id="panel" role="dialog" aria-modal="true" aria-labelledby="panel-name"></div>
 
+<div class="scrim credits-scrim" id="creditsScrim"></div>
+<div class="credits-modal" id="creditsModal" role="dialog" aria-modal="true" aria-labelledby="creditsTitle">
+  <div class="credits-top">
+    <h2 id="creditsTitle">Créditos de fotos</h2>
+    <button class="close-btn" id="closeCredits" aria-label="Cerrar">✕</button>
+  </div>
+  <p>Modelos destacados</p>
+  <ul>
+      <li><strong>MacBook Air 13,6'' M1</strong> — «Macbook Air 2020 (M1) - 1», por KKPCW. Licencia <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Macbook_Air_2020_(M1)_-_1.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
+      <li><strong>iPad Pro</strong> — «IPad Pro 2018 backside», por MIKI Yoshihito. Licencia <a href="https://creativecommons.org/licenses/by/2.0" target="_blank" rel="noopener">CC BY 2.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:IPad_Pro_2018_backside.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
+      <li><strong>iPhone 16 Pro</strong> — «IPhone 16 Pro (54251031612)», por メイド理世. Licencia <a href="https://creativecommons.org/licenses/by-sa/2.0" target="_blank" rel="noopener">CC BY-SA 2.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:IPhone_16_Pro_(54251031612).jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
+      <li><strong>SanDisk Extreme Portable SSD</strong> — «SanDisk Extreme Portable SSD - 1TB, USB-C», por Tony Webster. Licencia <a href="https://creativecommons.org/licenses/by/2.0" target="_blank" rel="noopener">CC BY 2.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:SanDisk_Extreme_Portable_SSD_-_1TB,_USB-C_(41036158305).jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
+  </ul>
+  <p>Cabeceras de categoría</p>
+  <ul>
+      <li><strong>Cabecera de Móviles</strong> — «Apple iPhone smartphone desk», por www.Pixel.la Free Stock Photos. Licencia <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">CC0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Apple-iphone-smartphone-desk-1_(24217686692).jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
+      <li><strong>Cabecera de Accesorios</strong> — «Ring Light», por Serhan Meewisse. Licencia <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">CC0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Ring_Light_25280737679.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
+      <li><strong>Cabecera de Surface</strong> — «Laptop and a mug (Unsplash)», por Ryan Riggins. Licencia <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">CC0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Laptop_and_a_mug_(Unsplash).jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
+      <li><strong>Cabecera de Monitores</strong> — «Desk Setup (Unsplash)», por Luke Chesser. Licencia <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">CC0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Desk_Setup_(Unsplash).jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
+      <li><strong>Cabecera de Conectividad</strong> — «Network switches», por ShakataGaNai. Licencia <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Network_switches.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
+  </ul>
+  <p class="credits-note">Fotos de producto de Almacenamiento: imágenes oficiales de SanDisk / Western Digital publicadas en sandisk.com. Resto de fotografías: aportadas por Soporte TV.</p>
+</div>
 <div class="scrim rent-scrim" id="rentScrim"></div>
 <div class="rent-modal" id="rentModal" role="dialog" aria-modal="true" aria-labelledby="rentTitle">
   <div class="panel-top">
@@ -3333,18 +3494,22 @@ const heroMedia = document.getElementById("heroMedia");
 const heroShade = document.getElementById("heroShade");
 const heroImages = {
   computers: "img/440ee108e31f.webp",
-  surface: "img/d07ffc8b9756.webp",
-  phones: "img/4bd81d2e158b.webp",
-  monitors: "img/9c1295dd1089.webp",
-  connectivity: "img/7f673f981e4e.webp",
+  surface: "img/hero-surface.webp",
+  phones: "img/hero-moviles.webp",
+  accessories: "img/hero-accesorios.webp",
+  monitors: "img/hero-monitores.webp",
+  connectivity: "img/hero-conectividad.webp",
   storage: "img/hero-almacenamiento.webp",
   tablets: "img/hero-tablets.webp"
 };
 
 // Vertical position of each header photo (default: top). Higher % = image moved further up.
 const heroPositions = {
-  monitors: "center 35%",
-  connectivity: "center 45%",
+  phones: "center 55%",
+  accessories: "center 35%",
+  surface: "center 55%",
+  monitors: "center 45%",
+  connectivity: "center 50%",
   storage: "center 24%",
   tablets: "center 50%"
 };
@@ -3371,6 +3536,8 @@ const HEADER_DEFAULT = ["Catálogo interno", "Soporte TV", "Elige una categoría
 
 function setCatalogHeader(key) {
   const info = key && CATEGORY_INFO[key];
+  const featured = document.getElementById("destacados");
+  if (featured) featured.hidden = !!info;
   document.getElementById("catalogo").classList.toggle("in-category", !!info);
   document.getElementById("catEyebrow").textContent = info ? "Catálogo · Soporte TV" : HEADER_DEFAULT[0];
   document.getElementById("catTitle").textContent = info ? info[0] : HEADER_DEFAULT[1];
@@ -3416,9 +3583,10 @@ function getScrollY() {
 
 // The product list starts just below the banner, whatever the screen size
 function placeGridBelowHero() {
-  Object.values(views).forEach(v => { const g = v.querySelector(".storage-grid"); if (g) g.style.marginTop = ""; });
+  const listOf = v => v.querySelector(".catalog-layout") || v.querySelector(".storage-grid");
+  Object.values(views).forEach(v => { const g = listOf(v); if (g) g.style.marginTop = ""; });
   if (!activeHeroKey) return;
-  const grid = views[activeHeroKey].querySelector(".storage-grid");
+  const grid = listOf(views[activeHeroKey]);
   if (!grid) return;
   const gap = dynamicHero.getBoundingClientRect().bottom + 28 - grid.getBoundingClientRect().top;
   if (gap > 0) grid.style.marginTop = gap + "px";
@@ -3779,6 +3947,25 @@ route();
   }, "pointerGlow");
 
   safe(() => { document.getElementById("footerYear").textContent = new Date().getFullYear(); }, "year");
+
+  safe(() => {
+    const modal = document.getElementById("creditsModal");
+    const scrim = document.getElementById("creditsScrim");
+    const open = () => { modal.classList.add("open"); scrim.classList.add("open"); };
+    const close = () => { modal.classList.remove("open"); scrim.classList.remove("open"); };
+    document.getElementById("openCredits").addEventListener("click", open);
+    document.getElementById("closeCredits").addEventListener("click", close);
+    scrim.addEventListener("click", close);
+    document.addEventListener("keydown", e => { if (e.key === "Escape") close(); });
+  }, "credits");
+
+  safe(() => {
+    document.querySelectorAll(".filter-reset").forEach(btn => btn.addEventListener("click", () => {
+      btn.closest(".filter-panel").querySelectorAll("select").forEach(sel => {
+        if (sel.value !== "all") { sel.value = "all"; sel.dispatchEvent(new Event("change")); }
+      });
+    }));
+  }, "filterReset");
 
   // Featured slider: crossfade, autoplay driven by the progress bar, pause on hover/focus, swipe
   safe(() => {
