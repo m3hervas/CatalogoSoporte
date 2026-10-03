@@ -6,7 +6,7 @@
 <title>Soporte TV — Catálogo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #0A1222;
@@ -148,21 +148,6 @@
 
   .bg-power svg { width: 100%; height: 100%; }
 
-  .category-card.is-test { position: relative; }
-
-  .test-badge {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 10.5px;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    padding: 3px 8px;
-    border-radius: 999px;
-    background: #FFF1CC;
-    color: #8A5A00;
-  }
-
   #pageContent {
     position: relative;
     z-index: 1;
@@ -179,7 +164,7 @@
   }
 
   .eyebrow {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 600;
     font-size: 13px;
     letter-spacing: 0.08em;
@@ -203,7 +188,7 @@
   }
 
   h1 {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 700;
     font-size: clamp(30px, 6vw, 44px);
     line-height: 1.05;
@@ -311,7 +296,7 @@
   .category-icon svg { width: 100%; height: 100%; }
 
   .category-label {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 700;
     font-size: 18px;
     color: var(--ink);
@@ -406,41 +391,6 @@
     color: #F5F7FA;
   }
 
-  /* --- Empty state (Teléfonos) --- */
-  .empty-state {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 8px;
-    padding: 50px 20px 30px;
-    max-width: 380px;
-  }
-
-  .empty-icon {
-    width: 64px;
-    height: 64px;
-    margin-bottom: 10px;
-    opacity: 0.85;
-  }
-
-  .empty-icon svg { width: 100%; height: 100%; }
-
-  .empty-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-    font-size: 18px;
-    color: #F5F7FA;
-    margin: 0;
-  }
-
-  .empty-sub {
-    font-size: 14px;
-    line-height: 1.55;
-    color: #B7C1CC;
-    margin: 0;
-  }
-
   .grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 210px));
@@ -515,7 +465,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 700;
     font-size: 10px;
     color: #fff;
@@ -531,7 +481,7 @@
   }
 
   .model-name {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 600;
     font-size: 16px;
     color: var(--ink);
@@ -610,7 +560,7 @@
   }
 
   .panel-heading h2 {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 700;
     font-size: 24px;
     margin: 0 0 8px;
@@ -726,7 +676,7 @@
   .intro-text { flex: 1 1 0; max-width: 620px; }
 
   .intro-card h2 {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 700;
     font-size: clamp(30px, 4.2vw, 52px);
     line-height: 1.05;
@@ -821,7 +771,7 @@
   .rent-scrim { z-index: 20; }
 
   .rent-modal h2 {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 700;
     font-size: 22px;
     margin: 0;
@@ -867,6 +817,22 @@
   .rent-modal .primary-btn { width: 100%; margin-top: 4px; }
   .rent-modal .primary-btn:disabled { opacity: 0.6; cursor: wait; transform: none; }
 
+  .panel-request { display: block; width: 100%; margin-top: 18px; }
+
+  .card-request {
+    align-self: flex-start;
+    margin-top: 2px;
+    padding: 4px 0;
+    background: none;
+    border: 0;
+    color: var(--accent);
+    font: 600 13px 'Inter', sans-serif;
+    cursor: pointer;
+    transition: color 150ms ease;
+  }
+
+  @media (hover: hover) and (pointer: fine) { .card-request:hover { color: #1F64A5; } }
+
   .rent-done { text-align: center; padding: 10px 0 4px; }
   .rent-done[hidden], #rentForm[hidden] { display: none; }
   .rent-done-icon {
@@ -875,7 +841,7 @@
     display: flex; align-items: center; justify-content: center;
     font-size: 28px; font-weight: 700;
   }
-  .rent-done-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 20px; margin: 0 0 6px; }
+  .rent-done-title { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 20px; margin: 0 0 6px; }
   .rent-done-sub { font-size: 14px; line-height: 1.5; color: var(--ink-soft); margin: 0 0 20px; }
 
   @media (max-width: 420px) { .field-row { grid-template-columns: 1fr; } }
@@ -979,7 +945,7 @@
 
   .storage-info .brand-line { display: flex; align-items: center; gap: 8px; }
   .storage-info h3 {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 700;
     font-size: 20px;
     line-height: 1.2;
@@ -1859,7 +1825,7 @@
 </section>
 
 <header class="reveal" id="catalogo">
-  <p class="eyebrow" id="catEyebrow">Catálogo interno</p>
+  <p class="eyebrow" id="catEyebrow">Catálogo de alquiler</p>
   <div class="brand-header">
     <img src="img/0c071240beed.webp" alt="Logo Soporte TV" style="width:38px;height:38px;object-fit:contain;">
     <h1 id="catTitle">Soporte TV</h1>
@@ -2149,15 +2115,6 @@
   </div>
 </div>
 
-<div class="catalog-view" id="viewTest" hidden>
-  <button class="back-btn" data-back>← Volver</button>
-  <div class="empty-state">
-    <div class="empty-icon" id="testIconEmpty"></div>
-    <p class="empty-title">Productos en PRUEBA</p>
-    <p class="empty-sub">Aquí aparecerán los equipos que estamos probando antes de añadirlos al catálogo de alquiler.</p>
-  </div>
-</div>
-
 <footer class="site-footer reveal" id="contacto">
   <div class="footer-grid">
     <div class="footer-brand">
@@ -2185,7 +2142,7 @@
   </div>
   <div class="footer-bottom">
     <span>© <span id="footerYear">2026</span> Soporte TV</span>
-    <span>Catálogo interno de equipos disponibles para alquiler · <button class="credits-link" id="openCredits" type="button">Créditos de fotos</button></span>
+    <span>Catálogo de alquiler de dispositivos · <button class="credits-link" id="openCredits" type="button">Créditos de fotos</button></span>
   </div>
 </footer>
 
@@ -2325,13 +2282,6 @@ function desktopIcon(accent) {
     <rect x="20" y="16" width="80" height="46" rx="1.5" fill="#D9DEE4"/>
     <rect x="48" y="68" width="24" height="10" fill="${accent}"/>
     <rect x="34" y="78" width="52" height="6" rx="2" fill="${accent}"/>
-  </svg>`;
-}
-
-function testIcon(accent) {
-  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="${accent}" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M38 12h24M42 12v26L22 76a8 8 0 0 0 7 12h42a8 8 0 0 0 7-12L58 38V12"/>
-    <path d="M30 64h40" stroke-width="4"/>
   </svg>`;
 }
 
@@ -3304,8 +3254,10 @@ function renderStorage(items, gridEl) {
           <div class="storage-icon" title="Velocidad">${STORAGE_ICONS.speed}<span>${d.speed}</span></div>
           <div class="storage-icon" title="Conexión">${STORAGE_ICONS.port}<span>${d.port}</span></div>
         </div>
+        <button class="card-request" type="button">Solicitar este equipo →</button>
       </div>
     `;
+    card.querySelector(".card-request").addEventListener("click", () => openRentFor(d.model));
     gridEl.appendChild(card);
   });
 }
@@ -3431,11 +3383,17 @@ function openPanel(p) {
     <p class="spec-title">Ficha técnica</p>
     <div class="spec-table">${rows}</div>
     <span class="rental-tag">Disponible para alquiler</span>
+    <button class="primary-btn panel-request" id="panelRequest">Solicitar este equipo</button>
   `;
 
   scrim.classList.add("open");
   panel.classList.add("open");
   document.getElementById("closeBtn").addEventListener("click", closePanel);
+  const variants = p.storages && p.storages.length > 1 ? ` (${p.storages.join(" / ")})` : "";
+  document.getElementById("panelRequest").addEventListener("click", () => {
+    closePanel();
+    openRentFor(p.model + variants);
+  });
 }
 
 function closePanel() {
@@ -3499,7 +3457,6 @@ document.getElementById("surfaceIconLarge").innerHTML = surfaceIcon("#2B79C2");
 document.getElementById("monitorIconLarge").innerHTML = monitorIcon("#2B79C2");
 document.getElementById("connectivityIconLarge").innerHTML = routerIcon("#2B79C2");
 document.getElementById("storageIconLarge").innerHTML = driveIcon("#2B79C2");
-document.getElementById("testIconEmpty").innerHTML = testIcon("#8CC8FF");
 
 const viewLanding = document.getElementById("viewLanding");
 const views = {
@@ -3510,8 +3467,7 @@ const views = {
   surface: document.getElementById("viewSurface"),
   monitors: document.getElementById("viewMonitors"),
   connectivity: document.getElementById("viewConnectivity"),
-  storage: document.getElementById("viewStorage"),
-  test: document.getElementById("viewTest")
+  storage: document.getElementById("viewStorage")
 };
 
 const dynamicHero = document.getElementById("dynamicHero");
@@ -3554,10 +3510,9 @@ const CATEGORY_INFO = {
   surface: ["Surface", "Microsoft Surface Pro en varias configuraciones de procesador, memoria y almacenamiento."],
   monitors: ["Monitores", "Monitores LED, 4K y de estudio, de 24'' a 65''."],
   connectivity: ["Conectividad", "MiFi y routers 4G/5G con datos, y puntos de acceso Wi-Fi con instalación."],
-  storage: ["Almacenamiento", "Discos SSD portátiles y de escritorio de SanDisk, SanDisk Professional y WD."],
-  test: ["Productos en prueba", "Equipos que estamos probando antes de añadirlos al catálogo."]
+  storage: ["Almacenamiento", "Discos SSD portátiles y de escritorio de SanDisk, SanDisk Professional y WD."]
 };
-const HEADER_DEFAULT = ["Catálogo interno", "Soporte TV", "Elige una categoría para ver los productos disponibles para alquiler."];
+const HEADER_DEFAULT = ["Catálogo de alquiler", "Soporte TV", "Elige una categoría para ver los productos disponibles para alquiler."];
 
 function setCatalogHeader(key) {
   const info = key && CATEGORY_INFO[key];
@@ -3657,8 +3612,7 @@ const ROUTES = {
   surface: "surface",
   monitores: "monitors",
   conectividad: "connectivity",
-  almacenamiento: "storage",
-  prueba: "test"
+  almacenamiento: "storage"
 };
 const SLUGS = Object.fromEntries(Object.entries(ROUTES).map(([slug, key]) => [key, slug]));
 let navigatedFromLanding = false;
@@ -3754,7 +3708,7 @@ setupFilters(document.getElementById("gridConnectivity"), [
 
 // --- Intro + rental request ---
 // FormSubmit reenvía las solicitudes al correo (o alias) indicado al final de la URL
-const FORM_ENDPOINT = "https://formsubmit.co/ajax/m3hervasspotify@gmail.com";
+const FORM_ENDPOINT = "https://formsubmit.co/ajax/1384af3c840734e20ad3edf0fdf2c1e4";
 
 const intro = document.getElementById("intro");
 document.getElementById("introLogo").src = document.querySelector(".brand-header img").src;
@@ -3766,6 +3720,14 @@ const rentError = document.getElementById("rentError");
 
 const rentDone = document.getElementById("rentDone");
 const rentSubmit = document.getElementById("rentSubmit");
+
+// Open the rental form with the chosen model already written in the message
+function openRentFor(model) {
+  openRent();
+  const msg = document.getElementById("rentMsg");
+  const line = `Me interesa: ${model}`;
+  if (!msg.value.includes(line)) msg.value = msg.value.trim() ? `${line}\n${msg.value}` : `${line}\n`;
+}
 
 function openRent() {
   rentForm.hidden = false;
@@ -3923,7 +3885,7 @@ route();
       (p.brand || "").split("/").map(b => b.trim()).filter(b => b && b !== "Multimarca" && b !== "Sin marca").forEach(b => brands.add(b)));
     const values = {
       models: document.querySelectorAll(".catalog-view .storage-card").length,
-      categories: Object.keys(views).filter(k => k !== "test").length,
+      categories: Object.keys(views).length,
       brands: brands.size
     };
     const counters = [...document.querySelectorAll("[data-count]")];
