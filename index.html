@@ -883,7 +883,7 @@
   /* --- Storage: wide cards, two per row --- */
   /* Cards keep their size (459px); up to 3 per row when the screen is wide enough */
   #viewStorage, #viewTablets, #viewPhones, #viewAccessories, #viewComputers,
-  #viewSurface, #viewMonitors, #viewConnectivity { max-width: 1421px; }
+  #viewSurface, #viewMonitors, #viewConnectivity { max-width: none; }
 
   .storage-grid {
     display: grid;
@@ -1408,8 +1408,8 @@
   /* Catalog layout: filters in a sticky left sidebar, always visible while scrolling */
   .catalog-layout {
     display: grid;
-    grid-template-columns: 250px minmax(0, 1fr);
-    gap: 28px;
+    grid-template-columns: 230px minmax(0, 1fr);
+    gap: 24px;
     width: 100%;
     align-items: start;
   }
@@ -1456,7 +1456,32 @@
 
   @media (hover: hover) and (pointer: fine) { .filter-reset:hover { color: #FFFFFF; } }
 
-  .catalog-layout .storage-grid { justify-content: start; }
+  /* Always 3 products per row on desktop; cards adapt to the space available */
+  .catalog-layout .storage-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    container-type: inline-size;
+    container-name: cards;
+  }
+
+  /* Narrow cards: photo on top, information below */
+  .catalog-layout .storage-card { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+  .catalog-layout .storage-photo { aspect-ratio: 16 / 10; }
+  .catalog-layout .storage-photo img { max-height: 200px; }
+
+  /* Wide enough for photo-left cards (3 columns of at least ~420px) */
+  @container cards (min-width: 1304px) {
+    .catalog-layout .storage-card { grid-template-columns: 1fr 1fr; min-height: 260px; }
+    .catalog-layout .storage-photo { aspect-ratio: auto; }
+    .catalog-layout .storage-photo img { max-height: 224px; }
+  }
+
+  @media (max-width: 1099px) {
+    .catalog-layout .storage-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  @media (max-width: 640px) {
+    .catalog-layout .storage-grid { grid-template-columns: minmax(0, 1fr); }
+  }
 
   @media (max-width: 900px) {
     .catalog-layout { grid-template-columns: minmax(0, 1fr); gap: 18px; }
@@ -1472,7 +1497,7 @@
     .filter-panel-title { display: none; }
     .filter-panel .filter-row { min-width: 170px; }
     .filter-reset { align-self: center; white-space: nowrap; }
-    .catalog-layout .storage-grid { justify-content: center; }
+
   }
 
   /* Featured models slider */
