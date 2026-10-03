@@ -1758,6 +1758,36 @@
   @media (hover: hover) and (pointer: fine) {
     [data-theme="light"] .footer-col a:hover, [data-theme="light"] .credits-link:hover, [data-theme="light"] .filter-reset:hover { color: #0F172A; }
   }
+
+  /* --- Phones: keep a grid instead of one long column --- */
+  @media (max-width: 640px) {
+    /* Home: 3 categories per row */
+    .landing { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; width: 100%; }
+    .category-card { width: auto; height: 100%; padding: 16px 3px 14px; gap: 8px; border-radius: 14px; }
+    .category-icon { width: 46px; height: 46px; }
+    .category-label { font-size: 11.5px; line-height: 1.25; text-align: center; letter-spacing: -0.02em; hyphens: auto; -webkit-hyphens: auto; }
+
+    /* Products: 2 per row, compact cards */
+    .catalog-layout .storage-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .catalog-layout .storage-card { border-radius: 14px; }
+    .catalog-layout .storage-photo { aspect-ratio: 4 / 3; padding: 6px; }
+    .catalog-layout .storage-photo img { max-height: 130px; }
+    .catalog-layout .storage-info { padding: 10px 10px 12px; gap: 6px; }
+    .catalog-layout .storage-info h3 { font-size: 14px; line-height: 1.25; }
+    .storage-info .brand-line { gap: 6px; }
+    .brand-name { font-size: 10px; }
+    .storage-icons { gap: 5px; }
+    .storage-icon, .model-card .storage-icon-small, .storage-icon-wide { padding: 6px 4px; gap: 4px; border-radius: 8px; }
+    .storage-icon svg, .model-card .storage-icon-small svg { width: 14px; height: 14px; }
+    .storage-icon span { font-size: 10px; overflow-wrap: anywhere; }
+    .model-card .storage-icon-small { flex-direction: column; }
+    .model-card .card-hint { display: none; }
+  }
+
+  /* Very narrow phones: 2 categories per row */
+  @media (max-width: 359px) {
+    .landing { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
 </style>
 </head>
 <body>
