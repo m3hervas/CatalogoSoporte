@@ -147,8 +147,6 @@ js_rep("""  window.scrollTo(0, 0);
   document.body.scrollTop = 0;""", """  catRoot.scrollIntoView();""", 1)
 js_rep("""  return window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;""",
        """  return Math.max(0, -catRoot.getBoundingClientRect().top);""", 1)
-js_rep("""document.body.addEventListener("scroll", updateHeroOpacity, { passive: true });
-""", "", 1)
 js_rep('document.querySelector("header")', 'catRoot.querySelector("header")')
 js_rep('document.querySelector(".brand-header img")', 'catRoot.querySelector(".brand-header img")', 1)
 js_rep('document.querySelectorAll("[data-back]")', 'catRoot.querySelectorAll("[data-back]")')

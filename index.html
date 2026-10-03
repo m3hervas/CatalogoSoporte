@@ -64,58 +64,6 @@
     padding: 12px 20px 0;
   }
 
-  /* Category banner: framed, rounded card that fades in with a soft zoom and fades out on scroll */
-  #dynamicHero {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 480px;
-    z-index: 0;
-    overflow: hidden;
-    opacity: 0;
-    transform: translateY(var(--hero-shift, 0px));
-    transition: opacity 0.5s ease;
-    pointer-events: none;
-  }
-
-  #dynamicHero.active { opacity: 1; }
-  #dynamicHero.featured { height: 480px; }
-
-  /* Soft fade into the page colour at the bottom of the full-width banner */
-  #dynamicHero::after {
-    content: "";
-    position: absolute;
-    left: 0; right: 0; bottom: 0;
-    height: 45%;
-    background: linear-gradient(180deg, rgba(10,18,34,0) 0%, var(--bg) 100%);
-    pointer-events: none;
-  }
-
-  .hero-media, .hero-shade {
-    position: absolute;
-    inset: 0;
-  }
-
-  .hero-media {
-    background-size: cover;
-    background-repeat: no-repeat;
-    transform: scale(1.08);
-    transition: transform 1.4s cubic-bezier(.2,.7,.2,1);
-  }
-
-  #dynamicHero.active .hero-media { transform: scale(1); }
-
-  @media (max-width: 720px) {
-    #dynamicHero { top: 0; width: 100%; height: 380px; }
-    #dynamicHero.featured { height: 380px; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .hero-media { transform: none; transition: none; }
-  }
-
-  /* Leave room so the Almacenamiento header photo is visible before the cards */
 
   .bg-power {
     position: fixed;
@@ -803,20 +751,6 @@
 
   .panel-request { display: block; width: 100%; margin-top: 18px; }
 
-  .card-request {
-    align-self: flex-start;
-    margin-top: 2px;
-    padding: 4px 0;
-    background: none;
-    border: 0;
-    color: var(--accent);
-    font: 600 13px 'Inter', sans-serif;
-    cursor: pointer;
-    transition: color 150ms ease;
-  }
-
-  @media (hover: hover) and (pointer: fine) { .card-request:hover { color: #1F64A5; } }
-
   .rent-done { text-align: center; padding: 10px 0 4px; }
   .rent-done[hidden], #rentForm[hidden] { display: none; }
   .rent-done-icon {
@@ -1260,24 +1194,21 @@
   h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(42px, 7vw, 66px); letter-spacing: -0.01em; }
   header p { color: #A9B8CC; }
 
-  /* Header inside a category: name + description, bold and legible over the banner photo */
+  /* Header inside a category: only the category name, large and centred at the top */
+  header.in-category { width: 100%; max-width: none; margin: 0 auto 22px; }
+  header.in-category .brand-header { margin: 0; }
   header.in-category .brand-header img { display: none; }
-  header.in-category .eyebrow { color: #FFFFFF; opacity: 0.85; text-shadow: 0 2px 10px rgba(0,0,0,0.6); }
   header.in-category h1 {
     font-family: 'Inter', sans-serif;
     font-weight: 800;
-    font-size: clamp(36px, 5.4vw, 60px);
-    letter-spacing: -0.035em;
-    color: #FFFFFF;
-    text-shadow: 0 4px 28px rgba(0,0,0,0.55);
+    font-size: clamp(44px, 7vw, 84px);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: #F5F7FA;
   }
-  header.in-category p:last-child {
-    color: #EEF4FB;
-    font-size: clamp(15px, 1.5vw, 18px);
-    font-weight: 500;
-    max-width: 54ch;
-    text-shadow: 0 2px 16px rgba(0,0,0,0.75);
-  }
+  [data-theme="light"] header.in-category h1 { color: #0F172A; }
+  [data-theme="light"] .back-btn { color: #334155; background: #FFFFFF; border-color: rgba(15,23,42,0.12); }
+  @media (hover: hover) and (pointer: fine) { [data-theme="light"] .back-btn:hover { color: #0F172A; } }
 
   /* Category cards: dark glass */
   .category-card {
@@ -1822,11 +1753,6 @@
   </svg>
 </div>
 
-<div id="dynamicHero" aria-hidden="true">
-  <div class="hero-media" id="heroMedia"></div>
-  <div class="hero-shade" id="heroShade"></div>
-</div>
-
 <div id="pageContent">
 
 <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
@@ -1862,7 +1788,7 @@
       </div>
     </div>
     <a class="nav-link" href="#contacto" data-nav="contact">Contacto</a>
-    <button class="primary-btn nav-cta" data-nav="rent">Alquilar ahora</button>
+    <button class="primary-btn nav-cta" data-nav="rent">Solicita presupuesto</button>
   </div>
 </nav>
 
@@ -1874,7 +1800,7 @@
       <h2>Alquiler de dispositivos para <em>eventos y producciones</em></h2>
       <p>Tablets, móviles, ordenadores y accesorios listos para tu evento, rodaje o producción. Elige el equipo que necesitas y te lo preparamos configurado y revisado.</p>
       <div class="intro-actions">
-        <button class="primary-btn" id="openRent">Alquilar ahora</button>
+        <button class="primary-btn" id="openRent">Solicita presupuesto</button>
         <a class="ghost-btn" href="#catalogo" data-nav="catalog">Ver catálogo</a>
       </div>
     </div>
@@ -2285,14 +2211,6 @@
       <li><strong>iPad Pro</strong> — «IPad Pro 2018 backside», por MIKI Yoshihito. Licencia <a href="https://creativecommons.org/licenses/by/2.0" target="_blank" rel="noopener">CC BY 2.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:IPad_Pro_2018_backside.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
       <li><strong>iPhone 16 Pro</strong> — «IPhone 16 Pro (54251031612)», por メイド理世. Licencia <a href="https://creativecommons.org/licenses/by-sa/2.0" target="_blank" rel="noopener">CC BY-SA 2.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:IPhone_16_Pro_(54251031612).jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
       <li><strong>SanDisk Extreme Portable SSD</strong> — «SanDisk Extreme Portable SSD - 1TB, USB-C», por Tony Webster. Licencia <a href="https://creativecommons.org/licenses/by/2.0" target="_blank" rel="noopener">CC BY 2.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:SanDisk_Extreme_Portable_SSD_-_1TB,_USB-C_(41036158305).jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
-  </ul>
-  <p>Cabeceras de categoría</p>
-  <ul>
-      <li><strong>Cabecera de Móviles</strong> — «Apple iPhone smartphone desk», por www.Pixel.la Free Stock Photos. Licencia <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">CC0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Apple-iphone-smartphone-desk-1_(24217686692).jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
-      <li><strong>Cabecera de Accesorios</strong> — «Ring Light», por Serhan Meewisse. Licencia <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">CC0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Ring_Light_25280737679.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
-      <li><strong>Cabecera de Surface</strong> — «Laptop and a mug (Unsplash)», por Ryan Riggins. Licencia <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">CC0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Laptop_and_a_mug_(Unsplash).jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
-      <li><strong>Cabecera de Monitores</strong> — «Desk Setup (Unsplash)», por Luke Chesser. Licencia <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">CC0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Desk_Setup_(Unsplash).jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
-      <li><strong>Cabecera de Conectividad</strong> — «Network switches», por ShakataGaNai. Licencia <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Network_switches.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
   </ul>
   <p class="credits-note">Fotos de producto de Almacenamiento: imágenes oficiales de SanDisk / Western Digital publicadas en sandisk.com. iPhone 17, iPhone 18 Pro y Galaxy S26: imágenes oficiales de Apple y Samsung. Resto de fotografías: aportadas por Soporte TV.</p>
 </div>
@@ -3390,10 +3308,8 @@ function renderStorage(items, gridEl) {
           <div class="storage-icon" title="Velocidad">${STORAGE_ICONS.speed}<span>${d.speed}</span></div>
           <div class="storage-icon" title="Conexión">${STORAGE_ICONS.port}<span>${d.port}</span></div>
         </div>
-        <button class="card-request" type="button">Solicitar este equipo →</button>
       </div>
     `;
-    card.querySelector(".card-request").addEventListener("click", () => openRentFor(d.model));
     gridEl.appendChild(card);
   });
 }
@@ -3615,37 +3531,6 @@ const views = {
   storage: document.getElementById("viewStorage")
 };
 
-const dynamicHero = document.getElementById("dynamicHero");
-const heroMedia = document.getElementById("heroMedia");
-const heroShade = document.getElementById("heroShade");
-const heroImages = {
-  computers: "img/440ee108e31f.webp",
-  surface: "img/hero-surface.webp",
-  phones: "img/hero-moviles.webp",
-  accessories: "img/hero-accesorios.webp",
-  monitors: "img/hero-monitores.webp",
-  connectivity: "img/hero-conectividad.webp",
-  storage: "img/hero-almacenamiento.webp",
-  tablets: "img/hero-tablets.webp"
-};
-
-// Vertical position of each header photo (default: top). Higher % = image moved further up.
-const heroPositions = {
-  phones: "center 55%",
-  accessories: "center 35%",
-  surface: "center 55%",
-  monitors: "center 45%",
-  connectivity: "center 50%",
-  storage: "center 24%",
-  tablets: "center 50%"
-};
-
-// Headers that should stand out more: taller and with a lighter overlay
-const heroFeatured = {
-  storage: "linear-gradient(180deg, rgba(10,14,19,0.45) 0%, rgba(10,14,19,0.12) 30%, rgba(10,14,19,0.18) 62%, rgba(10,14,19,0.35) 100%)",
-  tablets: "radial-gradient(ellipse 45% 55% at 50% 40%, rgba(10,20,35,0.55), rgba(10,20,35,0) 100%), linear-gradient(180deg, rgba(10,14,19,0.45) 0%, rgba(10,14,19,0.15) 30%, rgba(10,14,19,0.2) 62%, rgba(10,14,19,0.4) 100%)"
-};
-
 // Name shown at the top of each category
 const CATEGORY_INFO = {
   tablets: "Tablets",
@@ -3681,71 +3566,16 @@ function showView(key) {
   window.scrollTo(0, 0);
   document.documentElement.scrollTop = 0;
   document.body.scrollTop = 0;
-
-  if (heroImages[key]) {
-    heroShade.style.background = heroFeatured[key] || "linear-gradient(180deg, rgba(10,14,19,0.35) 0%, rgba(10,14,19,0.5) 60%, rgba(10,14,19,0.62) 100%)";
-    heroMedia.style.backgroundImage = `url("${heroImages[key]}")`;
-    heroMedia.style.backgroundPosition = heroPositions[key] || "center center";
-    dynamicHero.classList.toggle("featured", !!heroFeatured[key]);
-    // Restart the entrance animation
-    dynamicHero.classList.remove("active");
-    void dynamicHero.offsetWidth;
-    activeHeroKey = key;
-    updateHeroOpacity();
-    dynamicHero.classList.add("active");
-    placeGridBelowHero();
-  } else {
-    deactivateHero();
-  }
 }
-
-let activeHeroKey = null;
-const HERO_FADE_DISTANCE = 260;
 
 function getScrollY() {
   return window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
 }
 
-// The product list starts just below the banner, whatever the screen size
-function placeGridBelowHero() {
-  const listOf = v => v.querySelector(".catalog-layout") || v.querySelector(".storage-grid");
-  Object.values(views).forEach(v => { const g = listOf(v); if (g) g.style.marginTop = ""; });
-  if (!activeHeroKey) return;
-  const grid = listOf(views[activeHeroKey]);
-  if (!grid) return;
-  const gap = dynamicHero.getBoundingClientRect().bottom + 28 - grid.getBoundingClientRect().top;
-  if (gap > 0) grid.style.marginTop = gap + "px";
-}
-
-window.addEventListener("resize", () => { if (activeHeroKey && getScrollY() === 0) placeGridBelowHero(); });
-
-function updateHeroOpacity() {
-  if (!activeHeroKey) return;
-  const y = getScrollY();
-  dynamicHero.style.opacity = Math.max(0, 1 - y / HERO_FADE_DISTANCE);
-  dynamicHero.style.setProperty("--hero-shift", `${-Math.min(y, HERO_FADE_DISTANCE) * 0.25}px`);
-}
-
-function deactivateHero() {
-  activeHeroKey = null;
-  placeGridBelowHero();
-  dynamicHero.classList.remove("active");
-  dynamicHero.style.opacity = "";
-  dynamicHero.style.removeProperty("--hero-shift");
-  heroMedia.style.backgroundImage = "";
-  heroShade.style.background = "";
-  dynamicHero.classList.remove("featured");
-}
-
-window.addEventListener("scroll", updateHeroOpacity, { passive: true });
-document.body.addEventListener("scroll", updateHeroOpacity, { passive: true });
-document.addEventListener("scroll", updateHeroOpacity, { passive: true });
-
 function showLanding() {
   setCatalogHeader(null);
   Object.values(views).forEach(v => v.hidden = true);
   viewLanding.hidden = false;
-  deactivateHero();
 }
 
 // --- Routing: each category has its own address (#ordenadores, #tablets...) ---
@@ -4051,6 +3881,21 @@ route();
   }, "pointerGlow");
 
   safe(() => { document.getElementById("footerYear").textContent = new Date().getFullYear(); }, "year");
+
+  // Filter options: sizes and capacities from small to large, everything else in alphabetical order
+  safe(() => {
+    const size = text => {
+      const m = String(text).replace(",", ".").match(/\d+(\.\d+)?/);
+      if (!m) return NaN;
+      return parseFloat(m[0]) * (/TB/i.test(text) ? 1000 : 1);
+    };
+    document.querySelectorAll(".filter-select").forEach(sel => {
+      const opts = [...sel.options].filter(o => o.value !== "all");
+      const numeric = opts.every(o => !isNaN(size(o.value)));
+      opts.sort((a, b) => numeric ? size(a.value) - size(b.value) : a.text.localeCompare(b.text, "es", { sensitivity: "base" }));
+      opts.forEach(o => sel.appendChild(o));
+    });
+  }, "filterOrder");
 
   // Light / night theme: light by default, the choice is remembered on this browser
   safe(() => {
