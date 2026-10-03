@@ -2081,7 +2081,7 @@
           <option value="all">Todas las marcas</option>
           <option value="HP">HP</option>
           <option value="Microsoft">Microsoft</option>
-          <option value="Multimarca">Multimarca (Dell/HP/Lenovo)</option>
+          <option value="Dell / HP / Lenovo">Dell / HP / Lenovo</option>
         </select>
       </div>
       <button class="filter-reset" type="button">Quitar filtros</button>
@@ -2232,7 +2232,16 @@
       <li><strong>iPhone 16 Pro</strong> — «IPhone 16 Pro (54251031612)», por メイド理世. Licencia <a href="https://creativecommons.org/licenses/by-sa/2.0" target="_blank" rel="noopener">CC BY-SA 2.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:IPhone_16_Pro_(54251031612).jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
       <li><strong>SanDisk Extreme Portable SSD</strong> — «SanDisk Extreme Portable SSD - 1TB, USB-C», por Tony Webster. Licencia <a href="https://creativecommons.org/licenses/by/2.0" target="_blank" rel="noopener">CC BY 2.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:SanDisk_Extreme_Portable_SSD_-_1TB,_USB-C_(41036158305).jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
   </ul>
-  <p class="credits-note">Fotos de producto de Almacenamiento: imágenes oficiales de SanDisk / Western Digital publicadas en sandisk.com. iPhone 17, iPhone 18 Pro y Galaxy S26: imágenes oficiales de Apple y Samsung. Resto de fotografías: aportadas por Soporte TV.</p>
+  <p>Accesorios y Conectividad</p>
+  <ul>
+      <li><strong>Aro de luz</strong> — «Ring Light», por Serhan Meewisse. Licencia <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">CC0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Ring_Light_25280737679.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
+      <li><strong>Micrófono inalámbrico</strong> — «Rode Wireless Go II Set 2», por -stk. Licencia <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Rode_Wireless_Go_II_Set_2.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
+      <li><strong>Power bank</strong> — «2023 Powerbank Green Cell PowerPlay 20 (2)», por Jacek Halicki. Licencia <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:2023_Powerbank_Green_Cell_PowerPlay_20_(2).jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
+      <li><strong>Funda con teclado</strong> — «Logitech Ultrathin Keyboard Cover for iPad», por Kārlis Dambrāns. Licencia <a href="https://creativecommons.org/licenses/by/2.0" target="_blank" rel="noopener">CC BY 2.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Logitech_Ultrathin_Keyboard_Cover_for_iPad_(9679257750).jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
+      <li><strong>MiFi portátil</strong> — «Huawei E5576-320 4G Reise-Hotspot LTE-Router», por www.digitalpush.net. Licencia <a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="noopener">CC BY 4.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Huawei-E5576-320-4G-Reise-Hotspot-LTE-Router.1.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
+      <li><strong>Router con SIM</strong> — «Mikrotik Chateau LTE-5G modem+router», por Yerachmiel C. Licencia <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Mikrotik_Chateau_LTE-5G_modem%2Brouter.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
+  </ul>
+  <p class="credits-note">Las fotos de accesorios y conectividad genéricos son orientativas: el equipo entregado puede ser de otra marca o modelo equivalente. Resto de fotos de producto: imágenes oficiales de los fabricantes (Apple, Samsung, Microsoft, HP, Dell, Lenovo, SanDisk / Western Digital, Zhiyun, Wacom, Celly, Targus y Ubiquiti) o aportadas por Soporte TV.</p>
 </div>
 <div class="scrim rent-scrim" id="rentScrim"></div>
 <div class="rent-modal" id="rentModal" role="dialog" aria-modal="true" aria-labelledby="rentTitle">
@@ -2752,53 +2761,80 @@ const PHONES = [
   }
 ];
 
+// Ordered from most to least expensive (approximate retail price)
 const ACCESSORIES = [
-  {
-    cat: "accessory", catLabel: "Accesorio", group: "Móvil/Cámara", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "Adaptador USB-C a USB",
+{
+    cat: "accessory", catLabel: "Accesorio", group: "iPad", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
+    model: "Apple Pencil", photo: "img/acc-apple-pencil.webp",
     icon: accessoryIcon("#5B6470"),
     specs: [
-      ["Categoría", "Accesorio · Móvil/Cámara"],
+      ["Categoría", "Accesorio · iPad"],
       ["Marca", "Apple"]
     ]
   },
-  {
+{
     cat: "accessory", catLabel: "Accesorio", group: "Móvil/Cámara", brand: "Zhiyun", brandCode: "Z", brandColor: "#6B4FA0",
-    model: "Smooth X Combo",
+    model: "Smooth X Combo", photo: "img/acc-smooth-x.webp",
     icon: accessoryIcon("#6B4FA0"),
     specs: [
       ["Categoría", "Accesorio · Móvil/Cámara"],
       ["Tipo", "Estabilizador combo para móvil"]
     ]
   },
-  {
+{
+    cat: "accessory", catLabel: "Accesorio", group: "iPad", brand: "Wacom", brandCode: "W", brandColor: "#0090C8",
+    model: "Bamboo Fineline", photo: "img/acc-bamboo-fineline.webp",
+    icon: accessoryIcon("#0090C8"),
+    specs: [
+      ["Categoría", "Accesorio · iPad"],
+      ["Marca", "Wacom"]
+    ]
+  },
+{
     cat: "accessory", catLabel: "Accesorio", group: "Móvil/Cámara", brand: "", brandCode: "", brandColor: "#5C6672",
-    model: "Aro de luz",
+    model: "Micrófono inalámbrico", photo: "img/acc-microfono.webp",
     icon: accessoryIcon("#5C6672"),
     specs: [
       ["Categoría", "Accesorio · Móvil/Cámara"]
     ]
   },
-  {
-    cat: "accessory", catLabel: "Accesorio", group: "Móvil/Cámara", brand: "", brandCode: "", brandColor: "#5C6672",
-    model: "Micrófono inalámbrico",
+{
+    cat: "accessory", catLabel: "Accesorio", group: "iPad", brand: "", brandCode: "", brandColor: "#5C6672",
+    model: "Funda con teclado", photo: "img/acc-funda-teclado.webp",
     icon: accessoryIcon("#5C6672"),
     specs: [
-      ["Categoría", "Accesorio · Móvil/Cámara"]
+      ["Categoría", "Accesorio · iPad"],
+      ["Compatibilidad", "iPad 7.ª / 8.ª / 9.ª generación"]
     ]
   },
-  {
-    cat: "accessory", catLabel: "Accesorio", group: "Móvil/Cámara", brand: "Celly", brandCode: "C", brandColor: "#E4572E",
-    model: "Trípode",
-    icon: accessoryIcon("#E4572E"),
+{
+    cat: "accessory", catLabel: "Accesorio", group: "Móvil/Cámara", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
+    model: "Adaptador USB-C a USB", photo: "img/acc-adaptador-usbc.webp",
+    icon: accessoryIcon("#5B6470"),
     specs: [
       ["Categoría", "Accesorio · Móvil/Cámara"],
-      ["Detalle", "360º / 19 cm"]
+      ["Marca", "Apple"]
     ]
   },
-  {
+{
     cat: "accessory", catLabel: "Accesorio", group: "Móvil/Cámara", brand: "", brandCode: "", brandColor: "#5C6672",
-    model: "Power bank",
+    model: "Aro de luz", photo: "img/acc-aro-luz.webp",
+    icon: accessoryIcon("#5C6672"),
+    specs: [
+      ["Categoría", "Accesorio · Móvil/Cámara"]
+    ]
+  },
+{
+    cat: "accessory", catLabel: "Accesorio", group: "iPad", brand: "", brandCode: "", brandColor: "#5C6672",
+    model: "Funda Rugged / Correa", photo: "img/acc-funda-rugged.webp",
+    icon: accessoryIcon("#5C6672"),
+    specs: [
+      ["Categoría", "Accesorio · iPad"]
+    ]
+  },
+{
+    cat: "accessory", catLabel: "Accesorio", group: "Móvil/Cámara", brand: "", brandCode: "", brandColor: "#5C6672",
+    model: "Power bank", photo: "img/acc-power-bank.webp",
     icon: accessoryIcon("#5C6672"),
     specs: [
       ["Categoría", "Accesorio · Móvil/Cámara"],
@@ -2806,104 +2842,21 @@ const ACCESSORIES = [
       ["Conector", "USB-C"]
     ]
   },
-  {
-    cat: "accessory", catLabel: "Accesorio", group: "iPad", brand: "", brandCode: "", brandColor: "#5C6672",
-    model: "Funda Rugged / Correa",
-    icon: accessoryIcon("#5C6672"),
+{
+    cat: "accessory", catLabel: "Accesorio", group: "Móvil/Cámara", brand: "Celly", brandCode: "C", brandColor: "#E4572E",
+    model: "Trípode", photo: "img/acc-tripode.webp",
+    icon: accessoryIcon("#E4572E"),
     specs: [
-      ["Categoría", "Accesorio · iPad"]
-    ]
-  },
-  {
-    cat: "accessory", catLabel: "Accesorio", group: "iPad", brand: "", brandCode: "", brandColor: "#5C6672",
-    model: "Funda con teclado",
-    icon: accessoryIcon("#5C6672"),
-    specs: [
-      ["Categoría", "Accesorio · iPad"],
-      ["Compatibilidad", "iPad 7.ª / 8.ª / 9.ª generación"]
-    ]
-  },
-  {
-    cat: "accessory", catLabel: "Accesorio", group: "iPad", brand: "Wacom", brandCode: "W", brandColor: "#0090C8",
-    model: "Bamboo Fineline",
-    icon: accessoryIcon("#0090C8"),
-    specs: [
-      ["Categoría", "Accesorio · iPad"],
-      ["Marca", "Wacom"]
-    ]
-  },
-  {
-    cat: "accessory", catLabel: "Accesorio", group: "iPad", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "Apple Pencil",
-    icon: accessoryIcon("#5B6470"),
-    specs: [
-      ["Categoría", "Accesorio · iPad"],
-      ["Marca", "Apple"]
+      ["Categoría", "Accesorio · Móvil/Cámara"],
+      ["Detalle", "360º / 19 cm"]
     ]
   }
 ];
 
 const COMPUTERS = [
-  {
-    cat: "computer", catLabel: "Portátil", type: "Portátil", brand: "Multimarca", brandCode: "M", brandColor: "#5C6672",
-    model: "Portátil i5 / 8GB / 256GB SSD / 14''",
-    icon: laptopIcon("#5C6672"),
-    specs: [
-      ["Categoría", "Portátil"],
-      ["Marcas disponibles", "Dell / HP / Lenovo"],
-      ["Procesador", "Intel Core i5"],
-      ["RAM", "8 GB"],
-      ["Almacenamiento", "256 GB SSD"],
-      ["Pantalla", "14 ''"],
-      ["Incluye", "Maletín y ratón"]
-    ]
-  },
-  {
-    cat: "computer", catLabel: "Portátil", type: "Portátil", brand: "Multimarca", brandCode: "M", brandColor: "#5C6672",
-    model: "Portátil i5 / 16GB / 256GB SSD / 14''",
-    icon: laptopIcon("#5C6672"),
-    specs: [
-      ["Categoría", "Portátil"],
-      ["Marcas disponibles", "Dell / HP / Lenovo"],
-      ["Procesador", "Intel Core i5"],
-      ["RAM", "16 GB"],
-      ["Almacenamiento", "256 GB SSD"],
-      ["Pantalla", "14 ''"],
-      ["Incluye", "Maletín y ratón"]
-    ]
-  },
-  {
-    cat: "computer", catLabel: "Portátil", type: "Portátil", brand: "Multimarca", brandCode: "M", brandColor: "#5C6672",
-    model: "Portátil i7 / 16GB / 256GB SSD / 14''",
-    icon: laptopIcon("#5C6672"),
-    specs: [
-      ["Categoría", "Portátil"],
-      ["Marcas disponibles", "Dell / HP / Lenovo"],
-      ["Procesador", "Intel Core i7"],
-      ["RAM", "16 GB"],
-      ["Almacenamiento", "256 GB SSD"],
-      ["Pantalla", "14 ''"],
-      ["Incluye", "Maletín y ratón"]
-    ]
-  },
-  {
+{
     cat: "computer", catLabel: "Portátil", type: "Portátil", brand: "HP", brandCode: "H", brandColor: "#0096D6",
-    model: "HP ZBook",
-    icon: laptopIcon("#0096D6"),
-    specs: [
-      ["Categoría", "Portátil"],
-      ["Marca", "HP"],
-      ["Procesador", "Intel Core i7"],
-      ["RAM", "32 GB"],
-      ["Almacenamiento", "512 GB SSD"],
-      ["Gráfica", "NVIDIA Quadro M2000"],
-      ["Pantalla", "15,6 ''"],
-      ["Incluye", "Maletín y ratón"]
-    ]
-  },
-  {
-    cat: "computer", catLabel: "Portátil", type: "Portátil", brand: "HP", brandCode: "H", brandColor: "#0096D6",
-    model: "HP Victus",
+    model: "HP Victus", photo: "img/pc-victus.webp",
     icon: laptopIcon("#0096D6"),
     specs: [
       ["Categoría", "Portátil"],
@@ -2916,7 +2869,64 @@ const COMPUTERS = [
       ["Incluye", "Maletín y ratón"]
     ]
   },
-  {
+{
+    cat: "computer", catLabel: "Portátil", type: "Portátil", brand: "HP", brandCode: "H", brandColor: "#0096D6",
+    model: "HP ZBook", photo: "img/pc-zbook.webp",
+    icon: laptopIcon("#0096D6"),
+    specs: [
+      ["Categoría", "Portátil"],
+      ["Marca", "HP"],
+      ["Procesador", "Intel Core i7"],
+      ["RAM", "32 GB"],
+      ["Almacenamiento", "512 GB SSD"],
+      ["Gráfica", "NVIDIA Quadro M2000"],
+      ["Pantalla", "15,6 ''"],
+      ["Incluye", "Maletín y ratón"]
+    ]
+  },
+{
+    cat: "computer", catLabel: "Portátil", type: "Portátil", brand: "Dell / HP / Lenovo", brandCode: "D", brandColor: "#5C6672",
+    model: "Portátil 8 GB RAM", photo: "img/pc-dell.webp",
+    icon: laptopIcon("#5C6672"),
+    specs: [
+      ["Categoría", "Portátil"],
+      ["Marcas disponibles", "Dell / HP / Lenovo"],
+      ["Procesador", "Intel Core i5"],
+      ["RAM", "8 GB"],
+      ["Almacenamiento", "256 GB SSD"],
+      ["Pantalla", "14 ''"],
+      ["Incluye", "Maletín y ratón"]
+    ]
+  },
+{
+    cat: "computer", catLabel: "Portátil", type: "Portátil", brand: "Dell / HP / Lenovo", brandCode: "D", brandColor: "#5C6672",
+    model: "Portátil 16 GB RAM", photo: "img/pc-hp-probook.webp", key: "portatil-i5-16",
+    icon: laptopIcon("#5C6672"),
+    specs: [
+      ["Categoría", "Portátil"],
+      ["Marcas disponibles", "Dell / HP / Lenovo"],
+      ["Procesador", "Intel Core i5"],
+      ["RAM", "16 GB"],
+      ["Almacenamiento", "256 GB SSD"],
+      ["Pantalla", "14 ''"],
+      ["Incluye", "Maletín y ratón"]
+    ]
+  },
+{
+    cat: "computer", catLabel: "Portátil", type: "Portátil", brand: "Dell / HP / Lenovo", brandCode: "D", brandColor: "#5C6672",
+    model: "Portátil 16 GB RAM", photo: "img/pc-lenovo.webp", key: "portatil-i7-16",
+    icon: laptopIcon("#5C6672"),
+    specs: [
+      ["Categoría", "Portátil"],
+      ["Marcas disponibles", "Dell / HP / Lenovo"],
+      ["Procesador", "Intel Core i7"],
+      ["RAM", "16 GB"],
+      ["Almacenamiento", "256 GB SSD"],
+      ["Pantalla", "14 ''"],
+      ["Incluye", "Maletín y ratón"]
+    ]
+  },
+{
     cat: "computer", catLabel: "Surface", type: "Surface", brand: "Microsoft", brandCode: "M", brandColor: "#00A4EF",
     model: "Surface Pro 7",
     photo: "img/4bc956164a80.webp", cpu: "i5", storage: "128 GB", storages: ["128 GB", "256 GB", "512 GB", "1 TB"],
@@ -2930,7 +2940,7 @@ const COMPUTERS = [
       ["Pantalla", "12,3 ''"]
     ]
   },
-  {
+{
     cat: "computer", catLabel: "Surface", type: "Surface", brand: "Microsoft", brandCode: "M", brandColor: "#00A4EF",
     model: "Surface Pro 7",
     photo: "img/4bc956164a80.webp", cpu: "i5", storage: "256 GB",
@@ -2944,7 +2954,7 @@ const COMPUTERS = [
       ["Pantalla", "12,3 ''"]
     ]
   },
-  {
+{
     cat: "computer", catLabel: "Surface", type: "Surface", brand: "Microsoft", brandCode: "M", brandColor: "#00A4EF",
     model: "Surface Pro 7",
     photo: "img/4bc956164a80.webp", cpu: "i5", storage: "256 GB",
@@ -2958,7 +2968,7 @@ const COMPUTERS = [
       ["Pantalla", "12,3 ''"]
     ]
   },
-  {
+{
     cat: "computer", catLabel: "Surface", type: "Surface", brand: "Microsoft", brandCode: "M", brandColor: "#00A4EF",
     model: "Surface Pro 7",
     photo: "img/4bc956164a80.webp", cpu: "i7", storage: "256 GB",
@@ -2972,7 +2982,7 @@ const COMPUTERS = [
       ["Pantalla", "12,3 ''"]
     ]
   },
-  {
+{
     cat: "computer", catLabel: "Surface", type: "Surface", brand: "Microsoft", brandCode: "M", brandColor: "#00A4EF",
     model: "Surface Pro 7",
     photo: "img/4bc956164a80.webp", cpu: "i7", storage: "512 GB",
@@ -2986,9 +2996,9 @@ const COMPUTERS = [
       ["Pantalla", "12,3 ''"]
     ]
   },
-  {
-    cat: "computer", catLabel: "AIO", type: "AIO", brand: "Multimarca", brandCode: "M", brandColor: "#5C6672",
-    model: "AIO (Todo en uno) i5 / 16GB / 256GB SSD / 23,6''",
+{
+    cat: "computer", catLabel: "AIO", type: "AIO", brand: "Dell / HP / Lenovo", brandCode: "D", brandColor: "#5C6672",
+    model: "AIO (Todo en uno) 16 GB RAM", photo: "img/pc-aio.webp",
     icon: desktopIcon("#5C6672"),
     specs: [
       ["Categoría", "AIO (Todo en uno)"],
@@ -3000,9 +3010,9 @@ const COMPUTERS = [
       ["Incluye", "Ratón y teclado"]
     ]
   },
-  {
-    cat: "computer", catLabel: "CPU", type: "CPU", brand: "Multimarca", brandCode: "M", brandColor: "#5C6672",
-    model: "CPU i5 / 16GB / 256GB SSD",
+{
+    cat: "computer", catLabel: "CPU", type: "CPU", brand: "Dell / HP / Lenovo", brandCode: "D", brandColor: "#5C6672",
+    model: "CPU 16 GB RAM", photo: "img/pc-tower.webp",
     icon: desktopIcon("#5C6672"),
     specs: [
       ["Categoría", "CPU"],
@@ -3013,9 +3023,9 @@ const COMPUTERS = [
       ["Incluye", "Ratón y teclado"]
     ]
   },
-  {
-    cat: "computer", catLabel: "CPU + Monitor", type: "CPU + Monitor", brand: "Multimarca", brandCode: "M", brandColor: "#5C6672",
-    model: "CPU + Monitor i5 / 16GB / 256GB SSD",
+{
+    cat: "computer", catLabel: "CPU + Monitor", type: "CPU + Monitor", brand: "Dell / HP / Lenovo", brandCode: "D", brandColor: "#5C6672",
+    model: "CPU + Monitor 16 GB RAM", photo: "img/pc-tower-monitor.webp",
     icon: desktopIcon("#5C6672"),
     specs: [
       ["Categoría", "CPU + Monitor"],
@@ -3026,9 +3036,9 @@ const COMPUTERS = [
       ["Incluye", "Ratón y teclado"]
     ]
   },
-  {
+{
     cat: "computer", catLabel: "CPU", type: "CPU", brand: "HP", brandCode: "H", brandColor: "#0096D6",
-    model: "HP Workstation",
+    model: "HP Workstation", photo: "img/pc-hp-z4.webp",
     icon: desktopIcon("#0096D6"),
     specs: [
       ["Categoría", "Workstation"],
@@ -3218,9 +3228,11 @@ const CONNECTIVITY = [];
 ["MiFi", "Router"].forEach(device => {
   ["4G", "5G"].forEach(net => {
     DATA_PLANS.forEach(plan => {
+      // One card per device: networks and data plans are shown in the blue boxes
       CONNECTIVITY.push({
-        cat: "connectivity", catLabel: device, type: device, group: net, storage: plan.key,
-        model: `${device} ${net} · ${plan.short}`,
+        cat: "connectivity", catLabel: device, type: device, group: net, storage: plan.key, storageLabel: "Datos",
+        model: device === "MiFi" ? "MiFi portátil" : "Router con SIM",
+        photo: device === "MiFi" ? "img/conn-mifi.webp" : "img/conn-router.webp",
         icon: device === "MiFi" ? mifiIcon("#0F8A80") : routerIcon("#0F8A80"),
         specs: [
           ["Categoría", device],
@@ -3234,7 +3246,7 @@ const CONNECTIVITY = [];
 });
 CONNECTIVITY.push({
   cat: "connectivity", catLabel: "Punto de acceso", type: "Punto de acceso", brand: "Ubiquiti", brandCode: "U", brandColor: "#0559C9",
-  model: "Punto de acceso inalámbrico Ubiquiti",
+  model: "Punto de acceso inalámbrico Ubiquiti", photo: "img/conn-ubiquiti.webp",
   icon: accessPointIcon("#0559C9"),
   specs: [
     ["Categoría", "Punto de acceso inalámbrico"],
@@ -3364,12 +3376,12 @@ function badgeMarkup(p) {
 }
 
 // --- Model cards: one card per model; variants that only change storage are grouped ---
-const sizeInGB = v => parseFloat(String(v).replace(",", ".")) * (/TB/i.test(v) ? 1000 : 1) || 0;
+const sizeInGB = v => /ilimitad/i.test(v) ? Infinity : parseFloat(String(v).replace(",", ".")) * (/TB/i.test(v) ? 1000 : 1) || 0;
 
 function groupByModel(items) {
   const groups = new Map();
   items.forEach(p => {
-    const key = (p.brand || "") + "|" + p.model;
+    const key = (p.brand || "") + "|" + p.model + "|" + (p.key || "");
     if (!groups.has(key)) groups.set(key, []);
     groups.get(key).push(p);
   });
@@ -3394,7 +3406,7 @@ function groupByModel(items) {
     if (storages.length) {
       const row = specs.find(([l]) => l === "Almacenamiento");
       if (row) row[1] = storages.join(" / ");
-      else specs.splice(1, 0, ["Almacenamiento", storages.join(" / ")]);
+      else specs.splice(1, 0, [first.storageLabel || "Almacenamiento", storages.join(" / ")]);
     }
     const allValues = attr => [...new Set(variants.map(v => v[attr]).filter(Boolean))].join("|");
     return {
@@ -3429,8 +3441,11 @@ const CARD_INFO = {
     return boxes;
   },
   monitor: p => ({ icon: STORAGE_ICONS.screen, title: "Pantalla", text: [specOf(p, "Pantalla"), specOf(p, "Resolución")].filter(Boolean).join(" · ") }),
-  connectivity: p => ({ icon: STORAGE_ICONS.signal, title: "Conexión",
-    text: specOf(p, "Red") ? `${specOf(p, "Red")} · ${specOf(p, "Incluye")}` : `Incluye ${specOf(p, "Incluye").toLowerCase()}` }),
+  // MiFi and routers: networks (speed) and data plans; access point: what it includes
+  connectivity: p => p.group ? [
+    { small: true, icon: STORAGE_ICONS.signal, title: "Velocidad", text: p.group.split("|").join(" · ") },
+    { small: true, icon: STORAGE_ICONS.capacity, title: "Datos", text: p.storages.join(" · ") }
+  ] : { icon: STORAGE_ICONS.signal, title: "Conexión", text: `Wi-Fi · Incluye ${specOf(p, "Incluye").toLowerCase()}` },
   accessory: p => ({ icon: STORAGE_ICONS.tag, title: "Uso", text: p.group ? "Para " + p.group.split("|").join(" / ") : p.catLabel })
 };
 
@@ -3491,10 +3506,11 @@ function openPanel(p) {
   scrim.classList.add("open");
   panel.classList.add("open");
   document.getElementById("closeBtn").addEventListener("click", closePanel);
-  const variants = p.storages && p.storages.length > 1 ? ` (${p.storages.join(" / ")})` : "";
+  const cpu = p.cat === "computer" && p.variants.length === 1 ? specOf(p, "Procesador") : "";
+  const variants = [cpu, p.storages && p.storages.length > 1 ? p.storages.join(" / ") : ""].filter(Boolean).join(", ");
   document.getElementById("panelRequest").addEventListener("click", () => {
     closePanel();
-    openRentFor(p.model + variants);
+    openRentFor(p.model + (variants ? ` (${variants})` : ""));
   });
 }
 
