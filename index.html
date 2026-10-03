@@ -75,29 +75,52 @@
     padding: 44px 20px 64px;
   }
 
+  /* Category banner: framed, rounded card that fades in with a soft zoom and fades out on scroll */
   #dynamicHero {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 340px;
+    top: 16px;
+    left: 50%;
+    width: min(1440px, calc(100% - 32px));
+    height: 360px;
     z-index: 0;
-    background-size: cover;
-    background-position: center top;
-    background-repeat: no-repeat;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.14);
+    box-shadow: 0 24px 60px rgba(4,12,24,0.45);
     opacity: 0;
+    transform: translateX(-50%) translateY(var(--hero-shift, 0px));
+    transition: opacity 0.5s ease;
     pointer-events: none;
   }
 
-  #dynamicHero.active {
-    opacity: 1;
+  #dynamicHero.active { opacity: 1; }
+  #dynamicHero.featured { height: 520px; }
+
+  .hero-media, .hero-shade {
+    position: absolute;
+    inset: 0;
   }
 
-  #dynamicHero.featured { height: 640px; }
+  .hero-media {
+    background-size: cover;
+    background-repeat: no-repeat;
+    transform: scale(1.08);
+    transition: transform 1.4s cubic-bezier(.2,.7,.2,1);
+  }
+
+  #dynamicHero.active .hero-media { transform: scale(1); }
+
+  @media (max-width: 720px) {
+    #dynamicHero { top: 10px; width: calc(100% - 20px); border-radius: 18px; height: 300px; }
+    #dynamicHero.featured { height: 420px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #dynamicHero, .hero-media { transition: none; }
+    .hero-media { transform: none; }
+  }
 
   /* Leave room so the Almacenamiento header photo is visible before the cards */
-  #viewStorage .storage-grid,
-  #viewTablets .grid { margin-top: 170px; }
 
   .bg-power {
     position: fixed;
@@ -833,7 +856,8 @@
 
   /* --- Storage: wide cards, two per row --- */
   /* Cards keep their size (459px); up to 3 per row when the screen is wide enough */
-  #viewStorage { max-width: 1421px; }
+  #viewStorage, #viewTablets, #viewPhones, #viewAccessories, #viewComputers,
+  #viewSurface, #viewMonitors, #viewConnectivity { max-width: 1421px; }
 
   .storage-grid {
     display: grid;
@@ -865,6 +889,26 @@
 
   .storage-card.hidden { display: none; }
 
+  /* Model cards (tablets, phones...): same layout as storage cards, clickable */
+  button.model-card {
+    font: inherit;
+    text-align: left;
+    padding: 0;
+    cursor: pointer;
+    transition: transform 0.16s ease, box-shadow 0.16s ease;
+  }
+
+  button.model-card:hover, button.model-card:focus-visible {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 30px var(--paper-shadow);
+  }
+
+  button.model-card:focus-visible { outline: 3px solid #BFE0FF; outline-offset: 3px; }
+
+  .model-card .storage-icons { grid-template-columns: minmax(0, 1fr); }
+
+  .model-card .card-hint { font-size: 11px; color: var(--ink-soft); }
+
   .storage-photo {
     background: #F3F5F7;
     display: flex;
@@ -874,6 +918,7 @@
   }
 
   .storage-photo svg, .storage-photo img { width: 100%; height: 100%; object-fit: contain; }
+  .storage-photo img { max-height: 224px; }
 
   .storage-info {
     padding: 22px 20px;
@@ -943,7 +988,10 @@
   </svg>
 </div>
 
-<div id="dynamicHero"></div>
+<div id="dynamicHero" aria-hidden="true">
+  <div class="hero-media" id="heroMedia"></div>
+  <div class="hero-shade" id="heroShade"></div>
+</div>
 
 <div id="pageContent">
 
@@ -1032,7 +1080,7 @@
     </select>
   </div>
 
-  <div class="grid" id="grid"></div>
+  <div class="storage-grid" id="grid"></div>
 </div>
 
 <div class="catalog-view" id="viewPhones" hidden>
@@ -1058,7 +1106,7 @@
     </select>
   </div>
 
-  <div class="grid" id="gridPhones"></div>
+  <div class="storage-grid" id="gridPhones"></div>
 </div>
 
 <div class="catalog-view" id="viewAccessories" hidden>
@@ -1085,7 +1133,7 @@
     </select>
   </div>
 
-  <div class="grid" id="gridAccessories"></div>
+  <div class="storage-grid" id="gridAccessories"></div>
 </div>
 
 <div class="catalog-view" id="viewComputers" hidden>
@@ -1113,7 +1161,7 @@
     </select>
   </div>
 
-  <div class="grid" id="gridComputers"></div>
+  <div class="storage-grid" id="gridComputers"></div>
 </div>
 
 <div class="catalog-view" id="viewSurface" hidden>
@@ -1138,7 +1186,7 @@
     </select>
   </div>
 
-  <div class="grid" id="gridSurface"></div>
+  <div class="storage-grid" id="gridSurface"></div>
 </div>
 
 <div class="catalog-view" id="viewMonitors" hidden>
@@ -1164,7 +1212,7 @@
     </select>
   </div>
 
-  <div class="grid" id="gridMonitors"></div>
+  <div class="storage-grid" id="gridMonitors"></div>
 </div>
 
 <div class="catalog-view" id="viewConnectivity" hidden>
@@ -1198,7 +1246,7 @@
     </select>
   </div>
 
-  <div class="grid" id="gridConnectivity"></div>
+  <div class="storage-grid" id="gridConnectivity"></div>
 </div>
 
 <div class="catalog-view" id="viewStorage" hidden>
@@ -1448,6 +1496,10 @@ function driveArt(label, body, accent, shape = "loop") {
 }
 
 const STORAGE_ICONS = {
+  cpu: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg>`,
+  screen: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M9 20h6M12 16v4"/></svg>`,
+  signal: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19.5" r="1"/></svg>`,
+  tag: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>`,
   capacity: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5.5" rx="7.5" ry="2.5"/><path d="M4.5 5.5v13c0 1.4 3.4 2.5 7.5 2.5s7.5-1.1 7.5-2.5v-13"/><path d="M4.5 12c0 1.4 3.4 2.5 7.5 2.5s7.5-1.1 7.5-2.5"/></svg>`,
   speed: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3 5 14h6l-1 7 8-11h-6z"/></svg>`,
   port: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8.5" width="18" height="7" rx="3.5"/><path d="M8 12h8"/></svg>`
@@ -2342,24 +2394,86 @@ function badgeMarkup(p) {
   `;
 }
 
-function renderGrid(products, gridEl) {
-  products.forEach(p => {
+// --- Model cards: one card per model; variants that only change storage are grouped ---
+const sizeInGB = v => parseFloat(String(v).replace(",", ".")) * (/TB/i.test(v) ? 1000 : 1) || 0;
+
+function groupByModel(items) {
+  const groups = new Map();
+  items.forEach(p => {
+    const key = (p.brand || "") + "|" + p.model;
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(p);
+  });
+  return [...groups.values()].map(variants => {
+    const first = variants[0];
+    const storages = [...new Set(variants.map(v => v.storage || (v.specs.find(([l]) => l === "Almacenamiento") || [])[1]).filter(Boolean))]
+      .sort((a, b) => sizeInGB(a) - sizeInGB(b));
+    // Technical sheet: every label from every variant; differing values joined with " / "
+    const labels = [];
+    variants.forEach(v => v.specs.forEach(([l]) => { if (!labels.includes(l)) labels.push(l); }));
+    const specs = labels.map(l => {
+      const values = [...new Set(variants.map(v => (v.specs.find(([x]) => x === l) || [])[1]).filter(Boolean))];
+      if (l === "Almacenamiento") values.sort((a, b) => sizeInGB(a) - sizeInGB(b));
+      return [l, values.join(" / ")];
+    });
+    // If variants differ in more than storage, list each real configuration in the sheet
+    const differing = labels.filter(l => l !== "Almacenamiento" && new Set(variants.map(v => (v.specs.find(([x]) => x === l) || [])[1] || "")).size > 1);
+    if (differing.length) {
+      const configs = variants.map(v => [...differing, "Almacenamiento"].map(l => (v.specs.find(([x]) => x === l) || [])[1]).filter(Boolean).join(" · "));
+      specs.push(["Configuraciones", configs.join("<br>")]);
+    }
+    const allValues = attr => [...new Set(variants.map(v => v[attr]).filter(Boolean))].join("|");
+    return {
+      ...first, variants, storages, specs,
+      storage: storages.join("|"), type: allValues("type"), group: allValues("group"), cpu: allValues("cpu")
+    };
+  });
+}
+
+// Value of a technical-sheet row ("" if missing)
+const specOf = (p, label) => (p.specs.find(([l]) => l === label) || [])[1] || "";
+
+// What each category shows in the info box of its cards
+const CARD_INFO = {
+  storage: p => ({ icon: STORAGE_ICONS.capacity, title: "Almacenamiento", text: p.storages.length ? p.storages.join(" · ") : "Consultar" }),
+  computer: p => {
+    const parts = [specOf(p, "Procesador") || specOf(p, "Chip"), specOf(p, "RAM"), specOf(p, "Almacenamiento")].filter(Boolean);
+    if (p.variants.length > 1) {
+      const cpus = [...new Set(p.variants.map(v => specOf(v, "Procesador") || specOf(v, "Chip")).filter(Boolean))];
+      return { icon: STORAGE_ICONS.cpu, title: "Configuraciones", text: `${p.variants.length} configuraciones · ${cpus.join(" / ")}` };
+    }
+    return { icon: STORAGE_ICONS.cpu, title: "Configuración", text: parts.length ? parts.join(" · ") : (specOf(p, "Modelos") || "Configuración a medida") };
+  },
+  monitor: p => ({ icon: STORAGE_ICONS.screen, title: "Pantalla", text: [specOf(p, "Pantalla"), specOf(p, "Resolución")].filter(Boolean).join(" · ") }),
+  connectivity: p => ({ icon: STORAGE_ICONS.signal, title: "Conexión",
+    text: specOf(p, "Red") ? `${specOf(p, "Red")} · ${specOf(p, "Incluye")}` : `Incluye ${specOf(p, "Incluye").toLowerCase()}` }),
+  accessory: p => ({ icon: STORAGE_ICONS.tag, title: "Uso", text: p.group ? "Para " + p.group.split("|").join(" / ") : p.catLabel })
+};
+
+function renderModelCards(items, gridEl, info = CARD_INFO.storage) {
+  groupByModel(items).forEach(p => {
     const card = document.createElement("button");
-    card.className = "card";
+    card.className = "storage-card model-card";
     card.dataset.cat = p.cat;
     card.dataset.brand = p.brand || "Sin marca";
-    card.dataset.storage = p.storage || "";
+    card.dataset.storage = p.storage;
     card.dataset.type = p.type || "";
     card.dataset.group = p.group || "";
     card.dataset.cpu = p.cpu || "";
     card.setAttribute("aria-haspopup", "dialog");
-    const stageContent = p.photo ? `<img src="${p.photo}" alt="${p.model}" loading="lazy" decoding="async">` : p.icon;
+    const media = p.photo ? `<img src="${p.photo}" alt="${p.model}" loading="lazy" decoding="async">` : p.icon;
+    const box = info(p);
     card.innerHTML = `
-      <div class="device-stage">${stageContent}</div>
-      ${p.brand ? `<div class="brand-line">${badgeMarkup(p)}</div>` : ""}
-      <span class="model-name">${p.model}</span>
-      <span class="cat-chip">${p.catLabel}</span>
-      <span class="card-hint">Toca para ver la ficha técnica</span>
+      <div class="storage-photo">${media}</div>
+      <div class="storage-info">
+        ${p.brand ? `<div class="brand-line">${badgeMarkup(p)}</div>` : ""}
+        <h3>${p.model}</h3>
+        <span class="cat-chip">${p.catLabel}</span>
+        <div class="storage-icons">
+          <div class="storage-icon storage-icon-wide" title="${box.title}">${box.icon}<span>${box.text}</span></div>
+        </div>
+        <span class="card-hint">Toca para ver la ficha técnica</span>
+      </div>
     `;
     card.addEventListener("click", () => openPanel(p));
     gridEl.appendChild(card);
@@ -2403,13 +2517,13 @@ document.addEventListener("keydown", e => {
   if (e.key === "Escape") closePanel();
 });
 
-renderGrid(PRODUCTS, document.getElementById("grid"));
-renderGrid(PHONES, document.getElementById("gridPhones"));
-renderGrid(ACCESSORIES, document.getElementById("gridAccessories"));
-renderGrid(COMPUTERS, document.getElementById("gridComputers"));
-renderGrid(SURFACE, document.getElementById("gridSurface"));
-renderGrid(MONITORS, document.getElementById("gridMonitors"));
-renderGrid(CONNECTIVITY, document.getElementById("gridConnectivity"));
+renderModelCards(PRODUCTS, document.getElementById("grid"));
+renderModelCards(PHONES, document.getElementById("gridPhones"));
+renderModelCards(ACCESSORIES, document.getElementById("gridAccessories"), CARD_INFO.accessory);
+renderModelCards(COMPUTERS, document.getElementById("gridComputers"), CARD_INFO.computer);
+renderModelCards(SURFACE, document.getElementById("gridSurface"), CARD_INFO.computer);
+renderModelCards(MONITORS, document.getElementById("gridMonitors"), CARD_INFO.monitor);
+renderModelCards(CONNECTIVITY, document.getElementById("gridConnectivity"), CARD_INFO.connectivity);
 renderStorage(STORAGE, document.getElementById("gridStorage"));
 setupStorageFilters();
 
@@ -2471,6 +2585,8 @@ const views = {
 };
 
 const dynamicHero = document.getElementById("dynamicHero");
+const heroMedia = document.getElementById("heroMedia");
+const heroShade = document.getElementById("heroShade");
 const heroImages = {
   computers: "img/440ee108e31f.webp",
   surface: "img/d07ffc8b9756.webp",
@@ -2491,8 +2607,8 @@ const heroPositions = {
 
 // Headers that should stand out more: taller and with a lighter overlay
 const heroFeatured = {
-  storage: "linear-gradient(180deg, rgba(10,14,19,0.45) 0%, rgba(10,14,19,0.12) 30%, rgba(10,14,19,0.18) 62%, var(--bg) 100%)",
-  tablets: "radial-gradient(ellipse 45% 55% at 50% 40%, rgba(10,20,35,0.55), rgba(10,20,35,0) 100%), linear-gradient(180deg, rgba(10,14,19,0.45) 0%, rgba(10,14,19,0.15) 30%, rgba(10,14,19,0.2) 62%, var(--bg) 100%)"
+  storage: "linear-gradient(180deg, rgba(10,14,19,0.45) 0%, rgba(10,14,19,0.12) 30%, rgba(10,14,19,0.18) 62%, rgba(10,14,19,0.35) 100%)",
+  tablets: "radial-gradient(ellipse 45% 55% at 50% 40%, rgba(10,20,35,0.55), rgba(10,20,35,0) 100%), linear-gradient(180deg, rgba(10,14,19,0.45) 0%, rgba(10,14,19,0.15) 30%, rgba(10,14,19,0.2) 62%, rgba(10,14,19,0.4) 100%)"
 };
 
 function showView(key) {
@@ -2505,13 +2621,17 @@ function showView(key) {
   document.body.scrollTop = 0;
 
   if (heroImages[key]) {
-    const overlay = heroFeatured[key] || "linear-gradient(180deg, rgba(10,14,19,0.1) 0%, rgba(10,14,19,0.55) 55%, var(--bg) 100%)";
-    dynamicHero.style.backgroundImage = `${overlay}, url("${heroImages[key]}")`;
+    heroShade.style.background = heroFeatured[key] || "linear-gradient(180deg, rgba(10,14,19,0.35) 0%, rgba(10,14,19,0.5) 60%, rgba(10,14,19,0.62) 100%)";
+    heroMedia.style.backgroundImage = `url("${heroImages[key]}")`;
+    heroMedia.style.backgroundPosition = heroPositions[key] || "center center";
     dynamicHero.classList.toggle("featured", !!heroFeatured[key]);
-    dynamicHero.style.backgroundPosition = `center top, ${heroPositions[key] || "center top"}`;
+    // Restart the entrance animation
+    dynamicHero.classList.remove("active");
+    void dynamicHero.offsetWidth;
     activeHeroKey = key;
     updateHeroOpacity();
     dynamicHero.classList.add("active");
+    placeGridBelowHero();
   } else {
     deactivateHero();
   }
@@ -2524,18 +2644,33 @@ function getScrollY() {
   return window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
 }
 
+// The product list starts just below the banner, whatever the screen size
+function placeGridBelowHero() {
+  Object.values(views).forEach(v => { const g = v.querySelector(".storage-grid"); if (g) g.style.marginTop = ""; });
+  if (!activeHeroKey) return;
+  const grid = views[activeHeroKey].querySelector(".storage-grid");
+  if (!grid) return;
+  const gap = dynamicHero.getBoundingClientRect().bottom + 28 - grid.getBoundingClientRect().top;
+  if (gap > 0) grid.style.marginTop = gap + "px";
+}
+
+window.addEventListener("resize", () => { if (activeHeroKey && getScrollY() === 0) placeGridBelowHero(); });
+
 function updateHeroOpacity() {
   if (!activeHeroKey) return;
-  const fade = Math.max(0, 1 - getScrollY() / HERO_FADE_DISTANCE);
-  dynamicHero.style.opacity = fade;
+  const y = getScrollY();
+  dynamicHero.style.opacity = Math.max(0, 1 - y / HERO_FADE_DISTANCE);
+  dynamicHero.style.setProperty("--hero-shift", `${-Math.min(y, HERO_FADE_DISTANCE) * 0.25}px`);
 }
 
 function deactivateHero() {
   activeHeroKey = null;
+  placeGridBelowHero();
   dynamicHero.classList.remove("active");
   dynamicHero.style.opacity = "";
-  dynamicHero.style.backgroundImage = "";
-  dynamicHero.style.backgroundPosition = "";
+  dynamicHero.style.removeProperty("--hero-shift");
+  heroMedia.style.backgroundImage = "";
+  heroShade.style.background = "";
   dynamicHero.classList.remove("featured");
 }
 
@@ -2598,11 +2733,11 @@ function setupFilters(gridEl, filterDefs) {
   filterDefs.forEach(f => { if (f.select) active[f.attr] = "all"; });
 
   function applyFilters() {
-    gridEl.querySelectorAll(".card").forEach(card => {
+    gridEl.querySelectorAll(".card, .model-card").forEach(card => {
       const matches = filterDefs.every(f => {
         if (!f.select) return true;
         const val = active[f.attr];
-        return val === "all" || card.dataset[f.attr] === val;
+        return val === "all" || (card.dataset[f.attr] || "").split("|").includes(val);
       });
       card.classList.toggle("hidden", !matches);
     });
