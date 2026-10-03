@@ -255,7 +255,7 @@
     gap: 22px;
     flex-wrap: wrap;
     justify-content: center;
-    max-width: 780px;
+    max-width: 900px;
   }
 
   .category-card {
@@ -1315,6 +1315,25 @@
   h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(42px, 7vw, 66px); letter-spacing: -0.01em; }
   header p { color: #A9B8CC; }
 
+  /* Header inside a category: name + description, bold and legible over the banner photo */
+  header.in-category .brand-header img { display: none; }
+  header.in-category .eyebrow { color: #FFFFFF; opacity: 0.85; text-shadow: 0 2px 10px rgba(0,0,0,0.6); }
+  header.in-category h1 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: clamp(36px, 5.4vw, 60px);
+    letter-spacing: -0.035em;
+    color: #FFFFFF;
+    text-shadow: 0 4px 28px rgba(0,0,0,0.55);
+  }
+  header.in-category p:last-child {
+    color: #EEF4FB;
+    font-size: clamp(15px, 1.5vw, 18px);
+    font-weight: 500;
+    max-width: 54ch;
+    text-shadow: 0 2px 16px rgba(0,0,0,0.75);
+  }
+
   /* Category cards: dark glass */
   .category-card {
     width: 200px;
@@ -1343,8 +1362,8 @@
   .storage-info h3 { font-family: 'Inter', sans-serif; font-weight: 700; letter-spacing: -0.015em; }
 
   /* Filters and back button */
-  .filter-label { color: var(--mute); letter-spacing: 0.08em; font-size: 11.5px; }
-  .filter-select { background-color: rgba(255,255,255,0.04); border-color: var(--line); border-radius: 12px; }
+  .filter-label { color: #E6EEF8; letter-spacing: 0.08em; font-size: 11.5px; text-shadow: 0 1px 10px rgba(0,0,0,0.7); }
+  .filter-select { background-color: rgba(10,18,34,0.62); border-color: rgba(255,255,255,0.16); border-radius: 12px; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
   .back-btn {
     padding: 8px 14px;
     border: 1px solid var(--line);
@@ -1469,12 +1488,12 @@
 </section>
 
 <header class="reveal" id="catalogo">
-  <p class="eyebrow">Catálogo interno</p>
+  <p class="eyebrow" id="catEyebrow">Catálogo interno</p>
   <div class="brand-header">
     <img src="img/0c071240beed.webp" alt="Logo Soporte TV" style="width:38px;height:38px;object-fit:contain;">
-    <h1>Soporte TV</h1>
+    <h1 id="catTitle">Soporte TV</h1>
   </div>
-  <p>Elige una categoría para ver los productos disponibles para alquiler.</p>
+  <p id="catDesc">Elige una categoría para ver los productos disponibles para alquiler.</p>
 </header>
 
 <div class="landing" id="viewLanding">
@@ -1509,11 +1528,6 @@
   <button class="category-card" id="goStorage">
     <div class="category-icon" id="storageIconLarge"></div>
     <span class="category-label">Almacenamiento</span>
-  </button>
-  <button class="category-card is-test" id="goTest">
-    <span class="test-badge">PRUEBA</span>
-    <div class="category-icon" id="testIconLarge"></div>
-    <span class="category-label">Productos en PRUEBA</span>
   </button>
 </div>
 
@@ -3060,7 +3074,6 @@ document.getElementById("surfaceIconLarge").innerHTML = surfaceIcon("#2B79C2");
 document.getElementById("monitorIconLarge").innerHTML = monitorIcon("#2B79C2");
 document.getElementById("connectivityIconLarge").innerHTML = routerIcon("#2B79C2");
 document.getElementById("storageIconLarge").innerHTML = driveIcon("#2B79C2");
-document.getElementById("testIconLarge").innerHTML = testIcon("#2B79C2");
 document.getElementById("testIconEmpty").innerHTML = testIcon("#8CC8FF");
 
 const viewLanding = document.getElementById("viewLanding");
@@ -3103,7 +3116,30 @@ const heroFeatured = {
   tablets: "radial-gradient(ellipse 45% 55% at 50% 40%, rgba(10,20,35,0.55), rgba(10,20,35,0) 100%), linear-gradient(180deg, rgba(10,14,19,0.45) 0%, rgba(10,14,19,0.15) 30%, rgba(10,14,19,0.2) 62%, rgba(10,14,19,0.4) 100%)"
 };
 
+// Name and short description shown at the top of each category
+const CATEGORY_INFO = {
+  tablets: ["Tablets", "Tablets Android e iPad listas para tu evento, rodaje o producción."],
+  phones: ["Móviles", "Smartphones Android e iPhone configurados y revisados antes de cada entrega."],
+  accessories: ["Accesorios", "Estabilizadores, iluminación, audio y complementos para móvil, cámara e iPad."],
+  computers: ["Ordenadores", "Portátiles, equipos todo en uno, Mac y estaciones de trabajo."],
+  surface: ["Surface", "Microsoft Surface Pro en varias configuraciones de procesador, memoria y almacenamiento."],
+  monitors: ["Monitores", "Monitores LED, 4K y de estudio, de 24'' a 65''."],
+  connectivity: ["Conectividad", "MiFi y routers 4G/5G con datos, y puntos de acceso Wi-Fi con instalación."],
+  storage: ["Almacenamiento", "Discos SSD portátiles y de escritorio de SanDisk, SanDisk Professional y WD."],
+  test: ["Productos en prueba", "Equipos que estamos probando antes de añadirlos al catálogo."]
+};
+const HEADER_DEFAULT = ["Catálogo interno", "Soporte TV", "Elige una categoría para ver los productos disponibles para alquiler."];
+
+function setCatalogHeader(key) {
+  const info = key && CATEGORY_INFO[key];
+  document.getElementById("catalogo").classList.toggle("in-category", !!info);
+  document.getElementById("catEyebrow").textContent = info ? "Catálogo · Soporte TV" : HEADER_DEFAULT[0];
+  document.getElementById("catTitle").textContent = info ? info[0] : HEADER_DEFAULT[1];
+  document.getElementById("catDesc").textContent = info ? info[1] : HEADER_DEFAULT[2];
+}
+
 function showView(key) {
+  setCatalogHeader(key);
   viewLanding.hidden = true;
   Object.values(views).forEach(v => v.hidden = true);
   views[key].hidden = false;
@@ -3174,6 +3210,7 @@ document.body.addEventListener("scroll", updateHeroOpacity, { passive: true });
 document.addEventListener("scroll", updateHeroOpacity, { passive: true });
 
 function showLanding() {
+  setCatalogHeader(null);
   Object.values(views).forEach(v => v.hidden = true);
   viewLanding.hidden = false;
   deactivateHero();
@@ -3208,7 +3245,6 @@ document.getElementById("goSurface").addEventListener("click", () => goTo("surfa
 document.getElementById("goMonitors").addEventListener("click", () => goTo("monitors"));
 document.getElementById("goConnectivity").addEventListener("click", () => goTo("connectivity"));
 document.getElementById("goStorage").addEventListener("click", () => goTo("storage"));
-document.getElementById("goTest").addEventListener("click", () => goTo("test"));
 
 document.querySelectorAll("[data-back]").forEach(btn => {
   btn.addEventListener("click", () => {
@@ -3415,10 +3451,6 @@ route();
 
     toggle.addEventListener("click", () => setMenu(!nav.classList.contains("menu-open")));
     groupBtn.addEventListener("click", e => { e.stopPropagation(); setGroup(!group.classList.contains("open")); });
-    if (matchMedia("(hover: hover) and (pointer: fine)").matches) {
-      group.addEventListener("mouseenter", () => setGroup(true));
-      group.addEventListener("mouseleave", () => setGroup(false));
-    }
     document.addEventListener("click", e => { if (!e.composedPath().includes(nav)) closeAll(); });
     document.addEventListener("keydown", e => { if (e.key === "Escape") closeAll(); });
 
