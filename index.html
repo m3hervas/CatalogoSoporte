@@ -767,7 +767,7 @@
   /* --- Storage: wide cards, two per row --- */
   /* Cards keep their size (459px); up to 3 per row when the screen is wide enough */
   #viewStorage, #viewTablets, #viewPhones, #viewAccessories, #viewComputers,
-  #viewSurface, #viewMonitors, #viewConnectivity { max-width: none; }
+  #viewMac, #viewMonitors, #viewConnectivity { max-width: none; }
 
   .storage-grid {
     display: grid;
@@ -838,7 +838,9 @@
 
   button.model-card:focus-visible { outline: 3px solid #BFE0FF; outline-offset: 3px; }
 
-  .model-card .storage-icons { grid-template-columns: minmax(0, 1fr); }
+  .model-card .storage-icons { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .model-card .storage-icon-small { flex-direction: row; justify-content: center; gap: 6px; padding: 8px 6px; }
+  .model-card .storage-icon-small svg { width: 18px; height: 18px; flex-shrink: 0; }
 
   .model-card .card-hint { font-size: 11px; color: var(--ink-soft); }
 
@@ -1325,26 +1327,33 @@
 
   @media (hover: hover) and (pointer: fine) { .filter-reset:hover { color: #FFFFFF; } }
 
-  /* Always 3 products per row on desktop; cards adapt to the space available */
+  /* 4 products per row on desktop; cards adapt to the space available */
   .catalog-layout .storage-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
     container-type: inline-size;
     container-name: cards;
   }
 
   /* Narrow cards: photo on top, information below */
   .catalog-layout .storage-card { grid-template-columns: minmax(0, 1fr); min-height: 0; }
-  .catalog-layout .storage-photo { aspect-ratio: 16 / 10; }
-  .catalog-layout .storage-photo img { max-height: 200px; }
+  .catalog-layout .storage-photo { aspect-ratio: 16 / 10; padding: 10px 8px; }
+  .catalog-layout .storage-photo img { max-height: 210px; }
+  .catalog-layout .storage-info { padding: 16px 16px 18px; gap: 8px; }
+  .catalog-layout .storage-info h3 { font-size: 17px; }
 
-  /* Wide enough for photo-left cards (3 columns of at least ~420px) */
-  @container cards (min-width: 1304px) {
+  /* Wide enough for photo-left cards (4 columns of at least ~420px) */
+  @container cards (min-width: 1734px) {
     .catalog-layout .storage-card { grid-template-columns: 1fr 1fr; min-height: 260px; }
     .catalog-layout .storage-photo { aspect-ratio: auto; }
     .catalog-layout .storage-photo img { max-height: 224px; }
   }
 
-  @media (max-width: 1099px) {
+  @media (max-width: 1199px) {
+    .catalog-layout .storage-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+
+  @media (max-width: 899px) {
     .catalog-layout .storage-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
 
@@ -1779,8 +1788,8 @@
       <div class="nav-dropdown" id="navDropdown">
         <a href="#tablets" data-route="tablets">Tablets<small>Android y iPad</small></a>
         <a href="#moviles" data-route="moviles">Móviles<small>Android y iPhone</small></a>
-        <a href="#ordenadores" data-route="ordenadores">Ordenadores<small>Portátiles, AIO y Mac</small></a>
-        <a href="#surface" data-route="surface">Surface<small>Microsoft Surface Pro</small></a>
+        <a href="#mac" data-route="mac">Mac<small>MacBook, iMac, Mac mini y Studio</small></a>
+        <a href="#ordenadores" data-route="ordenadores">Ordenadores<small>Portátiles, Surface, AIO y CPU</small></a>
         <a href="#monitores" data-route="monitores">Monitores<small>LED, 4K y estudio</small></a>
         <a href="#almacenamiento" data-route="almacenamiento">Almacenamiento<small>SSD portátiles y de escritorio</small></a>
         <a href="#conectividad" data-route="conectividad">Conectividad<small>MiFi, routers y Wi-Fi</small></a>
@@ -1818,12 +1827,12 @@
   <div class="slider" id="featuredSlider" tabindex="0" aria-roledescription="carrusel">
     <div class="slides">
       <article class="slide is-active" aria-roledescription="diapositiva" aria-label="1 de 4">
-        <img src="img/featured-macbook-air-m1.webp" alt="MacBook Air de 13,6 pulgadas con chip M1 sobre un escritorio" style="object-position: 55% 50%" loading="eager" decoding="async">
+        <img src="img/featured-macbook-air-m1.webp" alt="MacBook Air de 13,3 pulgadas con chip M1 sobre un escritorio" style="object-position: 55% 50%" loading="eager" decoding="async">
         <div class="slide-content">
           <span class="slide-chip">Ordenadores</span>
-          <h3>MacBook Air 13,6'' M1</h3>
+          <h3>MacBook Air 13,3'' M1</h3>
           <p>Apple M1 · 16 GB · 256 GB SSD</p>
-          <button class="primary-btn" data-feature-route="ordenadores" data-feature-model="MacBook Air 13,6'' M1">Ver en el catálogo</button>
+          <button class="primary-btn" data-feature-route="mac" data-feature-model="MacBook Air 13,3'' M1">Ver en el catálogo</button>
         </div>
       </article>
       <article class="slide" aria-roledescription="diapositiva" aria-label="2 de 4">
@@ -1893,13 +1902,13 @@
     <div class="category-icon" id="accessoryIconLarge"></div>
     <span class="category-label">Accesorios</span>
   </button>
+  <button class="category-card" id="goMac">
+    <div class="category-icon" id="macIconLarge"></div>
+    <span class="category-label">Mac</span>
+  </button>
   <button class="category-card" id="goComputers">
     <div class="category-icon" id="computerIconLarge"></div>
     <span class="category-label">Ordenadores</span>
-  </button>
-  <button class="category-card" id="goSurface">
-    <div class="category-icon" id="surfaceIconLarge"></div>
-    <span class="category-label">Surface</span>
   </button>
   <button class="category-card" id="goMonitors">
     <div class="category-icon" id="monitorIconLarge"></div>
@@ -2012,6 +2021,43 @@
   </div>
 </div>
 
+<div class="catalog-view" id="viewMac" hidden>
+  <button class="back-btn" data-back>← Volver</button>
+
+  <div class="catalog-layout">
+    <aside class="filter-panel" aria-label="Filtros">
+      <p class="filter-panel-title">Filtrar</p>
+      <div class="filter-row">
+        <span class="filter-label">Tipo</span>
+        <select class="filter-select" id="macTypeSelect">
+          <option value="all">Todos</option>
+          <option value="MacBook Air">MacBook Air</option>
+          <option value="MacBook Pro">MacBook Pro</option>
+          <option value="iMac">iMac</option>
+          <option value="Mac mini">Mac mini</option>
+          <option value="Mac Studio">Mac Studio</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Almacenamiento</span>
+        <select class="filter-select" id="macStorageSelect">
+          <option value="all">Todos</option>
+          <option value="128 GB">128 GB</option>
+          <option value="256 GB">256 GB</option>
+          <option value="512 GB">512 GB</option>
+          <option value="1 TB">1 TB</option>
+          <option value="2 TB">2 TB</option>
+          <option value="4 TB">4 TB</option>
+          <option value="8 TB">8 TB</option>
+          <option value="16 TB">16 TB</option>
+        </select>
+      </div>
+      <button class="filter-reset" type="button">Quitar filtros</button>
+    </aside>
+    <div class="storage-grid" id="gridMac"></div>
+  </div>
+</div>
+
 <div class="catalog-view" id="viewComputers" hidden>
   <button class="back-btn" data-back>← Volver</button>
 
@@ -2023,8 +2069,8 @@
         <select class="filter-select" id="computerTypeSelect">
           <option value="all">Todos</option>
           <option value="Portátil">Portátil</option>
+          <option value="Surface">Surface</option>
           <option value="AIO">AIO (Todo en uno)</option>
-          <option value="iMac">iMac</option>
           <option value="CPU">CPU</option>
           <option value="CPU + Monitor">CPU + Monitor</option>
         </select>
@@ -2033,8 +2079,8 @@
         <span class="filter-label">Marca</span>
         <select class="filter-select" id="computerBrandSelect">
           <option value="all">Todas las marcas</option>
-          <option value="Apple">Apple</option>
           <option value="HP">HP</option>
+          <option value="Microsoft">Microsoft</option>
           <option value="Multimarca">Multimarca (Dell/HP/Lenovo)</option>
         </select>
       </div>
@@ -2044,34 +2090,6 @@
   </div>
 </div>
 
-<div class="catalog-view" id="viewSurface" hidden>
-  <button class="back-btn" data-back>← Volver</button>
-
-  <div class="catalog-layout">
-    <aside class="filter-panel" aria-label="Filtros">
-      <p class="filter-panel-title">Filtrar</p>
-      <div class="filter-row">
-        <span class="filter-label">Procesador</span>
-        <select class="filter-select" id="surfaceCpuSelect">
-          <option value="all">Todos</option>
-          <option value="i5">Intel Core i5</option>
-          <option value="i7">Intel Core i7</option>
-        </select>
-      </div>
-      <div class="filter-row">
-        <span class="filter-label">Almacenamiento</span>
-        <select class="filter-select" id="surfaceStorageSelect">
-          <option value="all">Todos</option>
-          <option value="128 GB">128 GB</option>
-          <option value="256 GB">256 GB</option>
-          <option value="512 GB">512 GB</option>
-        </select>
-      </div>
-      <button class="filter-reset" type="button">Quitar filtros</button>
-    </aside>
-    <div class="storage-grid" id="gridSurface"></div>
-  </div>
-</div>
 
 <div class="catalog-view" id="viewMonitors" hidden>
   <button class="back-btn" data-back>← Volver</button>
@@ -2181,8 +2199,8 @@
       <h4>Catálogo</h4>
       <a href="#tablets" data-route="tablets">Tablets</a>
       <a href="#moviles" data-route="moviles">Móviles</a>
+      <a href="#mac" data-route="mac">Mac</a>
       <a href="#ordenadores" data-route="ordenadores">Ordenadores</a>
-      <a href="#surface" data-route="surface">Surface</a>
     </div>
     <div class="footer-col">
       <h4>Más equipos</h4>
@@ -2209,7 +2227,7 @@
   </div>
   <p>Modelos destacados</p>
   <ul>
-      <li><strong>MacBook Air 13,6'' M1</strong> — «Macbook Air 2020 (M1) - 1», por KKPCW. Licencia <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Macbook_Air_2020_(M1)_-_1.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
+      <li><strong>MacBook Air 13,3'' M1</strong> — «Macbook Air 2020 (M1) - 1», por KKPCW. Licencia <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Macbook_Air_2020_(M1)_-_1.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
       <li><strong>iPad Pro</strong> — «IPad Pro 2018 backside», por MIKI Yoshihito. Licencia <a href="https://creativecommons.org/licenses/by/2.0" target="_blank" rel="noopener">CC BY 2.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:IPad_Pro_2018_backside.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
       <li><strong>iPhone 16 Pro</strong> — «IPhone 16 Pro (54251031612)», por メイド理世. Licencia <a href="https://creativecommons.org/licenses/by-sa/2.0" target="_blank" rel="noopener">CC BY-SA 2.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:IPhone_16_Pro_(54251031612).jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
       <li><strong>SanDisk Extreme Portable SSD</strong> — «SanDisk Extreme Portable SSD - 1TB, USB-C», por Tony Webster. Licencia <a href="https://creativecommons.org/licenses/by/2.0" target="_blank" rel="noopener">CC BY 2.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:SanDisk_Extreme_Portable_SSD_-_1TB,_USB-C_(41036158305).jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
@@ -2427,6 +2445,17 @@ const STORAGE_ICONS = {
   speed: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3 5 14h6l-1 7 8-11h-6z"/></svg>`,
   port: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8.5" width="18" height="7" rx="3.5"/><path d="M8 12h8"/></svg>`
 };
+
+// iMac-style computer with the Apple logo on the screen
+function macIcon(accent) {
+  return `<svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="14" y="8" width="92" height="64" rx="5" fill="#EDEFF2" stroke="${accent}" stroke-width="3.5"/>
+    <rect x="20" y="14" width="80" height="44" rx="1.5" fill="#D9DEE4"/>
+    <path transform="translate(42.9 17.4) scale(1.5)" d="M16.4 12.9c0-2.1 1.7-3.1 1.8-3.2-1-1.4-2.5-1.6-3-1.6-1.3-.1-2.5.8-3.1.8-.6 0-1.6-.7-2.7-.7-1.4 0-2.6.8-3.3 2-1.4 2.5-.4 6.1 1 8.1.7 1 1.5 2.1 2.6 2 1-.1 1.4-.7 2.7-.7 1.2 0 1.6.7 2.7.6 1.1 0 1.8-1 2.5-2 .8-1.2 1.1-2.3 1.1-2.4-.1 0-2.2-.8-2.2-3.3zM14.2 6.4c.6-.7 1-1.7.9-2.7-.9.1-1.9.6-2.5 1.3-.5.6-1 1.6-.9 2.6 1 .1 1.9-.5 2.5-1.2z" fill="${accent}"/>
+    <path d="M51 72h18l3 13H48z" fill="${accent}"/>
+    <rect x="40" y="85" width="40" height="5" rx="2.5" fill="${accent}"/>
+  </svg>`;
+}
 
 function surfaceIcon(accent) {
   return `<svg viewBox="0 0 110 100" xmlns="http://www.w3.org/2000/svg">
@@ -2888,79 +2917,73 @@ const COMPUTERS = [
     ]
   },
   {
-    cat: "computer", catLabel: "Portátil", type: "Portátil", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "MacBook Pro 13''",
-    icon: laptopIcon("#5B6470"),
+    cat: "computer", catLabel: "Surface", type: "Surface", brand: "Microsoft", brandCode: "M", brandColor: "#00A4EF",
+    model: "Surface Pro 7",
+    photo: "img/4bc956164a80.webp", cpu: "i5", storage: "128 GB", storages: ["128 GB", "256 GB", "512 GB", "1 TB"],
+    icon: surfaceIcon("#00A4EF"),
     specs: [
-      ["Categoría", "Portátil"],
-      ["Marca", "Apple"],
-      ["Pantalla", "13 ''"],
-      ["Nota", "Configuración de entrada (desde)"]
-    ]
-  },
-  {
-    cat: "computer", catLabel: "Portátil", type: "Portátil", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "MacBook Air 13,6'' M1",
-    icon: laptopIcon("#5B6470"),
-    specs: [
-      ["Categoría", "Portátil"],
-      ["Chip", "Apple M1 (8 CPU / 7 GPU)"],
-      ["RAM", "16 GB"],
-      ["Almacenamiento", "256 GB SSD"],
-      ["Pantalla", "13,6 ''"],
-      ["Nota", "Configuración de entrada (desde)"]
-    ]
-  },
-  {
-    cat: "computer", catLabel: "Portátil", type: "Portátil", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "MacBook Air 13,6'' M2",
-    icon: laptopIcon("#5B6470"),
-    specs: [
-      ["Categoría", "Portátil"],
-      ["Chip", "Apple M2 (8 CPU / 8 GPU)"],
+      ["Categoría", "Surface (portátil 2 en 1)"],
+      ["Marca", "Microsoft"],
+      ["Procesador", "Intel Core i5"],
       ["RAM", "8 GB"],
-      ["Almacenamiento", "256 GB SSD"],
-      ["Pantalla", "13,6 ''"],
-      ["Nota", "Configuración de entrada (desde)"]
+      ["Almacenamiento", "128 GB"],
+      ["Pantalla", "12,3 ''"]
     ]
   },
   {
-    cat: "computer", catLabel: "Portátil", type: "Portátil", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "MacBook Air 13,6'' M4",
-    icon: laptopIcon("#5B6470"),
+    cat: "computer", catLabel: "Surface", type: "Surface", brand: "Microsoft", brandCode: "M", brandColor: "#00A4EF",
+    model: "Surface Pro 7",
+    photo: "img/4bc956164a80.webp", cpu: "i5", storage: "256 GB",
+    icon: surfaceIcon("#00A4EF"),
     specs: [
-      ["Categoría", "Portátil"],
-      ["Chip", "Apple M4 (10 CPU / 8 GPU)"],
+      ["Categoría", "Surface (portátil 2 en 1)"],
+      ["Marca", "Microsoft"],
+      ["Procesador", "Intel Core i5"],
+      ["RAM", "8 GB"],
+      ["Almacenamiento", "256 GB"],
+      ["Pantalla", "12,3 ''"]
+    ]
+  },
+  {
+    cat: "computer", catLabel: "Surface", type: "Surface", brand: "Microsoft", brandCode: "M", brandColor: "#00A4EF",
+    model: "Surface Pro 7",
+    photo: "img/4bc956164a80.webp", cpu: "i5", storage: "256 GB",
+    icon: surfaceIcon("#00A4EF"),
+    specs: [
+      ["Categoría", "Surface (portátil 2 en 1)"],
+      ["Marca", "Microsoft"],
+      ["Procesador", "Intel Core i5"],
       ["RAM", "16 GB"],
-      ["Almacenamiento", "256 GB SSD"],
-      ["Pantalla", "13,6 ''"],
-      ["Nota", "Configuración de entrada (desde)"]
+      ["Almacenamiento", "256 GB"],
+      ["Pantalla", "12,3 ''"]
     ]
   },
   {
-    cat: "computer", catLabel: "Portátil", type: "Portátil", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "MacBook Pro 14'' M1 Pro",
-    icon: laptopIcon("#5B6470"),
+    cat: "computer", catLabel: "Surface", type: "Surface", brand: "Microsoft", brandCode: "M", brandColor: "#00A4EF",
+    model: "Surface Pro 7",
+    photo: "img/4bc956164a80.webp", cpu: "i7", storage: "256 GB",
+    icon: surfaceIcon("#00A4EF"),
     specs: [
-      ["Categoría", "Portátil"],
-      ["Chip", "Apple M1 Pro"],
+      ["Categoría", "Surface (portátil 2 en 1)"],
+      ["Marca", "Microsoft"],
+      ["Procesador", "Intel Core i7"],
       ["RAM", "16 GB"],
-      ["Almacenamiento", "512 GB SSD"],
-      ["Pantalla", "14 ''"],
-      ["Nota", "Configuración de entrada (desde)"]
+      ["Almacenamiento", "256 GB"],
+      ["Pantalla", "12,3 ''"]
     ]
   },
   {
-    cat: "computer", catLabel: "Portátil", type: "Portátil", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "MacBook Pro 16''",
-    icon: laptopIcon("#5B6470"),
+    cat: "computer", catLabel: "Surface", type: "Surface", brand: "Microsoft", brandCode: "M", brandColor: "#00A4EF",
+    model: "Surface Pro 7",
+    photo: "img/4bc956164a80.webp", cpu: "i7", storage: "512 GB",
+    icon: surfaceIcon("#00A4EF"),
     specs: [
-      ["Categoría", "Portátil"],
-      ["Procesador", "Intel Core i9"],
-      ["RAM", "64 GB"],
-      ["Almacenamiento", "1 TB SSD"],
-      ["Pantalla", "16 ''"],
-      ["Nota", "Configuración de entrada (desde)"]
+      ["Categoría", "Surface (portátil 2 en 1)"],
+      ["Marca", "Microsoft"],
+      ["Procesador", "Intel Core i7"],
+      ["RAM", "16 GB"],
+      ["Almacenamiento", "512 GB"],
+      ["Pantalla", "12,3 ''"]
     ]
   },
   {
@@ -2975,37 +2998,6 @@ const COMPUTERS = [
       ["Almacenamiento", "256 GB SSD"],
       ["Pantalla", "23,6 ''"],
       ["Incluye", "Ratón y teclado"]
-    ]
-  },
-  {
-    cat: "computer", catLabel: "iMac", type: "iMac", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "iMac 24''",
-    icon: desktopIcon("#5B6470"),
-    specs: [
-      ["Categoría", "iMac"],
-      ["Marca", "Apple"],
-      ["Pantalla", "24 ''"],
-      ["Nota", "Configuración de entrada (desde)"]
-    ]
-  },
-  {
-    cat: "computer", catLabel: "CPU", type: "CPU", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "Mac Mini",
-    icon: desktopIcon("#5B6470"),
-    specs: [
-      ["Categoría", "CPU"],
-      ["Marca", "Apple"],
-      ["Nota", "Configuración de entrada (desde)"]
-    ]
-  },
-  {
-    cat: "computer", catLabel: "CPU", type: "CPU", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "Mac Studio",
-    icon: desktopIcon("#5B6470"),
-    specs: [
-      ["Categoría", "CPU"],
-      ["Marca", "Apple"],
-      ["Nota", "Configuración de entrada (desde)"]
     ]
   },
   {
@@ -3042,80 +3034,120 @@ const COMPUTERS = [
       ["Categoría", "Workstation"],
       ["Marca", "HP"],
       ["Modelos", "Z4 / Z6 / Z8"],
-      ["Nota", "Configuración de entrada (desde)"]
+      ["Procesador", "Intel Xeon (según modelo)"],
+      ["Nota", "Configuración a medida"]
     ]
   }
 ];
 
-const SURFACE = [
+// Apple computers (data and photos: apple.com / support.apple.com)
+const MACS = [
   {
-    cat: "surface", catLabel: "Surface", brand: "Microsoft", brandCode: "M", brandColor: "#00A4EF",
-    model: "Surface Pro 7",
-    photo: "img/4bc956164a80.webp", cpu: "i5", storage: "128 GB",
-    icon: surfaceIcon("#00A4EF"),
+    cat: "mac", catLabel: "MacBook Air", type: "MacBook Air", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
+    model: "MacBook Air 13,3'' M1", photo: "img/mac-air-m1.webp", storages: ["128 GB", "256 GB", "512 GB", "1 TB", "2 TB"],
+    icon: laptopIcon("#5B6470"),
     specs: [
-      ["Categoría", "Surface"],
-      ["Marca", "Microsoft"],
-      ["Procesador", "Intel Core i5"],
+      ["Categoría", "MacBook Air"],
+      ["Chip", "Apple M1 (8 CPU / 7 GPU)"],
+      ["RAM", "16 GB"],
+      ["Almacenamiento", "128 GB / 256 GB / 512 GB / 1 TB / 2 TB"],
+      ["Pantalla", "13,3 ''"],
+      ["Año", "2020"]
+    ]
+  },
+  {
+    cat: "mac", catLabel: "MacBook Air", type: "MacBook Air", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
+    model: "MacBook Air 13,6'' M2", photo: "img/mac-air-m2.webp", storages: ["256 GB", "512 GB", "1 TB", "2 TB"],
+    icon: laptopIcon("#5B6470"),
+    specs: [
+      ["Categoría", "MacBook Air"],
+      ["Chip", "Apple M2 (8 CPU / 8 GPU)"],
       ["RAM", "8 GB"],
-      ["Almacenamiento", "128 GB"],
-      ["Pantalla", "12,3 ''"]
+      ["Almacenamiento", "256 GB / 512 GB / 1 TB / 2 TB"],
+      ["Pantalla", "13,6 ''"],
+      ["Año", "2022"]
     ]
   },
   {
-    cat: "surface", catLabel: "Surface", brand: "Microsoft", brandCode: "M", brandColor: "#00A4EF",
-    model: "Surface Pro 7",
-    photo: "img/4bc956164a80.webp", cpu: "i5", storage: "256 GB",
-    icon: surfaceIcon("#00A4EF"),
+    cat: "mac", catLabel: "MacBook Air", type: "MacBook Air", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
+    model: "MacBook Air 13,6'' M4", photo: "img/mac-air-m4.webp", storages: ["256 GB", "512 GB", "1 TB", "2 TB"],
+    icon: laptopIcon("#5B6470"),
     specs: [
-      ["Categoría", "Surface"],
-      ["Marca", "Microsoft"],
-      ["Procesador", "Intel Core i5"],
-      ["RAM", "8 GB"],
-      ["Almacenamiento", "256 GB"],
-      ["Pantalla", "12,3 ''"]
-    ]
-  },
-  {
-    cat: "surface", catLabel: "Surface", brand: "Microsoft", brandCode: "M", brandColor: "#00A4EF",
-    model: "Surface Pro 7",
-    photo: "img/4bc956164a80.webp", cpu: "i5", storage: "256 GB",
-    icon: surfaceIcon("#00A4EF"),
-    specs: [
-      ["Categoría", "Surface"],
-      ["Marca", "Microsoft"],
-      ["Procesador", "Intel Core i5"],
+      ["Categoría", "MacBook Air"],
+      ["Chip", "Apple M4 (10 CPU / 8 GPU)"],
       ["RAM", "16 GB"],
-      ["Almacenamiento", "256 GB"],
-      ["Pantalla", "12,3 ''"]
+      ["Almacenamiento", "256 GB / 512 GB / 1 TB / 2 TB"],
+      ["Pantalla", "13,6 ''"],
+      ["Año", "2025"]
     ]
   },
   {
-    cat: "surface", catLabel: "Surface", brand: "Microsoft", brandCode: "M", brandColor: "#00A4EF",
-    model: "Surface Pro 7",
-    photo: "img/4bc956164a80.webp", cpu: "i7", storage: "256 GB",
-    icon: surfaceIcon("#00A4EF"),
+    cat: "mac", catLabel: "MacBook Pro", type: "MacBook Pro", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
+    model: "MacBook Pro 13''", photo: "img/mac-pro13.webp", storages: ["256 GB", "512 GB", "1 TB", "2 TB"],
+    icon: laptopIcon("#5B6470"),
     specs: [
-      ["Categoría", "Surface"],
-      ["Marca", "Microsoft"],
-      ["Procesador", "Intel Core i7"],
-      ["RAM", "16 GB"],
-      ["Almacenamiento", "256 GB"],
-      ["Pantalla", "12,3 ''"]
+      ["Categoría", "MacBook Pro"],
+      ["Chip", "Apple M2 (8 CPU / 10 GPU)"],
+      ["Almacenamiento", "256 GB / 512 GB / 1 TB / 2 TB"],
+      ["Pantalla", "13,3 ''"],
+      ["Año", "2022"]
     ]
   },
   {
-    cat: "surface", catLabel: "Surface", brand: "Microsoft", brandCode: "M", brandColor: "#00A4EF",
-    model: "Surface Pro 7",
-    photo: "img/4bc956164a80.webp", cpu: "i7", storage: "512 GB",
-    icon: surfaceIcon("#00A4EF"),
+    cat: "mac", catLabel: "MacBook Pro", type: "MacBook Pro", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
+    model: "MacBook Pro 14'' M1 Pro", photo: "img/mac-pro14.webp", storages: ["512 GB", "1 TB", "2 TB", "4 TB", "8 TB"],
+    icon: laptopIcon("#5B6470"),
     specs: [
-      ["Categoría", "Surface"],
-      ["Marca", "Microsoft"],
-      ["Procesador", "Intel Core i7"],
+      ["Categoría", "MacBook Pro"],
+      ["Chip", "Apple M1 Pro"],
       ["RAM", "16 GB"],
-      ["Almacenamiento", "512 GB"],
-      ["Pantalla", "12,3 ''"]
+      ["Almacenamiento", "512 GB / 1 TB / 2 TB / 4 TB / 8 TB"],
+      ["Pantalla", "14,2 ''"],
+      ["Año", "2021"]
+    ]
+  },
+  {
+    cat: "mac", catLabel: "MacBook Pro", type: "MacBook Pro", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
+    model: "MacBook Pro 16''", photo: "img/mac-pro16.webp", storages: ["1 TB", "2 TB", "4 TB", "8 TB"],
+    icon: laptopIcon("#5B6470"),
+    specs: [
+      ["Categoría", "MacBook Pro"],
+      ["Procesador", "Intel Core i9"],
+      ["RAM", "64 GB"],
+      ["Almacenamiento", "1 TB / 2 TB / 4 TB / 8 TB"],
+      ["Pantalla", "16 ''"],
+      ["Año", "2019"]
+    ]
+  },
+  {
+    cat: "mac", catLabel: "iMac", type: "iMac", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
+    model: "iMac 24''", photo: "img/mac-imac.webp", storages: ["256 GB", "512 GB", "1 TB", "2 TB"],
+    icon: desktopIcon("#5B6470"),
+    specs: [
+      ["Categoría", "iMac"],
+      ["Chip", "Apple M4"],
+      ["Almacenamiento", "256 GB / 512 GB / 1 TB / 2 TB"],
+      ["Pantalla", "24 ''"]
+    ]
+  },
+  {
+    cat: "mac", catLabel: "Mac mini", type: "Mac mini", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
+    model: "Mac mini", photo: "img/mac-mini.webp", storages: ["256 GB", "512 GB", "1 TB", "2 TB", "4 TB", "8 TB"],
+    icon: desktopIcon("#5B6470"),
+    specs: [
+      ["Categoría", "Mac mini"],
+      ["Chip", "Apple M6 / M5 Pro"],
+      ["Almacenamiento", "256 GB / 512 GB / 1 TB / 2 TB / 4 TB / 8 TB"]
+    ]
+  },
+  {
+    cat: "mac", catLabel: "Mac Studio", type: "Mac Studio", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
+    model: "Mac Studio", photo: "img/mac-studio.webp", storages: ["512 GB", "1 TB", "2 TB", "4 TB", "8 TB", "16 TB"],
+    icon: desktopIcon("#5B6470"),
+    specs: [
+      ["Categoría", "Mac Studio"],
+      ["Chip", "Apple M5 Max / M5 Ultra"],
+      ["Almacenamiento", "512 GB / 1 TB / 2 TB / 4 TB / 8 TB / 16 TB"]
     ]
   }
 ];
@@ -3385,13 +3417,16 @@ const CARD_INFO = {
     if (screen) boxes.push({ icon: STORAGE_ICONS.screen, title: "Pantalla", text: screen });
     return boxes;
   },
+  // Computers and Macs: screen inches and processor (small boxes), then storage options
   computer: p => {
-    const parts = [specOf(p, "Procesador") || specOf(p, "Chip"), specOf(p, "RAM"), specOf(p, "Almacenamiento")].filter(Boolean);
-    if (p.variants.length > 1) {
-      const cpus = [...new Set(p.variants.map(v => specOf(v, "Procesador") || specOf(v, "Chip")).filter(Boolean))];
-      return { icon: STORAGE_ICONS.cpu, title: "Configuraciones", text: `${p.variants.length} configuraciones · ${cpus.join(" / ")}` };
-    }
-    return { icon: STORAGE_ICONS.cpu, title: "Configuración", text: parts.length ? parts.join(" · ") : (specOf(p, "Modelos") || "Configuración a medida") };
+    const boxes = [];
+    const screen = specOf(p, "Pantalla").replace(/\s*''$/, "''");
+    if (screen) boxes.push({ small: true, icon: STORAGE_ICONS.screen, title: "Pantalla", text: screen });
+    const cpu = (specOf(p, "Procesador") || specOf(p, "Chip"))
+      .replace(/\s*\(.*?\)/g, "").replace(/Intel Core (i\d) \/ Intel Core (i\d)/, "Intel Core $1 / $2");
+    boxes.push({ small: !!screen, icon: STORAGE_ICONS.cpu, title: "Procesador", text: cpu || "A medida" });
+    boxes.push({ icon: STORAGE_ICONS.capacity, title: "Almacenamiento", text: p.storages.length ? p.storages.join(" · ") : "A medida" });
+    return boxes;
   },
   monitor: p => ({ icon: STORAGE_ICONS.screen, title: "Pantalla", text: [specOf(p, "Pantalla"), specOf(p, "Resolución")].filter(Boolean).join(" · ") }),
   connectivity: p => ({ icon: STORAGE_ICONS.signal, title: "Conexión",
@@ -3419,7 +3454,7 @@ function renderModelCards(items, gridEl, info = CARD_INFO.storage) {
         ${p.brand ? `<div class="brand-line">${badgeMarkup(p)}</div>` : ""}
         <h3>${p.model}</h3>
         <div class="storage-icons">
-          ${boxes.map(b => `<div class="storage-icon storage-icon-wide" title="${b.title}">${b.icon}<span>${b.text}</span></div>`).join("")}
+          ${boxes.map(b => `<div class="storage-icon ${b.small ? "storage-icon-small" : "storage-icon-wide"}" title="${b.title}">${b.icon}<span>${b.text}</span></div>`).join("")}
         </div>
         <span class="card-hint">Toca para ver la ficha técnica</span>
       </div>
@@ -3486,7 +3521,7 @@ renderModelCards([...PRODUCTS].sort((a, b) => rankIn(TABLET_ORDER)(a) - rankIn(T
 renderModelCards(PHONES, document.getElementById("gridPhones"), CARD_INFO.device);
 renderModelCards(ACCESSORIES, document.getElementById("gridAccessories"), CARD_INFO.accessory);
 renderModelCards(COMPUTERS, document.getElementById("gridComputers"), CARD_INFO.computer);
-renderModelCards(SURFACE, document.getElementById("gridSurface"), CARD_INFO.computer);
+renderModelCards(MACS, document.getElementById("gridMac"), CARD_INFO.computer);
 renderModelCards(MONITORS, document.getElementById("gridMonitors"), CARD_INFO.monitor);
 renderModelCards(CONNECTIVITY, document.getElementById("gridConnectivity"), CARD_INFO.connectivity);
 renderStorage(STORAGE, document.getElementById("gridStorage"));
@@ -3529,7 +3564,7 @@ document.getElementById("tabletIconLarge").innerHTML = tabletIconLarge("#2B79C2"
 document.getElementById("phoneIconLarge").innerHTML = phoneIcon("#2B79C2");
 document.getElementById("accessoryIconLarge").innerHTML = accessoryIcon("#2B79C2");
 document.getElementById("computerIconLarge").innerHTML = desktopIcon("#2B79C2");
-document.getElementById("surfaceIconLarge").innerHTML = surfaceIcon("#2B79C2");
+document.getElementById("macIconLarge").innerHTML = macIcon("#2B79C2");
 document.getElementById("monitorIconLarge").innerHTML = monitorIcon("#2B79C2");
 document.getElementById("connectivityIconLarge").innerHTML = routerIcon("#2B79C2");
 document.getElementById("storageIconLarge").innerHTML = driveIcon("#2B79C2");
@@ -3540,7 +3575,7 @@ const views = {
   phones: document.getElementById("viewPhones"),
   accessories: document.getElementById("viewAccessories"),
   computers: document.getElementById("viewComputers"),
-  surface: document.getElementById("viewSurface"),
+  mac: document.getElementById("viewMac"),
   monitors: document.getElementById("viewMonitors"),
   connectivity: document.getElementById("viewConnectivity"),
   storage: document.getElementById("viewStorage")
@@ -3552,7 +3587,7 @@ const CATEGORY_INFO = {
   phones: "Móviles",
   accessories: "Accesorios",
   computers: "Ordenadores",
-  surface: "Surface",
+  mac: "Mac",
   monitors: "Monitores",
   connectivity: "Conectividad",
   storage: "Almacenamiento"
@@ -3599,7 +3634,7 @@ const ROUTES = {
   moviles: "phones",
   accesorios: "accessories",
   ordenadores: "computers",
-  surface: "surface",
+  mac: "mac",
   monitores: "monitors",
   conectividad: "connectivity",
   almacenamiento: "storage"
@@ -3617,7 +3652,7 @@ document.getElementById("goTablets").addEventListener("click", () => goTo("table
 document.getElementById("goPhones").addEventListener("click", () => goTo("phones"));
 document.getElementById("goAccessories").addEventListener("click", () => goTo("accessories"));
 document.getElementById("goComputers").addEventListener("click", () => goTo("computers"));
-document.getElementById("goSurface").addEventListener("click", () => goTo("surface"));
+document.getElementById("goMac").addEventListener("click", () => goTo("mac"));
 document.getElementById("goMonitors").addEventListener("click", () => goTo("monitors"));
 document.getElementById("goConnectivity").addEventListener("click", () => goTo("connectivity"));
 document.getElementById("goStorage").addEventListener("click", () => goTo("storage"));
@@ -3680,9 +3715,9 @@ setupFilters(document.getElementById("gridComputers"), [
   { select: document.getElementById("computerBrandSelect"), attr: "brand" }
 ]);
 
-setupFilters(document.getElementById("gridSurface"), [
-  { select: document.getElementById("surfaceCpuSelect"), attr: "cpu" },
-  { select: document.getElementById("surfaceStorageSelect"), attr: "storage" }
+setupFilters(document.getElementById("gridMac"), [
+  { select: document.getElementById("macTypeSelect"), attr: "type" },
+  { select: document.getElementById("macStorageSelect"), attr: "storage" }
 ]);
 
 setupFilters(document.getElementById("gridMonitors"), [
