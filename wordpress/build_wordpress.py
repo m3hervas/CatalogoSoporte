@@ -121,6 +121,8 @@ scoped += f"""
     margin: 0; width: auto; height: auto;
   }}
   {SCOPE} :where(img) {{ max-width: none; height: auto; border: 0; box-shadow: none; border-radius: 0; }}
+  {SCOPE} .scroll-progress {{ display: none; }}
+  {SCOPE} .site-nav {{ top: 8px; }}
   {SCOPE} :where(header, footer, section, nav) {{
     background: none; border: 0; box-shadow: none; padding: 0; position: static;
   }}
