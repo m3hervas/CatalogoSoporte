@@ -36,6 +36,9 @@ def extract(m):
 
 html = re.sub(r"data:image/(png|jpeg|jpg|webp|gif);base64,([A-Za-z0-9+/=]+)", extract, html)
 
+# index.html references its photos as img/xxx; point them to where WordPress can load them
+html = re.sub(r'(?<=["(])img/', img_base, html)
+
 # --- 2. Partes del documento ---
 css = re.search(r"<style>(.*?)</style>", html, re.S).group(1)
 body = re.search(r"<body>(.*?)<script>", html, re.S).group(1)
