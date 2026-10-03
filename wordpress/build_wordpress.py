@@ -50,6 +50,13 @@ def scope_selector(sel):
     sel = sel.strip()
     if not sel:
         return sel
+    # Theme selectors: the attribute lives on the catalogue root itself
+    if sel.startswith('[data-theme'):
+        attr, _, rest = sel.partition("]")
+        rest = rest.strip()
+        if rest in ("", "body", "html"):
+            return SCOPE + attr + "]"
+        return SCOPE + attr + "] " + rest
     for root in (':root:not([data-theme="dark"])', ':root[data-theme="dark"]', ":root", "html", "body"):
         if sel == root:
             return SCOPE
