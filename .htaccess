@@ -57,9 +57,20 @@
     Header set Cache-Control "public, max-age=2592000"
   </FilesMatch>
 
-  # Minimal security headers
+  # ----- Security headers -----
+  # Never guess file types; send only the origin to other sites
   Header always set X-Content-Type-Options "nosniff"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  # Browsers must always use https for this site (6 months; subdomains not included on purpose)
+  Header always set Strict-Transport-Security "max-age=15552000"
+  # Nobody can show this site inside a frame on another site (clickjacking)
+  Header always set X-Frame-Options "SAMEORIGIN"
+  # Only load code, styles, images and fonts from this site; the forms may only talk to FormSubmit
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://formsubmit.co; form-action 'self' https://formsubmit.co; frame-ancestors 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
+  # The site never needs camera, microphone, location, payments or USB
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+  # Pages opened in new tabs (WhatsApp, etc.) cannot reach back into this one
+  Header always set Cross-Origin-Opener-Policy "same-origin"
 </IfModule>
 
 # ----- Correct MIME types (some shared hosts default wrong) -----
@@ -80,12 +91,13 @@
   AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json image/svg+xml font/woff font/woff2
 </IfModule>
 
-# ----- HTTPS redirect (uncomment if your domain has SSL) -----
-# <IfModule mod_rewrite.c>
-#   RewriteEngine On
-#   RewriteCond %{HTTPS} !=on
-#   RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
-# </IfModule>
+# ----- Always https (the domain has an SSL certificate) -----
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+</IfModule>
 
 # ----- Pretty URLs: serve "/about" as "/about.html" (uncomment if multi-page) -----
 # <IfModule mod_rewrite.c>
