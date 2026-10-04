@@ -138,11 +138,13 @@ h2 { font-size: clamp(28px, 3.6vw, 48px); }
   .theme-toggle:hover { border-color: var(--text); }
 }
 
-/* --- Hero: a simple box for now --- */
-.hero { padding: 104px var(--pad) 0; }
+/* --- Hero: text on the left, the two choice cards on the right, all in the first view --- */
+.hero { padding: 96px var(--pad) 0; }
 .hero-box {
   position: relative; overflow: hidden;
-  padding: clamp(36px, 6vw, 80px);
+  padding: clamp(28px, 4vw, 60px);
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center; gap: clamp(28px, 4vw, 60px);
   border-radius: 32px;
   background:
     radial-gradient(60% 80% at 100% 0%, rgba(43,121,194,0.12), transparent 60%),
@@ -157,7 +159,12 @@ h2 { font-size: clamp(28px, 3.6vw, 48px); }
     radial-gradient(50% 70% at 0% 100%, rgba(61,139,255,0.08), transparent 60%),
     var(--surface);
 }
-.hero-title { font-size: clamp(36px, 5.6vw, 80px); margin-bottom: 20px; max-width: 900px; }
+/* Title and intro text share one width: the text ends where "audiovisual" ends */
+.hero-lead { display: grid; width: fit-content; max-width: 100%; }
+.hero-title { font-size: clamp(32px, 4vw, 64px); margin-bottom: 22px; text-align: center; }
+.hero-title .line { white-space: nowrap; }
+.hero-title .line-accent { font-size: 1.3em; line-height: 1; padding: 0.02em 0 0.1em; }
+.hero-title .line-accent em { letter-spacing: -0.01em; }
 .hero-title .line { display: block; overflow: hidden; padding-bottom: 0.06em; }
 .hero-title .line > span { display: inline-block; transform: translateY(105%); animation: lineUp 1.1s var(--ease) forwards; }
 .hero-title .line:nth-child(1) > span { animation-delay: 1.2s; }
@@ -165,59 +172,58 @@ h2 { font-size: clamp(28px, 3.6vw, 48px); }
 .hero-title .line:nth-child(3) > span { animation-delay: 1.44s; }
 @keyframes lineUp { to { transform: translateY(0); } }
 .hero .kicker, .hero-sub, .hero-actions { opacity: 0; animation: fadeUp 1s var(--ease) forwards; }
-.hero .kicker { animation-delay: 1.05s; }
+.hero .kicker { animation-delay: 1.05s; font-size: 14.5px; gap: 12px; color: var(--text-2); }
+.hero .kicker .dot { width: 11px; height: 11px; }
 .hero-sub { animation-delay: 1.7s; }
 .hero-actions { animation-delay: 1.85s; }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
-.hero-sub { max-width: 560px; margin: 0 0 26px; font-size: clamp(16px, 1.5vw, 19px); color: var(--text-2); }
+.hero-sub { width: 0; min-width: 100%; margin: 0 0 26px; font-size: clamp(16px, 1.5vw, 19px); color: var(--text-2); }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.hero .panel { opacity: 0; animation: fadeUp 1s var(--ease) forwards; animation-delay: 1.95s; }
+.hero .panel:nth-child(2) { animation-delay: 2.08s; }
 
 /* --- Sections --- */
 section { position: relative; }
 .section-head { max-width: 760px; margin-bottom: clamp(22px, 3vw, 36px); }
 
 /* --- Choice panels: square cards, animated line icon above the text --- */
-.choice { padding: clamp(44px, 6vw, 72px) var(--pad) clamp(36px, 5vw, 56px); }
-.choice .section-head { margin-left: auto; margin-right: auto; max-width: 1000px; }
-.panels { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; max-width: 1000px; margin: 0 auto; }
+.panels { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(12px, 1.4vw, 18px); }
 .panel {
   --mx: 50%; --my: 50%;
   position: relative; min-width: 0;
-  min-height: clamp(380px, 46vw, 490px); /* about square next to each other; both cards share the row height */
+  min-height: clamp(240px, 21vw, 310px); /* roughly square; both cards share the row height */
   display: flex; flex-direction: column; justify-content: space-between; gap: 14px;
-  padding: clamp(22px, 2.8vw, 38px);
-  border-radius: 28px; isolation: isolate; text-decoration: none;
+  padding: clamp(18px, 2vw, 28px);
+  border-radius: 24px; isolation: isolate; text-decoration: none;
   color: var(--text); background: var(--surface);
   border: 1px solid var(--line); box-shadow: var(--shadow);
   transition: transform 500ms var(--ease), border-color 400ms var(--ease), box-shadow 400ms var(--ease);
 }
 .panel-halo { position: absolute; inset: 0; z-index: -1; border-radius: inherit; opacity: 0; background: radial-gradient(380px circle at var(--mx) var(--my), var(--accent-glow), transparent 60%); transition: opacity 400ms var(--ease); }
 .panel-icon {
-  width: 84px; height: 84px; border-radius: 24px; flex-shrink: 0;
+  width: 66px; height: 66px; border-radius: 20px; flex-shrink: 0;
   display: flex; align-items: center; justify-content: center;
   color: var(--accent-text);
   background: linear-gradient(145deg, rgba(43,121,194,0.14), rgba(43,121,194,0.04));
   border: 1px solid rgba(43,121,194,0.18);
 }
 [data-theme="dark"] .panel-icon { background: linear-gradient(145deg, rgba(61,139,255,0.22), rgba(61,139,255,0.05)); border-color: rgba(61,139,255,0.3); }
-.panel-icon svg { width: 56px; height: 56px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; overflow: visible; }
+.panel-icon svg { width: 44px; height: 44px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; overflow: visible; }
 /* Rental icon: the hand ticks round; the return arrow turns a little on hover */
 .icon-rent .sw-hand { transform-origin: 32px 36px; animation: sweep 6s steps(60) infinite; }
 .icon-rent .pin { fill: currentColor; stroke: none; }
-.icon-rent .tick { stroke-width: 2; opacity: 0.6; }
-.icon-rent .ret, .icon-rent .ret-head { opacity: 0.55; transform-origin: 32px 36px; transition: transform 900ms var(--ease), opacity 300ms var(--ease); }
+.icon-rent .sw-ring { stroke-width: 3; stroke-linecap: butt; opacity: 0.35; stroke-dasharray: 100; stroke-dashoffset: 100; animation: ring-fill 6s steps(60) infinite; }
 @keyframes sweep { to { transform: rotate(360deg); } }
+@keyframes ring-fill { to { stroke-dashoffset: 0; } }
 /* Purchase icon: the lid lifts and the check grows on hover */
 .icon-buy .box { fill: rgba(43,121,194,0.08); }
 .icon-buy .lid { transform-box: fill-box; transform-origin: 0% 100%; transition: transform 600ms var(--ease); fill: rgba(43,121,194,0.14); }
 .icon-buy .tape { fill: none; opacity: 0.55; }
 .icon-buy .check-bg { fill: var(--accent); stroke: none; transform-box: fill-box; transform-origin: center; transform: scale(0.85); transition: transform 500ms var(--ease); }
 .icon-buy .check { stroke: #fff; stroke-width: 2.2; }
-.panel-body { display: flex; flex-direction: column; gap: 10px; }
-.panel-title { font-family: var(--serif); font-style: italic; font-size: clamp(40px, 4.4vw, 62px); line-height: 0.95; letter-spacing: -0.02em; }
-.panel-text { color: var(--text-2); font-size: 15px; line-height: 1.55; max-width: 440px; }
-.panel-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-.panel-tags span { font-size: 12px; padding: 5px 11px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg); color: var(--text-2); }
+.panel-body { display: flex; flex-direction: column; gap: 8px; }
+.panel-title { font-family: var(--serif); font-style: italic; font-size: clamp(30px, 3vw, 46px); line-height: 0.95; letter-spacing: -0.02em; }
+.panel-text { color: var(--text-2); font-size: 14.5px; line-height: 1.5; }
 .panel-cta { display: inline-flex; align-items: center; gap: 10px; margin-top: 4px; font-weight: 600; color: var(--accent-text); }
 .panel-cta svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 400ms var(--ease); }
 .panel:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
@@ -226,36 +232,60 @@ section { position: relative; }
   .panel:hover { border-color: rgba(61,139,255,0.55); box-shadow: 0 30px 70px -30px var(--accent-glow); }
   .panel:hover .panel-halo { opacity: 1; }
   .panel:hover .panel-cta svg { transform: translateX(6px); }
-  .panel:hover .icon-rent .sw-hand { animation-duration: 1.2s; }
-  .panel:hover .icon-rent .ret, .panel:hover .icon-rent .ret-head { transform: rotate(-40deg); opacity: 1; }
+  .panel:hover .icon-rent .sw-hand, .panel:hover .icon-rent .sw-ring { animation-duration: 1.2s; }
   .panel:hover .icon-buy .lid { transform: translateY(-4px) rotate(-14deg); }
   .panel:hover .icon-buy .check-bg { transform: scale(1.12); }
 }
 
 /* --- Brands: official logos, transparent, moving strip --- */
-.brands { padding: 0 0 clamp(40px, 6vw, 70px); text-align: center; overflow: hidden; }
+.brands { padding: clamp(40px, 5vw, 64px) 0 clamp(40px, 6vw, 70px); text-align: center; overflow: hidden; }
 .marquee {
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
   mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
 }
-.marquee-track { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; width: max-content; animation: marquee 36s linear infinite; }
+.marquee-track { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; width: max-content; animation: marquee 54s linear infinite; }
 .marquee-track li { flex: 0 0 auto; padding: 14px clamp(30px, 4vw, 60px); }
 .marquee-track img { height: 36px; width: auto; opacity: 0.85; transition: opacity 300ms var(--ease), transform 300ms var(--ease); }
 .marquee-track .logo-hp, .marquee-track .logo-dell { height: 48px; }
 .marquee-track .logo-samsung { height: 24px; }
 .marquee-track .logo-sandisk { height: 27px; }
 .marquee-track .logo-apple { height: 42px; }
+.marquee-track .logo-tp-link { height: 36px; }
+.marquee-track .logo-duracell { height: 24px; }
+.marquee-track .logo-tesa { height: 30px; }
+.marquee-track .logo-rosco { height: 27px; }
+.marquee-track .logo-ursa { height: 38px; }
+.marquee-track .logo-viviana { height: 44px; }
 /* Dark mode: logos in white so they read on the dark background */
 [data-theme="dark"] .marquee-track img { filter: brightness(0) invert(1); opacity: 0.8; }
+/* tesa: white lettering on its own red label, keep its colours */
+[data-theme="dark"] .marquee-track .logo-tesa { filter: none; }
 @keyframes marquee { to { transform: translateX(-50%); } }
+/* JS drives the strip (so the arrows can move it); the CSS animation stays as fallback */
+.marquee-track.is-js { animation: none; will-change: transform; }
+.marquee-wrap { position: relative; }
+.marquee-arrow {
+  position: absolute; top: 50%; z-index: 2; transform: translateY(-50%);
+  width: 42px; height: 42px; border-radius: 50%; padding: 0; cursor: pointer;
+  display: grid; place-items: center;
+  color: var(--accent-text); background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow);
+  transition: transform 200ms var(--ease), border-color 200ms var(--ease), background-color 200ms var(--ease);
+}
+.marquee-arrow[hidden] { display: none; }
+.marquee-arrow.prev { left: clamp(10px, 2.5vw, 36px); }
+.marquee-arrow.next { right: clamp(10px, 2.5vw, 36px); }
+.marquee-arrow svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.marquee-arrow:active { transform: translateY(-50%) scale(0.92); }
+.marquee-arrow:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+@media (hover: hover) and (pointer: fine) { .marquee-arrow:hover { border-color: rgba(61,139,255,0.55); } }
 @media (hover: hover) and (pointer: fine) {
   .marquee:hover .marquee-track { animation-play-state: paused; }
   .marquee-track img:hover { opacity: 1; transform: scale(1.06); }
 }
 
 /* --- About --- */
-.about { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 80px); align-items: center; padding: clamp(50px, 7vw, 100px) var(--pad); }
-.about-figure { margin: 0; border-radius: 28px; overflow: hidden; aspect-ratio: 4 / 5; position: relative; box-shadow: var(--shadow); }
+.about { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(32px, 5vw, 80px); align-items: center; padding: clamp(50px, 7vw, 100px) var(--pad); }
+.about-figure { margin: 0; border-radius: 24px; overflow: hidden; aspect-ratio: 3 / 2; width: 100%; max-width: 520px; justify-self: center; position: relative; box-shadow: var(--shadow); }
 .about-figure img { width: 100%; height: 118%; object-fit: cover; margin-top: -9%; will-change: transform; }
 .about-text > p:not(.kicker) { color: var(--text-2); font-size: 17px; max-width: 560px; }
 .about-text h2 { margin-bottom: 24px; }
@@ -330,14 +360,15 @@ section { position: relative; }
 .reveal.is-in { opacity: 1; transform: none; }
 .reveal[data-split] { opacity: 1; transform: none; }
 .no-js .reveal { opacity: 1; transform: none; }
-.panels .panel.reveal:nth-child(2) { transition-delay: 120ms; }
 
 /* --- Tablet --- */
 @media (max-width: 980px) {
   .nav-links { display: none; }
   .about, .contact-inner { grid-template-columns: minmax(0, 1fr); }
-  .about-figure { aspect-ratio: 16 / 11; }
+  .about-figure { aspect-ratio: 3 / 2; max-width: 560px; }
   .footer-top { grid-template-columns: 1fr; }
+  .hero-box { grid-template-columns: minmax(0, 1fr); }
+  .panels { max-width: 620px; }
 }
 
 /* --- Phone: stacked panels, own composition --- */
@@ -348,19 +379,37 @@ section { position: relative; }
   .theme-toggle { width: 38px; height: 38px; }
   .hero { padding-top: 84px; padding-left: 12px; padding-right: 12px; }
   .hero-box { padding: 30px 22px; border-radius: 24px; }
-  .hero-actions .btn { flex: 1 1 100%; }
-  .panels { grid-template-columns: minmax(0, 1fr); }
-  .panel { min-height: 0; }
-  .panel-icon { width: 68px; height: 68px; border-radius: 20px; }
-  .panel-icon svg { width: 46px; height: 46px; }
+  /* on phones the two cards below already are the Alquila / Compra choice */
+  .hero-actions { display: none; }
+  .hero-sub { margin-bottom: 0; }
+  .hero-title .line { white-space: normal; }
+  .hero-box { gap: 24px; }
+  .hero .kicker { font-size: 12.5px; letter-spacing: 0.12em; }
+  .hero .kicker .dot { width: 10px; height: 10px; }
+  .panels { gap: 10px; }
+  .panel { min-height: 0; justify-content: flex-start; padding: 16px 14px; border-radius: 20px; gap: 12px; }
+  .panel-icon { width: 50px; height: 50px; border-radius: 15px; }
+  .panel-icon svg { width: 34px; height: 34px; }
+  .panel-title { font-size: 27px; }
+  .panel-text { font-size: 13px; }
+  .panel-cta { font-size: 13.5px; gap: 6px; }
+  .panel-cta svg { width: 18px; height: 18px; }
   .field-row { grid-template-columns: 1fr; }
   .pillars li { grid-template-columns: 48px 1fr; }
   .marquee-track li { padding: 10px 26px; }
+  .marquee-arrow { width: 36px; height: 36px; }
+  .marquee-arrow svg { width: 17px; height: 17px; }
   .marquee-track img { height: 28px; }
   .marquee-track .logo-hp, .marquee-track .logo-dell { height: 38px; }
   .marquee-track .logo-samsung { height: 18px; }
   .marquee-track .logo-sandisk { height: 22px; }
   .marquee-track .logo-apple { height: 32px; }
+  .marquee-track .logo-tp-link { height: 28px; }
+  .marquee-track .logo-duracell { height: 18px; }
+  .marquee-track .logo-tesa { height: 23px; }
+  .marquee-track .logo-rosco { height: 21px; }
+  .marquee-track .logo-ursa { height: 29px; }
+  .marquee-track .logo-viviana { height: 34px; }
 }
 @media (max-width: 400px) {
   .nav .btn-small { display: none; }

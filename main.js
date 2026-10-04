@@ -88,6 +88,51 @@
     });
   }
 
+  // Brands strip: moves on its own; the arrows push it a step back or forward
+  function initMarquee() {
+    var wrap = document.querySelector(".marquee-wrap");
+    var track = wrap && wrap.querySelector(".marquee-track");
+    if (!track) return;
+    var DURATION = 54; // seconds for one full set, same pace as the CSS fallback
+    var x = 0, half = 0, last = 0, hover = false, nudge = null;
+    var measure = function () { half = track.scrollWidth / 2; };
+    var ease = function (t) { return 1 - Math.pow(1 - t, 3); };
+    measure();
+    window.addEventListener("resize", measure);
+    [].slice.call(track.querySelectorAll("img")).forEach(function (img) { img.addEventListener("load", measure); });
+    track.classList.add("is-js");
+    if (matchMedia("(hover: hover) and (pointer: fine)").matches) {
+      wrap.addEventListener("pointerenter", function () { hover = true; });
+      wrap.addEventListener("pointerleave", function () { hover = false; });
+    }
+    var push = function (dir) {
+      var step = Math.max(160, wrap.clientWidth * 0.35) * dir;
+      // a click during a push carries on from where that push was going
+      var rest = nudge ? nudge.delta * (1 - ease(nudge.p)) : 0;
+      nudge = { delta: step + rest, p: 0, start: performance.now() };
+    };
+    [].slice.call(wrap.querySelectorAll(".marquee-arrow")).forEach(function (btn) {
+      btn.hidden = false;
+      btn.addEventListener("click", function () { push(btn.classList.contains("next") ? 1 : -1); });
+    });
+    var frame = function (now) {
+      var dt = Math.min(0.1, (now - (last || now)) / 1000);
+      last = now;
+      if (nudge) {
+        var p = Math.min(1, (now - nudge.start) / 650);
+        x += nudge.delta * (ease(p) - ease(nudge.p));
+        nudge.p = p;
+        if (p >= 1) nudge = null;
+      } else if (!hover && half) {
+        x += (half / DURATION) * dt;
+      }
+      if (half) x = ((x % half) + half) % half;
+      track.style.transform = "translate3d(" + (-x).toFixed(2) + "px, 0, 0)";
+      requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
+  }
+
   // Soft parallax on the "about" photo (single rAF loop, only while visible)
   function initParallax() {
     var img = document.querySelector(".parallax");
@@ -178,6 +223,7 @@
   safe(initPanels, "panels");
   safe(initMagnetic, "magnetic");
   safe(initParallax, "parallax");
+  safe(initMarquee, "marquee");
   safe(initInterestLinks, "interest");
   safe(initForm, "form");
   safe(initYear, "year");

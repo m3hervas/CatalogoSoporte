@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261004">
+  <link rel="stylesheet" href="styles.css?v=20261004b">
 </head>
 <body>
 
@@ -32,7 +32,7 @@
     <span>Soporte TV</span>
   </a>
   <nav class="nav-links" aria-label="Principal">
-    <a href="#servicios">Alquiler y compra</a>
+    <a href="#inicio">Alquiler y compra</a>
     <a href="#nosotros">Quiénes somos</a>
     <a href="#contacto">Contacto</a>
   </nav>
@@ -49,97 +49,90 @@
   <!-- HERO -->
   <section class="hero" id="inicio">
     <div class="hero-box">
-      <p class="kicker"><span class="dot"></span>Distribución audiovisual · Desde 2004</p>
-      <h1 class="hero-title">
-        <span class="line"><span>Material audiovisual</span></span>
-        <span class="line"><span><em>profesional</em>, con</span></span>
-        <span class="line"><span>trato directo.</span></span>
-      </h1>
-      <p class="hero-sub">Compra o alquila el material que necesitas para tu producción, oficina o evento. Sin intermediarios: hablas con quien lo prepara.</p>
-      <div class="hero-actions">
-        <a class="btn btn-primary magnetic" href="alquiler/">Alquila</a>
-        <a class="btn btn-ghost magnetic" href="#compra">Compra</a>
+      <div class="hero-text">
+        <p class="kicker"><span class="dot"></span>Distribución audiovisual · Desde 2004</p>
+        <div class="hero-lead">
+          <h1 class="hero-title">
+            <span class="line"><span>Material audiovisual</span></span>
+            <span class="line line-accent"><span><em>profesional</em></span></span>
+            <span class="line"><span>con trato directo.</span></span>
+          </h1>
+          <p class="hero-sub">Alquila o compra el material que necesitas para tu producción, oficina o evento. Sin intermediarios: hablas con quien lo prepara.</p>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-primary magnetic" href="alquiler/">Alquila</a>
+          <a class="btn btn-ghost magnetic" href="#contacto" data-interest="Compra">Compra</a>
+        </div>
+      </div>
+
+      <div class="panels" id="servicios" aria-label="Alquiler o compra">
+        <a class="panel" href="alquiler/" id="alquiler">
+          <span class="panel-halo" aria-hidden="true"></span>
+          <span class="panel-icon" aria-hidden="true">
+            <svg class="icon-rent" viewBox="0 0 64 64">
+              <!-- Rental: stopwatch whose hand sweeps while a ring fills in, like rental time running -->
+              <rect class="crown" x="27" y="8" width="10" height="4.5" rx="2"/>
+              <path d="M32 12.5v5.5M45.5 22.5l3-3"/>
+              <circle cx="32" cy="36" r="18"/>
+              <circle class="sw-ring" cx="32" cy="36" r="12.5" pathLength="100" transform="rotate(-90 32 36)"/>
+              <path class="sw-hand" d="M32 36V26.5"/>
+              <circle class="pin" cx="32" cy="36" r="2"/>
+            </svg>
+          </span>
+          <span class="panel-body">
+            <span class="panel-title">Alquiler</span>
+            <span class="panel-text">Configurados y revisados antes de cada entrega.</span>
+            <span class="panel-cta">Ver catálogo <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </span>
+        </a>
+
+        <a class="panel" href="#contacto" id="compra" data-interest="Compra">
+          <span class="panel-halo" aria-hidden="true"></span>
+          <span class="panel-icon" aria-hidden="true">
+            <!-- Purchase: shipping box whose lid opens, with a check (it is yours) -->
+            <svg class="icon-buy" viewBox="0 0 64 64">
+              <path class="box" d="M12 25l20 10 20-10v22L32 57 12 47z"/>
+              <path class="box" d="M32 35v22"/>
+              <g class="lid">
+                <path d="M12 25l20-10 20 10-20 10z"/>
+                <path class="tape" d="M22 20l20 10"/>
+              </g>
+              <circle class="check-bg" cx="49" cy="15" r="8"/>
+              <path class="check" d="M45.5 15.2l2.4 2.4 4.6-4.8"/>
+            </svg>
+          </span>
+          <span class="panel-body">
+            <span class="panel-title">Compra</span>
+            <span class="panel-text">Te asesoramos y te conseguimos el material que necesitas.</span>
+            <span class="panel-cta">Pedir presupuesto <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </span>
+        </a>
       </div>
     </div>
 
   </section>
 
-  <!-- CHOICE: rental or purchase -->
-  <section class="choice" id="servicios" aria-labelledby="choiceTitle">
-    <div class="section-head reveal">
-      <p class="kicker">¿Qué necesitas?</p>
-      <h2 id="choiceTitle">Dos formas de trabajar <em>con nosotros</em>.</h2>
-    </div>
-
-    <div class="panels">
-      <a class="panel reveal" href="alquiler/" id="alquiler">
-        <span class="panel-halo" aria-hidden="true"></span>
-        <span class="panel-icon" aria-hidden="true">
-          <!-- Rental: stopwatch (time) wrapped by a return arrow (you give it back) -->
-          <svg class="icon-rent" viewBox="0 0 64 64">
-            <path class="ret" d="M54.5 38a23 23 0 1 1-4.2-17.6"/>
-            <path class="ret-head" d="M51.5 12.5l-1.2 8-8-1.2"/>
-            <rect x="28" y="11" width="8" height="4" rx="1.5"/>
-            <circle cx="32" cy="36" r="15"/>
-            <path class="tick" d="M32 23.5v2.5M44.5 36H42M32 48.5V46M19.5 36H22"/>
-            <path class="sw-hand" d="M32 36V27"/>
-            <circle class="pin" cx="32" cy="36" r="1.8"/>
-          </svg>
-        </span>
-        <span class="panel-body">
-          <span class="panel-title">Alquiler</span>
-          <span class="panel-text">Equipos listos para tu evento, rodaje o producción. Configurados y revisados antes de cada entrega.</span>
-          <span class="panel-tags">
-            <span>Tablets y móviles</span><span>Mac y ordenadores</span><span>Monitores / TV</span><span>Almacenamiento y NAS</span><span>Videoconferencia</span>
-          </span>
-          <span class="panel-cta">Ver catálogo de alquiler <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        </span>
-      </a>
-
-      <a class="panel reveal" href="#contacto" id="compra" data-interest="Compra">
-        <span class="panel-halo" aria-hidden="true"></span>
-        <span class="panel-icon" aria-hidden="true">
-          <!-- Purchase: shipping box whose lid opens, with a check (it is yours) -->
-          <svg class="icon-buy" viewBox="0 0 64 64">
-            <path class="box" d="M12 25l20 10 20-10v22L32 57 12 47z"/>
-            <path class="box" d="M32 35v22"/>
-            <g class="lid">
-              <path d="M12 25l20-10 20 10-20 10z"/>
-              <path class="tape" d="M22 20l20 10"/>
-            </g>
-            <circle class="check-bg" cx="49" cy="15" r="8"/>
-            <path class="check" d="M45.5 15.2l2.4 2.4 4.6-4.8"/>
-          </svg>
-        </span>
-        <span class="panel-body">
-          <span class="panel-title">Compra</span>
-          <span class="panel-text">Te asesoramos y te conseguimos el equipo que necesitas, con la experiencia de quien está en el sector desde 2004.</span>
-          <span class="panel-tags"><span>Asesoramiento</span><span>Presupuesto a medida</span><span>Catálogo de venta muy pronto</span></span>
-          <span class="panel-cta">Pedir presupuesto de compra <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        </span>
-      </a>
-    </div>
-  </section>
-
   <!-- BRANDS: official logos, original colours -->
   <section class="brands" aria-labelledby="brandsTitle">
     <p class="kicker reveal" id="brandsTitle">Nuestras marcas</p>
-    <div class="marquee reveal">
-      <ul class="marquee-track">
-        <li><img src="assets/img/brands/logo-hp_SpTV.svg?v=20261004" alt="HP" class="logo-hp" loading="lazy"></li><li><img src="assets/img/brands/logo-dell_SpTV.svg?v=20261004" alt="Dell" class="logo-dell" loading="lazy"></li><li><img src="assets/img/brands/logo-apple_SpTV.svg?v=20261004" alt="Apple" class="logo-apple" loading="lazy"></li><li><img src="assets/img/brands/logo-sandisk_SpTV.svg?v=20261004" alt="SanDisk" class="logo-sandisk" loading="lazy"></li><li><img src="assets/img/brands/logo-samsung_SpTV.svg?v=20261004" alt="Samsung" class="logo-samsung" loading="lazy"></li>
-        <li><img src="assets/img/brands/logo-hp_SpTV.svg?v=20261004" alt="" class="logo-hp" loading="lazy"></li><li><img src="assets/img/brands/logo-dell_SpTV.svg?v=20261004" alt="" class="logo-dell" loading="lazy"></li><li><img src="assets/img/brands/logo-apple_SpTV.svg?v=20261004" alt="" class="logo-apple" loading="lazy"></li><li><img src="assets/img/brands/logo-sandisk_SpTV.svg?v=20261004" alt="" class="logo-sandisk" loading="lazy"></li><li><img src="assets/img/brands/logo-samsung_SpTV.svg?v=20261004" alt="" class="logo-samsung" loading="lazy"></li>
-        <li><img src="assets/img/brands/logo-hp_SpTV.svg?v=20261004" alt="" class="logo-hp" loading="lazy"></li><li><img src="assets/img/brands/logo-dell_SpTV.svg?v=20261004" alt="" class="logo-dell" loading="lazy"></li><li><img src="assets/img/brands/logo-apple_SpTV.svg?v=20261004" alt="" class="logo-apple" loading="lazy"></li><li><img src="assets/img/brands/logo-sandisk_SpTV.svg?v=20261004" alt="" class="logo-sandisk" loading="lazy"></li><li><img src="assets/img/brands/logo-samsung_SpTV.svg?v=20261004" alt="" class="logo-samsung" loading="lazy"></li>
-        <li><img src="assets/img/brands/logo-hp_SpTV.svg?v=20261004" alt="" class="logo-hp" loading="lazy"></li><li><img src="assets/img/brands/logo-dell_SpTV.svg?v=20261004" alt="" class="logo-dell" loading="lazy"></li><li><img src="assets/img/brands/logo-apple_SpTV.svg?v=20261004" alt="" class="logo-apple" loading="lazy"></li><li><img src="assets/img/brands/logo-sandisk_SpTV.svg?v=20261004" alt="" class="logo-sandisk" loading="lazy"></li><li><img src="assets/img/brands/logo-samsung_SpTV.svg?v=20261004" alt="" class="logo-samsung" loading="lazy"></li>
-        <li><img src="assets/img/brands/logo-hp_SpTV.svg?v=20261004" alt="" class="logo-hp" loading="lazy"></li><li><img src="assets/img/brands/logo-dell_SpTV.svg?v=20261004" alt="" class="logo-dell" loading="lazy"></li><li><img src="assets/img/brands/logo-apple_SpTV.svg?v=20261004" alt="" class="logo-apple" loading="lazy"></li><li><img src="assets/img/brands/logo-sandisk_SpTV.svg?v=20261004" alt="" class="logo-sandisk" loading="lazy"></li><li><img src="assets/img/brands/logo-samsung_SpTV.svg?v=20261004" alt="" class="logo-samsung" loading="lazy"></li>
-        <li><img src="assets/img/brands/logo-hp_SpTV.svg?v=20261004" alt="" class="logo-hp" loading="lazy"></li><li><img src="assets/img/brands/logo-dell_SpTV.svg?v=20261004" alt="" class="logo-dell" loading="lazy"></li><li><img src="assets/img/brands/logo-apple_SpTV.svg?v=20261004" alt="" class="logo-apple" loading="lazy"></li><li><img src="assets/img/brands/logo-sandisk_SpTV.svg?v=20261004" alt="" class="logo-sandisk" loading="lazy"></li><li><img src="assets/img/brands/logo-samsung_SpTV.svg?v=20261004" alt="" class="logo-samsung" loading="lazy"></li>
+    <div class="marquee-wrap reveal">
+      <button class="marquee-arrow prev" type="button" aria-label="Ver marcas anteriores" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <div class="marquee">
+        <ul class="marquee-track">
+          <li><img src="assets/img/brands/logo-hp_SpTV.svg?v=20261004" alt="HP" class="logo-hp" loading="lazy"></li><li><img src="assets/img/brands/logo-dell_SpTV.svg?v=20261004" alt="Dell" class="logo-dell" loading="lazy"></li><li><img src="assets/img/brands/logo-apple_SpTV.svg?v=20261004" alt="Apple" class="logo-apple" loading="lazy"></li><li><img src="assets/img/brands/logo-sandisk_SpTV.svg?v=20261004" alt="SanDisk" class="logo-sandisk" loading="lazy"></li><li><img src="assets/img/brands/logo-samsung_SpTV.svg?v=20261004" alt="Samsung" class="logo-samsung" loading="lazy"></li><li><img src="assets/img/brands/logo-tp-link_SpTV.svg?v=20261004" alt="TP-Link" class="logo-tp-link" loading="lazy"></li><li><img src="assets/img/brands/logo-duracell_SpTV.svg?v=20261004" alt="Duracell" class="logo-duracell" loading="lazy"></li><li><img src="assets/img/brands/logo-tesa_SpTV.svg?v=20261004" alt="tesa" class="logo-tesa" loading="lazy"></li><li><img src="assets/img/brands/logo-rosco_SpTV.svg?v=20261004" alt="Rosco" class="logo-rosco" loading="lazy"></li><li><img src="assets/img/brands/logo-ursa_SpTV.svg?v=20261004" alt="Ursa Straps" class="logo-ursa" loading="lazy"></li><li><img src="assets/img/brands/logo-viviana_SpTV.svg?v=20261004" alt="Viviana Sound Solutions" class="logo-viviana" loading="lazy"></li>
+          <li><img src="assets/img/brands/logo-hp_SpTV.svg?v=20261004" alt="" class="logo-hp" loading="lazy"></li><li><img src="assets/img/brands/logo-dell_SpTV.svg?v=20261004" alt="" class="logo-dell" loading="lazy"></li><li><img src="assets/img/brands/logo-apple_SpTV.svg?v=20261004" alt="" class="logo-apple" loading="lazy"></li><li><img src="assets/img/brands/logo-sandisk_SpTV.svg?v=20261004" alt="" class="logo-sandisk" loading="lazy"></li><li><img src="assets/img/brands/logo-samsung_SpTV.svg?v=20261004" alt="" class="logo-samsung" loading="lazy"></li><li><img src="assets/img/brands/logo-tp-link_SpTV.svg?v=20261004" alt="" class="logo-tp-link" loading="lazy"></li><li><img src="assets/img/brands/logo-duracell_SpTV.svg?v=20261004" alt="" class="logo-duracell" loading="lazy"></li><li><img src="assets/img/brands/logo-tesa_SpTV.svg?v=20261004" alt="" class="logo-tesa" loading="lazy"></li><li><img src="assets/img/brands/logo-rosco_SpTV.svg?v=20261004" alt="" class="logo-rosco" loading="lazy"></li><li><img src="assets/img/brands/logo-ursa_SpTV.svg?v=20261004" alt="" class="logo-ursa" loading="lazy"></li><li><img src="assets/img/brands/logo-viviana_SpTV.svg?v=20261004" alt="" class="logo-viviana" loading="lazy"></li>
+          <li><img src="assets/img/brands/logo-hp_SpTV.svg?v=20261004" alt="" class="logo-hp" loading="lazy"></li><li><img src="assets/img/brands/logo-dell_SpTV.svg?v=20261004" alt="" class="logo-dell" loading="lazy"></li><li><img src="assets/img/brands/logo-apple_SpTV.svg?v=20261004" alt="" class="logo-apple" loading="lazy"></li><li><img src="assets/img/brands/logo-sandisk_SpTV.svg?v=20261004" alt="" class="logo-sandisk" loading="lazy"></li><li><img src="assets/img/brands/logo-samsung_SpTV.svg?v=20261004" alt="" class="logo-samsung" loading="lazy"></li><li><img src="assets/img/brands/logo-tp-link_SpTV.svg?v=20261004" alt="" class="logo-tp-link" loading="lazy"></li><li><img src="assets/img/brands/logo-duracell_SpTV.svg?v=20261004" alt="" class="logo-duracell" loading="lazy"></li><li><img src="assets/img/brands/logo-tesa_SpTV.svg?v=20261004" alt="" class="logo-tesa" loading="lazy"></li><li><img src="assets/img/brands/logo-rosco_SpTV.svg?v=20261004" alt="" class="logo-rosco" loading="lazy"></li><li><img src="assets/img/brands/logo-ursa_SpTV.svg?v=20261004" alt="" class="logo-ursa" loading="lazy"></li><li><img src="assets/img/brands/logo-viviana_SpTV.svg?v=20261004" alt="" class="logo-viviana" loading="lazy"></li>
+          <li><img src="assets/img/brands/logo-hp_SpTV.svg?v=20261004" alt="" class="logo-hp" loading="lazy"></li><li><img src="assets/img/brands/logo-dell_SpTV.svg?v=20261004" alt="" class="logo-dell" loading="lazy"></li><li><img src="assets/img/brands/logo-apple_SpTV.svg?v=20261004" alt="" class="logo-apple" loading="lazy"></li><li><img src="assets/img/brands/logo-sandisk_SpTV.svg?v=20261004" alt="" class="logo-sandisk" loading="lazy"></li><li><img src="assets/img/brands/logo-samsung_SpTV.svg?v=20261004" alt="" class="logo-samsung" loading="lazy"></li><li><img src="assets/img/brands/logo-tp-link_SpTV.svg?v=20261004" alt="" class="logo-tp-link" loading="lazy"></li><li><img src="assets/img/brands/logo-duracell_SpTV.svg?v=20261004" alt="" class="logo-duracell" loading="lazy"></li><li><img src="assets/img/brands/logo-tesa_SpTV.svg?v=20261004" alt="" class="logo-tesa" loading="lazy"></li><li><img src="assets/img/brands/logo-rosco_SpTV.svg?v=20261004" alt="" class="logo-rosco" loading="lazy"></li><li><img src="assets/img/brands/logo-ursa_SpTV.svg?v=20261004" alt="" class="logo-ursa" loading="lazy"></li><li><img src="assets/img/brands/logo-viviana_SpTV.svg?v=20261004" alt="" class="logo-viviana" loading="lazy"></li>
         </ul>
+      </div>
+      <button class="marquee-arrow next" type="button" aria-label="Ver más marcas" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
     </div>
   </section>
 
   <!-- ABOUT -->
   <section class="about" id="nosotros" aria-labelledby="aboutTitle">
     <figure class="about-figure reveal">
-      <img src="assets/img/trato-directo-grabando-concierto_SpTV.webp?v=20261004" alt="Manos grabando un concierto con un móvil" loading="lazy" decoding="async" class="parallax" data-speed="0.08">
+      <img src="assets/img/flat-lay-tablet-portatil-movil_SpTV.webp?v=20261004b" alt="Tablet, portátil y móvil vistos desde arriba sobre una mesa" loading="lazy" decoding="async" class="parallax" data-speed="0.08">
     </figure>
     <div class="about-text">
       <p class="kicker reveal">Nuestra forma de trabajar</p>
@@ -211,13 +204,13 @@
   <details class="credits">
     <summary>Créditos de fotos</summary>
     <ul>
-      <li>Quiénes somos: «Recording a concert», por veeterzy. <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">CC0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Recording_a_concert_(Unsplash).jpg" target="_blank" rel="noopener">Wikimedia Commons</a>.</li>
+      <li>Quiénes somos: «Free workspace flat lay laptop». <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">CC0</a>, vía <a href="https://www.rawpixel.com/image/5914717/photo-image-background-phone-public-domain" target="_blank" rel="noopener">rawpixel</a>.</li>
       <li>Contacto: «DiGiCo S21 Mixing Console 2017», por Niranjan Arminius. <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:DiGiCo_S21_Mixing_Console_2017.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada.</li>
     </ul>
   </details>
   <p class="footer-copy">© <span id="year">2026</span> Soporte TV</p>
 </footer>
 
-<script src="main.js?v=20261004" defer></script>
+<script src="main.js?v=20261004b" defer></script>
 </body>
 </html>

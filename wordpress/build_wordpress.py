@@ -119,7 +119,6 @@ scoped += f"""
   {SCOPE} .scrim, {SCOPE} .rent-scrim {{ z-index: 99990; }}
   {SCOPE} .panel {{ z-index: 99991; }}
   {SCOPE} .rent-modal {{ z-index: 99992; }}
-  {SCOPE} .intro {{ min-height: 62vh; }}
   {SCOPE} :where(h1, h2, h3, p, span, label, div) {{
     font-family: inherit; text-transform: none; letter-spacing: normal;
   }}
@@ -150,7 +149,6 @@ js_rep("""  window.scrollTo(0, 0);
 js_rep("""  return window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;""",
        """  return Math.max(0, -catRoot.getBoundingClientRect().top);""", 1)
 js_rep('document.querySelector("header")', 'catRoot.querySelector("header")')
-js_rep('document.querySelector(".brand-header img")', 'catRoot.querySelector(".brand-header img")', 1)
 js_rep('document.querySelectorAll("[data-back]")', 'catRoot.querySelectorAll("[data-back]")')
 
 # Dentro del Shadow DOM, las búsquedas de elementos se hacen en la "burbuja"
