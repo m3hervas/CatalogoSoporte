@@ -9,13 +9,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0A1222;
-    --bg-deep: #111C33;
+    --bg: #F4F6FA;
+    --bg-deep: #FFFFFF;
+    --field-line: rgba(15,23,42,0.16);
+    --close-bg: #0F172A;
     --panel: #FFFFFF;
     --panel-line: #E4E8ED;
     --ink: #1B222B;
     --ink-soft: #5C6672;
-    --paper-shadow: rgba(0,0,0,0.35);
+    --paper-shadow: rgba(15,23,42,0.10);
     --accent: #2B79C2;
     --accent-soft: #D9E7F5;
 
@@ -51,11 +53,12 @@
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
   }
+  body { color: #0F172A; }
 
   body {
     min-height: 100%;
-    background: radial-gradient(1200px 640px at 8% -12%, rgba(61,139,255,0.20), transparent 60%),
-                radial-gradient(900px 560px at 100% 112%, rgba(99,102,241,0.16), transparent 60%),
+    background: radial-gradient(1200px 640px at 8% -12%, rgba(61,139,255,0.10), transparent 60%),
+                radial-gradient(900px 560px at 100% 112%, rgba(99,102,241,0.07), transparent 60%),
                 var(--bg);
     background-attachment: fixed;
     display: flex;
@@ -124,7 +127,7 @@
     font-size: clamp(30px, 6vw, 44px);
     line-height: 1.05;
     margin: 0;
-    color: #F5F7FA;
+    color: #0F172A;
   }
 
   header p {
@@ -215,7 +218,7 @@
     align-self: flex-start;
     background: transparent;
     border: none;
-    color: #C7CFD8;
+    color: #334155;
     font-family: 'Inter', sans-serif;
     font-size: 13.5px;
     font-weight: 600;
@@ -225,7 +228,7 @@
   }
 
   .back-btn { transition: color 150ms ease, transform 150ms var(--ease-out); }
-  @media (hover: hover) and (pointer: fine) { .back-btn:hover { color: #F5F7FA; transform: translateX(-2px); } }
+  @media (hover: hover) and (pointer: fine) { .back-btn:hover { color: #0F172A; transform: translateX(-2px); } }
   .back-btn:active { transform: scale(0.97); }
 
   .filter-row {
@@ -260,8 +263,8 @@
     font-family: 'Inter', sans-serif;
     font-size: 13.5px;
     font-weight: 600;
-    color: #F5F7FA;
-    background: var(--bg-deep) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23C7CFD8" stroke-width="2"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>') no-repeat right 14px center;
+    color: #0F172A;
+    background: var(--bg-deep) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23475569" stroke-width="2"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>') no-repeat right 14px center;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23C7CFD8" stroke-width="2"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>') no-repeat right 14px center;
     background-size: 16px;
     border: 1.5px solid rgba(255,255,255,0.18);
     border-radius: 10px;
@@ -282,8 +285,8 @@
   }
 
   .filter-select option {
-    background: var(--bg-deep);
-    color: #F5F7FA;
+    background: #FFFFFF;
+    color: #0F172A;
   }
 
 
@@ -388,7 +391,7 @@
   }
 
   .close-btn {
-    background: var(--bg-deep);
+    background: var(--close-bg);
     color: #F5F7FA;
     border: none;
     width: 34px;
@@ -669,7 +672,7 @@
   .storage-empty {
     grid-column: 1 / -1;
     text-align: center;
-    color: #BFD3E8;
+    color: #475569;
     font-size: 14px;
     padding: 30px 0;
   }
@@ -801,13 +804,13 @@
   /* ================= Professional theme (archetype "Mouse-Reactive Gradient", brand blue) ================= */
   :root {
     --accent: #3D8BFF;
-    --accent-2: #8CC2FF;
-    --line: rgba(255,255,255,0.09);
-    --mute: #93A6BF;
+    --accent-2: #2B6FD6;
+    --line: rgba(15,23,42,0.10);
+    --mute: #64748B;
     --font-display: 'Instrument Serif', Georgia, 'Times New Roman', serif;
   }
 
-  .bg-power { opacity: 0.10; }
+  .bg-power { opacity: 0.05; }
 
   .scroll-progress {
     position: fixed;
@@ -835,9 +838,15 @@
     border-radius: 18px;
     border: 1px solid transparent;
     transition: background-color 250ms ease, border-color 250ms ease, box-shadow 250ms ease;
+    background: rgba(255,255,255,0.86);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    backdrop-filter: blur(16px) saturate(160%);
+    border-color: var(--line);
+    box-shadow: 0 10px 30px rgba(15,23,42,0.08);
   }
+  [data-theme="dark"] .site-nav { background: none; -webkit-backdrop-filter: none; backdrop-filter: none; border-color: transparent; box-shadow: none; }
 
-  .site-nav.is-solid {
+  [data-theme="dark"] .site-nav.is-solid {
     background: rgba(9,15,28,0.72);
     -webkit-backdrop-filter: blur(16px) saturate(160%);
     backdrop-filter: blur(16px) saturate(160%);
@@ -849,7 +858,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    color: #F5F7FA;
+    color: #0F172A;
     text-decoration: none;
     font-weight: 700;
     font-size: 15px;
@@ -864,7 +873,7 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    color: #C9D4E3;
+    color: #334155;
     text-decoration: none;
     font: 500 14px/1 'Inter', sans-serif;
     padding: 11px 13px;
@@ -876,7 +885,7 @@
   }
 
   @media (hover: hover) and (pointer: fine) {
-    .nav-link:hover { color: #FFFFFF; background: rgba(255,255,255,0.06); }
+    .nav-link:hover { color: #0F172A; background: rgba(15,23,42,0.05); }
   }
 
   .nav-link:focus-visible, .nav-dropdown a:focus-visible, .nav-brand:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 2px; }
@@ -898,11 +907,11 @@
     gap: 2px;
     padding: 8px;
     border-radius: 16px;
-    background: rgba(12,20,38,0.97);
+    background: #FFFFFF;
     -webkit-backdrop-filter: blur(16px);
     backdrop-filter: blur(16px);
     border: 1px solid var(--line);
-    box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+    box-shadow: 0 24px 60px rgba(15,23,42,0.14);
     opacity: 0;
     pointer-events: none;
     transform: translate(-50%, -6px) scale(0.98);
@@ -916,7 +925,7 @@
     display: block;
     padding: 11px 12px;
     border-radius: 10px;
-    color: #E3EAF4;
+    color: #0F172A;
     text-decoration: none;
     font: 600 14px/1.25 'Inter', sans-serif;
     transition: background-color 150ms ease;
@@ -925,7 +934,7 @@
   .nav-dropdown a small { display: block; margin-top: 3px; color: var(--mute); font-size: 12px; font-weight: 400; }
 
   @media (hover: hover) and (pointer: fine) {
-    .nav-dropdown a:hover { background: rgba(61,139,255,0.12); }
+    .nav-dropdown a:hover { background: rgba(61,139,255,0.08); }
   }
 
   .nav-toggle {
@@ -934,7 +943,7 @@
     height: 42px;
     border-radius: 12px;
     border: 1px solid var(--line);
-    background: rgba(255,255,255,0.04);
+    background: #FFFFFF;
     cursor: pointer;
     position: relative;
   }
@@ -944,7 +953,7 @@
     left: 12px; right: 12px;
     height: 2px;
     border-radius: 2px;
-    background: #F5F7FA;
+    background: #0F172A;
     transition: transform 200ms var(--ease-out), top 200ms var(--ease-out);
   }
 
@@ -955,7 +964,7 @@
 
   @media (max-width: 860px) {
     .nav-toggle { display: block; }
-    .site-nav { background: rgba(9,15,28,0.72); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); border-color: var(--line); }
+    [data-theme="dark"] .site-nav { background: rgba(9,15,28,0.72); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); border-color: var(--line); }
     .nav-menu {
       position: absolute;
       top: calc(100% + 8px);
@@ -965,9 +974,9 @@
       gap: 2px;
       padding: 10px;
       border-radius: 16px;
-      background: #0C1426;
+      background: #FFFFFF;
       border: 1px solid var(--line);
-      box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+      box-shadow: 0 24px 60px rgba(15,23,42,0.14);
       opacity: 0;
       pointer-events: none;
       transform: translateY(-6px);
@@ -984,7 +993,7 @@
       transform: none;
       box-shadow: none;
       border: 0;
-      background: rgba(255,255,255,0.03);
+      background: rgba(15,23,42,0.03);
       display: none;
       opacity: 1;
       pointer-events: auto;
@@ -995,10 +1004,10 @@
 
   /* Intro: dark card with a gradient that follows the pointer */
   .intro-card {
-    background: linear-gradient(160deg, #111D36 0%, #0B1427 100%);
-    color: #F5F7FA;
+    background: linear-gradient(160deg, #FFFFFF 0%, #EEF3FB 100%);
+    color: #0F172A;
     border: 1px solid var(--line);
-    box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+    box-shadow: 0 30px 70px rgba(15,23,42,0.10);
     overflow: hidden;
     isolation: isolate;
   }
@@ -1008,8 +1017,8 @@
     inset: -20%;
     z-index: -1;
     background:
-      radial-gradient(520px circle at var(--mx, 72%) var(--my, 38%), rgba(61,139,255,0.38), transparent 60%),
-      radial-gradient(640px circle at calc(var(--mx, 72%) - 28%) calc(var(--my, 38%) + 22%), rgba(99,102,241,0.24), transparent 62%);
+      radial-gradient(520px circle at var(--mx, 72%) var(--my, 38%), rgba(61,139,255,0.20), transparent 60%),
+      radial-gradient(640px circle at calc(var(--mx, 72%) - 28%) calc(var(--my, 38%) + 22%), rgba(99,102,241,0.12), transparent 62%);
     filter: blur(28px);
     pointer-events: none;
   }
@@ -1022,11 +1031,11 @@
     padding: 6px 12px;
     border-radius: 999px;
     border: 1px solid var(--line);
-    background: rgba(255,255,255,0.04);
+    background: rgba(15,23,42,0.03);
     font-size: 12.5px !important;
     font-weight: 600;
     letter-spacing: 0.04em;
-    color: #C9D4E3 !important;
+    color: #334155 !important;
   }
 
   .intro-eyebrow .dot { width: 7px; height: 7px; border-radius: 50%; background: #34D399; box-shadow: 0 0 0 4px rgba(52,211,153,0.18); }
@@ -1040,9 +1049,9 @@
     margin-bottom: 18px;
   }
 
-  .intro-card h2 em { font-style: italic; color: var(--accent-2); }
+  .intro-card h2 em { font-style: italic; color: #2B6FD6; }
 
-  .intro-card p { color: #A9B8CC; }
+  .intro-card p { color: #475569; }
 
   .intro-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
 
@@ -1052,14 +1061,14 @@
     font: 600 17px/1 'Inter', sans-serif;
     padding: 15px 30px;
     border-radius: 999px;
-    border: 1px solid rgba(255,255,255,0.18);
-    color: #F5F7FA;
+    border: 1px solid rgba(15,23,42,0.18);
+    color: #0F172A;
     text-decoration: none;
     transition: border-color 150ms ease, background-color 150ms ease, transform 160ms var(--ease-out);
   }
 
   @media (hover: hover) and (pointer: fine) {
-    .ghost-btn:hover { border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.05); }
+    .ghost-btn:hover { border-color: rgba(15,23,42,0.35); background: rgba(15,23,42,0.04); }
   }
 
   .ghost-btn:active { transform: scale(0.97); }
@@ -1069,7 +1078,7 @@
   }
 
   .intro-logo {
-    filter: drop-shadow(0 30px 60px rgba(61,139,255,0.35));
+    filter: drop-shadow(0 24px 40px rgba(61,139,255,0.25));
     animation: logo-float 7s ease-in-out infinite;
   }
 
@@ -1083,7 +1092,8 @@
   /* Catalog header */
   .eyebrow { color: var(--accent-2); letter-spacing: 0.14em; font-size: 12px; }
   h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(42px, 7vw, 66px); letter-spacing: -0.01em; }
-  header p { color: #A9B8CC; }
+  header p { color: #475569; }
+  header .eyebrow { color: #475569; }
 
   /* Header inside a category: only the category name, large and centred at the top */
   header.in-category { width: 100%; max-width: none; margin: 0 auto 22px; }
@@ -1095,30 +1105,30 @@
     font-size: clamp(44px, 7vw, 84px);
     line-height: 1;
     letter-spacing: -0.04em;
-    color: #F5F7FA;
+    color: #0F172A;
   }
-  [data-theme="light"] header.in-category h1 { color: #0F172A; }
-  [data-theme="light"] .back-btn { color: #334155; background: #FFFFFF; border-color: rgba(15,23,42,0.12); }
-  @media (hover: hover) and (pointer: fine) { [data-theme="light"] .back-btn:hover { color: #0F172A; } }
+  [data-theme="dark"] header.in-category h1 { color: #F5F7FA; }
+  [data-theme="dark"] .back-btn { color: #C7CFD8; background: rgba(255,255,255,0.04); border-color: var(--line); }
+  @media (hover: hover) and (pointer: fine) { [data-theme="dark"] .back-btn:hover { color: #F5F7FA; } }
 
   /* Category cards: dark glass */
   .category-card {
     width: 200px;
     border-radius: 18px;
-    background: rgba(255,255,255,0.035);
-    border: 1px solid var(--line);
-    box-shadow: none;
-    -webkit-backdrop-filter: blur(6px);
-    backdrop-filter: blur(6px);
+    background: #FFFFFF;
+    border: 1px solid rgba(15,23,42,0.08);
+    box-shadow: 0 10px 26px rgba(15,23,42,0.06);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
   }
 
-  .category-label { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 16px; letter-spacing: -0.01em; color: #F1F5FB; }
+  .category-label { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 16px; letter-spacing: -0.01em; color: #0F172A; }
 
   @media (hover: hover) and (pointer: fine) {
     .category-card:hover {
-      border-color: rgba(61,139,255,0.55);
-      background: rgba(61,139,255,0.08);
-      box-shadow: 0 0 0 1px rgba(61,139,255,0.2), 0 20px 44px rgba(0,0,0,0.35);
+      border-color: rgba(61,139,255,0.5);
+      background: #FFFFFF;
+      box-shadow: 0 0 0 1px rgba(61,139,255,0.18), 0 18px 40px rgba(15,23,42,0.12);
     }
   }
 
@@ -1129,13 +1139,13 @@
   .storage-info h3 { font-family: 'Inter', sans-serif; font-weight: 700; letter-spacing: -0.015em; }
 
   /* Filters and back button */
-  .filter-label { color: #E6EEF8; letter-spacing: 0.08em; font-size: 11.5px; text-shadow: 0 1px 10px rgba(0,0,0,0.7); }
-  .filter-select { background-color: rgba(10,18,34,0.62); border-color: rgba(255,255,255,0.16); border-radius: 12px; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+  .filter-label { color: #475569; letter-spacing: 0.08em; font-size: 11.5px; text-shadow: none; }
+  .filter-select { background-color: #FFFFFF; border-color: var(--field-line); border-radius: 12px; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
   .back-btn {
     padding: 8px 14px;
-    border: 1px solid var(--line);
+    border: 1px solid rgba(15,23,42,0.12);
     border-radius: 999px;
-    background: rgba(255,255,255,0.04);
+    background: #FFFFFF;
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
   }
@@ -1146,18 +1156,18 @@
     margin-top: 80px;
     padding: 48px clamp(20px, 4vw, 48px) 28px;
     border-top: 1px solid var(--line);
-    color: #A9B8CC;
+    color: #475569;
     text-align: left;
     font-size: 14px;
   }
 
   .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
-  .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; color: #F5F7FA; font-size: 17px; }
+  .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; color: #0F172A; font-size: 17px; }
   .footer-brand p { max-width: 42ch; line-height: 1.6; margin: 0 0 18px; }
   .footer-col { display: flex; flex-direction: column; gap: 10px; }
-  .footer-col h4 { margin: 0 0 6px; color: #F5F7FA; font: 600 13px 'Inter', sans-serif; letter-spacing: 0.08em; text-transform: uppercase; }
-  .footer-col a { color: #A9B8CC; text-decoration: none; transition: color 150ms ease; }
-  @media (hover: hover) and (pointer: fine) { .footer-col a:hover { color: #FFFFFF; } }
+  .footer-col h4 { margin: 0 0 6px; color: #0F172A; font: 600 13px 'Inter', sans-serif; letter-spacing: 0.08em; text-transform: uppercase; }
+  .footer-col a { color: #475569; text-decoration: none; transition: color 150ms ease; }
+  @media (hover: hover) and (pointer: fine) { .footer-col a:hover { color: #0F172A; } }
   .footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--mute); font-size: 12.5px; }
 
   @media (max-width: 720px) {
@@ -1183,14 +1193,14 @@
     gap: 16px;
     padding: 20px;
     border-radius: 18px;
-    background: rgba(12,20,38,0.82);
+    background: rgba(255,255,255,0.94);
     border: 1px solid var(--line);
     -webkit-backdrop-filter: blur(14px);
     backdrop-filter: blur(14px);
-    box-shadow: 0 18px 44px rgba(0,0,0,0.3);
+    box-shadow: 0 18px 44px rgba(15,23,42,0.08);
   }
 
-  .filter-panel-title { margin: 0; color: #FFFFFF; font: 700 12px 'Inter', sans-serif; letter-spacing: 0.14em; text-transform: uppercase; }
+  .filter-panel-title { margin: 0; color: #0F172A; font: 700 12px 'Inter', sans-serif; letter-spacing: 0.14em; text-transform: uppercase; }
 
   .filter-panel .filter-row,
   .filter-panel .filter-row:last-of-type {
@@ -1208,13 +1218,13 @@
     background: none;
     border: 0;
     padding: 4px 0;
-    color: #A9C9F5;
+    color: #2B6FD6;
     font: 600 13px 'Inter', sans-serif;
     cursor: pointer;
     transition: color 150ms ease;
   }
 
-  @media (hover: hover) and (pointer: fine) { .filter-reset:hover { color: #FFFFFF; } }
+  @media (hover: hover) and (pointer: fine) { .filter-reset:hover { color: #0F172A; } }
 
   /* 4 products per row on desktop; cards adapt to the space available */
   .catalog-layout .storage-grid {
@@ -1277,8 +1287,8 @@
   /* Featured models slider */
   .featured { width: min(1440px, 100%); margin: 0 0 72px; }
   .featured-head { text-align: center; margin-bottom: 26px; }
-  .featured-head h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(36px, 5vw, 54px); line-height: 1.05; color: #FFFFFF; margin: 0 0 10px; }
-  .featured-head p:last-child { color: #A9B8CC; margin: 0; font-size: 15.5px; }
+  .featured-head h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(36px, 5vw, 54px); line-height: 1.05; color: #0F172A; margin: 0 0 10px; }
+  .featured-head p:last-child { color: #475569; margin: 0; font-size: 15.5px; }
 
   .slider {
     position: relative;
@@ -1286,7 +1296,7 @@
     border-radius: 24px;
     overflow: hidden;
     border: 1px solid var(--line);
-    box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+    box-shadow: 0 30px 70px rgba(15,23,42,0.18);
     background: #0B1427;
     outline: none;
     touch-action: pan-y;
@@ -1447,7 +1457,7 @@
     transition: color 150ms ease;
   }
 
-  @media (hover: hover) and (pointer: fine) { .credits-link:hover { color: #FFFFFF; } }
+  @media (hover: hover) and (pointer: fine) { .credits-link:hover { color: #0F172A; } }
 
   .credits-scrim { z-index: 30; }
 
@@ -1460,10 +1470,10 @@
     overflow-y: auto;
     padding: 22px 24px 20px;
     border-radius: 18px;
-    background: #0E1830;
+    background: #FFFFFF;
     border: 1px solid var(--line);
-    box-shadow: 0 30px 80px rgba(0,0,0,0.55);
-    color: #A9B8CC;
+    box-shadow: 0 30px 80px rgba(15,23,42,0.18);
+    color: #475569;
     font-size: 12.5px;
     line-height: 1.6;
     z-index: 31;
@@ -1475,11 +1485,11 @@
 
   .credits-modal.open { opacity: 1; pointer-events: auto; transform: translate(-50%, -50%) scale(1); }
   .credits-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
-  .credits-modal h2 { margin: 0; color: #FFFFFF; font: 700 16px 'Inter', sans-serif; letter-spacing: -0.01em; }
-  .credits-modal p { margin: 14px 0 6px; color: #E3EAF4; font-weight: 600; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
+  .credits-modal h2 { margin: 0; color: #0F172A; font: 700 16px 'Inter', sans-serif; letter-spacing: -0.01em; }
+  .credits-modal p { margin: 14px 0 6px; color: #0F172A; font-weight: 600; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
   .credits-modal p.credits-note { text-transform: none; letter-spacing: 0; font-weight: 400; color: var(--mute); margin-top: 16px; }
   .credits-modal ul { margin: 0; padding-left: 18px; }
-  .credits-modal a { color: #A9C9F5; }
+  .credits-modal a { color: #2B6FD6; }
 
   /* Reveal on scroll (content stays visible if JS doesn't run: only hidden once JS is ready) */
   #pageContent.js-ready .reveal {
@@ -1501,7 +1511,7 @@
   /* ================= Theme switch ================= */
   .nav-menu { order: 1; margin-left: auto; }
   .theme-toggle { order: 2; }
-  .nav-toggle { order: 3; }
+  .nav-toggle { order: 3; color: #0F172A; }
 
   .theme-toggle {
     width: 42px;
@@ -1509,8 +1519,8 @@
     margin-left: 8px;
     border-radius: 12px;
     border: 1px solid var(--line);
-    background: rgba(255,255,255,0.04);
-    color: #F5F7FA;
+    background: #FFFFFF;
+    color: #0F172A;
     display: grid;
     place-items: center;
     cursor: pointer;
@@ -1520,149 +1530,144 @@
 
   .theme-toggle:active { transform: scale(0.94); }
   .theme-toggle:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 2px; }
-  .theme-toggle .icon-moon { display: none; }
-  [data-theme="light"] .theme-toggle .icon-moon { display: block; }
-  [data-theme="light"] .theme-toggle .icon-sun { display: none; }
+  .theme-toggle .icon-moon { display: block; }
+  [data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+  .theme-toggle .icon-sun { display: none; }
+  [data-theme="dark"] .theme-toggle .icon-sun { display: block; }
 
   @media (max-width: 860px) {
     .theme-toggle { margin-left: auto; margin-right: 8px; }
   }
 
-  /* ================= Light theme (default) ================= */
-  [data-theme="light"] {
-    --bg: #F4F6FA;
-    --bg-deep: #FFFFFF;
-    --line: rgba(15,23,42,0.10);
-    --mute: #64748B;
-    --accent-2: #2B6FD6;
-    --paper-shadow: rgba(15,23,42,0.10);
+  /* ================= Dark theme (optional; light is the base) ================= */
+  [data-theme="dark"] {
+    --bg: #0A1222;
+    --bg-deep: #111C33;
+    --line: rgba(255,255,255,0.09);
+    --mute: #93A6BF;
+    --accent-2: #8CC2FF;
+    --paper-shadow: rgba(0,0,0,0.35);
+    --field-line: rgba(255,255,255,0.16);
+    --close-bg: var(--bg-deep);
   }
 
-  [data-theme="light"] body {
-    background: radial-gradient(1200px 640px at 8% -12%, rgba(61,139,255,0.10), transparent 60%),
-                radial-gradient(900px 560px at 100% 112%, rgba(99,102,241,0.07), transparent 60%),
-                var(--bg);
-    color: #0F172A;
-  }
+  [data-theme="dark"] body { background: radial-gradient(1200px 640px at 8% -12%, rgba(61,139,255,0.20), transparent 60%),
+                radial-gradient(900px 560px at 100% 112%, rgba(99,102,241,0.16), transparent 60%),
+                var(--bg); color: var(--panel); }
 
-  [data-theme="light"] .bg-power { opacity: 0.05; }
+  [data-theme="dark"] .bg-power { opacity: 0.10; }
 
   /* Navigation: always a light frosted bar so it reads over banners */
-  [data-theme="light"] .site-nav {
-    background: rgba(255,255,255,0.86);
-    -webkit-backdrop-filter: blur(16px) saturate(160%);
-    backdrop-filter: blur(16px) saturate(160%);
-    border-color: var(--line);
-    box-shadow: 0 10px 30px rgba(15,23,42,0.08);
-  }
-  [data-theme="light"] .nav-brand { color: #0F172A; }
-  [data-theme="light"] .nav-link { color: #334155; }
-  [data-theme="light"] .nav-dropdown { background: #FFFFFF; box-shadow: 0 24px 60px rgba(15,23,42,0.14); }
-  [data-theme="light"] .nav-dropdown a { color: #0F172A; }
-  [data-theme="light"] .theme-toggle, [data-theme="light"] .nav-toggle { background: #FFFFFF; color: #0F172A; }
-  [data-theme="light"] .nav-toggle span { background: #0F172A; }
+  [data-theme="dark"] .nav-brand { color: #F5F7FA; }
+  [data-theme="dark"] .nav-link { color: #C9D4E3; }
+  [data-theme="dark"] .nav-dropdown { background: rgba(12,20,38,0.97); box-shadow: 0 24px 60px rgba(0,0,0,0.5); }
+  [data-theme="dark"] .nav-dropdown a { color: #E3EAF4; }
+  [data-theme="dark"] .theme-toggle { background: rgba(255,255,255,0.04); color: #F5F7FA; }
+  [data-theme="dark"] .nav-toggle { background: rgba(255,255,255,0.04); color: revert; }
+  [data-theme="dark"] .nav-toggle span { background: #F5F7FA; }
 
   @media (hover: hover) and (pointer: fine) {
-    [data-theme="light"] .nav-link:hover { color: #0F172A; background: rgba(15,23,42,0.05); }
-    [data-theme="light"] .nav-dropdown a:hover { background: rgba(61,139,255,0.08); }
-    [data-theme="light"] .theme-toggle:hover { background: #F1F5FB; }
+    [data-theme="dark"] .nav-link:hover { color: #FFFFFF; background: rgba(255,255,255,0.06); }
+    [data-theme="dark"] .nav-dropdown a:hover { background: rgba(61,139,255,0.12); }
+    .theme-toggle:hover { background: #F1F5FB; }
+    [data-theme="dark"] .theme-toggle:hover { background: rgba(255,255,255,0.04); }
   }
 
   @media (max-width: 860px) {
-    [data-theme="light"] .nav-menu { background: #FFFFFF; box-shadow: 0 24px 60px rgba(15,23,42,0.14); }
-    [data-theme="light"] .nav-dropdown { background: rgba(15,23,42,0.03); box-shadow: none; }
+    [data-theme="dark"] .nav-menu { background: #0C1426; box-shadow: 0 24px 60px rgba(0,0,0,0.5); }
+    [data-theme="dark"] .nav-dropdown { background: rgba(255,255,255,0.03); box-shadow: none; }
   }
 
   /* Intro card */
-  [data-theme="light"] .intro-card {
-    background: linear-gradient(160deg, #FFFFFF 0%, #EEF3FB 100%);
-    color: #0F172A;
-    box-shadow: 0 30px 70px rgba(15,23,42,0.10);
+  [data-theme="dark"] .intro-card {
+    background: linear-gradient(160deg, #111D36 0%, #0B1427 100%);
+    color: #F5F7FA;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.45);
   }
-  [data-theme="light"] .intro-glow {
-    background:
-      radial-gradient(520px circle at var(--mx, 72%) var(--my, 38%), rgba(61,139,255,0.20), transparent 60%),
-      radial-gradient(640px circle at calc(var(--mx, 72%) - 28%) calc(var(--my, 38%) + 22%), rgba(99,102,241,0.12), transparent 62%);
-  }
-  [data-theme="light"] .intro-card p { color: #475569; }
-  [data-theme="light"] .intro-eyebrow { color: #334155 !important; background: rgba(15,23,42,0.03); }
-  [data-theme="light"] .intro-card h2 em { color: #2B6FD6; }
-  [data-theme="light"] .ghost-btn { color: #0F172A; border-color: rgba(15,23,42,0.18); }
-  [data-theme="light"] .intro-logo { filter: drop-shadow(0 24px 40px rgba(61,139,255,0.25)); }
+  [data-theme="dark"] .intro-glow { background: radial-gradient(520px circle at var(--mx, 72%) var(--my, 38%), rgba(61,139,255,0.38), transparent 60%),
+      radial-gradient(640px circle at calc(var(--mx, 72%) - 28%) calc(var(--my, 38%) + 22%), rgba(99,102,241,0.24), transparent 62%); }
+  [data-theme="dark"] .intro-card p { color: #A9B8CC; }
+  [data-theme="dark"] .intro-eyebrow { color: #C9D4E3 !important; background: rgba(255,255,255,0.04); }
+  [data-theme="dark"] .intro-card h2 em { color: var(--accent-2); }
+  [data-theme="dark"] .ghost-btn { color: #F5F7FA; border-color: rgba(255,255,255,0.18); }
+  [data-theme="dark"] .intro-logo { filter: drop-shadow(0 30px 60px rgba(61,139,255,0.35)); }
   @media (hover: hover) and (pointer: fine) {
-    [data-theme="light"] .ghost-btn:hover { background: rgba(15,23,42,0.04); border-color: rgba(15,23,42,0.35); }
+    [data-theme="dark"] .ghost-btn:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.4); }
   }
 
   /* Catalogue header on the landing page (inside a category it stays white over the banner) */
-  [data-theme="light"] h1 { color: #0F172A; }
-  [data-theme="light"] header p { color: #475569; }
+  [data-theme="dark"] h1 { color: #F5F7FA; }
+  [data-theme="dark"] header p { color: #A9B8CC; }
+  [data-theme="dark"] header .eyebrow { color: var(--accent-2); }
 
   /* Category cards */
-  [data-theme="light"] .category-card {
-    background: #FFFFFF;
-    border-color: rgba(15,23,42,0.08);
-    box-shadow: 0 10px 26px rgba(15,23,42,0.06);
-    -webkit-backdrop-filter: none;
-    backdrop-filter: none;
+  [data-theme="dark"] .category-card {
+    background: rgba(255,255,255,0.035);
+    border-color: var(--line);
+    box-shadow: none;
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
   }
-  [data-theme="light"] .category-label { color: #0F172A; }
+  [data-theme="dark"] .category-label { color: #F1F5FB; }
   @media (hover: hover) and (pointer: fine) {
-    [data-theme="light"] .category-card:hover {
-      background: #FFFFFF;
-      border-color: rgba(61,139,255,0.5);
-      box-shadow: 0 0 0 1px rgba(61,139,255,0.18), 0 18px 40px rgba(15,23,42,0.12);
+    [data-theme="dark"] .category-card:hover {
+      background: rgba(61,139,255,0.08);
+      border-color: rgba(61,139,255,0.55);
+      box-shadow: 0 0 0 1px rgba(61,139,255,0.2), 0 20px 44px rgba(0,0,0,0.35);
     }
   }
 
   /* Featured slider heading (the slides keep their dark photo overlay) */
-  [data-theme="light"] .featured-head h2 { color: #0F172A; }
-  [data-theme="light"] .featured-head p:last-child { color: #475569; }
-  [data-theme="light"] .slider { box-shadow: 0 30px 70px rgba(15,23,42,0.18); }
+  [data-theme="dark"] .featured-head h2 { color: #FFFFFF; }
+  [data-theme="dark"] .featured-head p:last-child { color: #A9B8CC; }
+  [data-theme="dark"] .slider { box-shadow: 0 30px 80px rgba(0,0,0,0.45); }
 
   /* Filters */
-  [data-theme="light"] .filter-panel { background: rgba(255,255,255,0.94); box-shadow: 0 18px 44px rgba(15,23,42,0.08); }
-  [data-theme="light"] .filter-panel-title { color: #0F172A; }
-  [data-theme="light"] .filter-label { color: #475569; text-shadow: none; }
-  [data-theme="light"] .filter-select {
-    color: #0F172A;
-    background-color: #FFFFFF;
-    border-color: rgba(15,23,42,0.16);
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23475569" stroke-width="2"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+  [data-theme="dark"] .filter-panel { background: rgba(12,20,38,0.82); box-shadow: 0 18px 44px rgba(0,0,0,0.3); }
+  [data-theme="dark"] .filter-panel-title { color: #FFFFFF; }
+  [data-theme="dark"] .filter-label { color: #E6EEF8; text-shadow: 0 1px 10px rgba(0,0,0,0.7); }
+  [data-theme="dark"] .filter-select {
+    color: #F5F7FA;
+    background-color: rgba(10,18,34,0.62);
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23C7CFD8" stroke-width="2"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>');
   }
-  [data-theme="light"] .filter-select option { background: #FFFFFF; color: #0F172A; }
-  [data-theme="light"] .filter-reset { color: #2B6FD6; }
-  [data-theme="light"] .storage-empty { color: #475569; }
+  [data-theme="dark"] .filter-select option { background: var(--bg-deep); color: #F5F7FA; }
+  [data-theme="dark"] .filter-reset { color: #A9C9F5; }
+  [data-theme="dark"] .storage-empty { color: #BFD3E8; }
 
   /* Sheets and dialogs */
-  [data-theme="light"] .close-btn { background: #0F172A; }
-  [data-theme="light"] .credits-modal { background: #FFFFFF; color: #475569; box-shadow: 0 30px 80px rgba(15,23,42,0.18); }
-  [data-theme="light"] .credits-modal h2, [data-theme="light"] .credits-modal p { color: #0F172A; }
-  [data-theme="light"] .credits-modal p.credits-note { color: var(--mute); }
-  [data-theme="light"] .credits-modal a { color: #2B6FD6; }
+  [data-theme="dark"] .credits-modal { background: #0E1830; color: #A9B8CC; box-shadow: 0 30px 80px rgba(0,0,0,0.55); }
+  [data-theme="dark"] .credits-modal h2 { color: #FFFFFF; }
+  [data-theme="dark"] .credits-modal p { color: #E3EAF4; }
+  [data-theme="dark"] .credits-modal p.credits-note { color: var(--mute); }
+  [data-theme="dark"] .credits-modal a { color: #A9C9F5; }
 
   /* Footer */
-  [data-theme="light"] .site-footer { color: #475569; }
-  [data-theme="light"] .footer-logo, [data-theme="light"] .footer-col h4 { color: #0F172A; }
-  [data-theme="light"] .footer-col a { color: #475569; }
+  [data-theme="dark"] .site-footer { color: #A9B8CC; }
+  [data-theme="dark"] .footer-logo { color: #F5F7FA; }
+  [data-theme="dark"] .footer-col h4 { color: #F5F7FA; }
+  [data-theme="dark"] .footer-col a { color: #A9B8CC; }
   @media (hover: hover) and (pointer: fine) {
-    [data-theme="light"] .footer-col a:hover, [data-theme="light"] .credits-link:hover, [data-theme="light"] .filter-reset:hover { color: #0F172A; }
+    [data-theme="dark"] .footer-col a:hover { color: #FFFFFF; }
+    [data-theme="dark"] .credits-link:hover { color: #FFFFFF; }
+    [data-theme="dark"] .filter-reset:hover { color: #FFFFFF; }
   }
 
   /* --- Product cards: white photo area, transparent label area --- */
   .catalog-layout .storage-card { background: transparent; }
   .catalog-layout .storage-photo { background: #FFFFFF; }
   /* Dark mode: light text on the page background */
-  .catalog-layout .storage-info { color: #F1F5FB; }
-  .catalog-layout .storage-info h3 { color: #F1F5FB; }
-  .catalog-layout .storage-info .brand-name { color: #A9B7C8; }
-  .catalog-layout .model-card .card-hint { color: #8FA0B5; }
-  .catalog-layout .storage-icon { background: rgba(61,139,255,0.16); color: #D6E6FF; }
+  .catalog-layout .storage-info { color: var(--ink); }
+  .catalog-layout .storage-info h3 { color: var(--ink); }
+  .catalog-layout .storage-info .brand-name { color: var(--ink-soft); }
+  .catalog-layout .model-card .card-hint { color: var(--ink-soft); }
+  .catalog-layout .storage-icon { background: var(--accent-soft); color: #1B4A78; }
   /* Light mode: dark text */
-  [data-theme="light"] .catalog-layout .storage-info,
-  [data-theme="light"] .catalog-layout .storage-info h3 { color: var(--ink); }
-  [data-theme="light"] .catalog-layout .storage-info .brand-name { color: var(--ink-soft); }
-  [data-theme="light"] .catalog-layout .model-card .card-hint { color: var(--ink-soft); }
-  [data-theme="light"] .catalog-layout .storage-icon { background: var(--accent-soft); color: #1B4A78; }
+  [data-theme="dark"] .catalog-layout .storage-info { color: #F1F5FB; }
+  [data-theme="dark"] .catalog-layout .storage-info h3 { color: #F1F5FB; }
+  [data-theme="dark"] .catalog-layout .storage-info .brand-name { color: #A9B7C8; }
+  [data-theme="dark"] .catalog-layout .model-card .card-hint { color: #8FA0B5; }
+  [data-theme="dark"] .catalog-layout .storage-icon { background: rgba(61,139,255,0.16); color: #D6E6FF; }
 
   /* --- Phones: keep a grid instead of one long column --- */
   @media (max-width: 640px) {
@@ -1710,7 +1715,7 @@
 
 <nav class="site-nav" id="siteNav" aria-label="Principal">
   <a class="nav-brand" href="../" data-nav="portada">
-    <img src="img/0c071240beed.webp" alt="" width="28" height="28">
+    <img src="img/logo-soporte-tv_SpTV.webp" alt="" width="28" height="28">
     <span>Soporte TV</span>
   </a>
   <button class="theme-toggle" id="themeToggle" type="button" aria-label="Cambiar a modo noche" aria-pressed="false">
@@ -1772,7 +1777,7 @@
   <div class="slider" id="featuredSlider" tabindex="0" aria-roledescription="carrusel">
     <div class="slides">
       <article class="slide is-active" aria-roledescription="diapositiva" aria-label="1 de 4">
-        <img src="img/featured-macbook-air-m1.webp" alt="MacBook Air de 13,3 pulgadas con chip M1 sobre un escritorio" style="object-position: 55% 50%" loading="eager" decoding="async">
+        <img src="img/apple-macbook-air-m1-destacado_SpTV.webp" alt="MacBook Air de 13,3 pulgadas con chip M1 sobre un escritorio" style="object-position: 55% 50%" loading="eager" decoding="async">
         <div class="slide-content">
           <span class="slide-chip">Ordenadores</span>
           <h3>MacBook Air 13,3'' M1</h3>
@@ -1781,7 +1786,7 @@
         </div>
       </article>
       <article class="slide" aria-roledescription="diapositiva" aria-label="2 de 4">
-        <img src="img/featured-ipad-pro.webp" alt="Parte trasera de un iPad Pro" style="object-position: 50% 45%" loading="lazy" decoding="async">
+        <img src="img/apple-ipad-pro-destacado_SpTV.webp" alt="Parte trasera de un iPad Pro" style="object-position: 50% 45%" loading="lazy" decoding="async">
         <div class="slide-content">
           <span class="slide-chip">Tablets</span>
           <h3>iPad Pro</h3>
@@ -1790,7 +1795,7 @@
         </div>
       </article>
       <article class="slide" aria-roledescription="diapositiva" aria-label="3 de 4">
-        <img src="img/featured-iphone-16-pro.webp" alt="Cámaras traseras del iPhone 16 Pro" style="object-position: 50% 22%" loading="lazy" decoding="async">
+        <img src="img/apple-iphone-16-pro-destacado_SpTV.webp" alt="Cámaras traseras del iPhone 16 Pro" style="object-position: 50% 22%" loading="lazy" decoding="async">
         <div class="slide-content">
           <span class="slide-chip">Móviles</span>
           <h3>iPhone 16 Pro</h3>
@@ -1799,7 +1804,7 @@
         </div>
       </article>
       <article class="slide" aria-roledescription="diapositiva" aria-label="4 de 4">
-        <img src="img/featured-sandisk-extreme.webp" alt="Disco SanDisk Extreme Portable SSD" style="object-position: 50% 45%" loading="lazy" decoding="async">
+        <img src="img/sandisk-extreme-portable-ssd-destacado_SpTV.webp" alt="Disco SanDisk Extreme Portable SSD" style="object-position: 50% 45%" loading="lazy" decoding="async">
         <div class="slide-content">
           <span class="slide-chip">Almacenamiento</span>
           <h3>SanDisk Extreme Portable SSD</h3>
@@ -1828,7 +1833,7 @@
 <header class="reveal" id="catalogo">
   <p class="eyebrow" id="catEyebrow">Catálogo de alquiler</p>
   <div class="brand-header">
-    <img src="img/0c071240beed.webp" alt="Logo Soporte TV" style="width:38px;height:38px;object-fit:contain;">
+    <img src="img/logo-soporte-tv_SpTV.webp" alt="Logo Soporte TV" style="width:38px;height:38px;object-fit:contain;">
     <h1 id="catTitle">Soporte TV</h1>
   </div>
   <p id="catDesc">Elige una categoría para ver los productos disponibles para alquiler.</p>
@@ -2234,7 +2239,7 @@
   <div class="footer-grid">
     <div class="footer-brand">
       <div class="footer-logo">
-        <img src="img/0c071240beed.webp" alt="" width="32" height="32">
+        <img src="img/logo-soporte-tv_SpTV.webp" alt="" width="32" height="32">
         <strong>Soporte TV</strong>
       </div>
       <p>Alquiler de dispositivos para eventos, rodajes y producciones. Equipos configurados y revisados antes de cada entrega.</p>
@@ -2526,7 +2531,7 @@ const PRODUCTS = [
   {
     cat: "android", catLabel: "Tablet Android", brand: "Lenovo", brandCode: "L", brandColor: "var(--lenovo)",
     model: "Lenovo Tab", storages: ["64 GB", "128 GB"],
-    photo: "img/8e1960cc2518.webp",
+    photo: "img/lenovo-tab_SpTV.webp",
     storage: "128 GB",
     icon: tabletIcon("#E2231A"),
     specs: [
@@ -2540,7 +2545,7 @@ const PRODUCTS = [
   {
     cat: "android", catLabel: "Tablet Android", brand: "Samsung", brandCode: "S", brandColor: "var(--samsung)",
     model: "Galaxy Tab A8", storages: ["32 GB", "64 GB", "128 GB"],
-    photo: "img/32ab31015f6d.webp",
+    photo: "img/samsung-galaxy-tab-a8_SpTV.webp",
     storage: "64 GB",
     icon: tabletIcon("#1428A0"),
     specs: [
@@ -2554,7 +2559,7 @@ const PRODUCTS = [
     cat: "android", catLabel: "Tablet Android", brand: "Samsung", brandCode: "S", brandColor: "var(--samsung)",
     model: "Galaxy Tab S9 Ultra", storages: ["256 GB", "512 GB", "1 TB"],
     storage: "256 GB",
-    photo: "img/d8dff3425faf.webp",
+    photo: "img/samsung-galaxy-tab-s9-ultra_SpTV.webp",
     icon: tabletIcon("#1428A0"),
     specs: [
       ["Categoría", "Tablet Android"],
@@ -2566,7 +2571,7 @@ const PRODUCTS = [
   {
     cat: "ipad", catLabel: "iPad", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
     model: "iPad (5.ª generación)", storages: ["32 GB", "128 GB"],
-    photo: "img/a15b07509bed.webp",
+    photo: "img/apple-ipad-5-generacion_SpTV.webp",
     storage: "No especificado",
     icon: ipadIcon("#5B6470"),
     specs: [
@@ -2579,7 +2584,7 @@ const PRODUCTS = [
     cat: "ipad", catLabel: "iPad", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
     model: "iPad (6.ª generación)", storages: ["32 GB", "128 GB"],
     storage: "32 GB",
-    photo: "img/91c90cb13796.webp",
+    photo: "img/apple-ipad-6-generacion_SpTV.webp",
     icon: ipadIcon("#5B6470"),
     specs: [
       ["Categoría", "iPad"],
@@ -2591,7 +2596,7 @@ const PRODUCTS = [
   {
     cat: "ipad", catLabel: "iPad", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
     model: "iPad (7.ª generación)", storages: ["32 GB", "128 GB"],
-    photo: "img/9bcd7f77dd4a.webp",
+    photo: "img/apple-ipad-7-generacion_SpTV.webp",
     storage: "32 GB",
     icon: ipadIcon("#5B6470"),
     specs: [
@@ -2605,7 +2610,7 @@ const PRODUCTS = [
     cat: "ipad", catLabel: "iPad", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
     model: "iPad (9.ª generación)", storages: ["64 GB", "256 GB"],
     storage: "64 GB",
-    photo: "img/67735d535de7.webp",
+    photo: "img/apple-ipad-9-generacion_SpTV.webp",
     icon: ipadIcon("#5B6470"),
     specs: [
       ["Categoría", "iPad"],
@@ -2617,7 +2622,7 @@ const PRODUCTS = [
   {
     cat: "ipad", catLabel: "iPad", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
     model: "iPad A16 (11.ª generación)", storages: ["128 GB", "256 GB", "512 GB"],
-    photo: "img/c66b71f8c552.webp",
+    photo: "img/apple-ipad-a16-11-generacion_SpTV.webp",
     storage: "128 GB",
     icon: ipadIcon("#5B6470"),
     specs: [
@@ -2630,7 +2635,7 @@ const PRODUCTS = [
   {
     cat: "ipad", catLabel: "iPad", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
     model: "iPad Air", storages: ["64 GB", "256 GB"],
-    photo: "img/b72c91bd6aa0.webp",
+    photo: "img/apple-ipad-air_SpTV.webp",
     storage: "64 GB",
     icon: ipadIcon("#5B6470"),
     specs: [
@@ -2643,7 +2648,7 @@ const PRODUCTS = [
   {
     cat: "ipad", catLabel: "iPad", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
     model: "iPad Air (M2)", storages: ["128 GB", "256 GB", "512 GB", "1 TB"],
-    photo: "img/aec32ce438e6.webp",
+    photo: "img/apple-ipad-air-m2_SpTV.webp",
     storage: "128 GB",
     icon: ipadIcon("#5B6470"),
     specs: [
@@ -2658,7 +2663,7 @@ const PRODUCTS = [
     cat: "ipad", catLabel: "iPad", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
     model: "iPad Pro", storages: ["128 GB", "256 GB", "512 GB", "1 TB"],
     storage: "128 GB",
-    photo: "img/b6e3d7465e9c.webp",
+    photo: "img/apple-ipad-pro_SpTV.webp",
     icon: ipadIcon("#5B6470"),
     specs: [
       ["Categoría", "iPad"],
@@ -2670,7 +2675,7 @@ const PRODUCTS = [
   {
     cat: "ipad", catLabel: "iPad", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
     model: "iPad Pro (4.ª generación)", storages: ["128 GB", "256 GB", "512 GB", "1 TB"],
-    photo: "img/3b9d1e8e7485.webp",
+    photo: "img/apple-ipad-pro-4-generacion_SpTV.webp",
     storage: "128 GB",
     icon: ipadIcon("#5B6470"),
     specs: [
@@ -2684,7 +2689,7 @@ const PRODUCTS = [
     cat: "ipad", catLabel: "iPad", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
     model: "iPad Pro", storages: ["128 GB", "256 GB", "512 GB", "1 TB"],
     storage: "256 GB",
-    photo: "img/b6e3d7465e9c.webp",
+    photo: "img/apple-ipad-pro_SpTV.webp",
     icon: ipadIcon("#5B6470"),
     specs: [
       ["Categoría", "iPad"],
@@ -2699,7 +2704,7 @@ const PHONES = [
   {
     cat: "phone-apple", catLabel: "iPhone", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
     model: "iPhone 18 Pro", storages: ["256 GB", "512 GB", "1 TB", "2 TB"],
-    photo: "img/iphone-18-pro.webp",
+    photo: "img/apple-iphone-18-pro_SpTV.webp",
     icon: phoneIcon("#5B6470"),
     specs: [
       ["Categoría", "iPhone"],
@@ -2710,7 +2715,7 @@ const PHONES = [
   {
     cat: "phone-apple", catLabel: "iPhone", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
     model: "iPhone 17 Pro", storages: ["256 GB", "512 GB", "1 TB"],
-    photo: "img/7f61abb0b486.webp",
+    photo: "img/apple-iphone-17-pro_SpTV.webp",
     icon: phoneIcon("#5B6470"),
     specs: [
       ["Categoría", "iPhone"],
@@ -2721,7 +2726,7 @@ const PHONES = [
   {
     cat: "phone-apple", catLabel: "iPhone", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
     model: "iPhone 17", storages: ["256 GB", "512 GB"],
-    photo: "img/iphone-17.webp",
+    photo: "img/apple-iphone-17_SpTV.webp",
     icon: phoneIcon("#5B6470"),
     specs: [
       ["Categoría", "iPhone"],
@@ -2732,7 +2737,7 @@ const PHONES = [
   {
     cat: "phone-apple", catLabel: "iPhone", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
     model: "iPhone 16 Pro", storages: ["128 GB", "256 GB", "512 GB", "1 TB"],
-    photo: "img/bd56f9618090.webp",
+    photo: "img/apple-iphone-16-pro_SpTV.webp",
     icon: phoneIcon("#5B6470"),
     specs: [
       ["Categoría", "iPhone"],
@@ -2743,7 +2748,7 @@ const PHONES = [
   {
     cat: "phone-android", catLabel: "Móvil Android", brand: "Samsung", brandCode: "S", brandColor: "var(--samsung)",
     model: "Galaxy S26", storages: ["256 GB", "512 GB"],
-    photo: "img/galaxy-s26.webp",
+    photo: "img/samsung-galaxy-s26_SpTV.webp",
     icon: phoneIcon("#1428A0"),
     specs: [
       ["Categoría", "Móvil Android"],
@@ -2754,7 +2759,7 @@ const PHONES = [
   {
     cat: "phone-android", catLabel: "Móvil Android", brand: "Samsung", brandCode: "S", brandColor: "var(--samsung)",
     model: "Galaxy S25 FE", storages: ["128 GB", "256 GB", "512 GB"],
-    photo: "img/b7033547deed.webp",
+    photo: "img/samsung-galaxy-s25-fe_SpTV.webp",
     icon: phoneIcon("#1428A0"),
     specs: [
       ["Categoría", "Móvil Android"],
@@ -2765,7 +2770,7 @@ const PHONES = [
   {
     cat: "phone-android", catLabel: "Móvil Android", brand: "Samsung", brandCode: "S", brandColor: "var(--samsung)",
     model: "Galaxy S24", storages: ["128 GB", "256 GB"],
-    photo: "img/0c7b6bc00335.webp",
+    photo: "img/samsung-galaxy-s24_SpTV.webp",
     icon: phoneIcon("#1428A0"),
     specs: [
       ["Categoría", "Móvil Android"],
@@ -2776,7 +2781,7 @@ const PHONES = [
   {
     cat: "phone-android", catLabel: "Móvil Android", brand: "Xiaomi", brandCode: "X", brandColor: "#FF6900",
     model: "Redmi 15C", storages: ["128 GB", "256 GB"],
-    photo: "img/146814daab3b.webp",
+    photo: "img/xiaomi-redmi-15c_SpTV.webp",
     icon: phoneIcon("#FF6900"),
     specs: [
       ["Categoría", "Móvil Android"],
@@ -2787,7 +2792,7 @@ const PHONES = [
   {
     cat: "phone-android", catLabel: "Móvil Android", brand: "Xiaomi", brandCode: "X", brandColor: "#FF6900",
     model: "Redmi Note 14", storages: ["128 GB", "256 GB"],
-    photo: "img/d250bcf54915.webp",
+    photo: "img/xiaomi-redmi-note-14_SpTV.webp",
     icon: phoneIcon("#FF6900"),
     specs: [
       ["Categoría", "Móvil Android"],
@@ -2798,7 +2803,7 @@ const PHONES = [
   {
     cat: "phone-android", catLabel: "Móvil Android", brand: "Xiaomi", brandCode: "X", brandColor: "#FF6900",
     model: "Redmi 10 5G", storages: ["64 GB", "128 GB"],
-    photo: "img/d1108cec7d67.webp",
+    photo: "img/xiaomi-redmi-10-5g_SpTV.webp",
     icon: phoneIcon("#FF6900"),
     specs: [
       ["Categoría", "Móvil Android"],
@@ -2812,7 +2817,7 @@ const PHONES = [
 const ACCESSORIES = [
 {
     cat: "accessory", catLabel: "Accesorio", group: "iPad", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "Apple Pencil", photo: "img/acc-apple-pencil.webp",
+    model: "Apple Pencil", photo: "img/apple-pencil_SpTV.webp",
     icon: accessoryIcon("#5B6470"),
     specs: [
       ["Categoría", "Accesorio · iPad"],
@@ -2821,7 +2826,7 @@ const ACCESSORIES = [
   },
 {
     cat: "accessory", catLabel: "Accesorio", group: "Móvil/Cámara", brand: "Zhiyun", brandCode: "Z", brandColor: "#6B4FA0",
-    model: "Smooth X Combo", photo: "img/acc-smooth-x.webp",
+    model: "Smooth X Combo", photo: "img/zhiyun-smooth-x-combo_SpTV.webp",
     icon: accessoryIcon("#6B4FA0"),
     specs: [
       ["Categoría", "Accesorio · Móvil/Cámara"],
@@ -2830,7 +2835,7 @@ const ACCESSORIES = [
   },
 {
     cat: "accessory", catLabel: "Accesorio", group: "iPad", brand: "Wacom", brandCode: "W", brandColor: "#0090C8",
-    model: "Bamboo Fineline", photo: "img/acc-bamboo-fineline.webp",
+    model: "Bamboo Fineline", photo: "img/wacom-bamboo-fineline_SpTV.webp",
     icon: accessoryIcon("#0090C8"),
     specs: [
       ["Categoría", "Accesorio · iPad"],
@@ -2839,7 +2844,7 @@ const ACCESSORIES = [
   },
 {
     cat: "accessory", catLabel: "Accesorio", group: "Móvil/Cámara", brand: "", brandCode: "", brandColor: "#5C6672",
-    model: "Micrófono inalámbrico", photo: "img/acc-microfono.webp",
+    model: "Micrófono inalámbrico", photo: "img/microfono-inalambrico_SpTV.webp",
     icon: accessoryIcon("#5C6672"),
     specs: [
       ["Categoría", "Accesorio · Móvil/Cámara"]
@@ -2847,7 +2852,7 @@ const ACCESSORIES = [
   },
 {
     cat: "accessory", catLabel: "Accesorio", group: "iPad", brand: "", brandCode: "", brandColor: "#5C6672",
-    model: "Funda con teclado", photo: "img/acc-funda-teclado.webp",
+    model: "Funda con teclado", photo: "img/funda-con-teclado_SpTV.webp",
     icon: accessoryIcon("#5C6672"),
     specs: [
       ["Categoría", "Accesorio · iPad"],
@@ -2856,7 +2861,7 @@ const ACCESSORIES = [
   },
 {
     cat: "accessory", catLabel: "Accesorio", group: "Móvil/Cámara", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "Adaptador USB-C a USB", photo: "img/acc-adaptador-usbc.webp",
+    model: "Adaptador USB-C a USB", photo: "img/apple-adaptador-usb-c-a-usb_SpTV.webp",
     icon: accessoryIcon("#5B6470"),
     specs: [
       ["Categoría", "Accesorio · Móvil/Cámara"],
@@ -2865,7 +2870,7 @@ const ACCESSORIES = [
   },
 {
     cat: "accessory", catLabel: "Accesorio", group: "Móvil/Cámara", brand: "", brandCode: "", brandColor: "#5C6672",
-    model: "Aro de luz", photo: "img/acc-aro-luz.webp",
+    model: "Aro de luz", photo: "img/aro-de-luz_SpTV.webp",
     icon: accessoryIcon("#5C6672"),
     specs: [
       ["Categoría", "Accesorio · Móvil/Cámara"]
@@ -2873,7 +2878,7 @@ const ACCESSORIES = [
   },
 {
     cat: "accessory", catLabel: "Accesorio", group: "iPad", brand: "", brandCode: "", brandColor: "#5C6672",
-    model: "Funda Rugged / Correa", photo: "img/acc-funda-rugged.webp",
+    model: "Funda Rugged / Correa", photo: "img/funda-rugged-con-correa_SpTV.webp",
     icon: accessoryIcon("#5C6672"),
     specs: [
       ["Categoría", "Accesorio · iPad"]
@@ -2881,7 +2886,7 @@ const ACCESSORIES = [
   },
 {
     cat: "accessory", catLabel: "Accesorio", group: "Móvil/Cámara", brand: "", brandCode: "", brandColor: "#5C6672",
-    model: "Power bank", photo: "img/acc-power-bank.webp",
+    model: "Power bank", photo: "img/power-bank_SpTV.webp",
     icon: accessoryIcon("#5C6672"),
     specs: [
       ["Categoría", "Accesorio · Móvil/Cámara"],
@@ -2891,7 +2896,7 @@ const ACCESSORIES = [
   },
 {
     cat: "accessory", catLabel: "Accesorio", group: "Móvil/Cámara", brand: "Celly", brandCode: "C", brandColor: "#E4572E",
-    model: "Trípode", photo: "img/acc-tripode.webp",
+    model: "Trípode", photo: "img/celly-tripode_SpTV.webp",
     icon: accessoryIcon("#E4572E"),
     specs: [
       ["Categoría", "Accesorio · Móvil/Cámara"],
@@ -2903,7 +2908,7 @@ const ACCESSORIES = [
 const COMPUTERS = [
 {
     cat: "computer", catLabel: "Portátil", type: "Portátil", brand: "HP", brandCode: "H", brandColor: "#0096D6",
-    model: "HP Victus", photo: "img/pc-victus.webp",
+    model: "HP Victus", photo: "img/hp-victus_SpTV.webp",
     icon: laptopIcon("#0096D6"),
     specs: [
       ["Categoría", "Portátil"],
@@ -2918,7 +2923,7 @@ const COMPUTERS = [
   },
 {
     cat: "computer", catLabel: "Portátil", type: "Portátil", brand: "HP", brandCode: "H", brandColor: "#0096D6",
-    model: "HP ZBook", photo: "img/pc-zbook.webp",
+    model: "HP ZBook", photo: "img/hp-zbook_SpTV.webp",
     icon: laptopIcon("#0096D6"),
     specs: [
       ["Categoría", "Portátil"],
@@ -2933,7 +2938,7 @@ const COMPUTERS = [
   },
 {
     cat: "computer", catLabel: "Portátil", type: "Portátil", brand: "Dell / HP / Lenovo", brandCode: "D", brandColor: "#5C6672",
-    model: "Portátil 8 GB RAM", photo: "img/pc-dell.webp",
+    model: "Portátil 8 GB RAM", photo: "img/portatil-8-gb-ram_SpTV.webp",
     icon: laptopIcon("#5C6672"),
     specs: [
       ["Categoría", "Portátil"],
@@ -2947,7 +2952,7 @@ const COMPUTERS = [
   },
 {
     cat: "computer", catLabel: "Portátil", type: "Portátil", brand: "Dell / HP / Lenovo", brandCode: "D", brandColor: "#5C6672",
-    model: "Portátil 16 GB RAM", photo: "img/pc-hp-probook.webp", key: "portatil-i5-16",
+    model: "Portátil 16 GB RAM", photo: "img/portatil-16-gb-ram-intel-core-i5_SpTV.webp", key: "portatil-i5-16",
     icon: laptopIcon("#5C6672"),
     specs: [
       ["Categoría", "Portátil"],
@@ -2961,7 +2966,7 @@ const COMPUTERS = [
   },
 {
     cat: "computer", catLabel: "Portátil", type: "Portátil", brand: "Dell / HP / Lenovo", brandCode: "D", brandColor: "#5C6672",
-    model: "Portátil 16 GB RAM", photo: "img/pc-lenovo.webp", key: "portatil-i7-16",
+    model: "Portátil 16 GB RAM", photo: "img/portatil-16-gb-ram-intel-core-i7_SpTV.webp", key: "portatil-i7-16",
     icon: laptopIcon("#5C6672"),
     specs: [
       ["Categoría", "Portátil"],
@@ -2976,7 +2981,7 @@ const COMPUTERS = [
 {
     cat: "computer", catLabel: "Surface", type: "Surface", brand: "Microsoft", brandCode: "M", brandColor: "#00A4EF",
     model: "Surface Pro 7",
-    photo: "img/4bc956164a80.webp", cpu: "i5", storage: "128 GB", storages: ["128 GB", "256 GB", "512 GB", "1 TB"],
+    photo: "img/microsoft-surface-pro-7_SpTV.webp", cpu: "i5", storage: "128 GB", storages: ["128 GB", "256 GB", "512 GB", "1 TB"],
     icon: surfaceIcon("#00A4EF"),
     specs: [
       ["Categoría", "Surface (portátil 2 en 1)"],
@@ -2990,7 +2995,7 @@ const COMPUTERS = [
 {
     cat: "computer", catLabel: "Surface", type: "Surface", brand: "Microsoft", brandCode: "M", brandColor: "#00A4EF",
     model: "Surface Pro 7",
-    photo: "img/4bc956164a80.webp", cpu: "i5", storage: "256 GB",
+    photo: "img/microsoft-surface-pro-7_SpTV.webp", cpu: "i5", storage: "256 GB",
     icon: surfaceIcon("#00A4EF"),
     specs: [
       ["Categoría", "Surface (portátil 2 en 1)"],
@@ -3004,7 +3009,7 @@ const COMPUTERS = [
 {
     cat: "computer", catLabel: "Surface", type: "Surface", brand: "Microsoft", brandCode: "M", brandColor: "#00A4EF",
     model: "Surface Pro 7",
-    photo: "img/4bc956164a80.webp", cpu: "i5", storage: "256 GB",
+    photo: "img/microsoft-surface-pro-7_SpTV.webp", cpu: "i5", storage: "256 GB",
     icon: surfaceIcon("#00A4EF"),
     specs: [
       ["Categoría", "Surface (portátil 2 en 1)"],
@@ -3018,7 +3023,7 @@ const COMPUTERS = [
 {
     cat: "computer", catLabel: "Surface", type: "Surface", brand: "Microsoft", brandCode: "M", brandColor: "#00A4EF",
     model: "Surface Pro 7",
-    photo: "img/4bc956164a80.webp", cpu: "i7", storage: "256 GB",
+    photo: "img/microsoft-surface-pro-7_SpTV.webp", cpu: "i7", storage: "256 GB",
     icon: surfaceIcon("#00A4EF"),
     specs: [
       ["Categoría", "Surface (portátil 2 en 1)"],
@@ -3032,7 +3037,7 @@ const COMPUTERS = [
 {
     cat: "computer", catLabel: "Surface", type: "Surface", brand: "Microsoft", brandCode: "M", brandColor: "#00A4EF",
     model: "Surface Pro 7",
-    photo: "img/4bc956164a80.webp", cpu: "i7", storage: "512 GB",
+    photo: "img/microsoft-surface-pro-7_SpTV.webp", cpu: "i7", storage: "512 GB",
     icon: surfaceIcon("#00A4EF"),
     specs: [
       ["Categoría", "Surface (portátil 2 en 1)"],
@@ -3045,7 +3050,7 @@ const COMPUTERS = [
   },
 {
     cat: "computer", catLabel: "AIO", type: "AIO", brand: "Dell / HP / Lenovo", brandCode: "D", brandColor: "#5C6672",
-    model: "AIO (Todo en uno) 16 GB RAM", photo: "img/pc-aio.webp",
+    model: "AIO (Todo en uno) 16 GB RAM", photo: "img/aio-todo-en-uno-16-gb-ram_SpTV.webp",
     icon: desktopIcon("#5C6672"),
     specs: [
       ["Categoría", "AIO (Todo en uno)"],
@@ -3059,7 +3064,7 @@ const COMPUTERS = [
   },
 {
     cat: "computer", catLabel: "CPU", type: "CPU", brand: "Dell / HP / Lenovo", brandCode: "D", brandColor: "#5C6672",
-    model: "CPU 16 GB RAM", photo: "img/pc-tower.webp",
+    model: "CPU 16 GB RAM", photo: "img/cpu-16-gb-ram_SpTV.webp",
     icon: desktopIcon("#5C6672"),
     specs: [
       ["Categoría", "CPU"],
@@ -3072,7 +3077,7 @@ const COMPUTERS = [
   },
 {
     cat: "computer", catLabel: "CPU + Monitor", type: "CPU + Monitor", brand: "Dell / HP / Lenovo", brandCode: "D", brandColor: "#5C6672",
-    model: "CPU + Monitor 16 GB RAM", photo: "img/pc-tower-monitor.webp",
+    model: "CPU + Monitor 16 GB RAM", photo: "img/cpu-monitor-16-gb-ram_SpTV.webp",
     icon: desktopIcon("#5C6672"),
     specs: [
       ["Categoría", "CPU + Monitor"],
@@ -3085,7 +3090,7 @@ const COMPUTERS = [
   },
 {
     cat: "computer", catLabel: "CPU", type: "CPU", brand: "HP", brandCode: "H", brandColor: "#0096D6",
-    model: "HP Workstation", photo: "img/pc-hp-z4.webp",
+    model: "HP Workstation", photo: "img/hp-workstation_SpTV.webp",
     icon: desktopIcon("#0096D6"),
     specs: [
       ["Categoría", "Workstation"],
@@ -3101,7 +3106,7 @@ const COMPUTERS = [
 const MACS = [
   {
     cat: "mac", catLabel: "MacBook Air", type: "MacBook Air", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "MacBook Air 13,3'' M1", photo: "img/mac-air-m1.webp", storages: ["128 GB", "256 GB", "512 GB", "1 TB", "2 TB"],
+    model: "MacBook Air 13,3'' M1", photo: "img/apple-macbook-air-13-3-m1_SpTV.webp", storages: ["128 GB", "256 GB", "512 GB", "1 TB", "2 TB"],
     icon: laptopIcon("#5B6470"),
     specs: [
       ["Categoría", "MacBook Air"],
@@ -3114,7 +3119,7 @@ const MACS = [
   },
   {
     cat: "mac", catLabel: "MacBook Air", type: "MacBook Air", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "MacBook Air 13,6'' M2", photo: "img/mac-air-m2.webp", storages: ["256 GB", "512 GB", "1 TB", "2 TB"],
+    model: "MacBook Air 13,6'' M2", photo: "img/apple-macbook-air-13-6-m2_SpTV.webp", storages: ["256 GB", "512 GB", "1 TB", "2 TB"],
     icon: laptopIcon("#5B6470"),
     specs: [
       ["Categoría", "MacBook Air"],
@@ -3127,7 +3132,7 @@ const MACS = [
   },
   {
     cat: "mac", catLabel: "MacBook Air", type: "MacBook Air", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "MacBook Air 13,6'' M4", photo: "img/mac-air-m4.webp", storages: ["256 GB", "512 GB", "1 TB", "2 TB"],
+    model: "MacBook Air 13,6'' M4", photo: "img/apple-macbook-air-13-6-m4_SpTV.webp", storages: ["256 GB", "512 GB", "1 TB", "2 TB"],
     icon: laptopIcon("#5B6470"),
     specs: [
       ["Categoría", "MacBook Air"],
@@ -3140,7 +3145,7 @@ const MACS = [
   },
   {
     cat: "mac", catLabel: "MacBook Pro", type: "MacBook Pro", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "MacBook Pro 13''", photo: "img/mac-pro13.webp", storages: ["256 GB", "512 GB", "1 TB", "2 TB"],
+    model: "MacBook Pro 13''", photo: "img/apple-macbook-pro-13_SpTV.webp", storages: ["256 GB", "512 GB", "1 TB", "2 TB"],
     icon: laptopIcon("#5B6470"),
     specs: [
       ["Categoría", "MacBook Pro"],
@@ -3152,7 +3157,7 @@ const MACS = [
   },
   {
     cat: "mac", catLabel: "MacBook Pro", type: "MacBook Pro", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "MacBook Pro 14'' M1 Pro", photo: "img/mac-pro14.webp", storages: ["512 GB", "1 TB", "2 TB", "4 TB", "8 TB"],
+    model: "MacBook Pro 14'' M1 Pro", photo: "img/apple-macbook-pro-14-m1-pro_SpTV.webp", storages: ["512 GB", "1 TB", "2 TB", "4 TB", "8 TB"],
     icon: laptopIcon("#5B6470"),
     specs: [
       ["Categoría", "MacBook Pro"],
@@ -3165,7 +3170,7 @@ const MACS = [
   },
   {
     cat: "mac", catLabel: "MacBook Pro", type: "MacBook Pro", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "MacBook Pro 16''", photo: "img/mac-pro16.webp", storages: ["1 TB", "2 TB", "4 TB", "8 TB"],
+    model: "MacBook Pro 16''", photo: "img/apple-macbook-pro-16_SpTV.webp", storages: ["1 TB", "2 TB", "4 TB", "8 TB"],
     icon: laptopIcon("#5B6470"),
     specs: [
       ["Categoría", "MacBook Pro"],
@@ -3178,7 +3183,7 @@ const MACS = [
   },
   {
     cat: "mac", catLabel: "iMac", type: "iMac", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "iMac 24''", photo: "img/mac-imac.webp", storages: ["256 GB", "512 GB", "1 TB", "2 TB"],
+    model: "iMac 24''", photo: "img/apple-imac-24_SpTV.webp", storages: ["256 GB", "512 GB", "1 TB", "2 TB"],
     icon: desktopIcon("#5B6470"),
     specs: [
       ["Categoría", "iMac"],
@@ -3189,7 +3194,7 @@ const MACS = [
   },
   {
     cat: "mac", catLabel: "Mac mini", type: "Mac mini", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "Mac mini", photo: "img/mac-mini.webp", storages: ["256 GB", "512 GB", "1 TB", "2 TB", "4 TB", "8 TB"],
+    model: "Mac mini", photo: "img/apple-mac-mini_SpTV.webp", storages: ["256 GB", "512 GB", "1 TB", "2 TB", "4 TB", "8 TB"],
     icon: desktopIcon("#5B6470"),
     specs: [
       ["Categoría", "Mac mini"],
@@ -3199,7 +3204,7 @@ const MACS = [
   },
   {
     cat: "mac", catLabel: "Mac Studio", type: "Mac Studio", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "Mac Studio", photo: "img/mac-studio.webp", storages: ["512 GB", "1 TB", "2 TB", "4 TB", "8 TB", "16 TB"],
+    model: "Mac Studio", photo: "img/apple-mac-studio_SpTV.webp", storages: ["512 GB", "1 TB", "2 TB", "4 TB", "8 TB", "16 TB"],
     icon: desktopIcon("#5B6470"),
     specs: [
       ["Categoría", "Mac Studio"],
@@ -3212,7 +3217,7 @@ const MACS = [
 const MONITORS = [
   {
     cat: "monitor", catLabel: "Monitor LED", type: "LED", group: "24''", brand: "Samsung / HP", brandCode: "S", brandColor: "var(--samsung)",
-    model: "Monitor LED 24''", photo: "img/mon-24.webp",
+    model: "Monitor LED 24''", photo: "img/monitor-led-24_SpTV.webp",
     icon: monitorIcon("#1428A0"),
     specs: [
       ["Categoría", "Monitor LED"],
@@ -3222,7 +3227,7 @@ const MONITORS = [
   },
   {
     cat: "monitor", catLabel: "Monitor LED", type: "LED", group: "27''", brand: "LG / Nilox", brandCode: "L", brandColor: "#A50034",
-    model: "Monitor LED 27''", photo: "img/mon-27.webp",
+    model: "Monitor LED 27''", photo: "img/monitor-led-27_SpTV.webp",
     icon: monitorIcon("#A50034"),
     specs: [
       ["Categoría", "Monitor LED"],
@@ -3232,7 +3237,7 @@ const MONITORS = [
   },
   {
     cat: "monitor", catLabel: "Monitor 4K", type: "4K", group: "27''", brand: "Samsung", brandCode: "S", brandColor: "var(--samsung)",
-    model: "Samsung Odyssey 27''", photo: "img/mon-odyssey.webp",
+    model: "Samsung Odyssey 27''", photo: "img/samsung-odyssey-27_SpTV.webp",
     icon: monitorIcon("#1428A0"),
     specs: [
       ["Categoría", "Monitor 4K"],
@@ -3244,7 +3249,7 @@ const MONITORS = [
   },
   {
     cat: "monitor", catLabel: "Monitor de estudio 4K", type: "Estudio 4K", group: "24''", brand: "JVC", brandCode: "J", brandColor: "#004098",
-    model: "Monitor de estudio JVC 24''", photo: "img/mon-jvc.webp",
+    model: "Monitor de estudio JVC 24''", photo: "img/jvc-monitor-de-estudio-24_SpTV.webp",
     icon: monitorIcon("#004098"),
     specs: [
       ["Categoría", "Monitor de estudio 4K"],
@@ -3255,7 +3260,7 @@ const MONITORS = [
   },
   {
     cat: "monitor", catLabel: "Monitor 4K", type: "4K", group: "65''", brand: "LG", brandCode: "L", brandColor: "#A50034",
-    model: "Monitor LG 65'' 4K", photo: "img/mon-lg65.webp",
+    model: "Monitor LG 65'' 4K", photo: "img/lg-monitor-65-4k_SpTV.webp",
     icon: monitorIcon("#A50034"),
     specs: [
       ["Categoría", "Monitor 4K"],
@@ -3279,7 +3284,7 @@ const CONNECTIVITY = [];
       CONNECTIVITY.push({
         cat: "connectivity", catLabel: device, type: device, group: net, storage: plan.key, storageLabel: "Datos",
         model: device === "MiFi" ? "MiFi portátil" : "Router con SIM",
-        photo: device === "MiFi" ? "img/conn-mifi.webp" : "img/conn-router.webp",
+        photo: device === "MiFi" ? "img/mifi-portatil_SpTV.webp" : "img/router-con-sim_SpTV.webp",
         icon: device === "MiFi" ? mifiIcon("#0F8A80") : routerIcon("#0F8A80"),
         specs: [
           ["Categoría", device],
@@ -3293,7 +3298,7 @@ const CONNECTIVITY = [];
 });
 CONNECTIVITY.push({
   cat: "connectivity", catLabel: "Punto de acceso", type: "Punto de acceso", brand: "Ubiquiti", brandCode: "U", brandColor: "#0559C9",
-  model: "Punto de acceso inalámbrico Ubiquiti", photo: "img/conn-ubiquiti.webp",
+  model: "Punto de acceso inalámbrico Ubiquiti", photo: "img/ubiquiti-punto-de-acceso_SpTV.webp",
   icon: accessPointIcon("#0559C9"),
   specs: [
     ["Categoría", "Punto de acceso inalámbrico"],
@@ -3305,21 +3310,21 @@ CONNECTIVITY.push({
 const VIDEOCONF = [
   {
     cat: "videoconf", catLabel: "Videoconferencia", type: "Videoconferencia", brand: "Jabra", brandCode: "J", brandColor: "#1A1A1A",
-    model: "Jabra PanaCast 50", photo: "img/vc-jabra.webp",
+    model: "Jabra PanaCast 50", photo: "img/jabra-panacast-50_SpTV.webp",
     icon: videoconfIcon("#1A1A1A"),
     info: [["screen", "Vídeo", "4K panorámico 180°", 1], ["signal", "Audio", "8 micros · 4 altavoces", 1], ["port", "Conexión", "USB-C · USB-A · Ethernet"]],
     specs: [["Categoría", "Barra de videoconferencia para salas"], ["Marca", "Jabra"], ["Cámara", "3 cámaras de 13 MP · 4K panorámico (3840 × 1080) · campo de visión 180°"], ["Audio", "8 micrófonos con beamforming · 4 altavoces estéreo"], ["Funciones", "Seguimiento de quien habla, zoom inteligente, vista de galería y cámara de pizarra"], ["Compatibilidad", "Microsoft Teams Rooms y Zoom Rooms certificados · salas medianas (hasta 4,5 × 6 m)"], ["Conexión", "USB-C · USB-A · Ethernet RJ45"]]
   },
   {
     cat: "videoconf", catLabel: "Intercom", type: "Intercom", brand: "Hollyland", brandCode: "H", brandColor: "#E60012",
-    model: "Hollyland Solidcom C1 Pro", photo: "img/vc-hollyland.webp",
+    model: "Hollyland Solidcom C1 Pro", photo: "img/hollyland-solidcom-c1-pro_SpTV.webp",
     icon: videoconfIcon("#E60012"),
     info: [["tag", "Sets", "De 2 a 8 cascos", 1], ["signal", "Alcance", "350 m", 1], ["speed", "Batería", "Más de 10 h por casco"]],
     specs: [["Categoría", "Intercom inalámbrico (cascos)"], ["Marca", "Hollyland"], ["Sets disponibles", "2, 3, 4, 6 u 8 cascos (1 principal + remotos)"], ["Conversación", "Full dúplex: todos hablan a la vez, sin estación base · botón TALK / MUTE"], ["Audio", "Doble micrófono con cancelación de ruido (ENC) y de eco"], ["Alcance", "Hasta 350 m con visión directa · DECT 1,9 GHz"], ["Batería", "Más de 10 h (casco remoto) · más de 5 h (casco principal) · carga en unas 2,5 h"], ["Peso", "Unos 170 g por casco"]]
   },
   {
     cat: "videoconf", catLabel: "Walkies", type: "Walkies", brand: "Motorola", brandCode: "M", brandColor: "#005EB8",
-    model: "Motorola DP4400", photo: "img/vc-motorola.webp",
+    model: "Motorola DP4400", photo: "img/motorola-dp4400_SpTV.webp",
     icon: videoconfIcon("#005EB8"),
     info: [["signal", "Tecnología", "Digital DMR + analógico", 1], ["tag", "Canales", "64", 1], ["speed", "Batería", "Hasta 28 h · IP68"]],
     specs: [["Categoría", "Walkie-talkie profesional (MOTOTRBO)"], ["Marca", "Motorola Solutions"], ["Tecnología", "Digital DMR y analógico"], ["Canales", "64 (sin teclado ni pantalla)"], ["Potencia", "VHF 1 / 5 W · UHF 1 / 4 W"], ["Batería", "Hasta 28 h"], ["Resistencia", "IP68 (sumergible) y estándar militar"], ["Otros", "Botón de emergencia y cancelación de ruido"]]
@@ -3329,7 +3334,7 @@ const VIDEOCONF = [
 const PRINTERS = [
   {
     cat: "printer", catLabel: "B/N|Color", type: "B/N|Color", group: "A4|A3", brand: "", brandCode: "", brandColor: "#5C6672",
-    model: "Impresora multifunción", photo: "img/prn-multifuncion.webp",
+    model: "Impresora multifunción", photo: "img/impresora-multifuncion_SpTV.webp",
     icon: printerIcon("#5C6672"),
     info: [["tag", "Formato", "A4 · A3", 1], ["screen", "Impresión", "B/N · Color", 1], ["capacity", "Tarifa", "Coste por página"]],
     specs: [["Categoría", "Impresora multifunción láser"], ["Formato", "A4 y A3"], ["Impresión", "Blanco y negro o color"], ["Funciones", "Imprimir, copiar, escanear (a correo, carpeta o USB) y fax opcional"], ["Otros", "Doble cara automática, alimentador de documentos, pantalla táctil y acceso con PIN"], ["Conexión", "Red (Ethernet) · Wi-Fi opcional · impresión desde móvil"], ["Tarifa", "Coste por página impresa (consúltanos)"]]
@@ -3339,42 +3344,42 @@ const PRINTERS = [
 const CABINS = [
   {
     cat: "cabin", catLabel: "Cabina de discos", type: "Cabina de discos", brand: "Areca", brandCode: "A", brandColor: "#C8102E",
-    model: "Areca ARC-8050T3U", photo: "img/cab-areca.webp",
+    model: "Areca ARC-8050T3U", photo: "img/areca-arc-8050t3u_SpTV.webp",
     icon: cabinIcon("#C8102E"),
     info: [["bays", "Bahías", "4 · 6 · 8", 1], ["raid", "RAID", "0, 1, 5, 6, 10", 1], ["port", "Conexión", "Thunderbolt 3 · USB-C"]],
     specs: [["Categoría", "Cabina de discos (DAS) con RAID por hardware"], ["Marca", "Areca"], ["Modelos", "ARC-8050T3U-4 / -6 / -8"], ["Bahías", "4 / 6 / 8 · discos 3,5'' / 2,5'' SAS o SATA"], ["Conexión", "2 × Thunderbolt 3 (40 Gb/s, USB-C) · en USB-C normal funciona como USB 3.2 Gen 2 (10 Gb/s) · DisplayPort"], ["RAID", "0, 1, 3, 5, 6, 10, JBOD (30 / 50 / 60 desde 6 bahías)"]]
   },
   {
     cat: "cabin", catLabel: "Cabina de discos", type: "Cabina de discos", brand: "Stardom", brandCode: "S", brandColor: "#1F6FB2",
-    model: "Stardom SOHORAID", photo: "img/cab-stardom.webp",
+    model: "Stardom SOHORAID", photo: "img/stardom-sohoraid_SpTV.webp",
     icon: cabinIcon("#1F6FB2"),
     info: [["bays", "Bahías", "Desde 2", 1], ["raid", "RAID", "0, 1, JBOD", 1], ["port", "Conexión", "USB-C (USB 3.2 Gen 2)"]],
     specs: [["Categoría", "Cabina de discos (DAS)"], ["Marca", "Stardom (RAIDON)"], ["Modelos", "ST2-B31A (2 bahías) · ST4R-B32 / ST4-B32 (4 bahías)"], ["Bahías", "Desde 2 · discos 3,5'' / 2,5'' SATA, extraíbles en caliente"], ["Conexión", "USB-C · USB 3.2 Gen 2 (10 Gb/s) en 2 bahías, Gen 2x2 (20 Gb/s) en 4 bahías · compatible Thunderbolt 3/4"], ["RAID", "0, 1, JBOD, BIG"]]
   },
   {
     cat: "cabin", catLabel: "Cabina de discos", type: "Cabina de discos", brand: "TerraMaster", brandCode: "T", brandColor: "#E95513",
-    model: "TerraMaster D5 / D8", photo: "img/cab-terramaster.webp",
+    model: "TerraMaster D5 / D8", photo: "img/terramaster-d5-d8_SpTV.webp",
     icon: cabinIcon("#E95513"),
     info: [["bays", "Bahías", "5 · 8", 1], ["raid", "RAID", "0, 1, 5, 10", 1], ["port", "Conexión", "Thunderbolt 3 (40 Gb/s)"]],
     specs: [["Categoría", "Cabina de discos (DAS) con RAID por hardware"], ["Marca", "TerraMaster"], ["Modelos", "D5 Thunderbolt 3 · D8-332"], ["Bahías", "5 / 8 · discos 3,5'' SATA o SSD 2,5''"], ["Conexión", "2 × Thunderbolt 3 (40 Gb/s), encadenable · solo equipos Thunderbolt 3/4"], ["Velocidad", "Hasta 1035 MB/s (D5) · hasta 1600 MB/s (D8-332)"], ["RAID", "0, 1, 5, 10, JBOD, Single"], ["Capacidad máxima", "120 TB (D5) · 160 TB (D8-332)"]]
   },
   {
     cat: "cabin", catLabel: "NAS", type: "NAS", brand: "QNAP", brandCode: "Q", brandColor: "#2F6BB3",
-    model: "QNAP TS-464", photo: "img/nas-qnap-desktop.webp",
+    model: "QNAP TS-464", photo: "img/qnap-ts-464_SpTV.webp",
     icon: cabinIcon("#2F6BB3"),
     info: [["bays", "Bahías", "4 + 2 M.2", 1], ["raid", "RAID", "0, 1, 5, 6, 10", 1], ["port", "Conexión", "2 × 2,5 GbE (10 GbE opcional)"]],
     specs: [["Categoría", "NAS de sobremesa"], ["Marca", "QNAP"], ["Bahías", "4 × 3,5'' / 2,5'' SATA · 2 × M.2 NVMe (caché SSD)"], ["Procesador", "Intel Celeron N5095 (4 núcleos, hasta 2,9 GHz)"], ["RAM", "8 GB DDR4 (máx. 16 GB)"], ["Conexión", "2 × 2,5 GbE · 10 GbE opcional (PCIe) · 2 × USB 3.2 Gen 2 · HDMI"], ["RAID", "0, 1, 5, 6, 10, JBOD, Single"]]
   },
   {
     cat: "cabin", catLabel: "NAS", type: "NAS", brand: "QNAP", brandCode: "Q", brandColor: "#2F6BB3",
-    model: "QNAP TS-1264U-RP", photo: "img/nas-qnap-rack.webp",
+    model: "QNAP TS-1264U-RP", photo: "img/qnap-ts-1264u-rp_SpTV.webp",
     icon: cabinIcon("#2F6BB3"),
     info: [["bays", "Bahías", "12 · rack 2U", 1], ["raid", "RAID", "0–60", 1], ["port", "Conexión", "2 × 2,5 GbE (10 GbE opcional)"]],
     specs: [["Categoría", "NAS de rack 2U"], ["Marca", "QNAP"], ["Bahías", "12 × 3,5'' / 2,5'' SATA, extraíbles en caliente"], ["Procesador", "Intel Celeron N5095 (4 núcleos, hasta 2,9 GHz)"], ["RAM", "8 GB DDR4 (máx. 16 GB)"], ["Conexión", "2 × 2,5 GbE · 10 GbE opcional (PCIe) · 2 × USB 3.2 Gen 2"], ["Alimentación", "Doble fuente redundante de 300 W"], ["RAID", "0, 1, 5, 6, 10, 50, 60, JBOD, Single"]]
   },
   {
     cat: "cabin", catLabel: "NAS", type: "NAS", brand: "Synology", brandCode: "S", brandColor: "#4B4B4B",
-    model: "Synology DiskStation DS1825+", photo: "img/nas-synology.webp",
+    model: "Synology DiskStation DS1825+", photo: "img/synology-diskstation-ds1825-plus_SpTV.webp",
     icon: cabinIcon("#4B4B4B"),
     info: [["bays", "Bahías", "8 (hasta 18)", 1], ["raid", "RAID", "SHR, 0, 1, 5, 6, 10", 1], ["port", "Conexión", "2 × 2,5 GbE (10/25 GbE opcional)"]],
     specs: [["Categoría", "NAS de sobremesa"], ["Marca", "Synology"], ["Bahías", "8 × 3,5'' / 2,5'' SATA (hasta 18 con 2 × DX525) · 2 × M.2 NVMe"], ["Procesador", "AMD Ryzen V1500B (4 núcleos, 2,2 GHz)"], ["RAM", "8 GB DDR4 ECC (máx. 32 GB)"], ["Conexión", "2 × 2,5 GbE · 10 / 25 GbE opcional (PCIe)"], ["Velocidad", "Hasta 2239 MB/s lectura · 1573 MB/s escritura"], ["RAID", "SHR, Basic, JBOD, 0, 1, 5, 6, 10"]]
@@ -3390,53 +3395,53 @@ const WD = { brand: "WD", brandCode: "W", brandColor: "#0067B4" };
 
 const STORAGE = [
   // --- SanDisk ---
-  { ...SANDISK, model: "SanDisk Extreme PRO Portable SSD (V3)", photo: "img/f66ffbfff6ca.webp", catLabel: "SSD externo portátil",
+  { ...SANDISK, model: "SanDisk Extreme PRO Portable SSD (V3)", photo: "img/sandisk-extreme-pro-portable-ssd-v3_SpTV.webp", catLabel: "SSD externo portátil",
     capacities: ["2 TB", "4 TB", "8 TB"], speed: "Hasta 4000 MB/s", port: "USB-C" },
-  { ...SANDISK, model: "SanDisk Extreme PRO con USB4", photo: "img/99a830d1808a.webp", catLabel: "SSD externo portátil",
+  { ...SANDISK, model: "SanDisk Extreme PRO con USB4", photo: "img/sandisk-extreme-pro-usb4_SpTV.webp", catLabel: "SSD externo portátil",
     capacities: ["2 TB", "4 TB"], speed: "Hasta 3800 MB/s", port: "USB4 (compatible Thunderbolt 4)" },
-  { ...SANDISK, model: "SanDisk Extreme PRO Portable SSD", photo: "img/3f556a5f5317.webp", catLabel: "SSD externo portátil",
+  { ...SANDISK, model: "SanDisk Extreme PRO Portable SSD", photo: "img/sandisk-extreme-pro-portable-ssd_SpTV.webp", catLabel: "SSD externo portátil",
     capacities: ["1 TB", "2 TB", "4 TB"], speed: "Hasta 2000 MB/s", port: "USB-C (USB 3.2 Gen 2x2)" },
-  { ...SANDISK, model: "SanDisk Extreme Portable SSD", photo: "img/95d999c99d09.webp", catLabel: "SSD externo portátil",
+  { ...SANDISK, model: "SanDisk Extreme Portable SSD", photo: "img/sandisk-extreme-portable-ssd_SpTV.webp", catLabel: "SSD externo portátil",
     capacities: ["500 GB", "1 TB", "2 TB", "4 TB", "8 TB"], speed: "Hasta 1050 MB/s", port: "USB-C (USB 3.2 Gen 2)" },
-  { ...SANDISK, model: "SanDisk Creator Pro Portable SSD", photo: "img/c98831065145.webp", catLabel: "SSD externo portátil · Creator",
+  { ...SANDISK, model: "SanDisk Creator Pro Portable SSD", photo: "img/sandisk-creator-pro-portable-ssd_SpTV.webp", catLabel: "SSD externo portátil · Creator",
     capacities: ["1 TB", "2 TB", "4 TB"], speed: "Hasta 2000 MB/s", port: "USB-C (USB 3.2 Gen 2x2)" },
-  { ...SANDISK, model: "SanDisk Portable SSD (V3)", photo: "img/df4b15126f98.webp", catLabel: "SSD externo portátil",
+  { ...SANDISK, model: "SanDisk Portable SSD (V3)", photo: "img/sandisk-portable-ssd-v3_SpTV.webp", catLabel: "SSD externo portátil",
     capacities: ["500 GB", "1 TB", "2 TB"], speed: "Hasta 1000 MB/s", port: "USB-C (USB 3.2 Gen 2)" },
-  { ...SANDISK, model: "SanDisk Portable SSD (firmware actualizado)", photo: "img/ee1f8f8b8cc0.webp", catLabel: "SSD externo portátil",
+  { ...SANDISK, model: "SanDisk Portable SSD (firmware actualizado)", photo: "img/sandisk-portable-ssd-firmware-actualizado_SpTV.webp", catLabel: "SSD externo portátil",
     capacities: ["1 TB", "2 TB"], speed: "Hasta 800 MB/s", port: "USB-C (USB 3.2 Gen 2)" },
-  { ...SANDISK, model: "SanDisk Portable Drive", photo: "img/e30765c31eb4.webp", catLabel: "SSD externo portátil",
+  { ...SANDISK, model: "SanDisk Portable Drive", photo: "img/sandisk-portable-drive_SpTV.webp", catLabel: "SSD externo portátil",
     capacities: ["500 GB", "1 TB"], speed: "Hasta 600 MB/s", port: "USB-C (USB 3.2 Gen 2)" },
-  { ...SANDISK, model: "SanDisk Phone SSD", photo: "img/c9670f9cc995.webp", catLabel: "SSD para móvil · MagSafe",
+  { ...SANDISK, model: "SanDisk Phone SSD", photo: "img/sandisk-phone-ssd_SpTV.webp", catLabel: "SSD para móvil · MagSafe",
     capacities: ["1 TB", "2 TB"], speed: "Hasta 1000 MB/s", port: "USB-C · MagSafe" },
-  { ...SANDISK, model: "SanDisk Creator Phone SSD", photo: "img/844047ef7b7b.webp", catLabel: "SSD para móvil · MagSafe · Creator",
+  { ...SANDISK, model: "SanDisk Creator Phone SSD", photo: "img/sandisk-creator-phone-ssd_SpTV.webp", catLabel: "SSD para móvil · MagSafe · Creator",
     capacities: ["1 TB", "2 TB"], speed: "Hasta 1000 MB/s", port: "USB-C (USB 3.2 Gen 2) · MagSafe" },
-  { ...SANDISK, model: "SanDisk Desk Drive", photo: "img/c99a4d281a40.webp", catLabel: "SSD de escritorio",
+  { ...SANDISK, model: "SanDisk Desk Drive", photo: "img/sandisk-desk-drive_SpTV.webp", catLabel: "SSD de escritorio",
     capacities: ["4 TB", "8 TB"], speed: "Hasta 1000 MB/s", port: "USB-C (USB 3.2 Gen 2)" },
-  { ...SANDISK, model: "SanDisk Creator Desk Drive", photo: "img/99c5c5a0ba2a.webp", catLabel: "SSD de escritorio · Creator",
+  { ...SANDISK, model: "SanDisk Creator Desk Drive", photo: "img/sandisk-creator-desk-drive_SpTV.webp", catLabel: "SSD de escritorio · Creator",
     capacities: ["4 TB", "8 TB"], speed: "Hasta 1000 MB/s", port: "USB 3.2 Gen 2" },
 
   // --- SanDisk Professional ---
-  { ...SANDISK_PRO, model: "SanDisk Professional PRO-G40 SSD", photo: "img/9dbd57126613.webp", catLabel: "SSD portátil · exFAT / APFS",
+  { ...SANDISK_PRO, model: "SanDisk Professional PRO-G40 SSD", photo: "img/sandisk-professional-pro-g40-ssd_SpTV.webp", catLabel: "SSD portátil · exFAT / APFS",
     capacities: ["1 TB", "2 TB", "4 TB"], speed: "Hasta 2700–3000 MB/s", port: "Thunderbolt 3 · USB-C (USB 3.2 Gen 2)" },
-  { ...SANDISK_PRO, model: "PRO-BLADE SSD Mag", photo: "img/59bd5cef5eb1.webp", catLabel: "Módulo SSD · ecosistema PRO-BLADE",
+  { ...SANDISK_PRO, model: "PRO-BLADE SSD Mag", photo: "img/sandisk-professional-pro-blade-ssd-mag_SpTV.webp", catLabel: "Módulo SSD · ecosistema PRO-BLADE",
     capacities: ["1 TB", "2 TB", "4 TB"], speed: "Hasta 2000 MB/s (TRANSPORT) · 3000 MB/s (STATION)", port: "PRO-BLADE TRANSPORT / STATION" },
-  { ...SANDISK_PRO, model: "PRO-BLADE TRANSPORT", photo: "img/a0bc7cc9394d.webp", catLabel: "Carcasa portátil para PRO-BLADE SSD Mag",
+  { ...SANDISK_PRO, model: "PRO-BLADE TRANSPORT", photo: "img/sandisk-professional-pro-blade-transport_SpTV.webp", catLabel: "Carcasa portátil para PRO-BLADE SSD Mag",
     capacities: ["Vacía", "1 TB", "2 TB", "4 TB"], speed: "Hasta 2000 MB/s", port: "USB-C" },
-  { ...SANDISK_PRO, model: "G-RAID SHUTTLE SSD", photo: "img/22deb6b46287.webp", catLabel: "RAID SSD transportable",
+  { ...SANDISK_PRO, model: "G-RAID SHUTTLE SSD", photo: "img/sandisk-professional-g-raid-shuttle-ssd_SpTV.webp", catLabel: "RAID SSD transportable",
     capacities: ["16 TB", "32 TB"], speed: "Hasta 2800 MB/s", port: "Thunderbolt 3" },
 
   // --- WD_BLACK ---
-  { ...WD_BLACK, model: "WD_BLACK P50 Game Drive SSD", photo: "img/34fd11217b7a.webp", catLabel: "SSD portátil para gaming",
+  { ...WD_BLACK, model: "WD_BLACK P50 Game Drive SSD", photo: "img/wd-black-p50-game-drive-ssd_SpTV.webp", catLabel: "SSD portátil para gaming",
     capacities: ["500 GB", "1 TB", "2 TB", "4 TB"], speed: "Hasta 2000 MB/s", port: "USB-C (USB 3.2 Gen 2x2)" },
-  { ...WD_BLACK, model: "WD_BLACK P40 Game Drive SSD", photo: "img/6c498b4a3858.webp", catLabel: "SSD portátil para gaming",
+  { ...WD_BLACK, model: "WD_BLACK P40 Game Drive SSD", photo: "img/wd-black-p40-game-drive-ssd_SpTV.webp", catLabel: "SSD portátil para gaming",
     capacities: ["1 TB", "2 TB"], speed: "Hasta 2000 MB/s", port: "USB-C (USB 3.2 Gen 2x2)" },
-  { ...WD_BLACK, model: "WD_BLACK D30 Game Drive SSD", photo: "img/46d6d5eac8f6.webp", catLabel: "SSD para consola",
+  { ...WD_BLACK, model: "WD_BLACK D30 Game Drive SSD", photo: "img/wd-black-d30-game-drive-ssd_SpTV.webp", catLabel: "SSD para consola",
     capacities: ["2 TB"], speed: "Hasta 900 MB/s", port: "USB-C (USB 3.2 Gen 2)" },
-  { ...WD_BLACK, model: "WD_BLACK D50 Game Dock NVMe SSD", photo: "img/fcec4f12f477.webp", catLabel: "Dock con SSD NVMe",
+  { ...WD_BLACK, model: "WD_BLACK D50 Game Dock NVMe SSD", photo: "img/wd-black-d50-game-dock-nvme-ssd_SpTV.webp", catLabel: "Dock con SSD NVMe",
     capacities: ["1 TB", "2 TB"], speed: "Hasta 3000 MB/s", port: "Thunderbolt 3" },
 
   // --- WD ---
-  { ...WD, model: "WD Elements SE SSD", photo: "img/d043666a4598.webp", catLabel: "SSD externo portátil",
+  { ...WD, model: "WD Elements SE SSD", photo: "img/wd-elements-se-ssd_SpTV.webp", catLabel: "SSD externo portátil",
     capacities: ["1 TB", "2 TB"], speed: "Hasta 400 MB/s", port: "Micro-B (USB 3.0)" }
 ];
 
