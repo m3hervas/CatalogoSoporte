@@ -11,13 +11,13 @@ import base64, hashlib, io, json, os, re, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
-SRC = os.path.join(ROOT, "index.html")
-IMG_DIR = os.path.join(ROOT, "img")
-PUBLIC_IMG = "https://m3hervas.github.io/CatalogoSoporte/img/"
+SRC = os.path.join(ROOT, "alquiler", "index.html")
+IMG_DIR = os.path.join(ROOT, "alquiler", "img")
+PUBLIC_IMG = "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/"
 SCOPE = "#catalogo-soporte"
 
 local = "--local" in sys.argv
-img_base = "../img/" if local else PUBLIC_IMG
+img_base = "../alquiler/img/" if local else PUBLIC_IMG
 
 html = io.open(SRC, encoding="utf-8").read()
 
@@ -38,6 +38,8 @@ html = re.sub(r"data:image/(png|jpeg|jpg|webp|gif);base64,([A-Za-z0-9+/=]+)", ex
 
 # index.html references its photos as img/xxx; point them to where WordPress can load them
 html = re.sub(r'(?<=["(])img/', img_base, html)
+# Inside WordPress, "Inicio" and the logo go to the WordPress home page
+html = html.replace('href="../" data-nav="portada"', 'href="/" data-nav="portada"')
 
 # --- 2. Partes del documento ---
 css = re.search(r"<style>(.*?)</style>", html, re.S).group(1)
