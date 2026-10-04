@@ -214,7 +214,6 @@ section { position: relative; }
 .icon-buy .check-bg { fill: var(--accent); stroke: none; transform-box: fill-box; transform-origin: center; transform: scale(0.85); transition: transform 500ms var(--ease); }
 .icon-buy .check { stroke: #fff; stroke-width: 2.2; }
 .panel-body { display: flex; flex-direction: column; gap: 10px; }
-.panel-num { font-family: var(--mono); font-size: 13px; color: var(--accent-text); letter-spacing: 0.12em; }
 .panel-title { font-family: var(--serif); font-style: italic; font-size: clamp(40px, 4.4vw, 62px); line-height: 0.95; letter-spacing: -0.02em; }
 .panel-text { color: var(--text-2); font-size: 15px; line-height: 1.55; max-width: 440px; }
 .panel-tags { display: flex; flex-wrap: wrap; gap: 8px; }
