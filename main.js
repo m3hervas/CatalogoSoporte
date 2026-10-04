@@ -169,6 +169,8 @@
       var interest = (form.querySelector('.interest input:checked') || {}).value || "Alquiler";
       if (!name || !company || !email || !msg) { error.textContent = "Rellena tu nombre, tu empresa, tu correo y qué necesitas."; return; }
       if (!f.privacy.checked) { error.textContent = "Para enviarlo, acepta la política de privacidad."; return; }
+      // Robots fill in the hidden field: pretend it was sent and drop it
+      if (f._honey && f._honey.value) { form.reset(); success.hidden = false; return; }
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { error.textContent = "Revisa tu correo, no parece válido."; return; }
       submit.disabled = true;
       submit.textContent = "Enviando…";
@@ -185,7 +187,8 @@
           "Teléfono": f.phone.value.trim() || "—",
           "Le interesa": interest,
           "Qué necesita": msg,
-          "Política de privacidad": "Aceptada"
+          "Política de privacidad": "Aceptada",
+          _honey: ""
         })
       }).then(function (res) {
         return res.json().catch(function () { return {}; }).then(function (data) {
@@ -199,6 +202,16 @@
         submit.disabled = false;
         submit.textContent = "Enviar solicitud";
       });
+    });
+  }
+
+  // E-mail addresses are written as "user [arroba] domain" in the HTML and assembled here,
+  // so simple address-harvesting robots do not collect them
+  function initMails() {
+    [].slice.call(document.querySelectorAll(".js-mail[data-u][data-d]")).forEach(function (a) {
+      var addr = a.getAttribute("data-u") + "@" + a.getAttribute("data-d");
+      a.setAttribute("href", "mailto:" + addr);
+      a.textContent = addr;
     });
   }
 
@@ -216,5 +229,6 @@
   safe(initMarquee, "marquee");
   safe(initInterestLinks, "interest");
   safe(initForm, "form");
+  safe(initMails, "mails");
   safe(initYear, "year");
 })();

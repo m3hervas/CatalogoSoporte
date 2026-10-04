@@ -386,6 +386,7 @@ section { position: relative; }
 .form-note { margin: 0; font-size: 12px; line-height: 1.55; color: var(--muted); }
 .form-note a, .consent a { color: var(--accent-text); }
 .consent { display: flex !important; grid-template-columns: none; align-items: flex-start; gap: 10px !important; font-size: 13.5px !important; font-weight: 400 !important; color: var(--text-2); cursor: pointer; }
+.hp-field { position: absolute !important; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .consent input { flex: 0 0 auto; width: 18px; height: 18px; margin: 1px 0 0; accent-color: var(--accent); cursor: pointer; }
 .form-error { margin: 0; font-size: 14px; color: #C62828; }
 [data-theme="dark"] .form-error { color: #FF8A8A; }
