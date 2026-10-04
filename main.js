@@ -2,9 +2,8 @@
 (function () {
   "use strict";
 
-  // Messages go to comercial@soportetv.es. Once FormSubmit sends its activation e-mail, replace the address
-  // with the random alias it gives (so the address is not in the code).
-  var FORM_ENDPOINT = "https://formsubmit.co/ajax/comercial@soportetv.es";
+  // FormSubmit alias of the sales mailbox (the address itself is never written in the code)
+  var FORM_ENDPOINT = "https://formsubmit.co/ajax/8a125671c5106e66b21b86b9707e2716";
   var finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
   function safe(fn, name) {

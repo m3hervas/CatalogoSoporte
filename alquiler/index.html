@@ -3782,9 +3782,8 @@ setupFilters(document.getElementById("gridConnectivity"), [
 
 // --- Rental request ---
 // FormSubmit reenvía las solicitudes al correo (o alias) indicado al final de la URL
-// Messages go to comercial@soportetv.es. Once FormSubmit sends its activation e-mail, replace the address
-// with the random alias it gives (so the address is not in the code).
-const FORM_ENDPOINT = "https://formsubmit.co/ajax/comercial@soportetv.es";
+// FormSubmit alias of the sales mailbox (the address itself is never written in the code)
+const FORM_ENDPOINT = "https://formsubmit.co/ajax/8a125671c5106e66b21b86b9707e2716";
 
 
 const rentModal = document.getElementById("rentModal");
