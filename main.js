@@ -135,6 +135,13 @@
 
   // "Compra" links preselect the purchase option in the contact form
   function initInterestLinks() {
+    // Arriving from another page with ?interes=compra (e.g. the "Compra" button of the catalogue bar)
+    var wanted = (location.search.match(/[?&]interes=([^&#]+)/) || [])[1];
+    if (wanted) {
+      var value = decodeURIComponent(wanted).toLowerCase() === "compra" ? "Compra" : "Alquiler";
+      var pre = document.querySelector('.interest input[value="' + value + '"]');
+      if (pre) pre.checked = true;
+    }
     [].slice.call(document.querySelectorAll('a[href="#compra"], a[data-interest]')).forEach(function (a) {
       a.addEventListener("click", function (e) {
         var value = a.getAttribute("data-interest") || "Compra";
@@ -161,6 +168,7 @@
       var name = f.name.value.trim(), company = f.company.value.trim(), email = f.email.value.trim(), msg = f.message.value.trim();
       var interest = (form.querySelector('.interest input:checked') || {}).value || "Alquiler";
       if (!name || !company || !email || !msg) { error.textContent = "Rellena tu nombre, tu empresa, tu correo y qué necesitas."; return; }
+      if (!f.privacy.checked) { error.textContent = "Para enviarlo, acepta la política de privacidad."; return; }
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { error.textContent = "Revisa tu correo, no parece válido."; return; }
       submit.disabled = true;
       submit.textContent = "Enviando…";
@@ -176,7 +184,8 @@
           email: email,
           "Teléfono": f.phone.value.trim() || "—",
           "Le interesa": interest,
-          "Qué necesita": msg
+          "Qué necesita": msg,
+          "Política de privacidad": "Aceptada"
         })
       }).then(function (res) {
         return res.json().catch(function () { return {}; }).then(function (data) {

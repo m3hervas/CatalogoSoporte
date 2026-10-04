@@ -14,10 +14,12 @@ ROOT = os.path.dirname(HERE)
 SRC = os.path.join(ROOT, "alquiler", "index.html")
 IMG_DIR = os.path.join(ROOT, "alquiler", "img")
 PUBLIC_IMG = "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/"
+PUBLIC_SITE = "https://m3hervas.github.io/CatalogoSoporte/"
 SCOPE = "#catalogo-soporte"
 
 local = "--local" in sys.argv
 img_base = "../alquiler/img/" if local else PUBLIC_IMG
+site_base = "../" if local else PUBLIC_SITE  # fonts and legal pages shared with the home page
 
 html = io.open(SRC, encoding="utf-8").read()
 
@@ -40,6 +42,12 @@ html = re.sub(r"data:image/(png|jpeg|jpg|webp|gif);base64,([A-Za-z0-9+/=]+)", ex
 html = re.sub(r'(?<=["(])img/', img_base, html)
 # Inside WordPress, "Inicio" and the logo go to the WordPress home page
 html = html.replace('href="../" data-nav="portada"', 'href="/" data-nav="portada"')
+# The WhatsApp widget is not loaded inside WordPress, so its top-bar button is removed there
+html = re.sub(r'\s*<button class="nav-wa"[^>]*data-wa-open[^>]*>.*?</button>', '', html, flags=re.S)
+# The purchase catalogue is a separate page next to the rental one (links and the redirect in the JS)
+html = html.replace('"../compra/"', '"' + site_base + 'compra/"')
+# Links to the legal pages live next to the home page
+html = html.replace('href="../legal/', 'href="' + site_base + 'legal/')
 
 # --- 2. Partes del documento ---
 css = re.search(r"<style>(.*?)</style>", html, re.S).group(1)
@@ -160,7 +168,7 @@ scoped += f"""
   {SCOPE} {{ width: 100%; max-width: none; margin: 0; }}
 """
 
-font_urls = re.findall(r'<link href="([^"]+)" rel="stylesheet">', fonts)
+font_urls = [site_base + u[3:] if u.startswith("../") else u for u in re.findall(r'<link href="([^"]+)" rel="stylesheet">', fonts)]
 html_body = f'<div id="catalogo-soporte">\n{body.strip()}\n</div>'
 
 loader = f"""/* Catálogo Soporte TV para WordPress — generado desde index.html con build_wordpress.py */

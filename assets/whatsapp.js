@@ -13,8 +13,8 @@
 
   // The number is assembled here (not written in the HTML) so simple scrapers do not pick it up
   var NUMBER = ["34", "639", "183", "001"].join("");
-  var GREETING = source === "alquiler"
-    ? "Hola, os escribo desde el catálogo de alquiler de Soporte TV. "
+  var GREETING = source === "alquiler" ? "Hola, os escribo desde el catálogo de alquiler de Soporte TV. "
+    : source === "compra" ? "Hola, os escribo desde el catálogo de compra de Soporte TV. "
     : "Hola, os escribo desde la web de Soporte TV. ";
 
   var GLYPH = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>';
@@ -70,7 +70,11 @@
     "@media (hover:hover) and (pointer:fine){#sptvWa .wa-open:hover{background:#1EBE5A}}",
     "#sptvWa .wa-open:active{transform:scale(.97)}",
     "#sptvWa .wa-note{margin:10px 0 0;text-align:center;font-size:12px;color:var(--mute)}",
-    "@media (max-width:720px){#sptvWa .wa-fab{width:56px;height:56px}#sptvWa .wa-card{bottom:70px}}"
+    "@media (max-width:720px){#sptvWa .wa-fab{width:56px;height:56px}#sptvWa .wa-card{bottom:70px}}",
+    /* Top-bar mode (wide screens with a [data-wa-open] button): no floating button, card under the bar */
+    "#sptvWa.wa-top .wa-fab{display:none}",
+    "#sptvWa.wa-top .wa-card{position:fixed;bottom:auto;transform-origin:calc(100% - 24px) -10px;transform:translateY(-8px) scale(.96)}",
+    "#sptvWa.wa-top.is-open .wa-card{transform:none}"
   ].join("");
 
   var style = document.createElement("style");
@@ -110,24 +114,67 @@
   var card = root.querySelector(".wa-card");
   var openLink = root.querySelector(".wa-open");
 
-  function setOpen(open, focusBack) {
+  // Pages can offer their own WhatsApp button (e.g. in the top bar) with [data-wa-open].
+  // On wide screens that button replaces the floating one and the card opens just below it;
+  // on phones (or if the page has no such button) the floating button bottom right is used.
+  var triggers = [].slice.call(document.querySelectorAll("[data-wa-open]"));
+  var wide = window.matchMedia("(min-width: 721px)");
+  var activeTrigger = null;
+  function visibleTrigger() {
+    for (var i = 0; i < triggers.length; i++) if (triggers[i].offsetParent !== null) return triggers[i];
+    return null;
+  }
+  function layout() {
+    var t = wide.matches ? visibleTrigger() : null;
+    root.classList.toggle("wa-top", !!t);
+    if (!t) { card.style.top = ""; card.style.right = ""; }
+    if (!t && activeTrigger && root.classList.contains("is-open")) setOpen(false, false);
+    if (t && root.classList.contains("is-open")) place(t);
+  }
+  function place(t) {
+    var r = t.getBoundingClientRect();
+    card.style.top = Math.round(r.bottom + 12) + "px";
+    card.style.right = Math.max(12, Math.round(window.innerWidth - r.right)) + "px";
+  }
+
+  function setOpen(open, focusBack, trigger) {
+    if (open) {
+      activeTrigger = trigger || null;
+      if (activeTrigger) place(activeTrigger);
+      else { card.style.top = ""; card.style.right = ""; }
+    }
     root.classList.toggle("is-open", open);
     fab.setAttribute("aria-expanded", String(open));
     fab.setAttribute("aria-label", open ? "Cerrar WhatsApp" : "Contactar por WhatsApp");
+    triggers.forEach(function (t) { t.setAttribute("aria-expanded", String(open && t === activeTrigger)); });
     card.setAttribute("aria-hidden", String(!open));
     if (open) setTimeout(function () { openLink.focus({ preventScroll: true }); }, 60);
-    else if (focusBack) fab.focus({ preventScroll: true });
+    else if (focusBack) (activeTrigger && root.classList.contains("wa-top") ? activeTrigger : fab).focus({ preventScroll: true });
   }
 
-  fab.addEventListener("click", function () { setOpen(!root.classList.contains("is-open"), false); });
+  fab.addEventListener("click", function () { setOpen(!root.classList.contains("is-open"), false, null); });
+  triggers.forEach(function (t) {
+    t.setAttribute("aria-controls", "sptvWaCard");
+    t.setAttribute("aria-expanded", "false");
+    t.addEventListener("click", function () {
+      if (!root.classList.contains("wa-top")) { setOpen(true, false, null); return; }
+      setOpen(!(root.classList.contains("is-open") && activeTrigger === t), false, t);
+    });
+  });
   root.querySelector(".wa-close").addEventListener("click", function () { setOpen(false, true); });
   openLink.addEventListener("click", function () { setTimeout(function () { setOpen(false, false); }, 300); });
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape" && root.classList.contains("is-open")) setOpen(false, true);
   });
   document.addEventListener("pointerdown", function (e) {
-    if (root.classList.contains("is-open") && !root.contains(e.target)) setOpen(false, false);
+    if (!root.classList.contains("is-open") || root.contains(e.target)) return;
+    if (triggers.some(function (t) { return t.contains(e.target); })) return;
+    setOpen(false, false);
   });
+  window.addEventListener("resize", layout);
+  window.addEventListener("scroll", function () { if (activeTrigger && root.classList.contains("is-open")) place(activeTrigger); }, { passive: true });
+  if (wide.addEventListener) wide.addEventListener("change", layout); else if (wide.addListener) wide.addListener(layout);
+  layout();
 
   // Step aside while the page shows one of its own overlays (catalogue spec sheet, rental form, credits)
   var scrims = [].slice.call(document.querySelectorAll(".scrim"));
