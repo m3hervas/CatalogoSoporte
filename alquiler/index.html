@@ -541,33 +541,11 @@
     object-fit: contain;
   }
 
-  .scroll-hint {
-    position: absolute;
-    left: 50%;
-    bottom: 22px;
-    transform: translateX(-50%);
-    background: none;
-    border: none;
-    font-family: 'Inter', sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--ink-soft);
-    cursor: pointer;
-    animation: hint-bob 1.8s ease-in-out infinite;
-  }
-
-  @keyframes hint-bob {
-    0%, 100% { transform: translate(-50%, 0); }
-    50% { transform: translate(-50%, 6px); }
-  }
-
   @media (max-width: 720px) {
     .intro-card { flex-direction: column-reverse; justify-content: center; text-align: center; padding-bottom: 64px; }
     .intro-card p { margin-left: auto; margin-right: auto; }
     .intro-logo { width: 140px; }
   }
-
-  @media (prefers-reduced-motion: reduce) { .scroll-hint { animation: none; } }
 
   /* --- Rental request modal --- */
   .rent-modal {
@@ -1087,7 +1065,6 @@
     50% { transform: translateY(-10px); }
   }
 
-  .scroll-hint { color: var(--mute); }
 
   /* Catalog header */
   .eyebrow { color: var(--accent-2); letter-spacing: 0.14em; font-size: 12px; }
@@ -1285,7 +1262,7 @@
   }
 
   /* Featured models slider */
-  .featured { width: min(1440px, 100%); margin: 0 0 72px; }
+  .featured { width: min(1440px, 100%); margin: 72px 0 72px; }
   .featured-head { text-align: center; margin-bottom: 26px; }
   .featured-head h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(36px, 5vw, 54px); line-height: 1.05; color: #0F172A; margin: 0 0 10px; }
   .featured-head p:last-child { color: #475569; margin: 0; font-size: 15.5px; }
@@ -1751,85 +1728,6 @@
   </div>
 </nav>
 
-<section class="intro" id="intro">
-  <div class="intro-card">
-    <div class="intro-glow" aria-hidden="true"></div>
-    <div class="intro-text">
-      <p class="intro-eyebrow"><span class="dot" aria-hidden="true"></span>Soporte TV · Alquiler profesional</p>
-      <h2>Alquiler de dispositivos para <em>eventos y producciones</em></h2>
-      <p>Tablets, móviles, ordenadores y accesorios listos para tu evento, rodaje o producción. Elige el equipo que necesitas y te lo preparamos configurado y revisado.</p>
-      <div class="intro-actions">
-        <button class="primary-btn" id="openRent">Solicita presupuesto</button>
-        <a class="ghost-btn" href="#catalogo" data-nav="catalog">Ver catálogo</a>
-      </div>
-    </div>
-    <img class="intro-logo" id="introLogo" alt="Logo Soporte TV">
-    <button class="scroll-hint" id="scrollHint">Ver catálogo ↓</button>
-  </div>
-</section>
-
-<section class="featured reveal" id="destacados" aria-label="Modelos destacados">
-  <div class="featured-head">
-    <p class="eyebrow">Destacados</p>
-    <h2>Modelos destacados</h2>
-    <p>Una selección de equipos de nuestro catálogo de alquiler.</p>
-  </div>
-  <div class="slider" id="featuredSlider" tabindex="0" aria-roledescription="carrusel">
-    <div class="slides">
-      <article class="slide is-active" aria-roledescription="diapositiva" aria-label="1 de 4">
-        <img src="img/apple-macbook-air-m1-destacado_SpTV.webp" alt="MacBook Air de 13,3 pulgadas con chip M1 sobre un escritorio" style="object-position: 55% 50%" loading="eager" decoding="async">
-        <div class="slide-content">
-          <span class="slide-chip">Ordenadores</span>
-          <h3>MacBook Air 13,3'' M1</h3>
-          <p>Apple M1 · 16 GB · 256 GB SSD</p>
-          <button class="primary-btn" data-feature-route="mac" data-feature-model="MacBook Air 13,3'' M1">Ver en el catálogo</button>
-        </div>
-      </article>
-      <article class="slide" aria-roledescription="diapositiva" aria-label="2 de 4">
-        <img src="img/apple-ipad-pro-destacado_SpTV.webp" alt="Parte trasera de un iPad Pro" style="object-position: 50% 45%" loading="lazy" decoding="async">
-        <div class="slide-content">
-          <span class="slide-chip">Tablets</span>
-          <h3>iPad Pro</h3>
-          <p>128 GB · 256 GB · Pantalla de 11''</p>
-          <button class="primary-btn" data-feature-route="tablets" data-feature-model="iPad Pro">Ver en el catálogo</button>
-        </div>
-      </article>
-      <article class="slide" aria-roledescription="diapositiva" aria-label="3 de 4">
-        <img src="img/apple-iphone-16-pro-destacado_SpTV.webp" alt="Cámaras traseras del iPhone 16 Pro" style="object-position: 50% 22%" loading="lazy" decoding="async">
-        <div class="slide-content">
-          <span class="slide-chip">Móviles</span>
-          <h3>iPhone 16 Pro</h3>
-          <p>128 GB · 256 GB · 512 GB · 1 TB · Pantalla de 6,3''</p>
-          <button class="primary-btn" data-feature-route="moviles" data-feature-model="iPhone 16 Pro">Ver en el catálogo</button>
-        </div>
-      </article>
-      <article class="slide" aria-roledescription="diapositiva" aria-label="4 de 4">
-        <img src="img/sandisk-extreme-portable-ssd-destacado_SpTV.webp" alt="Disco SanDisk Extreme Portable SSD" style="object-position: 50% 45%" loading="lazy" decoding="async">
-        <div class="slide-content">
-          <span class="slide-chip">Almacenamiento</span>
-          <h3>SanDisk Extreme Portable SSD</h3>
-          <p>De 500 GB a 8 TB · Hasta 1050 MB/s</p>
-          <button class="primary-btn" data-feature-route="almacenamiento" data-feature-model="SanDisk Extreme Portable SSD">Ver en el catálogo</button>
-        </div>
-      </article>
-    </div>
-    <div class="slider-dots" role="group" aria-label="Seleccionar destacado">
-        <button class="slider-dot is-active" aria-label="Ir al destacado 1"><span></span></button>
-        <button class="slider-dot" aria-label="Ir al destacado 2"><span></span></button>
-        <button class="slider-dot" aria-label="Ir al destacado 3"><span></span></button>
-        <button class="slider-dot" aria-label="Ir al destacado 4"><span></span></button>
-    </div>
-    <div class="slider-nav">
-      <button class="slider-arrow" data-dir="-1" aria-label="Destacado anterior">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
-      </button>
-      <button class="slider-arrow" data-dir="1" aria-label="Destacado siguiente">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
-      </button>
-    </div>
-  </div>
-</section>
-
 <header class="reveal" id="catalogo">
   <p class="eyebrow" id="catEyebrow">Catálogo de alquiler</p>
   <div class="brand-header">
@@ -2234,6 +2132,84 @@
     <div class="storage-grid" id="gridPrinters"></div>
   </div>
 </div>
+
+<section class="featured reveal" id="destacados" aria-label="Modelos destacados">
+  <div class="featured-head">
+    <p class="eyebrow">Destacados</p>
+    <h2>Modelos destacados</h2>
+    <p>Una selección de equipos de nuestro catálogo de alquiler.</p>
+  </div>
+  <div class="slider" id="featuredSlider" tabindex="0" aria-roledescription="carrusel">
+    <div class="slides">
+      <article class="slide is-active" aria-roledescription="diapositiva" aria-label="1 de 4">
+        <img src="img/apple-macbook-air-m1-destacado_SpTV.webp" alt="MacBook Air de 13,3 pulgadas con chip M1 sobre un escritorio" style="object-position: 55% 50%" loading="eager" decoding="async">
+        <div class="slide-content">
+          <span class="slide-chip">Ordenadores</span>
+          <h3>MacBook Air 13,3'' M1</h3>
+          <p>Apple M1 · 16 GB · 256 GB SSD</p>
+          <button class="primary-btn" data-feature-route="mac" data-feature-model="MacBook Air 13,3'' M1">Ver en el catálogo</button>
+        </div>
+      </article>
+      <article class="slide" aria-roledescription="diapositiva" aria-label="2 de 4">
+        <img src="img/apple-ipad-pro-destacado_SpTV.webp" alt="Parte trasera de un iPad Pro" style="object-position: 50% 45%" loading="lazy" decoding="async">
+        <div class="slide-content">
+          <span class="slide-chip">Tablets</span>
+          <h3>iPad Pro</h3>
+          <p>128 GB · 256 GB · Pantalla de 11''</p>
+          <button class="primary-btn" data-feature-route="tablets" data-feature-model="iPad Pro">Ver en el catálogo</button>
+        </div>
+      </article>
+      <article class="slide" aria-roledescription="diapositiva" aria-label="3 de 4">
+        <img src="img/apple-iphone-16-pro-destacado_SpTV.webp" alt="Cámaras traseras del iPhone 16 Pro" style="object-position: 50% 22%" loading="lazy" decoding="async">
+        <div class="slide-content">
+          <span class="slide-chip">Móviles</span>
+          <h3>iPhone 16 Pro</h3>
+          <p>128 GB · 256 GB · 512 GB · 1 TB · Pantalla de 6,3''</p>
+          <button class="primary-btn" data-feature-route="moviles" data-feature-model="iPhone 16 Pro">Ver en el catálogo</button>
+        </div>
+      </article>
+      <article class="slide" aria-roledescription="diapositiva" aria-label="4 de 4">
+        <img src="img/sandisk-extreme-portable-ssd-destacado_SpTV.webp" alt="Disco SanDisk Extreme Portable SSD" style="object-position: 50% 45%" loading="lazy" decoding="async">
+        <div class="slide-content">
+          <span class="slide-chip">Almacenamiento</span>
+          <h3>SanDisk Extreme Portable SSD</h3>
+          <p>De 500 GB a 8 TB · Hasta 1050 MB/s</p>
+          <button class="primary-btn" data-feature-route="almacenamiento" data-feature-model="SanDisk Extreme Portable SSD">Ver en el catálogo</button>
+        </div>
+      </article>
+    </div>
+    <div class="slider-dots" role="group" aria-label="Seleccionar destacado">
+        <button class="slider-dot is-active" aria-label="Ir al destacado 1"><span></span></button>
+        <button class="slider-dot" aria-label="Ir al destacado 2"><span></span></button>
+        <button class="slider-dot" aria-label="Ir al destacado 3"><span></span></button>
+        <button class="slider-dot" aria-label="Ir al destacado 4"><span></span></button>
+    </div>
+    <div class="slider-nav">
+      <button class="slider-arrow" data-dir="-1" aria-label="Destacado anterior">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button class="slider-arrow" data-dir="1" aria-label="Destacado siguiente">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<section class="intro" id="intro">
+  <div class="intro-card">
+    <div class="intro-glow" aria-hidden="true"></div>
+    <div class="intro-text">
+      <p class="intro-eyebrow"><span class="dot" aria-hidden="true"></span>Soporte TV · Alquiler profesional</p>
+      <h2>Alquiler de dispositivos para <em>eventos y producciones</em></h2>
+      <p>Tablets, móviles, ordenadores y accesorios listos para tu evento, rodaje o producción. Elige el equipo que necesitas y te lo preparamos configurado y revisado.</p>
+      <div class="intro-actions">
+        <button class="primary-btn" id="openRent">Solicita presupuesto</button>
+        <a class="ghost-btn" href="#catalogo" data-nav="catalog">Ver catálogo</a>
+      </div>
+    </div>
+    <img class="intro-logo" id="introLogo" alt="Logo Soporte TV">
+  </div>
+</section>
 
 <footer class="site-footer reveal" id="contacto">
   <div class="footer-grid">
@@ -3929,8 +3905,6 @@ function closeRent() {
 }
 
 document.getElementById("openRent").addEventListener("click", openRent);
-document.getElementById("scrollHint").addEventListener("click", () =>
-  document.querySelector("header").scrollIntoView({ behavior: "smooth" }));
 document.getElementById("rentClose").addEventListener("click", closeRent);
 document.getElementById("rentDoneClose").addEventListener("click", closeRent);
 rentScrim.addEventListener("click", closeRent);
