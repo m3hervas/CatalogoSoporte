@@ -783,7 +783,15 @@
     letter-spacing: -0.01em;
   }
 
-  .nav-brand img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-brand img { width: auto; height: 30px; object-fit: contain; }
+  /* Official logo: dark lettering in light mode, white lettering in dark mode */
+  .brand-logo--dark { display: none; }
+  [data-theme="dark"] .brand-logo--light { display: none; }
+  [data-theme="dark"] .brand-logo--dark { display: block; }
+  .brand-header .brand-logo { width: auto; height: clamp(46px, 7vw, 64px); }
+  .footer-logo .brand-logo { width: auto; height: 34px; }
+  /* On the landing the official logo is the heading; inside a category the category name is */
+  header:not(.in-category) #catTitle { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
   .nav-menu { display: flex; align-items: center; gap: 4px; }
 
@@ -1509,6 +1517,9 @@
     .landing { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
 </style>
+<!-- WhatsApp contact button (shared with the home page; not included in the WordPress build) -->
+<link rel="icon" href="img/logo-soporte-tv-icono_SpTV.webp?v=20261004e" type="image/webp">
+<script src="../assets/whatsapp.js?v=20261004f" data-logo="img/logo-soporte-tv-icono_SpTV.webp?v=20261004e" data-source="alquiler" defer></script>
 </head>
 <body>
 
@@ -1524,9 +1535,9 @@
 <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
 <nav class="site-nav" id="siteNav" aria-label="Principal">
-  <a class="nav-brand" href="../" data-nav="portada">
-    <img src="img/logo-soporte-tv_SpTV.webp" alt="" width="28" height="28">
-    <span>Soporte TV</span>
+  <a class="nav-brand" href="../" data-nav="portada" aria-label="Soporte TV, inicio">
+    <img class="brand-logo brand-logo--light" src="img/logo-soporte-tv_SpTV.webp?v=20261004e" alt="" width="113" height="30">
+    <img class="brand-logo brand-logo--dark" src="img/logo-soporte-tv-blanco_SpTV.webp?v=20261004e" alt="" width="113" height="30">
   </a>
   <button class="theme-toggle" id="themeToggle" type="button" aria-label="Cambiar a modo noche" aria-pressed="false">
     <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
@@ -1564,7 +1575,8 @@
 <header class="reveal" id="catalogo">
   <p class="eyebrow" id="catEyebrow">Catálogo de alquiler</p>
   <div class="brand-header">
-    <img src="img/logo-soporte-tv_SpTV.webp" alt="Logo Soporte TV" style="width:38px;height:38px;object-fit:contain;">
+    <img class="brand-logo brand-logo--light" src="img/logo-soporte-tv_SpTV.webp?v=20261004e" alt="Soporte TV" width="242" height="64">
+    <img class="brand-logo brand-logo--dark" src="img/logo-soporte-tv-blanco_SpTV.webp?v=20261004e" alt="" width="242" height="64">
     <h1 id="catTitle">Soporte TV</h1>
   </div>
   <p id="catDesc">Elige una categoría para ver los productos disponibles para alquiler.</p>
@@ -1970,7 +1982,7 @@
   <div class="featured-head">
     <p class="eyebrow">Destacados</p>
     <h2>Modelos destacados</h2>
-    <p>Una selección de equipos de nuestro catálogo de alquiler.</p>
+    <p>Una selección de material de nuestro catálogo de alquiler.</p>
   </div>
   <div class="slider" id="featuredSlider" tabindex="0" aria-roledescription="carrusel">
     <div class="slides">
@@ -2032,10 +2044,10 @@
   <div class="footer-grid">
     <div class="footer-brand">
       <div class="footer-logo">
-        <img src="img/logo-soporte-tv_SpTV.webp" alt="" width="32" height="32">
-        <strong>Soporte TV</strong>
+        <img class="brand-logo brand-logo--light" src="img/logo-soporte-tv_SpTV.webp?v=20261004e" alt="Soporte TV" width="128" height="34">
+        <img class="brand-logo brand-logo--dark" src="img/logo-soporte-tv-blanco_SpTV.webp?v=20261004e" alt="" width="128" height="34">
       </div>
-      <p>Alquiler de dispositivos para eventos, rodajes y producciones. Equipos configurados y revisados antes de cada entrega.</p>
+      <p>Alquiler de dispositivos para eventos, rodajes y producciones. Material configurado y revisado antes de cada entrega.</p>
       <button class="primary-btn" data-nav="rent">Solicitar alquiler</button>
     </div>
     <div class="footer-col">
@@ -2046,7 +2058,7 @@
       <a href="#ordenadores" data-route="ordenadores">Ordenadores</a>
     </div>
     <div class="footer-col">
-      <h4>Más equipos</h4>
+      <h4>Más material</h4>
       <a href="#monitores" data-route="monitores">Monitores / TV</a>
       <a href="#almacenamiento" data-route="almacenamiento">Almacenamiento</a>
       <a href="#cabinas" data-route="cabinas">Cabinas</a>
@@ -2087,7 +2099,7 @@
       <li><strong>MiFi portátil</strong> — «Huawei E5576-320 4G Reise-Hotspot LTE-Router», por www.digitalpush.net. Licencia <a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="noopener">CC BY 4.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Huawei-E5576-320-4G-Reise-Hotspot-LTE-Router.1.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
       <li><strong>Router con SIM</strong> — «Mikrotik Chateau LTE-5G modem+router», por Yerachmiel C. Licencia <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Mikrotik_Chateau_LTE-5G_modem%2Brouter.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
   </ul>
-  <p class="credits-note">Las fotos de accesorios y conectividad genéricos son orientativas: el equipo entregado puede ser de otra marca o modelo equivalente. Resto de fotos de producto: imágenes oficiales de los fabricantes (Apple, Samsung, LG, JVC, Microsoft, HP, Dell, Lenovo, SanDisk / Western Digital, Areca, Stardom, TerraMaster, QNAP, Synology, Jabra, Hollyland, Motorola, Ricoh, Zhiyun, Wacom, Celly, Targus y Ubiquiti) o aportadas por Soporte TV.</p>
+  <p class="credits-note">Las fotos de accesorios y conectividad genéricos son orientativas: el material entregado puede ser de otra marca o modelo equivalente. Resto de fotos de producto: imágenes oficiales de los fabricantes (Apple, Samsung, LG, JVC, Microsoft, HP, Dell, Lenovo, SanDisk / Western Digital, Areca, Stardom, TerraMaster, QNAP, Synology, Jabra, Hollyland, Motorola, Ricoh, Zhiyun, Wacom, Celly, Targus y Ubiquiti) o aportadas por Soporte TV.</p>
 </div>
 <div class="scrim rent-scrim" id="rentScrim"></div>
 <div class="rent-modal" id="rentModal" role="dialog" aria-modal="true" aria-labelledby="rentTitle">
@@ -3154,7 +3166,7 @@ const CABINS = [
     model: "TerraMaster D5 / D8", photo: "img/terramaster-d5-d8_SpTV.webp",
     icon: cabinIcon("#E95513"),
     info: [["bays", "Bahías", "5 · 8", 1], ["raid", "RAID", "0, 1, 5, 10", 1], ["port", "Conexión", "Thunderbolt 3 (40 Gb/s)"]],
-    specs: [["Categoría", "Cabina de discos (DAS) con RAID por hardware"], ["Marca", "TerraMaster"], ["Modelos", "D5 Thunderbolt 3 · D8-332"], ["Bahías", "5 / 8 · discos 3,5'' SATA o SSD 2,5''"], ["Conexión", "2 × Thunderbolt 3 (40 Gb/s), encadenable · solo equipos Thunderbolt 3/4"], ["Velocidad", "Hasta 1035 MB/s (D5) · hasta 1600 MB/s (D8-332)"], ["RAID", "0, 1, 5, 10, JBOD, Single"], ["Capacidad máxima", "120 TB (D5) · 160 TB (D8-332)"]]
+    specs: [["Categoría", "Cabina de discos (DAS) con RAID por hardware"], ["Marca", "TerraMaster"], ["Modelos", "D5 Thunderbolt 3 · D8-332"], ["Bahías", "5 / 8 · discos 3,5'' SATA o SSD 2,5''"], ["Conexión", "2 × Thunderbolt 3 (40 Gb/s), encadenable · solo dispositivos Thunderbolt 3/4"], ["Velocidad", "Hasta 1035 MB/s (D5) · hasta 1600 MB/s (D8-332)"], ["RAID", "0, 1, 5, 10, JBOD, Single"], ["Capacidad máxima", "120 TB (D5) · 160 TB (D8-332)"]]
   },
   {
     cat: "cabin", catLabel: "NAS", type: "NAS", brand: "QNAP", brandCode: "Q", brandColor: "#2F6BB3",
@@ -3405,7 +3417,7 @@ function openPanel(p) {
     <p class="spec-title">Ficha técnica</p>
     <div class="spec-table">${rows}</div>
     <span class="rental-tag">Disponible para alquiler</span>
-    <button class="primary-btn panel-request" id="panelRequest">Solicitar este equipo</button>
+    <button class="primary-btn panel-request" id="panelRequest">Solicitar este material</button>
   `;
 
   scrim.classList.add("open");

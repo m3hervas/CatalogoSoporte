@@ -133,24 +133,6 @@
     requestAnimationFrame(frame);
   }
 
-  // Soft parallax on the "about" photo (single rAF loop, only while visible)
-  function initParallax() {
-    var img = document.querySelector(".parallax");
-    if (!img) return;
-    var speed = parseFloat(img.getAttribute("data-speed")) || 0.08;
-    var ticking = false;
-    var update = function () {
-      var r = img.parentNode.getBoundingClientRect();
-      if (r.bottom > 0 && r.top < window.innerHeight) {
-        var offset = (r.top + r.height / 2 - window.innerHeight / 2) * -speed;
-        img.style.transform = "translate3d(0," + offset.toFixed(1) + "px,0)";
-      }
-      ticking = false;
-    };
-    window.addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
-    update();
-  }
-
   // "Compra" links preselect the purchase option in the contact form
   function initInterestLinks() {
     [].slice.call(document.querySelectorAll('a[href="#compra"], a[data-interest]')).forEach(function (a) {
@@ -176,9 +158,9 @@
       e.preventDefault();
       error.textContent = "";
       var f = form.elements;
-      var name = f.name.value.trim(), email = f.email.value.trim(), msg = f.message.value.trim();
+      var name = f.name.value.trim(), company = f.company.value.trim(), email = f.email.value.trim(), msg = f.message.value.trim();
       var interest = (form.querySelector('.interest input:checked') || {}).value || "Alquiler";
-      if (!name || !email || !msg) { error.textContent = "Rellena tu nombre, tu correo y qué necesitas."; return; }
+      if (!name || !company || !email || !msg) { error.textContent = "Rellena tu nombre, tu empresa, tu correo y qué necesitas."; return; }
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { error.textContent = "Revisa tu correo, no parece válido."; return; }
       submit.disabled = true;
       submit.textContent = "Enviando…";
@@ -190,7 +172,7 @@
           _template: "table",
           _captcha: "false",
           Nombre: name,
-          Empresa: f.company.value.trim() || "—",
+          Empresa: company,
           email: email,
           "Teléfono": f.phone.value.trim() || "—",
           "Le interesa": interest,
@@ -222,7 +204,6 @@
   safe(initReveal, "reveal");
   safe(initPanels, "panels");
   safe(initMagnetic, "magnetic");
-  safe(initParallax, "parallax");
   safe(initMarquee, "marquee");
   safe(initInterestLinks, "interest");
   safe(initForm, "form");
