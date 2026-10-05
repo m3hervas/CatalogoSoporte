@@ -1580,6 +1580,28 @@
     .nav-menu-ctas { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
     .nav-menu-ctas .primary-btn, .nav-menu-ctas .nav-ghost { padding: 14px; font-size: 15px; }
   }
+
+  /* Pages (16 products per page) */
+  .storage-card[hidden] { display: none !important; }
+  .storage-grid { scroll-margin-top: 110px; }
+  .pager { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; margin: 26px 0 6px; grid-column: -2 / -1; }
+  .pager[hidden] { display: none; }
+  .pager-btn {
+    min-width: 42px; height: 42px; padding: 0 12px; border-radius: 12px; cursor: pointer;
+    font: 600 15px/1 'Inter', sans-serif; color: #0F172A; background: #FFFFFF; border: 1px solid var(--line);
+    transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease, transform 160ms var(--ease-out);
+  }
+  .pager-btn[aria-current="page"] { background: var(--accent); border-color: var(--accent); color: #FFFFFF; }
+  .pager-btn:disabled { opacity: 0.35; cursor: default; }
+  .pager-btn:active:not(:disabled) { transform: scale(0.95); }
+  .pager-btn:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 2px; }
+  .pager-arrow { font-size: 20px; }
+  .pager-info { width: 100%; text-align: center; font-size: 13px; color: var(--mute); margin-top: 2px; }
+  [data-theme="dark"] .pager-btn { background: rgba(255,255,255,0.04); color: #F5F7FA; border-color: rgba(255,255,255,0.14); }
+  [data-theme="dark"] .pager-btn[aria-current="page"] { background: var(--accent); border-color: var(--accent); color: #FFFFFF; }
+  @media (hover: hover) and (pointer: fine) {
+    .pager-btn:not(:disabled):not([aria-current]):hover { border-color: var(--accent); color: var(--accent-2); }
+  }
 </style>
 <!-- WhatsApp contact button (shared with the home page; not included in the WordPress build) -->
 <link rel="icon" href="img/logo-soporte-tv-icono_SpTV.webp?v=20261004e" type="image/webp">
@@ -2154,12 +2176,13 @@
   </ul>
   <p>Accesorios y Conectividad</p>
   <ul>
-      <li><strong>Aro de luz</strong> — «Ring Light», por Serhan Meewisse. Licencia <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">CC0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Ring_Light_25280737679.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
+      <li><strong>Apple Pencil</strong> — «ApplePencilPro2», por Jtosman. Licencia <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">CC0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:ApplePencilPro2.png" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco y formato WebP).</li>
+      <li><strong>Aro de luz</strong> — «Ring Light», por Serhan Meewisse. Licencia <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">CC0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Ring_Light_25280737679.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
       <li><strong>Micrófono inalámbrico</strong> — «Rode Wireless Go II Set 2», por -stk. Licencia <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Rode_Wireless_Go_II_Set_2.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
-      <li><strong>Power bank</strong> — «2023 Powerbank Green Cell PowerPlay 20 (2)», por Jacek Halicki. Licencia <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:2023_Powerbank_Green_Cell_PowerPlay_20_(2).jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
-      <li><strong>Funda con teclado</strong> — «Logitech Ultrathin Keyboard Cover for iPad», por Kārlis Dambrāns. Licencia <a href="https://creativecommons.org/licenses/by/2.0" target="_blank" rel="noopener">CC BY 2.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Logitech_Ultrathin_Keyboard_Cover_for_iPad_(9679257750).jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
-      <li><strong>MiFi portátil</strong> — «Huawei E5576-320 4G Reise-Hotspot LTE-Router», por www.digitalpush.net. Licencia <a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="noopener">CC BY 4.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Huawei-E5576-320-4G-Reise-Hotspot-LTE-Router.1.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
-      <li><strong>Router con SIM</strong> — «Mikrotik Chateau LTE-5G modem+router», por Yerachmiel C. Licencia <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Mikrotik_Chateau_LTE-5G_modem%2Brouter.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
+      <li><strong>Power bank</strong> — «2023 Powerbank Green Cell PowerPlay 20 (2)», por Jacek Halicki. Licencia <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:2023_Powerbank_Green_Cell_PowerPlay_20_(2).jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
+      <li><strong>Funda con teclado</strong> — «Magic Keyboard for iPad Pro - 1», por KKPCW. Licencia <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Magic_Keyboard_for_iPad_Pro_-_1.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte, fondo blanco y formato WebP).</li>
+      <li><strong>MiFi portátil</strong> — «Huawei E5576-320 4G Reise-Hotspot LTE-Router», por www.digitalpush.net. Licencia <a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="noopener">CC BY 4.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Huawei-E5576-320-4G-Reise-Hotspot-LTE-Router.1.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
+      <li><strong>Router con SIM</strong> — «Mikrotik Chateau LTE-5G modem+router», por Yerachmiel C. Licencia <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Mikrotik_Chateau_LTE-5G_modem%2Brouter.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
   </ul>
   <p class="credits-note">Las fotos de accesorios y conectividad genéricos son orientativas: el material entregado puede ser de otra marca o modelo equivalente. Resto de fotos de producto: imágenes oficiales de los fabricantes (Apple, Samsung, LG, JVC, Microsoft, HP, Dell, Lenovo, SanDisk / Western Digital, Areca, Stardom, TerraMaster, QNAP, Synology, Jabra, Hollyland, Motorola, Ricoh, Zhiyun, Wacom, Celly, Targus y Ubiquiti) o aportadas por Soporte TV.</p>
 </div>
@@ -2686,7 +2709,7 @@ const PHONES = [
 const ACCESSORIES = [
 {
     cat: "accessory", catLabel: "Accesorio", group: "iPad", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "Apple Pencil", photo: "img/apple-pencil_SpTV.webp",
+    model: "Apple Pencil", photo: "img/apple-pencil_SpTV.webp?v=2",
     icon: accessoryIcon("#5B6470"),
     specs: [
       ["Categoría", "Accesorio · iPad"],
@@ -2721,7 +2744,7 @@ const ACCESSORIES = [
   },
 {
     cat: "accessory", catLabel: "Accesorio", group: "iPad", brand: "", brandCode: "", brandColor: "#5C6672",
-    model: "Funda con teclado", photo: "img/funda-con-teclado_SpTV.webp",
+    model: "Funda con teclado", photo: "img/funda-con-teclado_SpTV.webp?v=2",
     icon: accessoryIcon("#5C6672"),
     specs: [
       ["Categoría", "Accesorio · iPad"],
@@ -2739,7 +2762,7 @@ const ACCESSORIES = [
   },
 {
     cat: "accessory", catLabel: "Accesorio", group: "Móvil/Cámara", brand: "", brandCode: "", brandColor: "#5C6672",
-    model: "Aro de luz", photo: "img/aro-de-luz_SpTV.webp",
+    model: "Aro de luz", photo: "img/aro-de-luz_SpTV.webp?v=2",
     icon: accessoryIcon("#5C6672"),
     specs: [
       ["Categoría", "Accesorio · Móvil/Cámara"]
@@ -2755,7 +2778,7 @@ const ACCESSORIES = [
   },
 {
     cat: "accessory", catLabel: "Accesorio", group: "Móvil/Cámara", brand: "", brandCode: "", brandColor: "#5C6672",
-    model: "Power bank", photo: "img/power-bank_SpTV.webp",
+    model: "Power bank", photo: "img/power-bank_SpTV.webp?v=2",
     icon: accessoryIcon("#5C6672"),
     specs: [
       ["Categoría", "Accesorio · Móvil/Cámara"],
@@ -3153,7 +3176,7 @@ const CONNECTIVITY = [];
       CONNECTIVITY.push({
         cat: "connectivity", catLabel: device, type: device, group: net, storage: plan.key, storageLabel: "Datos",
         model: device === "MiFi" ? "MiFi portátil" : "Router con SIM",
-        photo: device === "MiFi" ? "img/mifi-portatil_SpTV.webp" : "img/router-con-sim_SpTV.webp",
+        photo: device === "MiFi" ? "img/mifi-portatil_SpTV.webp?v=2" : "img/router-con-sim_SpTV.webp?v=2",
         icon: device === "MiFi" ? mifiIcon("#0F8A80") : routerIcon("#0F8A80"),
         specs: [
           ["Categoría", device],
@@ -3779,6 +3802,55 @@ setupFilters(document.getElementById("gridConnectivity"), [
   { select: document.getElementById("connNetSelect"), attr: "group" },
   { select: document.getElementById("connDataSelect"), attr: "storage" }
 ]);
+
+// --- Pages: categories with more than 16 products show them 16 at a time ---
+// Works together with the filters: it only counts the cards the filters leave visible,
+// and goes back to page 1 whenever a filter changes.
+const PAGE_SIZE = 16;
+function setupPagination(grid) {
+  if (!grid) return;
+  let page = 0;
+  const pager = document.createElement("nav");
+  pager.className = "pager";
+  pager.setAttribute("aria-label", "Páginas");
+  grid.after(pager);
+
+  const cards = () => [...grid.querySelectorAll(".storage-card")].filter(c => !c.classList.contains("hidden"));
+  function render(scroll) {
+    const all = [...grid.querySelectorAll(".storage-card")];
+    const shown = cards();
+    const pages = Math.max(1, Math.ceil(shown.length / PAGE_SIZE));
+    page = Math.min(page, pages - 1);
+    all.forEach(c => { c.hidden = false; });
+    shown.forEach((c, i) => { c.hidden = Math.floor(i / PAGE_SIZE) !== page; });
+    pager.hidden = pages < 2;
+    pager.innerHTML = "";
+    if (pages < 2) return;
+    const btn = (label, target, extra) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "pager-btn" + (extra ? " " + extra : "");
+      b.textContent = label;
+      if (target === page && !extra) { b.setAttribute("aria-current", "page"); }
+      if (target < 0 || target >= pages) b.disabled = true;
+      b.addEventListener("click", () => { page = target; render(true); });
+      return b;
+    };
+    pager.appendChild(btn("‹", page - 1, "pager-arrow")).setAttribute("aria-label", "Página anterior");
+    for (let i = 0; i < pages; i++) pager.appendChild(btn(String(i + 1), i)).setAttribute("aria-label", "Página " + (i + 1));
+    pager.appendChild(btn("›", page + 1, "pager-arrow")).setAttribute("aria-label", "Página siguiente");
+    const info = document.createElement("span");
+    info.className = "pager-info";
+    info.textContent = `${page * PAGE_SIZE + 1}–${Math.min((page + 1) * PAGE_SIZE, shown.length)} de ${shown.length}`;
+    pager.appendChild(info);
+    if (scroll) grid.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+  // A filter changed some card's "hidden" class: start again from page 1
+  new MutationObserver(() => { page = 0; render(false); })
+    .observe(grid, { subtree: true, attributes: true, attributeFilter: ["class"] });
+  render(false);
+}
+document.querySelectorAll(".storage-grid").forEach(setupPagination);
 
 // --- Rental request ---
 // FormSubmit reenvía las solicitudes al correo (o alias) indicado al final de la URL

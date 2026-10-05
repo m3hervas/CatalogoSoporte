@@ -482,37 +482,24 @@ section { position: relative; }
   .nav .btn-small { display: none; }
 }
 
-/* --- Legal pages (aviso legal, privacidad, cookies) --- */
-.legal { max-width: 820px; margin: 0 auto; padding: 146px var(--pad) clamp(50px, 7vw, 90px); }
-.legal h1 { font-size: clamp(32px, 4.4vw, 52px); margin: 0 0 10px; }
-.legal-updated { margin: 0 0 22px; color: var(--muted); font-size: 13px; }
-.legal-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 28px; }
-.legal-tabs a { padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line); color: var(--text-2); font-size: 14px; text-decoration: none; transition: border-color 200ms var(--ease), color 200ms var(--ease); }
-.legal-tabs a[aria-current="page"] { background: var(--accent); border-color: var(--accent); color: #fff; }
-@media (hover: hover) and (pointer: fine) { .legal-tabs a:not([aria-current]):hover { border-color: var(--accent); color: var(--text); } }
-.legal-intro { font-size: 18px; color: var(--text-2); margin: 0 0 30px; }
-.legal section { padding: 24px 0; border-top: 1px solid var(--line); }
-.legal h2 { font-size: clamp(20px, 2.2vw, 24px); margin: 0 0 12px; letter-spacing: -0.01em; }
-.legal p, .legal li { color: var(--text-2); font-size: 16px; line-height: 1.7; }
-.legal p { margin: 0 0 12px; }
-.legal ul { margin: 0 0 12px; padding-left: 20px; display: grid; gap: 8px; }
+/* --- Legal pages (aviso legal, privacidad, cookies): small print, plain text, sections by headings --- */
+.legal { max-width: 760px; margin: 0 auto; padding: 136px var(--pad) clamp(40px, 6vw, 70px); font-size: 11px; line-height: 1.6; }
+.legal .kicker { font-size: 10px; margin-bottom: 8px; }
+.legal h1 { font-size: 20px; letter-spacing: -0.01em; margin: 0 0 4px; }
+.legal-updated { margin: 0 0 10px; color: var(--muted); font-size: 10.5px; }
+.legal-tabs { display: flex; flex-wrap: wrap; gap: 4px 14px; margin: 0 0 16px; font-size: 11px; }
+.legal-tabs a { color: var(--accent-text); text-decoration: none; }
+.legal-tabs a[aria-current="page"] { color: var(--text); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+@media (hover: hover) and (pointer: fine) { .legal-tabs a:not([aria-current]):hover { text-decoration: underline; } }
+.legal-intro { font-size: 11px; color: var(--text-2); margin: 0 0 12px; }
+.legal section { padding: 0; margin: 0 0 12px; }
+.legal h2 { font-size: 12px; font-weight: 600; margin: 0 0 4px; letter-spacing: 0; color: var(--text); }
+.legal p { color: var(--text-2); font-size: 11px; line-height: 1.6; margin: 0 0 5px; }
 .legal a { color: var(--accent-text); }
-.legal strong { color: var(--text); }
-.legal-id { display: grid; grid-template-columns: max-content 1fr; gap: 10px 22px; margin: 6px 0 12px; padding: 18px 20px; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); }
-.legal-id dt { color: var(--muted); font-size: 14px; }
-.legal-id dd { margin: 0; color: var(--text); font-weight: 500; }
-.legal-fill { background: #FFE8A3; color: #5C4300; padding: 1px 6px; border-radius: 6px; font-weight: 600; }
-.legal-table-wrap { overflow-x: auto; margin: 6px 0 14px; border: 1px solid var(--line); border-radius: 14px; }
-.legal-table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
-.legal-table th, .legal-table td { padding: 12px 14px; text-align: left; vertical-align: top; color: var(--text-2); }
-.legal-table th { color: var(--text); background: var(--surface); font-weight: 600; }
-.legal-table tr + tr td, .legal-table tbody tr td { border-top: 1px solid var(--line); }
-.legal code { font-family: var(--mono); font-size: 13px; }
-@media (max-width: 720px) {
-  .legal { padding-top: 104px; }
-  .legal-id { grid-template-columns: 1fr; gap: 2px; }
-  .legal-id dd { margin-bottom: 10px; }
-}
+.legal strong { color: var(--text); font-weight: 600; }
+.legal code { font-family: var(--mono); font-size: 10.5px; }
+.legal-fill { background: #FFE8A3; color: #5C4300; padding: 0 4px; border-radius: 4px; font-weight: 600; }
+@media (max-width: 720px) { .legal { padding-top: 104px; } }
 
 /* Footer: copyright on the left, legal links on the right */
 .footer-bottom-line { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px 24px; margin-top: 26px; }
