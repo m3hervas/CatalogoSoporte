@@ -582,7 +582,7 @@
   /* --- Storage: wide cards, two per row --- */
   /* Cards keep their size (459px); up to 3 per row when the screen is wide enough */
   #viewStorage, #viewTablets, #viewPhones, #viewAccessories, #viewComputers,
-  #viewMac, #viewCabins, #viewVideoconf, #viewPrinters, #viewMonitors, #viewConnectivity, #viewBatteries, #viewSound, #viewStationery, #viewProtection, #viewElectric, #viewFilmset { max-width: none; }
+  #viewMac, #viewCabins, #viewVideoconf, #viewPrinters, #viewMonitors, #viewConnectivity, #viewBatteries, #viewSound, #viewStationery, #viewProtection, #viewElectric, #viewFilmset, #viewDulling, #viewLighting, #viewEffects { max-width: none; }
 
   .storage-grid {
     display: grid;
@@ -1679,6 +1679,9 @@
         <a href="#proteccion" data-route="proteccion">Protección<small>Bolsas, fundas, mochilas, guantes y lonas</small></a>
         <a href="#conectividad-tornilleria" data-route="conectividad-tornilleria">Conectividad y tornillería<small>Clavijas Schuko y regletas</small></a>
         <a href="#rodaje" data-route="rodaje">Rodaje<small>Claquetas, oculares, letras y talco</small></a>
+        <a href="#matabrillos" data-route="matabrillos">Matabrillos<small>Sprays Kenro y K-Line</small></a>
+        <a href="#iluminacion" data-route="iluminacion">Iluminación<small>Gelatinas Rosco, Cinefoil y papel negro</small></a>
+        <a href="#efectos" data-route="efectos">Efectos<small>Sprays Dirty Down y tabaco de atrezzo</small></a>
         <a href="#cabinas" data-route="cabinas">Cabinas<small>Cabinas de discos y NAS</small></a>
         <a href="#conectividad" data-route="conectividad">Conectividad<small>MiFi, routers y Wi-Fi</small></a>
         <a href="#accesorios" data-route="accesorios">Accesorios<small>Estabilizadores, luz, audio</small></a>
@@ -1760,6 +1763,18 @@
   <button class="category-card" id="goFilmset">
     <div class="category-icon" id="filmsetIconLarge"></div>
     <span class="category-label">Rodaje</span>
+  </button>
+  <button class="category-card" id="goDulling">
+    <div class="category-icon" id="dullingIconLarge"></div>
+    <span class="category-label">Matabrillos</span>
+  </button>
+  <button class="category-card" id="goLighting">
+    <div class="category-icon" id="lightingIconLarge"></div>
+    <span class="category-label">Iluminación</span>
+  </button>
+  <button class="category-card" id="goEffects">
+    <div class="category-icon" id="effectsIconLarge"></div>
+    <span class="category-label">Efectos</span>
   </button>
   <button class="category-card" id="goCabins">
     <div class="category-icon" id="cabinIconLarge"></div>
@@ -2246,6 +2261,96 @@
   </div>
 </div>
 
+<div class="catalog-view" id="viewDulling" hidden>
+  <button class="back-btn" data-back>← Volver</button>
+
+  <div class="catalog-layout">
+    <aside class="filter-panel" aria-label="Filtros">
+      <p class="filter-panel-title">Filtrar</p>
+      <div class="filter-row">
+        <span class="filter-label">Tipo</span>
+        <select class="filter-select" id="dullingTypeSelect">
+          <option value="all">Todos</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Marca</span>
+        <select class="filter-select" id="dullingBrandSelect">
+          <option value="all">Todas las marcas</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Color</span>
+        <select class="filter-select" id="dullingColorSelect">
+          <option value="all">Todos</option>
+        </select>
+      </div>
+      <button class="filter-reset" type="button">Quitar filtros</button>
+    </aside>
+    <div class="storage-grid" id="gridDulling"></div>
+  </div>
+</div>
+
+<div class="catalog-view" id="viewLighting" hidden>
+  <button class="back-btn" data-back>← Volver</button>
+
+  <div class="catalog-layout">
+    <aside class="filter-panel" aria-label="Filtros">
+      <p class="filter-panel-title">Filtrar</p>
+      <div class="filter-row">
+        <span class="filter-label">Tipo</span>
+        <select class="filter-select" id="lightingTypeSelect">
+          <option value="all">Todos</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Marca</span>
+        <select class="filter-select" id="lightingBrandSelect">
+          <option value="all">Todas las marcas</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Color</span>
+        <select class="filter-select" id="lightingColorSelect">
+          <option value="all">Todos</option>
+        </select>
+      </div>
+      <button class="filter-reset" type="button">Quitar filtros</button>
+    </aside>
+    <div class="storage-grid" id="gridLighting"></div>
+  </div>
+</div>
+
+<div class="catalog-view" id="viewEffects" hidden>
+  <button class="back-btn" data-back>← Volver</button>
+
+  <div class="catalog-layout">
+    <aside class="filter-panel" aria-label="Filtros">
+      <p class="filter-panel-title">Filtrar</p>
+      <div class="filter-row">
+        <span class="filter-label">Tipo</span>
+        <select class="filter-select" id="effectsTypeSelect">
+          <option value="all">Todos</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Marca</span>
+        <select class="filter-select" id="effectsBrandSelect">
+          <option value="all">Todas las marcas</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Color</span>
+        <select class="filter-select" id="effectsColorSelect">
+          <option value="all">Todos</option>
+        </select>
+      </div>
+      <button class="filter-reset" type="button">Quitar filtros</button>
+    </aside>
+    <div class="storage-grid" id="gridEffects"></div>
+  </div>
+</div>
+
 <div class="catalog-view" id="viewCabins" hidden>
   <button class="back-btn" data-back>← Volver</button>
 
@@ -2414,6 +2519,9 @@
       <a href="#proteccion" data-route="proteccion">Protección</a>
       <a href="#conectividad-tornilleria" data-route="conectividad-tornilleria">Conectividad y tornillería</a>
       <a href="#rodaje" data-route="rodaje">Rodaje</a>
+      <a href="#matabrillos" data-route="matabrillos">Matabrillos</a>
+      <a href="#iluminacion" data-route="iluminacion">Iluminación</a>
+      <a href="#efectos" data-route="efectos">Efectos</a>
       <a href="#cabinas" data-route="cabinas">Cabinas</a>
       <a href="#conectividad" data-route="conectividad">Conectividad</a>
       <a href="#accesorios" data-route="accesorios">Accesorios</a>
@@ -2485,7 +2593,7 @@
       <li><strong>Claqueta de color</strong> — foto de rawpixel. Licencia <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">CC0</a>, vía <a href="https://www.rawpixel.com/image/11189191/movie-clapper-filmmaking-production-advertising" target="_blank" rel="noopener">rawpixel</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
       <li><strong>Claqueta de insertos</strong> — «13-01-02-inventur-wmde-blitz-36», por Ralf Roletschek. Licencia <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:13-01-02-inventur-wmde-blitz-36.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
   </ul>
-  <p class="credits-note">Las fotos de accesorios, conectividad, pilas, papelería, protección, conectividad y rodaje genéricos son orientativas: el material entregado puede ser de otra marca o modelo equivalente. Resto de fotos de producto: imágenes oficiales de los fabricantes (Apple, Samsung, LG, JVC, Microsoft, HP, Dell, Lenovo, SanDisk / Western Digital, Areca, Stardom, TerraMaster, QNAP, Synology, Jabra, Phonak, Hollyland, Motorola, Ursa Straps, Rycote, Bubblebee Industries, Pilot, BIC, 3M / Scotch, Staedtler, Gorilla, Goobay, Loctite, edding, Sharpie, Pentel, Apli, Cap It, Tenba, Hama, Xiaomi, HP, Dirty Rigger, Bluestar, KleenSlate, Ricoh, Zhiyun, Wacom, Celly, Targus y Ubiquiti) o aportadas por Soporte TV.</p>
+  <p class="credits-note">Las fotos de accesorios, conectividad, pilas, papelería, protección, conectividad y rodaje genéricos son orientativas: el material entregado puede ser de otra marca o modelo equivalente. Resto de fotos de producto: imágenes oficiales de los fabricantes (Apple, Samsung, LG, JVC, Microsoft, HP, Dell, Lenovo, SanDisk / Western Digital, Areca, Stardom, TerraMaster, QNAP, Synology, Jabra, Phonak, Hollyland, Motorola, Ursa Straps, Rycote, Bubblebee Industries, Pilot, BIC, 3M / Scotch, Staedtler, Gorilla, Goobay, Loctite, edding, Sharpie, Pentel, Apli, Cap It, Tenba, Hama, Xiaomi, HP, Dirty Rigger, Bluestar, KleenSlate, Kenro, SW Kenyon (K-Line), Rosco, Dirty Down, Honeyrose, Ricoh, Zhiyun, Wacom, Celly, Targus y Ubiquiti) o aportadas por Soporte TV.</p>
 </div>
 <div class="scrim rent-scrim" id="rentScrim"></div>
 <div class="rent-modal" id="rentModal" role="dialog" aria-modal="true" aria-labelledby="rentTitle">
@@ -2751,6 +2859,35 @@ function filmsetIcon(accent) {
       <rect x="18" y="22" width="84" height="14" rx="3" fill="${accent}"/>
       <path d="M32 22l-8 14M50 22l-8 14M68 22l-8 14M86 22l-8 14" stroke="#FFFFFF" stroke-width="5"/>
     </g>
+  </svg>`;
+}
+
+// Icon for the "Matabrillos" card
+function dullingIcon(accent) {
+  return `<svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="40" y="30" width="40" height="62" rx="8" fill="#EDEFF2" stroke="${accent}" stroke-width="3.5"/>
+    <rect x="46" y="44" width="28" height="30" rx="3" fill="#D9DEE4"/>
+    <rect x="50" y="16" width="20" height="14" rx="3" fill="${accent}"/>
+    <path d="M72 20h10M86 14l6-4M86 20h8M86 26l6 4" stroke="${accent}" stroke-width="3" stroke-linecap="round"/>
+  </svg>`;
+}
+
+// Icon for the "Iluminación" card
+function lightingIcon(accent) {
+  return `<svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="22" y="26" width="52" height="40" rx="8" fill="#EDEFF2" stroke="${accent}" stroke-width="3.5"/>
+    <path d="M74 32l24-12v52L74 60z" fill="#D9DEE4" stroke="${accent}" stroke-width="3.5" stroke-linejoin="round"/>
+    <path d="M48 66v14M34 92l14-12 14 12" fill="none" stroke="${accent}" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="48" cy="46" r="9" fill="${accent}"/>
+  </svg>`;
+}
+
+// Icon for the "Efectos" card
+function effectsIcon(accent) {
+  return `<svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+    <path d="M52 14l7 21 21 7-21 7-7 21-7-21-21-7 21-7z" fill="#EDEFF2" stroke="${accent}" stroke-width="3.5" stroke-linejoin="round"/>
+    <path d="M86 54l4 11 11 4-11 4-4 11-4-11-11-4 11-4z" fill="${accent}"/>
+    <path d="M28 70l3 8 8 3-8 3-3 8-3-8-8-3 8-3z" fill="${accent}"/>
   </svg>`;
 }
 
@@ -4032,6 +4169,30 @@ const FILMSET = [
   { cat: "filmset", type: "Talco", brand: "", brandCode: "", brandColor: "#5C6672", model: "Talco industrial", photo: "", color: "Blanco", colors: [], info: [["tag", "Tipo", "Talco", 1], ["palette", "Color", "Blanco", 1]], specs: [["Categoría", "Talco"], ["Descripción", "Talco industrial para que la dolly ruede suave y sin ruido sobre las vías."], ["Formato", "1 kg"], ["Colores", "Blanco"]], icon: filmsetIcon("#5C6672") }
 ];
 
+// DULLING: purchase catalogue, official photos from each brand's website.
+// colors: one photo per colour; the dots on the card swap the photo (generated by tools/build_sonido_data.py)
+const DULLING = [
+  { cat: "dulling", type: "Spray matabrillos", brand: "Kenro", brandCode: "K", brandColor: "#1A1A1A", model: "Kenro spray matabrillos", photo: "img/kenro-matabrillos-mate_SpTV.webp", color: "Mate|Negro|Blanco", colors: [{"name": "Mate", "hex": "#D9DDE2", "photo": "img/kenro-matabrillos-mate_SpTV.webp"}, {"name": "Negro", "hex": "#1A1A1A", "photo": "img/kenro-matabrillos-negro_SpTV.webp"}, {"name": "Blanco", "hex": "#FFFFFF", "photo": "img/kenro-matabrillos-blanco_SpTV.webp"}], info: [["tag", "Tipo", "Spray matabrillos", 1], ["palette", "Colores", "3 colores", 1]], specs: [["Categoría", "Spray matabrillos"], ["Marca", "Kenro"], ["Descripción", "Spray que elimina brillos y reflejos de objetos en plató; se retira fácilmente después."], ["Versiones", "Full Matte (transparente mate) · Black (negro) · White (blanco)"], ["Formato", "Spray de 400 ml"], ["Colores", "Mate · Negro · Blanco"]], icon: dullingIcon("#1A1A1A") },
+  { cat: "dulling", type: "Spray matabrillos", brand: "K-Line", brandCode: "K", brandColor: "#5C6672", model: "K-Line Matt", photo: "img/k-line-matt-mate_SpTV.webp", color: "Mate", colors: [], info: [["tag", "Tipo", "Spray matabrillos", 1], ["palette", "Color", "Mate", 1]], specs: [["Categoría", "Spray matabrillos"], ["Marca", "K-Line"], ["Descripción", "Spray matabrillos de acabado mate para quitar reflejos en objetos y superficies durante el rodaje."], ["Formato", "Spray de 400 ml"], ["Colores", "Mate"]], icon: dullingIcon("#5C6672") }
+];
+
+// LIGHTING: purchase catalogue, official photos from each brand's website.
+// colors: one photo per colour; the dots on the card swap the photo (generated by tools/build_sonido_data.py)
+const LIGHTING = [
+  { cat: "lighting", type: "Gelatina", brand: "Rosco", brandCode: "R", brandColor: "#E2001A", model: "Rosco E-Colour+", photo: "img/rosco-e-colour-multicolor_SpTV.webp", color: "Multicolor", colors: [], info: [["tag", "Tipo", "Gelatina", 1], ["palette", "Color", "Multicolor", 1], ["capacity", "Formatos", "Hoja · Rollo"]], specs: [["Categoría", "Gelatina"], ["Marca", "Rosco"], ["Descripción", "Filtros de color (gelatinas) para corregir y dar color a la luz de los focos."], ["Formatos", "Hoja o rollo"], ["Colores", "Consultar modelos"], ["Colores", "Multicolor"]], icon: lightingIcon("#E2001A") },
+  { cat: "lighting", type: "Gelatina", brand: "Rosco", brandCode: "R", brandColor: "#E2001A", model: "Rosco Supergel", photo: "img/rosco-supergel-multicolor_SpTV.webp", color: "Multicolor", colors: [], info: [["tag", "Tipo", "Gelatina", 1], ["palette", "Color", "Multicolor", 1], ["capacity", "Formatos", "Hoja · Rollo"]], specs: [["Categoría", "Gelatina"], ["Marca", "Rosco"], ["Descripción", "Gelatinas de color resistentes al calor, para iluminación de espectáculo y rodaje."], ["Formatos", "Hoja o rollo"], ["Colores", "Consultar modelos"], ["Colores", "Multicolor"]], icon: lightingIcon("#E2001A") },
+  { cat: "lighting", type: "Gelatina", brand: "Rosco", brandCode: "R", brandColor: "#E2001A", model: "Rosco Cinelux", photo: "img/rosco-cinelux-multicolor_SpTV.webp", color: "Multicolor", colors: [], info: [["tag", "Tipo", "Gelatina", 1], ["palette", "Color", "Multicolor", 1], ["capacity", "Formatos", "Hoja · Rollo"]], specs: [["Categoría", "Gelatina"], ["Marca", "Rosco"], ["Descripción", "Gelatinas de color y corrección pensadas para cine y televisión."], ["Formatos", "Hoja o rollo"], ["Colores", "Consultar modelos"], ["Colores", "Multicolor"]], icon: lightingIcon("#E2001A") },
+  { cat: "lighting", type: "Control de luz", brand: "Rosco", brandCode: "R", brandColor: "#E2001A", model: "Rosco Cinefoil", photo: "img/rosco-cinefoil-negro_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Control de luz", 1], ["palette", "Color", "Negro", 1]], specs: [["Categoría", "Control de luz"], ["Marca", "Rosco"], ["Descripción", "Papel de aluminio negro mate para tapar fugas de luz, hacer viseras y controlar la luz de los focos."], ["Medida", "61 cm × 7,62 m"], ["Acabado", "Negro mate"], ["Colores", "Negro"]], icon: lightingIcon("#E2001A") },
+  { cat: "lighting", type: "Control de luz", brand: "Apli", brandCode: "A", brandColor: "#E2001A", model: "Papel kraft negro Apli", photo: "img/apli-papel-kraft-negro-negro_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Control de luz", 1], ["palette", "Color", "Negro", 1]], specs: [["Categoría", "Control de luz"], ["Marca", "Apli"], ["Descripción", "Rollo de papel kraft negro opaco para tapar ventanas, cubrir superficies y bloquear la luz."], ["Medida", "1 × 25 m"], ["Gramaje", "70 g"], ["Colores", "Negro"]], icon: lightingIcon("#E2001A") }
+];
+
+// EFFECTS: purchase catalogue, official photos from each brand's website.
+// colors: one photo per colour; the dots on the card swap the photo (generated by tools/build_sonido_data.py)
+const EFFECTS = [
+  { cat: "effects", type: "Spray de efectos", brand: "Dirty Down", brandCode: "D", brandColor: "#3B3B3B", model: "Dirty Down spray de efectos", photo: "img/dirty-down-envejecimiento_SpTV.webp", color: "Envejecimiento|Nicotina|Rubio ceniza|Marrón|Óxido", colors: [{"name": "Envejecimiento", "hex": "#8A7A5C", "photo": "img/dirty-down-envejecimiento_SpTV.webp"}, {"name": "Nicotina", "hex": "#C9A23A", "photo": "img/dirty-down-nicotina_SpTV.webp"}, {"name": "Rubio ceniza", "hex": "#B9A98A", "photo": "img/dirty-down-rubio-ceniza_SpTV.webp"}, {"name": "Marrón", "hex": "#6B4A2B", "photo": "img/dirty-down-marron_SpTV.webp"}, {"name": "Óxido", "hex": "#A4502A", "photo": "img/dirty-down-oxido_SpTV.webp"}], info: [["tag", "Tipo", "Spray de efectos", 1], ["palette", "Colores", "5 colores", 1]], specs: [["Categoría", "Spray de efectos"], ["Marca", "Dirty Down"], ["Descripción", "Sprays de atrezzo para ensuciar, envejecer y dar desgaste a decorados, vestuario y objetos; se pueden quitar con agua."], ["Efectos", "Envejecimiento · Nicotina · Rubio ceniza · Marrón · Óxido"], ["Colores", "Envejecimiento · Nicotina · Rubio ceniza · Marrón · Óxido"]], icon: effectsIcon("#3B3B3B") },
+  { cat: "effects", type: "Tabaco de atrezzo", brand: "Honeyrose", brandCode: "H", brandColor: "#7A4E2D", model: "Tabaco de atrezzo Honeyrose", photo: "img/honeyrose-tabaco-marron_SpTV.webp", color: "Marrón", colors: [], info: [["tag", "Tipo", "Tabaco de atrezzo", 1], ["palette", "Color", "Marrón", 1]], specs: [["Categoría", "Tabaco de atrezzo"], ["Marca", "Honeyrose"], ["Descripción", "Cigarrillos y tabaco de hierbas sin nicotina ni tabaco, para escenas en las que los actores fuman."], ["Composición", "Hierbas, sin tabaco ni nicotina"], ["Colores", "Marrón"]], icon: effectsIcon("#7A4E2D") }
+];
+
 // --- Model cards: one card per model; variants that only change storage are grouped ---
 const sizeInGB = v => /ilimitad/i.test(v) ? Infinity : parseFloat(String(v).replace(",", ".")) * (/TB/i.test(v) ? 1000 : 1) || 0;
 
@@ -4256,6 +4417,12 @@ renderModelCards(ELECTRIC, document.getElementById("gridElectric"), CARD_INFO.cu
 setupDataFilters(ELECTRIC, "electric");
 renderModelCards(FILMSET, document.getElementById("gridFilmset"), CARD_INFO.custom);
 setupDataFilters(FILMSET, "filmset");
+renderModelCards(DULLING, document.getElementById("gridDulling"), CARD_INFO.custom);
+setupDataFilters(DULLING, "dulling");
+renderModelCards(LIGHTING, document.getElementById("gridLighting"), CARD_INFO.custom);
+setupDataFilters(LIGHTING, "lighting");
+renderModelCards(EFFECTS, document.getElementById("gridEffects"), CARD_INFO.custom);
+setupDataFilters(EFFECTS, "effects");
 renderModelCards(CABINS, document.getElementById("gridCabins"), CARD_INFO.custom);
 renderModelCards(VIDEOCONF, document.getElementById("gridVideoconf"), CARD_INFO.custom);
 renderModelCards(PRINTERS, document.getElementById("gridPrinters"), CARD_INFO.custom);
@@ -4331,6 +4498,9 @@ document.getElementById("stationeryIconLarge").innerHTML = stationeryIcon("#2B79
 document.getElementById("protectionIconLarge").innerHTML = protectionIcon("#2B79C2");
 document.getElementById("electricIconLarge").innerHTML = electricIcon("#2B79C2");
 document.getElementById("filmsetIconLarge").innerHTML = filmsetIcon("#2B79C2");
+document.getElementById("dullingIconLarge").innerHTML = dullingIcon("#2B79C2");
+document.getElementById("lightingIconLarge").innerHTML = lightingIcon("#2B79C2");
+document.getElementById("effectsIconLarge").innerHTML = effectsIcon("#2B79C2");
 document.getElementById("videoconfIconLarge").innerHTML = videoconfIcon("#2B79C2");
 document.getElementById("printerIconLarge").innerHTML = printerIcon("#2B79C2");
 
@@ -4351,6 +4521,9 @@ const views = {
   protection: document.getElementById("viewProtection"),
   electric: document.getElementById("viewElectric"),
   filmset: document.getElementById("viewFilmset"),
+  dulling: document.getElementById("viewDulling"),
+  lighting: document.getElementById("viewLighting"),
+  effects: document.getElementById("viewEffects"),
   videoconf: document.getElementById("viewVideoconf"),
   printers: document.getElementById("viewPrinters")
 };
@@ -4372,6 +4545,9 @@ const CATEGORY_INFO = {
   protection: "Protección",
   electric: "Conectividad y tornillería",
   filmset: "Rodaje",
+  dulling: "Matabrillos",
+  lighting: "Iluminación",
+  effects: "Efectos",
   videoconf: "Videoconferencia PRO",
   printers: "Impresoras"
 };
@@ -4382,7 +4558,7 @@ const HEADER_DEFAULT = ["Catálogo de alquiler", "Soporte TV", "Elige una catego
 const MODE = document.documentElement.dataset.mode === "compra" ? "compra" : "alquiler";
 const MODE_KEYS = {
   alquiler: ["tablets", "phones", "accessories", "computers", "mac", "monitors", "connectivity", "cabins", "videoconf", "printers"],
-  compra: ["storage", "batteries", "sound", "stationery", "protection", "electric", "filmset"]
+  compra: ["storage", "batteries", "sound", "stationery", "protection", "electric", "filmset", "dulling", "lighting", "effects"]
 };
 const OTHER_CATALOG = MODE === "compra" ? "../alquiler/" : "../compra/";
 const inMode = key => MODE_KEYS[MODE].includes(key);
@@ -4438,6 +4614,9 @@ const ROUTES = {
   proteccion: "protection",
   "conectividad-tornilleria": "electric",
   rodaje: "filmset",
+  matabrillos: "dulling",
+  iluminacion: "lighting",
+  efectos: "effects",
   videoconferencia: "videoconf",
   impresoras: "printers"
 };
@@ -4445,7 +4624,7 @@ const SLUGS = Object.fromEntries(Object.entries(ROUTES).map(([slug, key]) => [ke
 
 // Hide what belongs to the other catalogue: landing cards, menu and footer links
 const CARD_KEYS = { goTablets: "tablets", goPhones: "phones", goAccessories: "accessories", goComputers: "computers", goMac: "mac",
-  goMonitors: "monitors", goConnectivity: "connectivity", goStorage: "storage", goBatteries: "batteries", goSound: "sound", goStationery: "stationery", goProtection: "protection", goElectric: "electric", goFilmset: "filmset", goCabins: "cabins", goVideoconf: "videoconf", goPrinters: "printers" };
+  goMonitors: "monitors", goConnectivity: "connectivity", goStorage: "storage", goBatteries: "batteries", goSound: "sound", goStationery: "stationery", goProtection: "protection", goElectric: "electric", goFilmset: "filmset", goDulling: "dulling", goLighting: "lighting", goEffects: "effects", goCabins: "cabins", goVideoconf: "videoconf", goPrinters: "printers" };
 Object.entries(CARD_KEYS).forEach(([id, key]) => { if (!inMode(key)) document.getElementById(id).hidden = true; });
 document.querySelectorAll("[data-route]").forEach(a => { if (!inMode(ROUTES[a.dataset.route])) a.hidden = true; });
 document.querySelectorAll(".footer-col").forEach(col => {
@@ -4473,6 +4652,9 @@ document.getElementById("goStationery").addEventListener("click", () => goTo("st
 document.getElementById("goProtection").addEventListener("click", () => goTo("protection"));
 document.getElementById("goElectric").addEventListener("click", () => goTo("electric"));
 document.getElementById("goFilmset").addEventListener("click", () => goTo("filmset"));
+document.getElementById("goDulling").addEventListener("click", () => goTo("dulling"));
+document.getElementById("goLighting").addEventListener("click", () => goTo("lighting"));
+document.getElementById("goEffects").addEventListener("click", () => goTo("effects"));
 document.getElementById("goCabins").addEventListener("click", () => goTo("cabins"));
 document.getElementById("goVideoconf").addEventListener("click", () => goTo("videoconf"));
 document.getElementById("goPrinters").addEventListener("click", () => goTo("printers"));
@@ -4589,6 +4771,24 @@ setupFilters(document.getElementById("gridFilmset"), [
   { select: document.getElementById("filmsetTypeSelect"), attr: "type" },
   { select: document.getElementById("filmsetBrandSelect"), attr: "brand" },
   { select: document.getElementById("filmsetColorSelect"), attr: "color" }
+]);
+
+setupFilters(document.getElementById("gridDulling"), [
+  { select: document.getElementById("dullingTypeSelect"), attr: "type" },
+  { select: document.getElementById("dullingBrandSelect"), attr: "brand" },
+  { select: document.getElementById("dullingColorSelect"), attr: "color" }
+]);
+
+setupFilters(document.getElementById("gridLighting"), [
+  { select: document.getElementById("lightingTypeSelect"), attr: "type" },
+  { select: document.getElementById("lightingBrandSelect"), attr: "brand" },
+  { select: document.getElementById("lightingColorSelect"), attr: "color" }
+]);
+
+setupFilters(document.getElementById("gridEffects"), [
+  { select: document.getElementById("effectsTypeSelect"), attr: "type" },
+  { select: document.getElementById("effectsBrandSelect"), attr: "brand" },
+  { select: document.getElementById("effectsColorSelect"), attr: "color" }
 ]);
 
 setupFilters(document.getElementById("gridCabins"), [
