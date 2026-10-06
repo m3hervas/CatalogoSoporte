@@ -583,7 +583,7 @@
   /* --- Storage: wide cards, two per row --- */
   /* Cards keep their size (459px); up to 3 per row when the screen is wide enough */
   #viewStorage, #viewTablets, #viewPhones, #viewAccessories, #viewComputers,
-  #viewMac, #viewCabins, #viewVideoconf, #viewPrinters, #viewMonitors, #viewConnectivity { max-width: none; }
+  #viewMac, #viewCabins, #viewVideoconf, #viewPrinters, #viewMonitors, #viewConnectivity, #viewBatteries, #viewSound, #viewStationery { max-width: none; }
 
   .storage-grid {
     display: grid;
@@ -1584,6 +1584,24 @@
 
   /* Pages (16 products per page) */
   .storage-card[hidden] { display: none !important; }
+
+  /* Colour swatches: products sold in several colours (card and technical sheet) */
+  .swatches { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+  .swatch {
+    width: 18px; height: 18px; border-radius: 50%; background: var(--sw); cursor: pointer; flex: none;
+    border: 1px solid rgba(15,23,42,0.22); box-shadow: inset 0 0 0 2px #FFFFFF;
+    transition: transform 150ms ease;
+  }
+  .swatch[aria-pressed="true"] { outline: 2px solid #3D8BFF; outline-offset: 1px; }
+  @media (hover: hover) and (pointer: fine) { .swatch:hover { transform: scale(1.12); } }
+  .swatch:focus-visible { outline: 2px solid #3D8BFF; outline-offset: 2px; }
+  .swatch-name { font-size: 11px; color: var(--ink-soft); margin-left: 2px; }
+  .panel-swatches { justify-content: center; gap: 10px; margin: 12px 0 4px; }
+  .panel-swatches .swatch { width: 26px; height: 26px; }
+  .panel-swatches .swatch-name { flex-basis: 100%; text-align: center; font-size: 12px; }
+  [data-theme="dark"] .swatch { border-color: rgba(255,255,255,0.35); box-shadow: inset 0 0 0 2px #0E1830; }
+  [data-theme="dark"] .swatch-name { color: #A9B7C8; }
+  @media (max-width: 720px) { .swatch { width: 15px; height: 15px; } .swatches { gap: 5px; } }
   .storage-grid { scroll-margin-top: 110px; }
   .pager { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; margin: 26px 0 6px; grid-column: -2 / -1; }
   .pager[hidden] { display: none; }
@@ -1652,6 +1670,9 @@
         <a href="#ordenadores" data-route="ordenadores">Ordenadores<small>Portátiles, Surface, AIO y CPU</small></a>
         <a href="#monitores" data-route="monitores">Monitores / TV<small>LED, 4K, estudio y TV</small></a>
         <a href="#almacenamiento" data-route="almacenamiento">Almacenamiento<small>SSD portátiles y de escritorio</small></a>
+        <a href="#pilas" data-route="pilas">Pilas y cargadores<small>Alcalinas, litio, botón, audífono y recargables</small></a>
+        <a href="#sonido" data-route="sonido">Accesorios de sonido<small>Ursa, Rycote y Bubblebee</small></a>
+        <a href="#papeleria" data-route="papeleria">Papelería<small>Rotuladores, bolígrafos, cinta y pegamento</small></a>
         <a href="#cabinas" data-route="cabinas">Cabinas<small>Cabinas de discos y NAS</small></a>
         <a href="#conectividad" data-route="conectividad">Conectividad<small>MiFi, routers y Wi-Fi</small></a>
         <a href="#accesorios" data-route="accesorios">Accesorios<small>Estabilizadores, luz, audio</small></a>
@@ -1709,6 +1730,18 @@
   <button class="category-card" id="goStorage">
     <div class="category-icon" id="storageIconLarge"></div>
     <span class="category-label">Almacenamiento</span>
+  </button>
+  <button class="category-card" id="goBatteries">
+    <div class="category-icon" id="batteryIconLarge"></div>
+    <span class="category-label">Pilas y cargadores</span>
+  </button>
+  <button class="category-card" id="goSound">
+    <div class="category-icon" id="soundIconLarge"></div>
+    <span class="category-label">Accesorios de sonido</span>
+  </button>
+  <button class="category-card" id="goStationery">
+    <div class="category-icon" id="stationeryIconLarge"></div>
+    <span class="category-label">Papelería</span>
   </button>
   <button class="category-card" id="goCabins">
     <div class="category-icon" id="cabinIconLarge"></div>
@@ -1984,6 +2017,133 @@
   </div>
 </div>
 
+<div class="catalog-view" id="viewBatteries" hidden>
+  <button class="back-btn" data-back>← Volver</button>
+
+  <div class="catalog-layout">
+    <aside class="filter-panel" aria-label="Filtros">
+      <p class="filter-panel-title">Filtrar</p>
+      <div class="filter-row">
+        <span class="filter-label">Tipo</span>
+        <select class="filter-select" id="batteryTypeSelect">
+          <option value="all">Todos</option>
+          <option value="Alcalina">Alcalinas</option>
+          <option value="Litio">Litio</option>
+          <option value="Botón">Pilas de botón</option>
+          <option value="Audífono">Audífono</option>
+          <option value="Recargable">Recargables</option>
+          <option value="Cargador">Cargadores</option>
+          <option value="Comprobador">Comprobadores</option>
+          <option value="Cuidado del audífono">Cuidado del audífono</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Marca</span>
+        <select class="filter-select" id="batteryBrandSelect">
+          <option value="all">Todas las marcas</option>
+          <option value="Duracell">Duracell</option>
+          <option value="Energizer">Energizer</option>
+          <option value="Maxell">Maxell</option>
+          <option value="Philips">Philips</option>
+          <option value="Phonak">Phonak</option>
+          <option value="Rayovac">Rayovac</option>
+          <option value="Renata">Renata</option>
+          <option value="Varta">Varta</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Tamaño</span>
+        <select class="filter-select" id="batterySizeSelect">
+          <option value="all">Todos</option>
+          <option value="AA">AA (LR6)</option>
+          <option value="AAA">AAA (LR03)</option>
+          <option value="C">C (LR14)</option>
+          <option value="D">D (LR20)</option>
+          <option value="9 V">9 V (6LR61)</option>
+          <option value="CR123A">CR123A</option>
+          <option value="CR2032">CR2032</option>
+          <option value="LR44">LR44</option>
+          <option value="10">Audífono 10</option>
+          <option value="312">Audífono 312</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Voltaje</span>
+        <select class="filter-select" id="batteryVoltSelect">
+          <option value="all">Todos</option>
+          <option value="1,2 V">1,2 V</option>
+          <option value="1,45 V">1,45 V</option>
+          <option value="1,5 V">1,5 V</option>
+          <option value="3 V">3 V</option>
+          <option value="9 V">9 V</option>
+        </select>
+      </div>
+      <button class="filter-reset" type="button">Quitar filtros</button>
+    </aside>
+    <div class="storage-grid" id="gridBatteries"></div>
+  </div>
+</div>
+
+<div class="catalog-view" id="viewSound" hidden>
+  <button class="back-btn" data-back>← Volver</button>
+
+  <div class="catalog-layout">
+    <aside class="filter-panel" aria-label="Filtros">
+      <p class="filter-panel-title">Filtrar</p>
+      <div class="filter-row">
+        <span class="filter-label">Tipo</span>
+        <select class="filter-select" id="soundTypeSelect">
+          <option value="all">Todos</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Marca</span>
+        <select class="filter-select" id="soundBrandSelect">
+          <option value="all">Todas las marcas</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Color</span>
+        <select class="filter-select" id="soundColorSelect">
+          <option value="all">Todos</option>
+        </select>
+      </div>
+      <button class="filter-reset" type="button">Quitar filtros</button>
+    </aside>
+    <div class="storage-grid" id="gridSound"></div>
+  </div>
+</div>
+
+<div class="catalog-view" id="viewStationery" hidden>
+  <button class="back-btn" data-back>← Volver</button>
+
+  <div class="catalog-layout">
+    <aside class="filter-panel" aria-label="Filtros">
+      <p class="filter-panel-title">Filtrar</p>
+      <div class="filter-row">
+        <span class="filter-label">Tipo</span>
+        <select class="filter-select" id="stationeryTypeSelect">
+          <option value="all">Todos</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Marca</span>
+        <select class="filter-select" id="stationeryBrandSelect">
+          <option value="all">Todas las marcas</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Color</span>
+        <select class="filter-select" id="stationeryColorSelect">
+          <option value="all">Todos</option>
+        </select>
+      </div>
+      <button class="filter-reset" type="button">Quitar filtros</button>
+    </aside>
+    <div class="storage-grid" id="gridStationery"></div>
+  </div>
+</div>
+
 <div class="catalog-view" id="viewCabins" hidden>
   <button class="back-btn" data-back>← Volver</button>
 
@@ -2146,6 +2306,9 @@
       <h4>Catálogo</h4>
       <a href="#monitores" data-route="monitores">Monitores / TV</a>
       <a href="#almacenamiento" data-route="almacenamiento">Almacenamiento</a>
+      <a href="#pilas" data-route="pilas">Pilas y cargadores</a>
+      <a href="#sonido" data-route="sonido">Accesorios de sonido</a>
+      <a href="#papeleria" data-route="papeleria">Papelería</a>
       <a href="#cabinas" data-route="cabinas">Cabinas</a>
       <a href="#conectividad" data-route="conectividad">Conectividad</a>
       <a href="#accesorios" data-route="accesorios">Accesorios</a>
@@ -2185,7 +2348,30 @@
       <li><strong>MiFi portátil</strong> — «Huawei E5576-320 4G Reise-Hotspot LTE-Router», por www.digitalpush.net. Licencia <a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="noopener">CC BY 4.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Huawei-E5576-320-4G-Reise-Hotspot-LTE-Router.1.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
       <li><strong>Router con SIM</strong> — «Mikrotik Chateau LTE-5G modem+router», por Yerachmiel C. Licencia <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Mikrotik_Chateau_LTE-5G_modem%2Brouter.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
   </ul>
-  <p class="credits-note">Las fotos de accesorios y conectividad genéricos son orientativas: el material entregado puede ser de otra marca o modelo equivalente. Resto de fotos de producto: imágenes oficiales de los fabricantes (Apple, Samsung, LG, JVC, Microsoft, HP, Dell, Lenovo, SanDisk / Western Digital, Areca, Stardom, TerraMaster, QNAP, Synology, Jabra, Hollyland, Motorola, Ricoh, Zhiyun, Wacom, Celly, Targus y Ubiquiti) o aportadas por Soporte TV.</p>
+  <p>Pilas y cargadores</p>
+  <ul>
+      <li><strong>Maxell Alcalina</strong> — «Batt-LR6-Maxell-19YCULOH», por Grzegorz W. Tężycki. Licencia <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Batt-LR6-Maxell-19YCULOH.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
+      <li><strong>Philips Power Alkaline</strong> — «Batterier», por IngimarE. Licencia <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Batterier.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
+      <li><strong>Varta Professional</strong> — «Varta AA battery», por Maksym Kozlenko. Licencia <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Varta_AA_battery.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
+      <li><strong>Duracell Procell Constant</strong> — «Procell Batteries», por Nigel Hewson. Licencia <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en" target="_blank" rel="noopener">CC0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Procell_Batteries.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
+      <li><strong>Duracell Procell Intense</strong> — «Procell Batteries», por Nigel Hewson. Licencia <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en" target="_blank" rel="noopener">CC0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Procell_Batteries.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
+      <li><strong>Varta Industrial</strong> — «Varta High Energy C battery-9654», por Raimond Spekking. Licencia <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Varta_High_Energy_C_battery-9654.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
+      <li><strong>Energizer Ultimate Lithium</strong> — «Energizer lithium», por Lukas A, CZE. Dominio público, vía <a href="https://commons.wikimedia.org/wiki/File:Energizer_lithium.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
+      <li><strong>Duracell CR123A</strong> — «Duracell Ultra CR17345 Lithium battery 3V-0248», por Raimond Spekking. Licencia <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Duracell_Ultra_CR17345_Lithium_battery_3V-0248.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
+      <li><strong>Varta Lithium</strong> — «Varta CR123A Lithium battery-0471», por Raimond Spekking. Licencia <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Varta_CR123A_Lithium_battery-0471.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
+      <li><strong>Renata CR2032</strong> — «CR2430 Renata ~26p31oao», por Grzegorz W. Tężycki. Licencia <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:CR2430_Renata_~26p31oao.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
+      <li><strong>Pila de botón LR44</strong> — «LR44 button cell battery-0147», por Raimond Spekking. Licencia <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:LR44_button_cell_battery-0147.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
+      <li><strong>Duracell LR44</strong> — «DURACELL LR44», por Dmitry G. Licencia <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:DURACELL_LR44.JPG" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
+      <li><strong>Duracell ActivAir</strong> — «CreativeTools.se - PackshotCreator - Hearing Aid Battery», por Creative Tools. Licencia <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a>, vía <a href="https://www.flickr.com/photos/33907867@N02/5077903491" target="_blank" rel="noopener">Flickr</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
+      <li><strong>Phonak pilas de audífono</strong> — «Zink-Luft-Batterie PR41 - 312», por Laserlicht. Licencia <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Zink-Luft-Batterie_PR41_-_312.png" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
+      <li><strong>Rayovac pilas de audífono</strong> — «Rayovac Extra PR41 312 1.45V batteries, Hillegersberg, Rotterdam (2021) 01», por Donald Trung Quoc Don (Chữ Hán: 徵國單) - Wikimedia Commons - © CC BY-SA 4.0 International.(Want to use this image?)Original publication 📤: --Donald Trung 『徵國單』 (No Fake News 💬) (WikiProject Numismatics 💴) (Articles 📚) 21:26, 16 December 2021 (UTC). Licencia <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Rayovac_Extra_PR41_312_1.45V_batteries,_Hillegersberg,_Rotterdam_(2021)_01.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
+      <li><strong>Duracell Recargable</strong> — «Duracell rechargeable batteries», por Dmitry G. Licencia <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Duracell_rechargeable_batteries.JPG" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
+      <li><strong>Cargador Duracell</strong> — «Rechargable Batteries (50826854891)», por ajay_suresh. Licencia <a href="https://creativecommons.org/licenses/by/2.0" target="_blank" rel="noopener">CC BY 2.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Rechargable_Batteries_(50826854891).jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
+      <li><strong>Cargador Varta 8 pilas</strong> — «Pills and charger (Pexels photo 19810744)», por wutthichai charoenburi. Licencia <a href="https://www.pexels.com/license/" target="_blank" rel="noopener">Pexels License</a>, vía <a href="https://www.pexels.com/photo/pills-and-charger-19810744/" target="_blank" rel="noopener">Pexels</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
+      <li><strong>Comprobador de pilas</strong> — «Battery tester BT-168», por Ladislav Luppa. Licencia <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en" target="_blank" rel="noopener">CC0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Battery_tester_BT-168.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
+      <li><strong>Comprobador de pilas digital</strong> — «Battery checker», por Jason7825. Dominio público, vía <a href="https://commons.wikimedia.org/wiki/File:Battery_checker.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
+  </ul>
+  <p class="credits-note">Las fotos de accesorios, conectividad, pilas y cargadores genéricos son orientativas: el material entregado puede ser de otra marca o modelo equivalente. Resto de fotos de producto: imágenes oficiales de los fabricantes (Apple, Samsung, LG, JVC, Microsoft, HP, Dell, Lenovo, SanDisk / Western Digital, Areca, Stardom, TerraMaster, QNAP, Synology, Jabra, Phonak, Hollyland, Motorola, Ursa Straps, Rycote, Bubblebee Industries, Pilot, BIC, 3M / Scotch, Staedtler, Gorilla, Goobay, Loctite, edding, Sharpie, Pentel, Apli, Ricoh, Zhiyun, Wacom, Celly, Targus y Ubiquiti) o aportadas por Soporte TV.</p>
 </div>
 <div class="scrim rent-scrim" id="rentScrim"></div>
 <div class="rent-modal" id="rentModal" role="dialog" aria-modal="true" aria-labelledby="rentTitle">
@@ -2388,6 +2574,38 @@ function driveIcon(accent) {
   </svg>`;
 }
 
+// Battery (AA cell) for the category card
+function batteryIcon(accent) {
+  return `<svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="48" y="6" width="24" height="8" rx="2.5" fill="${accent}"/>
+    <rect x="34" y="13" width="52" height="81" rx="9" fill="#EDEFF2" stroke="${accent}" stroke-width="3.5"/>
+    <rect x="41" y="20" width="38" height="24" rx="4" fill="#D9DEE4"/>
+    <path d="M62 52l-10 15h9l-3 13 11-17h-9z" fill="${accent}"/>
+  </svg>`;
+}
+
+// Lavalier microphone for the sound accessories card
+function soundIcon(accent) {
+  return `<svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="44" y="8" width="32" height="46" rx="16" fill="#EDEFF2" stroke="${accent}" stroke-width="3.5"/>
+    <path d="M52 22h16M52 30h16M52 38h16" stroke="#D9DEE4" stroke-width="3" stroke-linecap="round"/>
+    <path d="M34 40c0 14.4 11.6 26 26 26s26-11.6 26-26" fill="none" stroke="${accent}" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M60 66v14M46 92h28" stroke="${accent}" stroke-width="3.5" stroke-linecap="round"/>
+  </svg>`;
+}
+
+// Marker pen for the stationery card
+function stationeryIcon(accent) {
+  return `<svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+    <g transform="rotate(-35 60 50)">
+      <rect x="22" y="38" width="62" height="24" rx="5" fill="#EDEFF2" stroke="${accent}" stroke-width="3.5"/>
+      <rect x="30" y="44" width="30" height="12" rx="2.5" fill="#D9DEE4"/>
+      <path d="M84 42h10l10 8-10 8H84z" fill="${accent}"/>
+      <rect x="10" y="40" width="12" height="20" rx="4" fill="${accent}"/>
+    </g>
+  </svg>`;
+}
+
 const STORAGE_ICONS = {
   cpu: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg>`,
   screen: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M9 20h6M12 16v4"/></svg>`,
@@ -2397,6 +2615,8 @@ const STORAGE_ICONS = {
   speed: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3 5 14h6l-1 7 8-11h-6z"/></svg>`,
   port: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8.5" width="18" height="7" rx="3.5"/><path d="M8 12h8"/></svg>`,
   bays: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h8"/></svg>`,
+  battery: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="4" width="10" height="17" rx="2"/><path d="M10 2h4"/><path d="M12.5 9 10.5 13h3l-2 4"/></svg>`,
+  palette: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.7-.9 1.4-1.8l-.4-1a1.6 1.6 0 0 1 1.5-2.2H17a4 4 0 0 0 4-4c0-5-4-9-9-9z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10" cy="7" r="1"/><circle cx="15" cy="7.5" r="1"/></svg>`,
   raid: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>`
 };
 
@@ -3378,6 +3598,253 @@ function badgeMarkup(p) {
   `;
 }
 
+// Batteries and chargers (purchase catalogue). One card per brand line; its sizes are listed together.
+// size / voltage / type accept several values separated by "|" (used by the filters)
+const BATTERIES = [
+  {
+    cat: "battery", type: "Alcalina", size: "AA|AAA|9 V|C|D", voltage: "1,5 V|9 V", brand: "Duracell", brandCode: "D", brandColor: "#2B2B2B",
+    model: "Duracell Procell Intense", photo: "../alquiler/img/duracell-procell-intense_SpTV.webp",
+    icon: batteryIcon("#2B2B2B"),
+    info: [["battery", "Tamaños", "AA · AAA · C · D · 9 V", 1], ["speed", "Voltaje", "1,5 V · 9 V", 1], ["tag", "Formato", "Caja de 10 ud"]],
+    specs: [["Categoría", "Pila alcalina profesional"], ["Marca", "Duracell (gama Procell)"], ["Tamaños", "AA (LR6) · AAA (LR03) · C (LR14) · D (LR20) · 9 V (6LR61)"], ["Voltaje", "1,5 V (AA, AAA, C y D) · 9 V"], ["Uso", "Aparatos de consumo alto: micrófonos inalámbricos, petacas, flashes, linternas y equipos de medida"], ["Formato", "Caja de 10 unidades (todos los tamaños)"]]
+  },
+  {
+    cat: "battery", type: "Alcalina", size: "AA|AAA|9 V", voltage: "1,5 V|9 V", brand: "Duracell", brandCode: "D", brandColor: "#2B2B2B",
+    model: "Duracell Procell Constant", photo: "../alquiler/img/duracell-procell-constant_SpTV.webp",
+    icon: batteryIcon("#2B2B2B"),
+    info: [["battery", "Tamaños", "AA · AAA · 9 V", 1], ["speed", "Voltaje", "1,5 V · 9 V", 1], ["tag", "Formato", "Caja de 10 ud"]],
+    specs: [["Categoría", "Pila alcalina profesional"], ["Marca", "Duracell (gama Procell)"], ["Tamaños", "AA (LR6) · AAA (LR03) · 9 V (6LR61)"], ["Voltaje", "1,5 V (AA y AAA) · 9 V"], ["Uso", "Aparatos de consumo bajo y constante: mandos, ratones y teclados, relojes, detectores y cerraduras"], ["Formato", "Caja de 10 unidades (todos los tamaños)"]]
+  },
+  {
+    cat: "battery", type: "Alcalina", size: "AA|AAA|9 V", voltage: "1,5 V|9 V", brand: "Varta", brandCode: "V", brandColor: "#0B3D91",
+    model: "Varta Professional", photo: "../alquiler/img/varta-professional_SpTV.webp",
+    icon: batteryIcon("#0B3D91"),
+    info: [["battery", "Tamaños", "AA · AAA · 9 V", 1], ["speed", "Voltaje", "1,5 V · 9 V", 1], ["tag", "Formato", "Cajas de 10 y 20 ud · pack de 40"]],
+    specs: [["Categoría", "Pila alcalina profesional"], ["Marca", "Varta"], ["Tamaños", "AA (LR6) · AAA (LR03) · 9 V (6LR61)"], ["Voltaje", "1,5 V (AA y AAA) · 9 V"], ["Uso", "Uso profesional y alto consumo"], ["Formato", "AA: caja de 10 ud o pack de 40 (10 × 4 ud) · AAA: caja de 10 ud · 9 V: caja de 20 ud"]]
+  },
+  {
+    cat: "battery", type: "Alcalina", size: "C", voltage: "1,5 V", brand: "Varta", brandCode: "V", brandColor: "#0B3D91",
+    model: "Varta Industrial", photo: "../alquiler/img/varta-industrial_SpTV.webp",
+    icon: batteryIcon("#0B3D91"),
+    info: [["battery", "Tamaño", "C (LR14)", 1], ["speed", "Voltaje", "1,5 V", 1], ["tag", "Uso", "Industrial y profesional"]],
+    specs: [["Categoría", "Pila alcalina industrial"], ["Marca", "Varta"], ["Tamaño", "C (LR14)"], ["Voltaje", "1,5 V"], ["Uso", "Linternas, equipos de medida, megafonía portátil y aparatos de consumo alto"], ["Formato", "Consúltanos"]]
+  },
+  {
+    cat: "battery", type: "Alcalina", size: "AA", voltage: "1,5 V", brand: "Maxell", brandCode: "M", brandColor: "#D7000F",
+    model: "Maxell Alcalina", photo: "../alquiler/img/maxell-aa_SpTV.webp",
+    icon: batteryIcon("#D7000F"),
+    info: [["battery", "Tamaño", "AA (LR6)", 1], ["speed", "Voltaje", "1,5 V", 1], ["tag", "Formato", "Blíster de 8 ud"]],
+    specs: [["Categoría", "Pila alcalina"], ["Marca", "Maxell"], ["Tamaño", "AA (LR6)"], ["Voltaje", "1,5 V"], ["Uso", "Mandos, ratones, teclados, juguetes y aparatos de uso diario"], ["Formato", "Blíster de 8 unidades"]]
+  },
+  {
+    cat: "battery", type: "Alcalina", size: "AA", voltage: "1,5 V", brand: "Philips", brandCode: "P", brandColor: "#0B5ED7",
+    model: "Philips Power Alkaline", photo: "../alquiler/img/philips-power-aa_SpTV.webp",
+    icon: batteryIcon("#0B5ED7"),
+    info: [["battery", "Tamaño", "AA (LR6)", 1], ["speed", "Voltaje", "1,5 V", 1], ["tag", "Formato", "Blíster de 8 ud"]],
+    specs: [["Categoría", "Pila alcalina"], ["Marca", "Philips"], ["Tamaño", "AA (LR6)"], ["Voltaje", "1,5 V"], ["Uso", "Mandos, ratones, teclados, juguetes y aparatos de uso diario"], ["Formato", "Blíster de 8 unidades"]]
+  },
+  {
+    cat: "battery", type: "Litio", size: "AA|AAA", voltage: "1,5 V", brand: "Energizer", brandCode: "E", brandColor: "#1A1A1A",
+    model: "Energizer Ultimate Lithium", photo: "../alquiler/img/energizer-lithium_SpTV.webp",
+    icon: batteryIcon("#1A1A1A"),
+    info: [["battery", "Tamaños", "AA · AAA", 1], ["speed", "Voltaje", "1,5 V", 1], ["tag", "Formato", "Caja de 10 ud"]],
+    specs: [["Categoría", "Pila de litio"], ["Marca", "Energizer"], ["Tamaños", "AA (FR6) · AAA (FR03), sustituyen a las alcalinas LR6 / LR03"], ["Voltaje", "1,5 V"], ["Ventajas", "Más duración que una alcalina en aparatos de alto consumo, más ligera, aguanta frío y calor extremos y muy baja autodescarga"], ["Uso", "Micrófonos inalámbricos, flashes, GPS y equipos al aire libre"], ["Formato", "Caja de 10 unidades"]]
+  },
+  {
+    cat: "battery", type: "Litio", size: "CR123A", voltage: "3 V", brand: "Duracell", brandCode: "D", brandColor: "#2B2B2B",
+    model: "Duracell CR123A", photo: "../alquiler/img/duracell-cr123a_SpTV.webp",
+    icon: batteryIcon("#2B2B2B"),
+    info: [["battery", "Tamaño", "CR123A", 1], ["speed", "Voltaje", "3 V", 1], ["tag", "Uso", "Cámaras, linternas y alarmas"]],
+    specs: [["Categoría", "Pila de litio"], ["Marca", "Duracell"], ["Tamaño", "CR123A (CR17345)"], ["Voltaje", "3 V"], ["Uso", "Cámaras, linternas tácticas, detectores, alarmas y cerraduras electrónicas"]]
+  },
+  {
+    cat: "battery", type: "Litio|Botón", size: "CR123A|CR2032", voltage: "3 V", brand: "Varta", brandCode: "V", brandColor: "#0B3D91",
+    model: "Varta Lithium", photo: "../alquiler/img/varta-lithium_SpTV.webp",
+    icon: batteryIcon("#0B3D91"),
+    info: [["battery", "Tamaños", "CR123A · CR2032", 1], ["speed", "Voltaje", "3 V", 1], ["tag", "Uso", "Cámaras, alarmas, llaves y placas base"]],
+    specs: [["Categoría", "Pila de litio"], ["Marca", "Varta"], ["Tamaños", "CR123A (cilíndrica) · CR2032 (botón)"], ["Voltaje", "3 V"], ["Uso", "CR123A: cámaras, linternas y alarmas · CR2032: llaves de coche, básculas, mandos, AirTag y placas base"]]
+  },
+  {
+    cat: "battery", type: "Litio|Botón", size: "CR2032", voltage: "3 V", brand: "Renata", brandCode: "R", brandColor: "#C8102E",
+    model: "Renata CR2032", photo: "../alquiler/img/renata-cr2032_SpTV.webp",
+    icon: batteryIcon("#C8102E"),
+    info: [["battery", "Tamaño", "CR2032", 1], ["speed", "Voltaje", "3 V", 1], ["tag", "Origen", "Fabricada en Suiza"]],
+    specs: [["Categoría", "Pila de litio de botón"], ["Marca", "Renata (Swatch Group)"], ["Tamaño", "CR2032 · 20 × 3,2 mm"], ["Voltaje", "3 V"], ["Uso", "Llaves de coche, básculas, mandos, AirTag, relojes y placas base"]]
+  },
+  {
+    cat: "battery", type: "Botón", size: "LR44", voltage: "1,5 V", brand: "Duracell", brandCode: "D", brandColor: "#2B2B2B",
+    model: "Duracell LR44", photo: "../alquiler/img/duracell-lr44_SpTV.webp",
+    icon: batteryIcon("#2B2B2B"),
+    info: [["battery", "Tamaño", "LR44 (A76)", 1], ["speed", "Voltaje", "1,5 V", 1], ["tag", "Uso", "Calculadoras, juguetes y termómetros"]],
+    specs: [["Categoría", "Pila de botón alcalina"], ["Marca", "Duracell"], ["Tamaño", "LR44 · equivale a A76, AG13 y 357"], ["Voltaje", "1,5 V"], ["Uso", "Calculadoras, juguetes, termómetros, punteros láser y pequeños aparatos"]]
+  },
+  {
+    cat: "battery", type: "Botón", size: "LR44", voltage: "1,5 V", brand: "", brandCode: "", brandColor: "#5C6672",
+    model: "Pila de botón LR44", photo: "../alquiler/img/lr44_SpTV.webp",
+    icon: batteryIcon("#5C6672"),
+    info: [["battery", "Tamaño", "LR44 (AG13)", 1], ["speed", "Voltaje", "1,5 V", 1], ["tag", "Uso", "Calculadoras, juguetes y termómetros"]],
+    specs: [["Categoría", "Pila de botón alcalina"], ["Tamaño", "LR44 · equivale a A76, AG13 y 357"], ["Voltaje", "1,5 V"], ["Uso", "Calculadoras, juguetes, termómetros, punteros láser y pequeños aparatos"]]
+  },
+  {
+    cat: "battery", type: "Audífono", size: "10|312", voltage: "1,45 V", brand: "Duracell", brandCode: "D", brandColor: "#2B2B2B",
+    model: "Duracell ActivAir", photo: "../alquiler/img/duracell-activair_SpTV.webp",
+    icon: batteryIcon("#2B2B2B"),
+    info: [["battery", "Tamaños", "10 · 312", 1], ["speed", "Voltaje", "1,45 V", 1], ["tag", "Formato", "Blíster de 6 ud"]],
+    specs: [["Categoría", "Pila de audífono (zinc-aire)"], ["Marca", "Duracell"], ["Tamaños", "10 (pestaña amarilla) · 312 (pestaña marrón)"], ["Voltaje", "1,45 V"], ["Uso", "Se activa al quitar la pestaña: espera un minuto antes de ponerla en el audífono"], ["Formato", "Blíster de 6 unidades"]]
+  },
+  {
+    cat: "battery", type: "Audífono", size: "10|312", voltage: "1,45 V", brand: "Phonak", brandCode: "P", brandColor: "#4A4A4A",
+    model: "Phonak pilas de audífono", photo: "../alquiler/img/phonak-audifono_SpTV.webp",
+    icon: batteryIcon("#4A4A4A"),
+    info: [["battery", "Tamaños", "10 · 312", 1], ["speed", "Voltaje", "1,45 V", 1], ["tag", "Formato", "Blíster de 6 ud"]],
+    specs: [["Categoría", "Pila de audífono (zinc-aire)"], ["Marca", "Phonak"], ["Tamaños", "10 (pestaña amarilla) · 312 (pestaña marrón)"], ["Voltaje", "1,45 V"], ["Uso", "Se activa al quitar la pestaña: espera un minuto antes de ponerla en el audífono"], ["Formato", "Blíster de 6 unidades"]]
+  },
+  {
+    cat: "battery", type: "Audífono", size: "10|312", voltage: "1,45 V", brand: "Rayovac", brandCode: "R", brandColor: "#D2232A",
+    model: "Rayovac pilas de audífono", photo: "../alquiler/img/rayovac-audifono_SpTV.webp",
+    icon: batteryIcon("#D2232A"),
+    info: [["battery", "Tamaños", "10 · 312", 1], ["speed", "Voltaje", "1,45 V", 1], ["tag", "Formato", "Blíster de 6 ud"]],
+    specs: [["Categoría", "Pila de audífono (zinc-aire)"], ["Marca", "Rayovac"], ["Tamaños", "10 (pestaña amarilla) · 312 (pestaña marrón)"], ["Voltaje", "1,45 V"], ["Uso", "Se activa al quitar la pestaña: espera un minuto antes de ponerla en el audífono"], ["Formato", "Blíster de 6 unidades"]]
+  },
+  {
+    cat: "battery", type: "Cuidado del audífono", brand: "Phonak", brandCode: "P", brandColor: "#4A4A4A",
+    model: "Phonak Cerumex", photo: "",
+    icon: batteryIcon("#4A4A4A"),
+    info: [["tag", "Uso", "Filtros anticerumen", 1], ["capacity", "Formato", "Rueda de 11 ud", 1]],
+    specs: [["Categoría", "Filtros anticerumen para audífono"], ["Marca", "Phonak"], ["Uso", "Protegen el auricular del audífono de la cera y la humedad; se cambian cuando el sonido se apaga o se oye peor"], ["Formato", "Rueda de 11 unidades"]]
+  },
+  {
+    cat: "battery", type: "Cuidado del audífono", brand: "Phonak", brandCode: "P", brandColor: "#4A4A4A",
+    model: "Phonak D-Dry", photo: "../alquiler/img/phonak-d-dry_SpTV.webp",
+    icon: batteryIcon("#4A4A4A"),
+    info: [["tag", "Uso", "Secado e higiene del audífono"]],
+    specs: [["Categoría", "Deshumidificador para audífonos"], ["Marca", "Phonak"], ["Incluye", "Bote de secado hermético y pastilla deshumidificadora"], ["Uso", "Elimina la humedad del audífono mientras no se usa (por ejemplo, durante la noche) y alarga su vida útil"]]
+  },
+  {
+    cat: "battery", type: "Recargable", size: "AA|AAA", voltage: "1,2 V", brand: "Duracell", brandCode: "D", brandColor: "#2B2B2B",
+    model: "Duracell Recargable", photo: "../alquiler/img/duracell-recargable_SpTV.webp",
+    icon: batteryIcon("#2B2B2B"),
+    info: [["battery", "Tamaños", "AA · AAA", 1], ["capacity", "Capacidad", "2500 / 900 mAh", 1], ["tag", "Formato", "Blíster de 4 ud"]],
+    specs: [["Categoría", "Pila recargable NiMH"], ["Marca", "Duracell"], ["Tamaños", "AA (HR6) · AAA (HR03)"], ["Capacidad", "AA: 2500 mAh · AAA: 900 mAh"], ["Voltaje", "1,2 V"], ["Uso", "Micrófonos, mandos de juego, flashes y aparatos de uso intensivo"], ["Formato", "Blíster de 4 unidades"]]
+  },
+  {
+    cat: "battery", type: "Cargador", size: "AA|AAA", brand: "Duracell", brandCode: "D", brandColor: "#2B2B2B",
+    model: "Cargador Duracell", photo: "../alquiler/img/cargador-duracell_SpTV.webp",
+    icon: batteryIcon("#2B2B2B"),
+    info: [["battery", "Carga", "AA · AAA", 1], ["tag", "Capacidad", "4 pilas", 1], ["capacity", "Incluye", "2 AA + 2 AAA recargables"]],
+    specs: [["Categoría", "Cargador de pilas"], ["Marca", "Duracell"], ["Carga", "Pilas recargables NiMH AA y AAA"], ["Capacidad", "Hasta 4 pilas"], ["Incluye", "2 pilas AA y 2 pilas AAA recargables"]]
+  },
+  {
+    cat: "battery", type: "Cargador", size: "AA|AAA", brand: "Varta", brandCode: "V", brandColor: "#0B3D91",
+    model: "Cargador Varta 8 pilas", photo: "../alquiler/img/cargador-varta_SpTV.webp",
+    icon: batteryIcon("#0B3D91"),
+    info: [["battery", "Carga", "AA · AAA", 1], ["tag", "Capacidad", "8 pilas", 1], ["port", "Conexión", "Cable USB-C"]],
+    specs: [["Categoría", "Cargador de pilas"], ["Marca", "Varta"], ["Carga", "Pilas recargables NiMH AA y AAA"], ["Capacidad", "Hasta 8 pilas"], ["Alimentación", "Cable USB-C"]]
+  },
+  {
+    cat: "battery", type: "Comprobador", brand: "", brandCode: "", brandColor: "#5C6672",
+    model: "Comprobador de pilas digital", photo: "../alquiler/img/comprobador-pilas-digital_SpTV.webp",
+    icon: batteryIcon("#5C6672"),
+    info: [["screen", "Lectura", "Pantalla digital", 1], ["battery", "Comprueba", "AA · AAA · C · D · 9 V · N · 3 V", 1]],
+    specs: [["Categoría", "Comprobador de pilas"], ["Lectura", "Pantalla digital"], ["Comprueba", "AA, AAA, C, D, 9 V, N y pilas de botón de 3 V"], ["Uso", "Separa las pilas cargadas de las gastadas antes de cada evento o rodaje"]]
+  },
+  {
+    cat: "battery", type: "Comprobador", brand: "", brandCode: "", brandColor: "#5C6672",
+    model: "Comprobador de pilas", photo: "../alquiler/img/comprobador-pilas_SpTV.webp",
+    icon: batteryIcon("#5C6672"),
+    info: [["screen", "Lectura", "Indicador de aguja", 1], ["battery", "Comprueba", "AA · AAA · C · D · 9 V · N", 1]],
+    specs: [["Categoría", "Comprobador de pilas"], ["Lectura", "Indicador analógico (aguja)"], ["Comprueba", "AA, AAA, C, D, 9 V y N"], ["Uso", "Separa las pilas cargadas de las gastadas antes de cada evento o rodaje"]]
+  }
+];
+
+// SOUND: purchase catalogue, official photos from Ursa Straps, Rycote and Bubblebee Industries.
+// colors: one photo per colour; the dots on the card swap the photo (generated by tools/build_sonido_data.py)
+const SOUND = [
+  { cat: "sound", type: "Cinturón / soporte de petaca", brand: "Ursa Straps", brandCode: "U", brandColor: "#1F2937", model: "Waist Strap - Single Pouch", photo: "../alquiler/img/ursa-ursa-waist-strap-beige_SpTV.webp", color: "Beige|Negro|Blanco|Caramelo|Espresso", colors: [{"name": "Beige", "hex": "#D9B99B", "photo": "../alquiler/img/ursa-ursa-waist-strap-beige_SpTV.webp"}, {"name": "Negro", "hex": "#1A1A1A", "photo": "../alquiler/img/ursa-ursa-waist-strap-black_SpTV.webp"}, {"name": "Blanco", "hex": "#F5F5F2", "photo": "../alquiler/img/ursa-ursa-waist-strap-white_SpTV.webp"}, {"name": "Caramelo", "hex": "#A9744F", "photo": "../alquiler/img/ursa-ursa-waist-strap-caramel_SpTV.webp"}, {"name": "Espresso", "hex": "#4A2E22", "photo": "../alquiler/img/ursa-ursa-waist-strap-espresso_SpTV.webp"}], info: [["tag", "Tipo", "Cinturón / soporte de petaca", 1], ["palette", "Colores", "5 colores", 1], ["capacity", "Tallas", "S · M · L · XL"]], specs: [["Categoría", "Cinturón / soporte de petaca"], ["Marca", "Ursa Straps"], ["Descripción", "Cinturón elástico ultrafino para llevar el transmisor de petaca en la cintura de forma discreta bajo la ropa. Se ofrece con bolsillo grande o pequeño y con bolsillo para recoger el cable del micro."], ["Grosor", "Tejido unido de 1 mm"], ["Material", "Tejido hipoalergénico y transpirable"], ["Bolsillo", "Grande o pequeño, con bolsillo para cable"], ["Tallas", "S, M, L, XL"], ["Lavado", "Lavable a máquina"], ["Colores", "Beige · Negro · Blanco · Caramelo · Espresso"]], icon: soundIcon("#1F2937") },
+  { cat: "sound", type: "Cinturón / soporte de petaca", brand: "Ursa Straps", brandCode: "U", brandColor: "#1F2937", model: "Thigh Strap with Split End", photo: "../alquiler/img/ursa-ursa-thigh-strap-beige_SpTV.webp", color: "Beige|Negro|Blanco|Caramelo|Espresso", colors: [{"name": "Beige", "hex": "#D9B99B", "photo": "../alquiler/img/ursa-ursa-thigh-strap-beige_SpTV.webp"}, {"name": "Negro", "hex": "#1A1A1A", "photo": "../alquiler/img/ursa-ursa-thigh-strap-black_SpTV.webp"}, {"name": "Blanco", "hex": "#F5F5F2", "photo": "../alquiler/img/ursa-ursa-thigh-strap-white_SpTV.webp"}, {"name": "Caramelo", "hex": "#A9744F", "photo": "../alquiler/img/ursa-ursa-thigh-strap-caramel_SpTV.webp"}, {"name": "Espresso", "hex": "#4A2E22", "photo": "../alquiler/img/ursa-ursa-thigh-strap-espresso_SpTV.webp"}], info: [["tag", "Tipo", "Cinturón / soporte de petaca", 1], ["palette", "Colores", "5 colores", 1]], specs: [["Categoría", "Cinturón / soporte de petaca"], ["Marca", "Ursa Straps"], ["Descripción", "Cinta de muslo para llevar el transmisor de forma discreta y segura en la pierna. Sus extremos divididos se adaptan por separado a la forma del muslo."], ["Material", "Tejido ultrafino, transpirable e hipoalergénico"], ["Sujeción", "Banda antideslizante de poliuretano"], ["Cable", "Bolsillo cerrado para el cable"], ["Nota", "El color Espresso mantiene el diseño original de extremo único"], ["Colores", "Beige · Negro · Blanco · Caramelo · Espresso"]], icon: soundIcon("#1F2937") },
+  { cat: "sound", type: "Ocultación de micro de solapa", brand: "Ursa Straps", brandCode: "U", brandColor: "#1F2937", model: "Chest Strap", photo: "../alquiler/img/ursa-ursa-chest-strap-beige_SpTV.webp", color: "Beige|Negro|Blanco|Caramelo|Espresso", colors: [{"name": "Beige", "hex": "#D9B99B", "photo": "../alquiler/img/ursa-ursa-chest-strap-beige_SpTV.webp"}, {"name": "Negro", "hex": "#1A1A1A", "photo": "../alquiler/img/ursa-ursa-chest-strap-black_SpTV.webp"}, {"name": "Blanco", "hex": "#F5F5F2", "photo": "../alquiler/img/ursa-ursa-chest-strap-white_SpTV.webp"}, {"name": "Caramelo", "hex": "#A9744F", "photo": "../alquiler/img/ursa-ursa-chest-strap-caramel_SpTV.webp"}, {"name": "Espresso", "hex": "#4A2E22", "photo": "../alquiler/img/ursa-ursa-chest-strap-espresso_SpTV.webp"}], info: [["tag", "Tipo", "Ocultación de micro de solapa", 1], ["palette", "Colores", "5 colores", 1]], specs: [["Categoría", "Ocultación de micro de solapa"], ["Marca", "Ursa Straps"], ["Descripción", "Banda de pecho para fijar micrófonos de solapa sin cinta adhesiva, ideal con piel sudada o pecho con vello. Lleva cuatro bolsillos para micro y guías para el cable."], ["Grosor", "Tejido transpirable e hipoalergénico de 1 mm"], ["Longitud", "Aprox. 110 cm, talla única (pecho hasta ~114 cm)"], ["Bolsillos", "4 compartimentos para micro"], ["Cable", "3 guías de cable integradas"], ["Lavado", "A máquina a 40 °C"], ["Colores", "Beige · Negro · Blanco · Caramelo · Espresso"]], icon: soundIcon("#1F2937") },
+  { cat: "sound", type: "Cinturón / soporte de petaca", brand: "Ursa Straps", brandCode: "U", brandColor: "#1F2937", model: "Ankle / Calf Strap", photo: "../alquiler/img/ursa-ursa-ankle-calf-strap-beige_SpTV.webp", color: "Beige|Negro|Blanco|Caramelo", colors: [{"name": "Beige", "hex": "#D9B99B", "photo": "../alquiler/img/ursa-ursa-ankle-calf-strap-beige_SpTV.webp"}, {"name": "Negro", "hex": "#1A1A1A", "photo": "../alquiler/img/ursa-ursa-ankle-calf-strap-black_SpTV.webp"}, {"name": "Blanco", "hex": "#F5F5F2", "photo": "../alquiler/img/ursa-ursa-ankle-calf-strap-white_SpTV.webp"}, {"name": "Caramelo", "hex": "#A9744F", "photo": "../alquiler/img/ursa-ursa-ankle-calf-strap-caramel_SpTV.webp"}], info: [["tag", "Tipo", "Cinturón / soporte de petaca", 1], ["palette", "Colores", "4 colores", 1]], specs: [["Categoría", "Cinturón / soporte de petaca"], ["Marca", "Ursa Straps"], ["Descripción", "Cinta para tobillo o gemelo que sujeta el transmisor de petaca con un bolsillo universal. Sus extremos divididos se estiran por separado para un ajuste firme."], ["Longitud", "42 cm"], ["Bolsillo", "Universal, con óvalo antideslizante interior"], ["Material", "Tejido hipoalergénico y transpirable"], ["Lavado", "A máquina a 40 °C"], ["Colores", "Beige · Negro · Blanco · Caramelo"]], icon: soundIcon("#1F2937") },
+  { cat: "sound", type: "Cinturón / soporte de petaca", brand: "Ursa Straps", brandCode: "U", brandColor: "#1F2937", model: "Belt Pouch", photo: "../alquiler/img/ursa-ursa-belt-pouch-beige_SpTV.webp", color: "Beige|Negro|Blanco", colors: [{"name": "Beige", "hex": "#D9B99B", "photo": "../alquiler/img/ursa-ursa-belt-pouch-beige_SpTV.webp"}, {"name": "Negro", "hex": "#1A1A1A", "photo": "../alquiler/img/ursa-ursa-belt-pouch-black_SpTV.webp"}, {"name": "Blanco", "hex": "#F5F5F2", "photo": "../alquiler/img/ursa-ursa-belt-pouch-white_SpTV.webp"}], info: [["tag", "Tipo", "Cinturón / soporte de petaca", 1], ["palette", "Colores", "3 colores", 1], ["capacity", "Tallas", "Mini · Small · Medium · Large · XL Q5X"]], specs: [["Categoría", "Cinturón / soporte de petaca"], ["Marca", "Ursa Straps"], ["Descripción", "Funda para transmisor de petaca que se monta en cinturones URSA, cinturones de 5-6 cm o sujetadores, o se cose o prende al vestuario. Incluye clip extraíble."], ["Incluye", "Clip negro extraíble"], ["Mini", "86 × 52 mm (p. ej. Lectrosonics SSM, Zaxcom ZMT3)"], ["Medium", "86 × 75 mm (p. ej. Shure ADX1M, Tascam DR-10L)"], ["Large", "99 × 78 mm (p. ej. Sound Devices A10/A20, Sony UWP)"], ["Nota", "Talla XL Q5X solo en beige y negro"], ["Colores", "Beige · Negro · Blanco"]], icon: soundIcon("#1F2937") },
+  { cat: "sound", type: "Ocultación de micro de solapa", brand: "Ursa Straps", brandCode: "U", brandColor: "#1F2937", model: "MiniMount", photo: "../alquiler/img/ursa-ursa-minimount-beige_SpTV.webp", color: "Beige|Negro|Blanco|Marrón", colors: [{"name": "Beige", "hex": "#D9B99B", "photo": "../alquiler/img/ursa-ursa-minimount-beige_SpTV.webp"}, {"name": "Negro", "hex": "#1A1A1A", "photo": "../alquiler/img/ursa-ursa-minimount-black_SpTV.webp"}, {"name": "Blanco", "hex": "#F5F5F2", "photo": "../alquiler/img/ursa-ursa-minimount-white_SpTV.webp"}, {"name": "Marrón", "hex": "#5C3A2A", "photo": "../alquiler/img/ursa-ursa-minimount-brown_SpTV.webp"}], info: [["tag", "Tipo", "Ocultación de micro de solapa", 1], ["palette", "Colores", "4 colores", 1], ["capacity", "Tallas", "DPA 4060 Core+ / 2061 · DPA 4060 · DPA 6060 · DPA 6060 (Circular MiniMount) · DPA 4071 · DPA 4660HD · SANKEN COS11 · Sennheiser MKE1 · Sennheiser MKE2 · Sennheiser ME2 · Sony D11 · RØDE Lav / Lav GO · RØDE Lavalier II · Shure TwinPlex"]], specs: [["Categoría", "Ocultación de micro de solapa"], ["Marca", "Ursa Straps"], ["Descripción", "Soporte plano y de bajo perfil para ocultar el micro de solapa bajo la ropa donde no caben soportes mayores. Hay un modelo específico para cada micrófono."], ["Material", "Plástico endurecido acabado a mano"], ["Incluye", "5 adhesivos MiniMount Stickies"], ["Compatible con", "DPA, Sanken COS11, RØDE, Sennheiser, Shure TwinPlex, Sony"], ["Nota", "Marrón solo en algunos modelos (DPA 4060/4071/6060, Sanken COS11, Sony D11)"], ["Colores", "Beige · Negro · Blanco · Marrón"]], icon: soundIcon("#1F2937") },
+  { cat: "sound", type: "Ocultación de micro de solapa", brand: "Ursa Straps", brandCode: "U", brandColor: "#1F2937", model: "Soft Circles", photo: "../alquiler/img/ursa-ursa-soft-circles-beige_SpTV.webp", color: "Beige|Negro|Blanco|Marrón", colors: [{"name": "Beige", "hex": "#D9B99B", "photo": "../alquiler/img/ursa-ursa-soft-circles-beige_SpTV.webp"}, {"name": "Negro", "hex": "#1A1A1A", "photo": "../alquiler/img/ursa-ursa-soft-circles-black_SpTV.webp"}, {"name": "Blanco", "hex": "#F5F5F2", "photo": "../alquiler/img/ursa-ursa-soft-circles-white_SpTV.webp"}, {"name": "Marrón", "hex": "#5C3A2A", "photo": "../alquiler/img/ursa-ursa-soft-circles-brown_SpTV.webp"}], info: [["tag", "Tipo", "Ocultación de micro de solapa", 1], ["palette", "Colores", "4 colores", 1], ["capacity", "Tallas", "15 Pack + 30 Stickies · 100 Pack"]], specs: [["Categoría", "Ocultación de micro de solapa"], ["Marca", "Ursa Straps"], ["Descripción", "Discos de tejido suave y elástico reutilizables que protegen del viento y camuflan el micro de solapa. Se fijan con los adhesivos Sticky Circles."], ["Diámetro", "25 mm"], ["Contenido", "15 Soft Circles + 30 Sticky Circles (o pack de 100)"], ["Compatible con", "URSA Sticky Circles, Premium Sticky Circles y Sticky Zeros"], ["Fabricación", "Reino Unido"], ["Colores", "Beige · Negro · Blanco · Marrón"]], icon: soundIcon("#1F2937") },
+  { cat: "sound", type: "Antiviento", brand: "Ursa Straps", brandCode: "U", brandColor: "#1F2937", model: "Fur Circles", photo: "../alquiler/img/ursa-ursa-fur-circles-beige_SpTV.webp", color: "Beige|Negro|Blanco", colors: [{"name": "Beige", "hex": "#D9B99B", "photo": "../alquiler/img/ursa-ursa-fur-circles-beige_SpTV.webp"}, {"name": "Negro", "hex": "#1A1A1A", "photo": "../alquiler/img/ursa-ursa-fur-circles-black_SpTV.webp"}, {"name": "Blanco", "hex": "#F5F5F2", "photo": "../alquiler/img/ursa-ursa-fur-circles-white_SpTV.webp"}], info: [["tag", "Tipo", "Antiviento", 1], ["palette", "Colores", "3 colores", 1], ["capacity", "Tallas", "9 Pack + 30 Stickies · 100 Pack"]], specs: [["Categoría", "Antiviento"], ["Marca", "Ursa Straps"], ["Descripción", "Círculos de pelo que protegen el micro de solapa del viento y reducen el roce de la ropa. Se fijan con adhesivos Sticky Circles."], ["Pelo", "14 mm de longitud"], ["Contenido", "9 Fur Circles + 30 adhesivos Premium (o pack de 100)"], ["Multipack", "3 negros, 3 blancos y 3 beige + 30 adhesivos"], ["Fabricación", "Reino Unido"], ["Colores", "Beige · Negro · Blanco"]], icon: soundIcon("#1F2937") },
+  { cat: "sound", type: "Antiviento", brand: "Ursa Straps", brandCode: "U", brandColor: "#1F2937", model: "Soft Sleeves", photo: "../alquiler/img/ursa-ursa-soft-sleeves-beige_SpTV.webp", color: "Beige|Negro|Blanco|Marrón", colors: [{"name": "Beige", "hex": "#D9B99B", "photo": "../alquiler/img/ursa-ursa-soft-sleeves-beige_SpTV.webp"}, {"name": "Negro", "hex": "#1A1A1A", "photo": "../alquiler/img/ursa-ursa-soft-sleeves-black_SpTV.webp"}, {"name": "Blanco", "hex": "#F5F5F2", "photo": "../alquiler/img/ursa-ursa-soft-sleeves-white_SpTV.webp"}, {"name": "Marrón", "hex": "#5C3A2A", "photo": "../alquiler/img/ursa-ursa-soft-sleeves-brown_SpTV.webp"}], info: [["tag", "Tipo", "Antiviento", 1], ["palette", "Colores", "4 colores", 1]], specs: [["Categoría", "Antiviento"], ["Marca", "Ursa Straps"], ["Descripción", "Fundas de bajo perfil que cubren todo el micro de solapa y dan una protección ligera contra el viento. Útiles para micros ocultos en corbatas, bajo botones o entre capas de ropa."], ["Medidas", "12 × 6 mm"], ["Contenido", "3 fundas por pack"], ["Compatible con", "Micros de 4-5 mm: DPA 406X, RØDE Lav GO, Sennheiser MKE2"], ["No compatible", "Sanken COS11 y DPA 6060 (demasiado finos)"], ["Fabricación", "Reino Unido"], ["Colores", "Beige · Negro · Blanco · Marrón"]], icon: soundIcon("#1F2937") },
+  { cat: "sound", type: "Antiviento", brand: "Ursa Straps", brandCode: "U", brandColor: "#1F2937", model: "Fur Tangles", photo: "../alquiler/img/ursa-ursa-fur-tangles-beige_SpTV.webp", color: "Beige|Negro|Blanco", colors: [{"name": "Beige", "hex": "#D9B99B", "photo": "../alquiler/img/ursa-ursa-fur-tangles-beige_SpTV.webp"}, {"name": "Negro", "hex": "#1A1A1A", "photo": "../alquiler/img/ursa-ursa-fur-tangles-black_SpTV.webp"}, {"name": "Blanco", "hex": "#F5F5F2", "photo": "../alquiler/img/ursa-ursa-fur-tangles-white_SpTV.webp"}], info: [["tag", "Tipo", "Antiviento", 1], ["palette", "Colores", "3 colores", 1]], specs: [["Categoría", "Antiviento"], ["Marca", "Ursa Straps"], ["Descripción", "Rectángulo de pelo para recortar a medida: reduce el ruido de roce de tejidos cerca del micro o sirve de antiviento en montajes especiales, como en coches."], ["Medidas", "60 × 15 cm"], ["Pelo", "Muy suave, 14 mm de longitud"], ["Contenido", "1 rectángulo"], ["Uso", "Se recorta con tijeras; combinable con tiras adhesivas"], ["Colores", "Beige · Negro · Blanco"]], icon: soundIcon("#1F2937") },
+  { cat: "sound", type: "Espuma / protección", brand: "Ursa Straps", brandCode: "U", brandColor: "#1F2937", model: "Foamie Pro", photo: "../alquiler/img/ursa-ursa-foamie-pro-caramel_SpTV.webp", color: "Caramelo|Negro|Blanco", colors: [{"name": "Caramelo", "hex": "#A9744F", "photo": "../alquiler/img/ursa-ursa-foamie-pro-caramel_SpTV.webp"}, {"name": "Negro", "hex": "#1A1A1A", "photo": "../alquiler/img/ursa-ursa-foamie-pro-black_SpTV.webp"}, {"name": "Blanco", "hex": "#F5F5F2", "photo": "../alquiler/img/ursa-ursa-foamie-pro-white_SpTV.webp"}], info: [["tag", "Tipo", "Espuma / protección", 1], ["palette", "Colores", "3 colores", 1]], specs: [["Categoría", "Espuma / protección"], ["Marca", "Ursa Straps"], ["Descripción", "Soportes de espuma premium, suave y reutilizable para montar el micro de solapa en silencio bajo la ropa. Se pueden recortar con tijeras."], ["Contenido", "12 unidades + 4 imperdibles"], ["Compatible con", "DPA 406X Core+/4660HD, Sanken COS11, RØDE Lav GO/Lav II, Sennheiser MKE2, Shure TwinPlex"], ["Tamaño", "Regular (la versión Mini se vende aparte)"], ["Material", "Espuma premium reutilizable"], ["Colores", "Caramelo · Negro · Blanco"]], icon: soundIcon("#1F2937") },
+  { cat: "sound", type: "Adhesivos", brand: "Ursa Straps", brandCode: "U", brandColor: "#1F2937", model: "URSA Tape - Soft Strips", photo: "../alquiler/img/ursa-ursa-tape-soft-strips-beige_SpTV.webp", color: "Beige|Negro|Blanco|Caramelo|Marrón", colors: [{"name": "Beige", "hex": "#D9B99B", "photo": "../alquiler/img/ursa-ursa-tape-soft-strips-beige_SpTV.webp"}, {"name": "Negro", "hex": "#1A1A1A", "photo": "../alquiler/img/ursa-ursa-tape-soft-strips-black_SpTV.webp"}, {"name": "Blanco", "hex": "#F5F5F2", "photo": "../alquiler/img/ursa-ursa-tape-soft-strips-white_SpTV.webp"}, {"name": "Caramelo", "hex": "#A9744F", "photo": "../alquiler/img/ursa-ursa-tape-soft-strips-caramel_SpTV.webp"}, {"name": "Marrón", "hex": "#5C3A2A", "photo": "../alquiler/img/ursa-ursa-tape-soft-strips-brown_SpTV.webp"}], info: [["tag", "Tipo", "Adhesivos", 1], ["palette", "Colores", "5 colores", 1], ["capacity", "Tallas", "30 Small Strips (8 x 2.5cm) · 12 Small Strips Multi-Pack"]], specs: [["Categoría", "Adhesivos"], ["Marca", "Ursa Straps"], ["Descripción", "Tiras adhesivas de moleskin suave y elástico para fijar y camuflar micros de solapa reduciendo el roce de la ropa. Aptas para piel sensible y vestuario delicado."], ["Material", "Moleskin elástico con adhesivo hipoalergénico"], ["Medidas", "8 × 2,5 cm por tira"], ["Contenido", "30 tiras (o multipack de 12)"], ["Colores", "Beige · Negro · Blanco · Caramelo · Marrón"]], icon: soundIcon("#1F2937") },
+  { cat: "sound", type: "Adhesivos", brand: "Ursa Straps", brandCode: "U", brandColor: "#1F2937", model: "Sticky Circles", photo: "../alquiler/img/ursa-ursa-sticky-circles-clear_SpTV.webp", color: "Transparente", colors: [], info: [["tag", "Tipo", "Adhesivos", 1], ["palette", "Color", "Transparente", 1]], specs: [["Categoría", "Adhesivos"], ["Marca", "Ursa Straps"], ["Descripción", "Círculos adhesivos transparentes e hipoalergénicos para fijar el micro de solapa bajo la ropa o directamente en la piel, sin dejar residuos."], ["Diámetro", "24 mm"], ["Grosor", "0,4 mm"], ["Contenido", "90 círculos"], ["Compatible con", "URSA Soft, Plush y Fur Circles"], ["Colores", "Transparente"]], icon: soundIcon("#1F2937") },
+  { cat: "sound", type: "Otros", brand: "Ursa Straps", brandCode: "U", brandColor: "#1F2937", model: "Soft Soles & Heavy Duties - Multipack", photo: "../alquiler/img/ursa-ursa-soft-soles-black_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Otros", 1], ["palette", "Color", "Negro", 1]], specs: [["Categoría", "Otros"], ["Marca", "Ursa Straps"], ["Descripción", "Almohadillas adhesivas para suelas de calzado que silencian las pisadas en rodaje. Incluye piezas para la parte delantera y para el tacón."], ["Contenido", "20 formas precortadas + 2 láminas Soft Soles + 2 láminas Heavy Duties"], ["Soft Soles", "Espuma acolchada de 3 mm"], ["Heavy Duties", "Sándwich de silicona y espuma para el tacón"], ["Adhesivo", "Se retira limpio, sin residuos"], ["Colores", "Negro"]], icon: soundIcon("#1F2937") },
+  { cat: "sound", type: "Ocultación de micro de solapa", brand: "Rycote", brandCode: "R", brandColor: "#C8102E", model: "Undercovers (Original)", photo: "../alquiler/img/rycote-undercovers-negro_SpTV.webp", color: "Negro|Blanco|Gris|Mix de colores", colors: [{"name": "Negro", "hex": "#1a1a1a", "photo": "../alquiler/img/rycote-undercovers-negro_SpTV.webp"}, {"name": "Blanco", "hex": "#f2f2f2", "photo": "../alquiler/img/rycote-undercovers-blanco_SpTV.webp"}, {"name": "Mix de colores", "hex": "#8c8c8c", "photo": "../alquiler/img/rycote-undercovers-mix_SpTV.webp"}], info: [["tag", "Tipo", "Ocultación de micro de solapa", 1], ["palette", "Colores", "4 colores", 1], ["capacity", "Tallas", "30 Undercovers + 30 Stickies · 100 Undercovers + 100 Stickies · 25 packs × 30 (mix)"]], specs: [["Categoría", "Ocultación de micro de solapa"], ["Marca", "Rycote"], ["Descripción", "Discos de tejido suave para ocultar micrófonos de solapa bajo la ropa. Se fijan con Stickies y reducen el roce de la ropa y el viento ligero."], ["Contenido", "Discos de tejido + Stickies"], ["Packs", "30, 100 o 25 × 30 unidades"], ["Uso", "Micro de solapa bajo la ropa"], ["Colores", "Negro, gris, blanco o mix"], ["Colores", "Negro · Blanco · Gris · Mix de colores"]], icon: soundIcon("#C8102E") },
+  { cat: "sound", type: "Antiviento", brand: "Rycote", brandCode: "R", brandColor: "#C8102E", model: "Overcovers (Original)", photo: "../alquiler/img/rycote-overcovers-negro_SpTV.webp", color: "Negro|Gris|Blanco|Mix de colores", colors: [{"name": "Negro", "hex": "#1a1a1a", "photo": "../alquiler/img/rycote-overcovers-negro_SpTV.webp"}, {"name": "Mix de colores", "hex": "#8c8c8c", "photo": "../alquiler/img/rycote-overcovers-mix_SpTV.webp"}], info: [["tag", "Tipo", "Antiviento", 1], ["palette", "Colores", "4 colores", 1], ["capacity", "Tallas", "6 discos de pelo + 30 Stickies · 25 packs × (6 discos + 30 Stickies)"]], specs: [["Categoría", "Antiviento"], ["Marca", "Rycote"], ["Descripción", "Discos de pelo sintético con la tecnología exclusiva de Rycote que se colocan sobre el micro de solapa para protegerlo del viento. Se fijan a la ropa o la piel con Stickies."], ["Contenido", "6 discos de pelo reutilizables + 30 Stickies"], ["Uso", "Protección antiviento para micro de solapa"], ["Colores", "Negro, gris, blanco o mix"], ["Colores", "Negro · Gris · Blanco · Mix de colores"]], icon: soundIcon("#C8102E") },
+  { cat: "sound", type: "Antiviento", brand: "Rycote", brandCode: "R", brandColor: "#C8102E", model: "Overcovers Advanced", photo: "../alquiler/img/rycote-overcovers-advanced-negro_SpTV.webp", color: "Negro|Gris|Beige|Blanco", colors: [{"name": "Negro", "hex": "#1a1a1a", "photo": "../alquiler/img/rycote-overcovers-advanced-negro_SpTV.webp"}, {"name": "Gris", "hex": "#8a8a8a", "photo": "../alquiler/img/rycote-overcovers-advanced-gris_SpTV.webp"}, {"name": "Beige", "hex": "#d9c3a0", "photo": "../alquiler/img/rycote-overcovers-advanced-beige_SpTV.webp"}, {"name": "Blanco", "hex": "#f0f0f0", "photo": "../alquiler/img/rycote-overcovers-advanced-blanco_SpTV.webp"}], info: [["tag", "Tipo", "Antiviento", 1], ["palette", "Colores", "4 colores", 1], ["capacity", "Tallas", "5 discos + 25 Stickies Adv Round · Bolsa de 100 discos (solo negro)"]], specs: [["Categoría", "Antiviento"], ["Marca", "Rycote"], ["Descripción", "Versión de mayor tamaño (26 mm) de los Overcovers, ideal para DPA Concealers. Se suministran con Stickies Advanced redondos de 23 mm."], ["Diámetro", "26 mm"], ["Contenido", "5 discos de pelo (un color) + 25 Stickies Adv Round 23 mm"], ["Compatible", "DPA Concealers y otros micros de solapa"], ["Colores", "Negro, gris, beige o blanco"], ["Colores", "Negro · Gris · Beige · Blanco"]], icon: soundIcon("#C8102E") },
+  { cat: "sound", type: "Adhesivos", brand: "Rycote", brandCode: "R", brandColor: "#C8102E", model: "Stickies (Original)", photo: "../alquiler/img/rycote-stickies_SpTV.webp", color: "", colors: [], info: [["tag", "Tipo", "Adhesivos", 1], ["palette", "Colores", "Único", 1], ["capacity", "Tallas", "30 uds. · 100 uds. · Rollo de 500 (23 mm) · 25 packs × 30"]], specs: [["Categoría", "Adhesivos"], ["Marca", "Rycote"], ["Descripción", "Almohadillas adhesivas de doble cara e hipoalergénicas para fijar micrófonos de solapa a la piel o la ropa. El tejido entre ambas caras evita los crujidos del micro por el movimiento."], ["Tipo", "Adhesivo de doble cara hipoalergénico"], ["Cantidades", "30, 100, rollo de 500 y 25 × 30"], ["Uso", "Un solo uso, sobre superficie seca"]], icon: soundIcon("#C8102E") },
+  { cat: "sound", type: "Adhesivos", brand: "Rycote", brandCode: "R", brandColor: "#C8102E", model: "Stickies Advanced", photo: "../alquiler/img/rycote-stickies-advanced_SpTV.webp", color: "", colors: [], info: [["tag", "Tipo", "Adhesivos", 1], ["palette", "Colores", "Único", 1], ["capacity", "Tallas", "Round 23 mm · Squared 20 mm · O's 23 mm"]], specs: [["Categoría", "Adhesivos"], ["Marca", "Rycote"], ["Descripción", "Adhesivos de doble cara más adherentes, con pestañas de fácil despegue, en forma redonda, cuadrada o de anillo. La redonda es ideal para DPA Concealers y la cuadrada para el soporte Sanken RM-11."], ["Formas", "Redonda 23 mm, cuadrada 20 mm, anillo (O's) 23 mm"], ["Presentación", "Pack, bolsa de 100 o caja de 10 × 25"], ["Compatible", "DPA Concealers, Sanken RM-11 (COS-11)"], ["Tipo", "Adhesivo hipoalergénico de doble cara"]], icon: soundIcon("#C8102E") },
+  { cat: "sound", type: "Antiviento", brand: "Rycote", brandCode: "R", brandColor: "#C8102E", model: "Lavalier Windjammer", photo: "../alquiler/img/rycote-lavalier-windjammer-negro_SpTV.webp", color: "Negro|Gris|Blanco", colors: [{"name": "Negro", "hex": "#1a1a1a", "photo": "../alquiler/img/rycote-lavalier-windjammer-negro_SpTV.webp"}, {"name": "Gris", "hex": "#8f8f8f", "photo": "../alquiler/img/rycote-lavalier-windjammer-gris_SpTV.webp"}, {"name": "Blanco", "hex": "#f0f0f0", "photo": "../alquiler/img/rycote-lavalier-windjammer-blanco_SpTV.webp"}], info: [["tag", "Tipo", "Antiviento", 1], ["palette", "Colores", "3 colores", 1], ["capacity", "Tallas", "1 ud. · Par"]], specs: [["Categoría", "Antiviento"], ["Marca", "Rycote"], ["Descripción", "Antiviento de pelo sintético para micrófonos de solapa, la opción de Rycote con mayor aislamiento del viento para exteriores. Se sujeta al micro mediante un conector de espuma con anillo de goma."], ["Atenuación de viento", "Hasta 12 dB"], ["Diámetro de micro", "4,5 mm"], ["Sujeción", "Conector de espuma con anillo de goma"], ["Colores", "Negro, gris, blanco (otros bajo pedido)"], ["Colores", "Negro · Gris · Blanco"]], icon: soundIcon("#C8102E") },
+  { cat: "sound", type: "Antiviento", brand: "Rycote", brandCode: "R", brandColor: "#C8102E", model: "Micro Windjammer", photo: "../alquiler/img/rycote-micro-windjammer_SpTV.webp", color: "", colors: [], info: [["tag", "Tipo", "Antiviento", 1], ["palette", "Colores", "Único", 1], ["capacity", "Talla", "30 usos"]], specs: [["Categoría", "Antiviento"], ["Marca", "Rycote"], ["Descripción", "Pequeños antiviento de pelo para los micrófonos integrados de cámaras compactas y dispositivos móviles. Reducen el ruido del viento al grabar vídeo en exteriores."], ["Contenido", "30 unidades"], ["Uso", "Micrófonos integrados de cámaras compactas y dispositivos móviles"]], icon: soundIcon("#C8102E") },
+  { cat: "sound", type: "Espuma / protección", brand: "Rycote", brandCode: "R", brandColor: "#C8102E", model: "Lavalier Foam", photo: "../alquiler/img/rycote-lavalier-foam_SpTV.webp", color: "Negro|Beige|Marrón", colors: [], info: [["tag", "Tipo", "Espuma / protección", 1], ["palette", "Colores", "3 colores", 1], ["capacity", "Tallas", "Lavalier Foam (4,5–6,0 mm) · Miniature Lavalier Foam (2,8–4,5 mm)"]], specs: [["Categoría", "Espuma / protección"], ["Marca", "Rycote"], ["Descripción", "Antiviento de espuma acústica de celda abierta para micrófonos de solapa, discreto y de colocación a presión. Ofrece hasta 20 dB de atenuación de viento y popeo sin pérdida de agudos."], ["Atenuación", "Hasta 20 dB"], ["Lavalier Foam", "Micros de 4,5 a 6,0 mm, hasta 15 mm de largo"], ["Miniature", "Micros de 2,8 a 4,5 mm (solo negro)"], ["Material", "Espuma resistente a humedad y rayos UV"], ["Colores", "Negro · Beige · Marrón"]], icon: soundIcon("#C8102E") },
+  { cat: "sound", type: "Espuma / protección", brand: "Rycote", brandCode: "R", brandColor: "#C8102E", model: "Neoprene-coated Mini Lavalier Foam", photo: "../alquiler/img/rycote-neoprene-mini-lavalier-foam-negro_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Espuma / protección", 1], ["palette", "Color", "Negro", 1]], specs: [["Categoría", "Espuma / protección"], ["Marca", "Rycote"], ["Descripción", "Espuma para micrófonos de solapa pequeños con recubrimiento de neopreno que repele el agua en lluvia ligera."], ["Diámetro de micro", "2,8 a 4,5 mm"], ["Longitud de micro", "Hasta 15 mm"], ["Recubrimiento", "Neopreno, repele el agua"], ["Colores", "Negro"]], icon: soundIcon("#C8102E") },
+  { cat: "sound", type: "Antiviento", brand: "Rycote", brandCode: "R", brandColor: "#C8102E", model: "Classic-Softie", photo: "../alquiler/img/rycote-classic-softie-gris_SpTV.webp", color: "Gris", colors: [], info: [["tag", "Tipo", "Antiviento", 1], ["palette", "Color", "Gris", 1], ["capacity", "Tallas", "5 cm · 7 cm · 10 cm · 12 cm · 15 cm · 18 cm · 24 cm · 29 cm · 32 cm"]], specs: [["Categoría", "Antiviento"], ["Marca", "Rycote"], ["Descripción", "Antiviento de espuma de celda abierta con funda de pelo integrada para micrófonos de cañón, estándar en televisión y ENG. Reduce hasta 25 dB el ruido de viento sin afectar a los agudos."], ["Atenuación de viento", "Hasta 25 dB"], ["Diámetro de micro", "19–22 mm o 24–25 mm"], ["Pelo", "Gris, 25 mm"], ["Kit", "Con suspensión Lyre y empuñadura (15 y 18 cm)"], ["Colores", "Gris"]], icon: soundIcon("#C8102E") },
+  { cat: "sound", type: "Antiviento", brand: "Rycote", brandCode: "R", brandColor: "#C8102E", model: "Super-Softie", photo: "../alquiler/img/rycote-super-softie-gris_SpTV.webp", color: "Gris", colors: [], info: [["tag", "Tipo", "Antiviento", 1], ["palette", "Color", "Gris", 1], ["capacity", "Tallas", "5 cm · 12 cm · 15 cm · 18 cm"]], specs: [["Categoría", "Antiviento"], ["Marca", "Rycote"], ["Descripción", "Antiviento de forma aerodinámica fabricado en material 3D-Tex, sin estructura rígida interna y con gran transparencia acústica. Si se moja se escurre y se seca rápidamente."], ["Material", "3D-Tex"], ["Atenuación de viento", "Hasta 25 dB"], ["Diámetro de micro", "19–22 mm o 24–25 mm"], ["Colores", "Gris"]], icon: soundIcon("#C8102E") },
+  { cat: "sound", type: "Soporte / suspensión", brand: "Rycote", brandCode: "R", brandColor: "#C8102E", model: "InVision Video Hot Shoe Mount", photo: "../alquiler/img/rycote-invision-video-hot-shoe-mount-negro_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Soporte / suspensión", 1], ["palette", "Color", "Negro", 1]], specs: [["Categoría", "Soporte / suspensión"], ["Marca", "Rycote"], ["Descripción", "Suspensión Duo-Lyre para montar el micrófono en la zapata de la cámara, aislándolo de vibraciones y ruido de motores. Gira 360° y eleva el micro para mantenerlo fuera de plano."], ["Suspensión", "Duo-Lyre"], ["Montaje", "Zapata de cámara"], ["Rotación", "360°"], ["Colores", "Negro"]], icon: soundIcon("#C8102E") },
+  { cat: "sound", type: "Soporte / suspensión", brand: "Rycote", brandCode: "R", brandColor: "#C8102E", model: "InVision Softie Lyre Mount", photo: "../alquiler/img/rycote-invision-softie-lyre-mount-negro_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Soporte / suspensión", 1], ["palette", "Color", "Negro", 1], ["capacity", "Tallas", "CCA · MHR"]], specs: [["Categoría", "Soporte / suspensión"], ["Marca", "Rycote"], ["Descripción", "Suspensión Lyre para micrófono con Softie que se monta en el portamicro de cámaras profesionales. Eleva y retrasa el micro para mantenerlo fuera de plano."], ["Diámetro de micro", "19–25 mm (clip Duo-Lyre)"], ["Versión CCA", "Portamicros de cámara de 25–27 mm (Sony, Canon)"], ["Rosca", "Latón 3/8\" para pértiga"], ["Colores", "Negro"]], icon: soundIcon("#C8102E") },
+  { cat: "sound", type: "Otros", brand: "Rycote", brandCode: "R", brandColor: "#C8102E", model: "Mic Flag", photo: "../alquiler/img/rycote-mic-flag-negro_SpTV.webp", color: "Negro|Blanco", colors: [{"name": "Negro", "hex": "#1a1a1a", "photo": "../alquiler/img/rycote-mic-flag-negro_SpTV.webp"}, {"name": "Blanco", "hex": "#f2f2f2", "photo": "../alquiler/img/rycote-mic-flag-blanco_SpTV.webp"}], info: [["tag", "Tipo", "Otros", 1], ["palette", "Colores", "2 colores", 1], ["capacity", "Tallas", "Cuadrada · Triangular · Pack de 20"]], specs: [["Categoría", "Otros"], ["Marca", "Rycote"], ["Descripción", "Cubo identificativo de plástico moldeado irrompible para micrófonos de mano, con amplia zona imprimible para logotipos. Sus aletas de goma internas lo sujetan sin espumas perecederas."], ["Diámetro de micro", "19–32 mm (hasta 38 mm quitando aletas)"], ["Área imprimible cuadrada", "57 × 48 mm por cara"], ["Área imprimible triangular", "89,5 × 48 mm por cara"], ["Material", "Plástico moldeado irrompible"], ["Colores", "Negro · Blanco"]], icon: soundIcon("#C8102E") },
+  { cat: "sound", type: "Antiviento", brand: "Rycote", brandCode: "R", brandColor: "#C8102E", model: "Cyclone Windshield Kit", photo: "../alquiler/img/rycote-cyclone-gris_SpTV.webp", color: "Gris", colors: [], info: [["tag", "Tipo", "Antiviento", 1], ["palette", "Color", "Gris", 1], ["capacity", "Tallas", "Small · Medium · Large"]], specs: [["Categoría", "Antiviento"], ["Marca", "Rycote"], ["Descripción", "Sistema antiviento premium de cesta para micrófonos de cañón, ligero y resistente, en material 3D-Tex gris sin necesidad de pelo. Incluye suspensión Floating-Basket y cierre Z-Locking para acceder al micro al instante."], ["Material", "3D-Tex gris"], ["Medium", "Micros de 174 a 255 mm (p. ej. MKH 416, CMIT 5U)"], ["Rosca", "Latón 3/8\" UNC hembra"], ["Temperatura", "-20 °C a 38 °C"], ["Colores", "Gris"]], icon: soundIcon("#C8102E") },
+  { cat: "sound", type: "Ocultación de micro de solapa", brand: "Bubblebee Industries", brandCode: "B", brandColor: "#C99700", model: "The Lav Concealer", photo: "../alquiler/img/bubblebee-lav-concealer-black_SpTV.webp", color: "Negro|Blanco", colors: [{"name": "Negro", "hex": "#1a1a1a", "photo": "../alquiler/img/bubblebee-lav-concealer-black_SpTV.webp"}, {"name": "Blanco", "hex": "#f2f2f2", "photo": "../alquiler/img/bubblebee-lav-concealer-white_SpTV.webp"}], info: [["tag", "Tipo", "Ocultación de micro de solapa", 1], ["palette", "Colores", "2 colores", 1], ["capacity", "Tallas", "Unidad · Pack de 6"]], specs: [["Categoría", "Ocultación de micro de solapa"], ["Marca", "Bubblebee Industries"], ["Descripción", "Soporte de goma blanda que permite fijar el micro de solapa bajo la ropa (con clip, cinta o cosido) y actúa como suspensión frente a roces y vibraciones. Incluye protectores de tela de alambre que mantienen la prenda alejada de la cápsula."], ["Material", "Goma blanda biodegradable"], ["Versiones", "Sennheiser, DPA, RØDE, Sanken COS-11, Countryman, Sony, Deity y Shure TL45/47"], ["Incluye", "Clip de ropa, bloqueo de cable, 2 protectores de tela y 6 piezas de Tiny Tape"], ["Formato", "Unidad o pack de 6"], ["Colores", "Negro · Blanco"]], icon: soundIcon("#C99700") },
+  { cat: "sound", type: "Ocultación de micro de solapa", brand: "Bubblebee Industries", brandCode: "B", brandColor: "#C99700", model: "The Invisible Lav Covers", photo: "../alquiler/img/bubblebee-invisible-lav-covers-black_SpTV.webp", color: "Negro|Beige|Blanco", colors: [{"name": "Negro", "hex": "#1a1a1a", "photo": "../alquiler/img/bubblebee-invisible-lav-covers-black_SpTV.webp"}, {"name": "Beige", "hex": "#d9c2a7", "photo": "../alquiler/img/bubblebee-invisible-lav-covers-beige_SpTV.webp"}, {"name": "Blanco", "hex": "#f2f2f2", "photo": "../alquiler/img/bubblebee-invisible-lav-covers-white_SpTV.webp"}], info: [["tag", "Tipo", "Ocultación de micro de solapa", 1], ["palette", "Colores", "3 colores", 1], ["capacity", "Tallas", "Pack de 30 · Big Bag de 120"]], specs: [["Categoría", "Ocultación de micro de solapa"], ["Marca", "Bubblebee Industries"], ["Descripción", "Fundas para ocultar el micro de solapa bajo la ropa sin marcas visibles, en tonos variados para igualar piel o prenda. Disponibles en versiones Original, Moleskin y Fur Outdoor."], ["Tipos", "Original, Moleskin, Fur Outdoor"], ["Contenido", "30 fundas (pack) o 120 (Big Bag)"], ["Compatibilidad", "Cualquier micro de solapa"], ["Colores", "Negro · Beige · Blanco"]], icon: soundIcon("#C99700") },
+  { cat: "sound", type: "Antiviento", brand: "Bubblebee Industries", brandCode: "B", brandColor: "#C99700", model: "The Windbubble", photo: "../alquiler/img/bubblebee-windbubble-black_SpTV.webp", color: "Negro|Gris|Marrón|Beige|Blanco roto|Blanco", colors: [{"name": "Negro", "hex": "#1a1a1a", "photo": "../alquiler/img/bubblebee-windbubble-black_SpTV.webp"}, {"name": "Gris", "hex": "#7a7a7a", "photo": "../alquiler/img/bubblebee-windbubble-grey_SpTV.webp"}, {"name": "Marrón", "hex": "#6b4a2b", "photo": "../alquiler/img/bubblebee-windbubble-brown_SpTV.webp"}, {"name": "Beige", "hex": "#d9c2a7", "photo": "../alquiler/img/bubblebee-windbubble-beige_SpTV.webp"}, {"name": "Blanco roto", "hex": "#ece4d6", "photo": "../alquiler/img/bubblebee-windbubble-off-white_SpTV.webp"}, {"name": "Blanco", "hex": "#f2f2f2", "photo": "../alquiler/img/bubblebee-windbubble-white_SpTV.webp"}], info: [["tag", "Tipo", "Antiviento", 1], ["palette", "Colores", "6 colores", 1], ["capacity", "Tallas", "Talla 1 · Talla 2 · Talla 3 · Talla 4"]], specs: [["Categoría", "Antiviento"], ["Marca", "Bubblebee Industries"], ["Descripción", "Antiviento de pelo sintético para micros de solapa, con interior hueco que crea una cámara de aire en calma alrededor de la cápsula. Seis colores naturales para combinar con cualquier vestuario."], ["Tallas", "1 (⌀ 3–4 mm), 2 (⌀ 5–8 mm), 3 (⌀ 5–9 mm), 4 (⌀ 8–13 mm)"], ["Compatibilidad", "Más de 50 modelos de solapa, direccionales y omnidireccionales"], ["Incluye", "Lata de almacenaje"], ["Formato", "Unidad, pack de 2, 4 o 10"], ["Colores", "Negro · Gris · Marrón · Beige · Blanco roto · Blanco"]], icon: soundIcon("#C99700") },
+  { cat: "sound", type: "Antiviento", brand: "Bubblebee Industries", brandCode: "B", brandColor: "#C99700", model: "The Windbubble Pro", photo: "../alquiler/img/bubblebee-windbubble-pro-black_SpTV.webp", color: "Negro|Gris|Beige|Blanco", colors: [{"name": "Negro", "hex": "#1a1a1a", "photo": "../alquiler/img/bubblebee-windbubble-pro-black_SpTV.webp"}, {"name": "Gris", "hex": "#7a7a7a", "photo": "../alquiler/img/bubblebee-windbubble-pro-grey_SpTV.webp"}, {"name": "Beige", "hex": "#d9c2a7", "photo": "../alquiler/img/bubblebee-windbubble-pro-beige_SpTV.webp"}, {"name": "Blanco", "hex": "#f2f2f2", "photo": "../alquiler/img/bubblebee-windbubble-pro-white_SpTV.webp"}], info: [["tag", "Tipo", "Antiviento", 1], ["palette", "Colores", "4 colores", 1], ["capacity", "Tallas", "XS · S · M · L"]], specs: [["Categoría", "Antiviento"], ["Marca", "Bubblebee Industries"], ["Descripción", "Versión avanzada del Windbubble con montura de goma integrada que sujeta la cápsula y mejora el rechazo al viento fuerte. Diseñado exclusivamente para micros de solapa omnidireccionales."], ["Tallas", "XS (⌀ 3–5 mm), S (⌀ 5–6,5 mm), M (⌀ 6–8 mm), L (⌀ 11,5–14 mm)"], ["Pelo", "Standard o Extreme"], ["Compatibilidad", "Solo micros omnidireccionales"], ["Formato", "Unidad o pack de 2 (talla L solo en pack de 2)"], ["Colores", "Negro · Gris · Beige · Blanco"]], icon: soundIcon("#C99700") },
+  { cat: "sound", type: "Antiviento", brand: "Bubblebee Industries", brandCode: "B", brandColor: "#C99700", model: "The Big Windbubble", photo: "../alquiler/img/bubblebee-big-windbubble-black_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Antiviento", 1], ["palette", "Color", "Negro", 1]], specs: [["Categoría", "Antiviento"], ["Marca", "Bubblebee Industries"], ["Descripción", "Antiviento de pelo sintético negro para micrófonos de mano, con forro de malla y montura elástica en la base. Disponible en pelo largo o corto."], ["Compatibilidad", "Micros de mano de ⌀ aprox. 35–55 mm"], ["Pelo", "Largo o corto"], ["Montura", "Elástica"], ["Colores", "Negro"]], icon: soundIcon("#C99700") },
+  { cat: "sound", type: "Antiviento", brand: "Bubblebee Industries", brandCode: "B", brandColor: "#C99700", model: "The Windkiller", photo: "../alquiler/img/bubblebee-windkiller-black_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Antiviento", 1], ["palette", "Color", "Negro", 1], ["capacity", "Tallas", "XS · XS (Big Mount) · XS+ · S · M · L · XL · XL (Big Mount)"]], specs: [["Categoría", "Antiviento"], ["Marca", "Bubblebee Industries"], ["Descripción", "Antiviento de pelo sintético multicapa para micrófonos de cañón, para pértiga y grabación de campo. Disponible en pelo largo, para viento fuerte, o pelo corto, para viento moderado."], ["Pelo", "Largo o corto"], ["Tallas", "XS a XL, con versiones Big Mount"], ["Compatibilidad", "Cañones de Sennheiser, RØDE, Schoeps, Audio-Technica, DPA, Sanken, Sony…"], ["Colores", "Negro"]], icon: soundIcon("#C99700") },
+  { cat: "sound", type: "Antiviento", brand: "Bubblebee Industries", brandCode: "B", brandColor: "#C99700", model: "The Cub", photo: "../alquiler/img/bubblebee-cub-black_SpTV.webp", color: "Negro|Gris", colors: [{"name": "Negro", "hex": "#1a1a1a", "photo": "../alquiler/img/bubblebee-cub-black_SpTV.webp"}, {"name": "Gris", "hex": "#7a7a7a", "photo": "../alquiler/img/bubblebee-cub-grey_SpTV.webp"}], info: [["tag", "Tipo", "Antiviento", 1], ["palette", "Colores", "2 colores", 1]], specs: [["Categoría", "Antiviento"], ["Marca", "Bubblebee Industries"], ["Descripción", "Antiviento de pelo sintético multicapa diseñado específicamente para el micrófono Sanken CUB-01."], ["Compatibilidad", "Sanken CUB-01"], ["Colores", "Negro o gris"], ["Colores", "Negro · Gris"]], icon: soundIcon("#C99700") },
+  { cat: "sound", type: "Antiviento", brand: "Bubblebee Industries", brandCode: "B", brandColor: "#C99700", model: "The Spacer Bubble", photo: "../alquiler/img/bubblebee-spacer-bubble-black_SpTV.webp", color: "Negro|Azul|Verde|Rojo", colors: [{"name": "Negro", "hex": "#1a1a1a", "photo": "../alquiler/img/bubblebee-spacer-bubble-black_SpTV.webp"}, {"name": "Azul", "hex": "#1f4fd1", "photo": "../alquiler/img/bubblebee-spacer-bubble-blue_SpTV.webp"}, {"name": "Verde", "hex": "#22a838", "photo": "../alquiler/img/bubblebee-spacer-bubble-green_SpTV.webp"}, {"name": "Rojo", "hex": "#d42a1e", "photo": "../alquiler/img/bubblebee-spacer-bubble-red_SpTV.webp"}], info: [["tag", "Tipo", "Antiviento", 1], ["palette", "Colores", "4 colores", 1], ["capacity", "Tallas", "XS · XS (Big Mount) · XS+ · S · M · L · XL · XL (Big Mount)"]], specs: [["Categoría", "Antiviento"], ["Marca", "Bubblebee Industries"], ["Descripción", "Sistema antiviento modular para micrófonos de cañón; los colores facilitan identificar cada micro en rodajes multicámara. Se entrega con funda de pelo largo Spacer Cover y bolsa de malla."], ["Incluye", "Spacer Bubble, Spacer Cover de pelo largo y bolsa de malla"], ["Tallas", "8 tallas para los cañones más habituales"], ["Compatibilidad", "Sennheiser MKH 416/ME 66 (L), RØDE NTG (L), Schoeps, DPA, Sanken…"], ["Colores", "Negro · Azul · Verde · Rojo"]], icon: soundIcon("#C99700") },
+  { cat: "sound", type: "Antiviento", brand: "Bubblebee Industries", brandCode: "B", brandColor: "#C99700", model: "The Spacer Cover", photo: "../alquiler/img/bubblebee-spacer-cover-black_SpTV.webp", color: "Negro|Azul|Verde|Rojo", colors: [{"name": "Negro", "hex": "#1a1a1a", "photo": "../alquiler/img/bubblebee-spacer-cover-black_SpTV.webp"}, {"name": "Azul", "hex": "#1f4fd1", "photo": "../alquiler/img/bubblebee-spacer-cover-blue_SpTV.webp"}, {"name": "Verde", "hex": "#22a838", "photo": "../alquiler/img/bubblebee-spacer-cover-green_SpTV.webp"}, {"name": "Rojo", "hex": "#d42a1e", "photo": "../alquiler/img/bubblebee-spacer-cover-red_SpTV.webp"}], info: [["tag", "Tipo", "Antiviento", 1], ["palette", "Colores", "4 colores", 1], ["capacity", "Tallas", "XS · XS+ · S · M · L · XL"]], specs: [["Categoría", "Antiviento"], ["Marca", "Bubblebee Industries"], ["Descripción", "Funda de pelo sintético que se coloca sobre el Spacer Bubble para añadir protección cuando aumenta el viento. Colores a juego con los Spacer Bubble."], ["Compatibilidad", "Todas las tallas de Spacer Bubble"], ["Colores", "Negro, azul, verde, rojo"], ["Colores", "Negro · Azul · Verde · Rojo"]], icon: soundIcon("#C99700") },
+  { cat: "sound", type: "Antiviento", brand: "Bubblebee Industries", brandCode: "B", brandColor: "#C99700", model: "The Spacer Ball", photo: "../alquiler/img/bubblebee-spacer-ball-black_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Antiviento", 1], ["palette", "Color", "Negro", 1], ["capacity", "Tallas", "65 mm · 100 mm"]], specs: [["Categoría", "Antiviento"], ["Marca", "Bubblebee Industries"], ["Descripción", "Antiviento esférico para micros de condensador compactos y micros de pértiga, con exterior de malla, núcleo de espuma abierta y base de goma. Incluye funda de pelo largo para viento intenso."], ["Diámetro", "65 mm o 100 mm"], ["Montura", "S (⌀ 19–20 mm), M (⌀ 21–22 mm), L (⌀ 25–26 mm)"], ["Incluye", "Funda de pelo largo y bolsa de malla"], ["Compatibilidad", "Schoeps CCM/MK, DPA 4011/4018, Sennheiser MKH 8000/MKH 50…"], ["Colores", "Negro"]], icon: soundIcon("#C99700") },
+  { cat: "sound", type: "Antiviento", brand: "Bubblebee Industries", brandCode: "B", brandColor: "#C99700", model: "The Fur Wind Jacket", photo: "../alquiler/img/bubblebee-fur-wind-jacket-black_SpTV.webp", color: "Negro|Verde|Azul", colors: [{"name": "Negro", "hex": "#1a1a1a", "photo": "../alquiler/img/bubblebee-fur-wind-jacket-black_SpTV.webp"}, {"name": "Verde", "hex": "#22a838", "photo": "../alquiler/img/bubblebee-fur-wind-jacket-green_SpTV.webp"}, {"name": "Azul", "hex": "#1f4fd1", "photo": "../alquiler/img/bubblebee-fur-wind-jacket-blue_SpTV.webp"}], info: [["tag", "Tipo", "Antiviento", 1], ["palette", "Colores", "3 colores", 1], ["capacity", "Tallas", "Rycote Modular WS Kit 1 · Rycote Modular WS Kit 2 · Rycote Modular WS Kit 3 · Rycote Modular WS Kit 4 · Rycote BBG · Cinela Pianissimo · Cinela Piano"]], specs: [["Categoría", "Antiviento"], ["Marca", "Bubblebee Industries"], ["Descripción", "Funda de pelo sintético multicapa hecha a medida para cestas antiviento Rycote y Cinela. Verde y azul solo disponibles para Cinela Pianissimo y Piano."], ["Compatibilidad", "Rycote Modular Windshield, Rycote BBG, Cinela Pianissimo y Piano"], ["Pelo", "Tres longitudes de pelo sintético"], ["Colores", "Negro (todos); verde y azul (Cinela)"], ["Plazo", "Fabricado bajo pedido"], ["Colores", "Negro · Verde · Azul"]], icon: soundIcon("#C99700") },
+  { cat: "sound", type: "Espuma / protección", brand: "Bubblebee Industries", brandCode: "B", brandColor: "#C99700", model: "The Microphone Foam for Lavalier Mics", photo: "../alquiler/img/bubblebee-microphone-foam-lavalier-black_SpTV.webp", color: "Negro|Beige|Blanco", colors: [{"name": "Negro", "hex": "#1a1a1a", "photo": "../alquiler/img/bubblebee-microphone-foam-lavalier-black_SpTV.webp"}, {"name": "Beige", "hex": "#d9c2a7", "photo": "../alquiler/img/bubblebee-microphone-foam-lavalier-beige_SpTV.webp"}, {"name": "Blanco", "hex": "#f2f2f2", "photo": "../alquiler/img/bubblebee-microphone-foam-lavalier-white_SpTV.webp"}], info: [["tag", "Tipo", "Espuma / protección", 1], ["palette", "Colores", "3 colores", 1], ["capacity", "Tallas", "XS (10 uds.) · S (10 uds.) · M (10 uds.) · L (5 uds.) · XL (4 uds.)"]], specs: [["Categoría", "Espuma / protección"], ["Marca", "Bubblebee Industries"], ["Descripción", "Espumas de celda abierta para micros de solapa que reducen popeos y viento ligero. Se usan solas en interiores o bajo un Windbubble en exteriores."], ["Material", "Espuma de celda abierta"], ["Tallas", "XS a XL"], ["Contenido", "4–10 uds. según talla"], ["Compatibilidad", "Micros de solapa"], ["Colores", "Negro · Beige · Blanco"]], icon: soundIcon("#C99700") },
+  { cat: "sound", type: "Espuma / protección", brand: "Bubblebee Industries", brandCode: "B", brandColor: "#C99700", model: "The Microphone Foam for Shotgun Mics", photo: "../alquiler/img/bubblebee-microphone-foam-shotgun-black_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Espuma / protección", 1], ["palette", "Color", "Negro", 1], ["capacity", "Tallas", "XS · XS (Big Diameter) · XS+ · S · M · L · XL · XL (Big Diameter)"]], specs: [["Categoría", "Espuma / protección"], ["Marca", "Bubblebee Industries"], ["Descripción", "Espuma de celda abierta para micrófonos de cañón, para viento ligero o como capa interior bajo un antiviento de pelo como el Windkiller."], ["Material", "Espuma de celda abierta"], ["Tallas", "XS a XL, con versiones Big Diameter"], ["Contenido", "1 unidad"], ["Colores", "Negro"]], icon: soundIcon("#C99700") },
+  { cat: "sound", type: "Otros", brand: "Bubblebee Industries", brandCode: "B", brandColor: "#C99700", model: "The Cable Saver", photo: "../alquiler/img/bubblebee-cable-saver-black_SpTV.webp", color: "Negro|Beige|Blanco", colors: [{"name": "Negro", "hex": "#1a1a1a", "photo": "../alquiler/img/bubblebee-cable-saver-black_SpTV.webp"}, {"name": "Beige", "hex": "#d9c2a7", "photo": "../alquiler/img/bubblebee-cable-saver-beige_SpTV.webp"}, {"name": "Blanco", "hex": "#f2f2f2", "photo": "../alquiler/img/bubblebee-cable-saver-white_SpTV.webp"}], info: [["tag", "Tipo", "Otros", 1], ["palette", "Colores", "3 colores", 1], ["capacity", "Talla", "Pack de 4"]], specs: [["Categoría", "Otros"], ["Marca", "Bubblebee Industries"], ["Descripción", "Protectores de goma que refuerzan la unión entre cable y conector del micro de solapa, el punto de fallo más habitual."], ["Contenido", "4 unidades"], ["Material", "Goma blanda"], ["Compatibilidad", "Micros de solapa de Sanken, Sennheiser, DPA, Countryman…"], ["Colores", "Negro · Beige · Blanco"]], icon: soundIcon("#C99700") },
+  { cat: "sound", type: "Adhesivos", brand: "Bubblebee Industries", brandCode: "B", brandColor: "#C99700", model: "The Lav Concealer Tape", photo: "../alquiler/img/bubblebee-lav-concealer-tape_SpTV.webp", color: "", colors: [], info: [["tag", "Tipo", "Adhesivos", 1], ["palette", "Colores", "Único", 1], ["capacity", "Tallas", "Tiras · Rollo"]], specs: [["Categoría", "Adhesivos"], ["Marca", "Bubblebee Industries"], ["Descripción", "Piezas precortadas de cinta adhesiva de doble cara para fijar el Lav Concealer o el micro de solapa a la piel o la ropa. Adhesivo hipoalergénico de grado médico que se retira sin dejar residuos."], ["Contenido", "120 piezas precortadas"], ["Adhesivo", "Doble cara, hipoalergénico, grado médico"], ["Formato", "Tiras o rollo"], ["Compatibilidad", "Lav Concealer tamaño Regular"]], icon: soundIcon("#C99700") }
+];
+
+// STATIONERY: purchase catalogue, official photos from each brand's website.
+// colors: one photo per colour; the dots on the card swap the photo (generated by tools/build_sonido_data.py)
+const STATIONERY = [
+  { cat: "stationery", type: "Bolígrafo", brand: "Pilot", brandCode: "P", brandColor: "#00468C", model: "Pilot Super Grip", photo: "../alquiler/img/pilot-super-grip-azul_SpTV.webp", color: "Azul", colors: [], info: [["tag", "Tipo", "Bolígrafo", 1], ["palette", "Color", "Azul", 1]], specs: [["Categoría", "Bolígrafo"], ["Marca", "Pilot"], ["Descripción", "Bolígrafo de bola retráctil con empuñadura de goma."], ["Punta", "M (media)"], ["Tinta", "Azul"], ["Colores", "Azul"]], icon: stationeryIcon("#00468C") },
+  { cat: "stationery", type: "Bolígrafo", brand: "Pilot", brandCode: "P", brandColor: "#00468C", model: "Pilot G2", photo: "../alquiler/img/pilot-g2-azul_SpTV.webp", color: "Azul|Negro", colors: [{"name": "Azul", "hex": "#1F4FB8", "photo": "../alquiler/img/pilot-g2-azul_SpTV.webp"}, {"name": "Negro", "hex": "#1A1A1A", "photo": "../alquiler/img/pilot-g2-negro_SpTV.webp"}], info: [["tag", "Tipo", "Bolígrafo", 1], ["palette", "Colores", "2 colores", 1]], specs: [["Categoría", "Bolígrafo"], ["Marca", "Pilot"], ["Descripción", "Bolígrafo de tinta gel retráctil, de escritura suave."], ["Tinta", "Gel · azul o negra"], ["Colores", "Azul · Negro"]], icon: stationeryIcon("#00468C") },
+  { cat: "stationery", type: "Bolígrafo", brand: "BIC", brandCode: "B", brandColor: "#F28C00", model: "BIC Cristal", photo: "../alquiler/img/bic-cristal-azul_SpTV.webp", color: "Negro|Azul", colors: [], info: [["tag", "Tipo", "Bolígrafo", 1], ["palette", "Colores", "2 colores", 1]], specs: [["Categoría", "Bolígrafo"], ["Marca", "BIC"], ["Descripción", "El bolígrafo clásico de cuerpo transparente."], ["Tinta", "Negra o azul"], ["Colores", "Negro · Azul"]], icon: stationeryIcon("#F28C00") },
+  { cat: "stationery", type: "Cinta adhesiva", brand: "3M", brandCode: "3M", brandColor: "#E2231A", model: "Scotch cinta transparente", photo: "../alquiler/img/scotch-transparente-transparente_SpTV.webp", color: "Transparente", colors: [], info: [["tag", "Tipo", "Cinta adhesiva", 1], ["palette", "Color", "Transparente", 1]], specs: [["Categoría", "Cinta adhesiva"], ["Marca", "3M"], ["Descripción", "Cinta adhesiva transparente de uso general."], ["Medida", "19 mm × 33 m"], ["Colores", "Transparente"]], icon: stationeryIcon("#E2231A") },
+  { cat: "stationery", type: "Cinta adhesiva", brand: "3M", brandCode: "3M", brandColor: "#E2231A", model: "Scotch Magic", photo: "../alquiler/img/scotch-magic-transparente_SpTV.webp", color: "Transparente", colors: [], info: [["tag", "Tipo", "Cinta adhesiva", 1], ["palette", "Color", "Transparente", 1]], specs: [["Categoría", "Cinta adhesiva"], ["Marca", "3M"], ["Descripción", "Cinta adhesiva invisible y mate: no se ve sobre el papel y se puede escribir encima."], ["Medida", "19 mm × 33 m"], ["Colores", "Transparente"]], icon: stationeryIcon("#E2231A") },
+  { cat: "stationery", type: "Lápiz", brand: "Staedtler", brandCode: "S", brandColor: "#003A70", model: "Staedtler Noris 120", photo: "../alquiler/img/staedtler-noris-120-amarillo_SpTV.webp", color: "Amarillo", colors: [], info: [["tag", "Tipo", "Lápiz", 1], ["palette", "Color", "Amarillo", 1]], specs: [["Categoría", "Lápiz"], ["Marca", "Staedtler"], ["Descripción", "Lápiz de grafito clásico, con el cuerpo amarillo y negro."], ["Dureza", "HB"], ["Colores", "Amarillo"]], icon: stationeryIcon("#003A70") },
+  { cat: "stationery", type: "Lápiz", brand: "Staedtler", brandCode: "S", brandColor: "#003A70", model: "Staedtler lápiz graso blanco", photo: "../alquiler/img/staedtler-lapiz-graso-blanco_SpTV.webp", color: "Blanco", colors: [], info: [["tag", "Tipo", "Lápiz", 1], ["palette", "Color", "Blanco", 1]], specs: [["Categoría", "Lápiz"], ["Marca", "Staedtler"], ["Descripción", "Lápiz graso que escribe sobre vidrio, plástico, metal y superficies lisas, y se borra con un paño."], ["Uso", "No permanente"], ["Colores", "Blanco"]], icon: stationeryIcon("#003A70") },
+  { cat: "stationery", type: "Pegamento", brand: "Gorilla", brandCode: "G", brandColor: "#1A1A1A", model: "Gorilla Super Glue", photo: "../alquiler/img/gorilla-super-glue-transparente_SpTV.webp", color: "Transparente", colors: [], info: [["tag", "Tipo", "Pegamento", 1], ["palette", "Color", "Transparente", 1], ["capacity", "Formatos", "3 g · 15 g"]], specs: [["Categoría", "Pegamento"], ["Marca", "Gorilla"], ["Descripción", "Pegamento instantáneo (cianoacrilato) reforzado con caucho, más resistente a golpes."], ["Formato", "3 g · 15 g"], ["Colores", "Transparente"]], icon: stationeryIcon("#1A1A1A") },
+  { cat: "stationery", type: "Pegamento", brand: "Goobay", brandCode: "G", brandColor: "#E30613", model: "Goobay pegamento instantáneo", photo: "../alquiler/img/goobay-super-glue-transparente_SpTV.webp", color: "Transparente", colors: [], info: [["tag", "Tipo", "Pegamento", 1], ["palette", "Color", "Transparente", 1], ["capacity", "Formatos", "3 g · 10 g con pincel"]], specs: [["Categoría", "Pegamento"], ["Marca", "Goobay"], ["Descripción", "Pegamento instantáneo (cianoacrilato) para reparaciones rápidas."], ["Formato", "3 g · 10 g con pincel"], ["Colores", "Transparente"]], icon: stationeryIcon("#E30613") },
+  { cat: "stationery", type: "Pegamento", brand: "Loctite", brandCode: "L", brandColor: "#D0021B", model: "Loctite Super Glue-3", photo: "../alquiler/img/loctite-super-glue-3-transparente_SpTV.webp", color: "Transparente", colors: [], info: [["tag", "Tipo", "Pegamento", 1], ["palette", "Color", "Transparente", 1], ["capacity", "Formatos", "5 g · 5 g con pincel"]], specs: [["Categoría", "Pegamento"], ["Marca", "Loctite"], ["Descripción", "Pegamento instantáneo (cianoacrilato) de secado en segundos."], ["Formato", "5 g sin pincel · 5 g con pincel"], ["Colores", "Transparente"]], icon: stationeryIcon("#D0021B") },
+  { cat: "stationery", type: "Rotulador permanente", brand: "Staedtler", brandCode: "S", brandColor: "#003A70", model: "Staedtler Lumocolor permanent", photo: "../alquiler/img/staedtler-lumocolor-permanent-negro_SpTV.webp", color: "Negro|Azul|Rojo|Verde", colors: [{"name": "Negro", "hex": "#1A1A1A", "photo": "../alquiler/img/staedtler-lumocolor-permanent-negro_SpTV.webp"}, {"name": "Azul", "hex": "#1F4FB8", "photo": "../alquiler/img/staedtler-lumocolor-permanent-azul_SpTV.webp"}, {"name": "Rojo", "hex": "#D0202E", "photo": "../alquiler/img/staedtler-lumocolor-permanent-rojo_SpTV.webp"}, {"name": "Verde", "hex": "#1E8C3A", "photo": "../alquiler/img/staedtler-lumocolor-permanent-verde_SpTV.webp"}], info: [["tag", "Tipo", "Rotulador permanente", 1], ["palette", "Colores", "4 colores", 1], ["capacity", "Formatos", "S 0,4 mm · F 0,6 mm · M 1 mm"]], specs: [["Categoría", "Rotulador permanente"], ["Marca", "Staedtler"], ["Descripción", "Rotulador permanente para casi cualquier superficie (plástico, vidrio, metal, film), de secado rápido."], ["Puntas", "S (0,4 mm) · F (0,6 mm) · M (1 mm)"], ["Colores", "Negro · Azul · Rojo · Verde"]], icon: stationeryIcon("#003A70") },
+  { cat: "stationery", type: "Rotulador permanente", brand: "Staedtler", brandCode: "S", brandColor: "#003A70", model: "Staedtler Lumocolor permanent duo", photo: "../alquiler/img/staedtler-lumocolor-duo-negro_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Rotulador permanente", 1], ["palette", "Color", "Negro", 1]], specs: [["Categoría", "Rotulador permanente"], ["Marca", "Staedtler"], ["Descripción", "Rotulador permanente con dos puntas, fina y media, en el mismo rotulador."], ["Puntas", "F (0,6 mm) y M (1,5 mm)"], ["Colores", "Negro"]], icon: stationeryIcon("#003A70") },
+  { cat: "stationery", type: "Rotulador permanente", brand: "edding", brandCode: "e", brandColor: "#1A1A1A", model: "edding 330", photo: "../alquiler/img/edding-330-negro_SpTV.webp", color: "Negro|Rojo", colors: [{"name": "Negro", "hex": "#1A1A1A", "photo": "../alquiler/img/edding-330-negro_SpTV.webp"}, {"name": "Rojo", "hex": "#D0202E", "photo": "../alquiler/img/edding-330-rojo_SpTV.webp"}], info: [["tag", "Tipo", "Rotulador permanente", 1], ["palette", "Colores", "2 colores", 1]], specs: [["Categoría", "Rotulador permanente"], ["Marca", "edding"], ["Descripción", "Rotulador permanente de punta biselada para marcar y rotular."], ["Punta", "Biselada 1–5 mm"], ["Colores", "Negro · Rojo"]], icon: stationeryIcon("#1A1A1A") },
+  { cat: "stationery", type: "Rotulador permanente", brand: "edding", brandCode: "e", brandColor: "#1A1A1A", model: "edding 500", photo: "../alquiler/img/edding-500-negro_SpTV.webp", color: "Negro|Rojo|Verde", colors: [{"name": "Negro", "hex": "#1A1A1A", "photo": "../alquiler/img/edding-500-negro_SpTV.webp"}, {"name": "Rojo", "hex": "#D0202E", "photo": "../alquiler/img/edding-500-rojo_SpTV.webp"}, {"name": "Verde", "hex": "#1E8C3A", "photo": "../alquiler/img/edding-500-verde_SpTV.webp"}], info: [["tag", "Tipo", "Rotulador permanente", 1], ["palette", "Colores", "3 colores", 1]], specs: [["Categoría", "Rotulador permanente"], ["Marca", "edding"], ["Descripción", "Rotulador permanente de punta biselada ancha para rotular en grande."], ["Punta", "Biselada 2–7 mm"], ["Colores", "Negro · Rojo · Verde"]], icon: stationeryIcon("#1A1A1A") },
+  { cat: "stationery", type: "Rotulador permanente", brand: "edding", brandCode: "e", brandColor: "#1A1A1A", model: "edding 400", photo: "../alquiler/img/edding-400-negro_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Rotulador permanente", 1], ["palette", "Color", "Negro", 1]], specs: [["Categoría", "Rotulador permanente"], ["Marca", "edding"], ["Descripción", "Rotulador permanente de punta fina para escribir y marcar con precisión."], ["Punta", "Redonda 1 mm"], ["Colores", "Negro"]], icon: stationeryIcon("#1A1A1A") },
+  { cat: "stationery", type: "Rotulador permanente", brand: "Sharpie", brandCode: "S", brandColor: "#1A1A1A", model: "Sharpie Fine", photo: "../alquiler/img/sharpie-fine-negro_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Rotulador permanente", 1], ["palette", "Color", "Negro", 1]], specs: [["Categoría", "Rotulador permanente"], ["Marca", "Sharpie"], ["Descripción", "Rotulador permanente de punta fina, el clásico de Sharpie."], ["Punta", "Fina"], ["Colores", "Negro"]], icon: stationeryIcon("#1A1A1A") },
+  { cat: "stationery", type: "Rotulador permanente", brand: "Sharpie", brandCode: "S", brandColor: "#1A1A1A", model: "Sharpie Twin Tip", photo: "../alquiler/img/sharpie-twin-tip-negro_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Rotulador permanente", 1], ["palette", "Color", "Negro", 1]], specs: [["Categoría", "Rotulador permanente"], ["Marca", "Sharpie"], ["Descripción", "Rotulador permanente con dos puntas: fina y ultrafina."], ["Punta", "Doble (fina y ultrafina)"], ["Colores", "Negro"]], icon: stationeryIcon("#1A1A1A") },
+  { cat: "stationery", type: "Rotulador permanente", brand: "Pentel", brandCode: "P", brandColor: "#00539F", model: "Pentel N50", photo: "../alquiler/img/pentel-n50-negro_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Rotulador permanente", 1], ["palette", "Color", "Negro", 1]], specs: [["Categoría", "Rotulador permanente"], ["Marca", "Pentel"], ["Descripción", "Rotulador permanente de punta redonda y cuerpo metálico."], ["Punta", "Redonda"], ["Colores", "Negro"]], icon: stationeryIcon("#00539F") },
+  { cat: "stationery", type: "Rotulador permanente", brand: "BIC", brandCode: "B", brandColor: "#F28C00", model: "BIC Marking 2000", photo: "", color: "Negro", colors: [], info: [["tag", "Tipo", "Rotulador permanente", 1], ["palette", "Color", "Negro", 1]], specs: [["Categoría", "Rotulador permanente"], ["Marca", "BIC"], ["Descripción", "Rotulador permanente de punta redonda para uso general."], ["Punta", "Redonda 1,7 mm"], ["Colores", "Negro"]], icon: stationeryIcon("#F28C00") },
+  { cat: "stationery", type: "Rotulador permanente", brand: "edding", brandCode: "e", brandColor: "#1A1A1A", model: "edding 3000", photo: "../alquiler/img/edding-3000-azul_SpTV.webp", color: "Azul|Negro|Rojo", colors: [{"name": "Azul", "hex": "#1F4FB8", "photo": "../alquiler/img/edding-3000-azul_SpTV.webp"}, {"name": "Negro", "hex": "#1A1A1A", "photo": "../alquiler/img/edding-3000-negro_SpTV.webp"}, {"name": "Rojo", "hex": "#D0202E", "photo": "../alquiler/img/edding-3000-rojo_SpTV.webp"}], info: [["tag", "Tipo", "Rotulador permanente", 1], ["palette", "Colores", "3 colores", 1]], specs: [["Categoría", "Rotulador permanente"], ["Marca", "edding"], ["Descripción", "Rotulador permanente de punta redonda, recargable."], ["Punta", "Redonda 1,5–3 mm"], ["Colores", "Azul · Negro · Rojo"]], icon: stationeryIcon("#1A1A1A") },
+  { cat: "stationery", type: "Rotulador permanente", brand: "edding", brandCode: "e", brandColor: "#1A1A1A", model: "edding 751", photo: "../alquiler/img/edding-751-blanco_SpTV.webp", color: "Blanco|Negro", colors: [{"name": "Blanco", "hex": "#FFFFFF", "photo": "../alquiler/img/edding-751-blanco_SpTV.webp"}, {"name": "Negro", "hex": "#1A1A1A", "photo": "../alquiler/img/edding-751-negro_SpTV.webp"}], info: [["tag", "Tipo", "Rotulador permanente", 1], ["palette", "Colores", "2 colores", 1]], specs: [["Categoría", "Rotulador permanente"], ["Marca", "edding"], ["Descripción", "Rotulador de pintura opaca: marca sobre superficies oscuras, metal, vidrio o plástico."], ["Punta", "Redonda 1–2 mm"], ["Tinta", "Pintura opaca"], ["Colores", "Blanco · Negro"]], icon: stationeryIcon("#1A1A1A") },
+  { cat: "stationery", type: "Rotulador permanente", brand: "edding", brandCode: "e", brandColor: "#1A1A1A", model: "edding 750", photo: "../alquiler/img/edding-750-blanco_SpTV.webp", color: "Blanco|Negro|Plata", colors: [{"name": "Blanco", "hex": "#FFFFFF", "photo": "../alquiler/img/edding-750-blanco_SpTV.webp"}, {"name": "Negro", "hex": "#1A1A1A", "photo": "../alquiler/img/edding-750-negro_SpTV.webp"}, {"name": "Plata", "hex": "#C0C4C8", "photo": "../alquiler/img/edding-750-plata_SpTV.webp"}], info: [["tag", "Tipo", "Rotulador permanente", 1], ["palette", "Colores", "3 colores", 1]], specs: [["Categoría", "Rotulador permanente"], ["Marca", "edding"], ["Descripción", "Rotulador de pintura opaca y resistente: marca sobre superficies oscuras, metal, vidrio o plástico."], ["Punta", "Redonda 2–4 mm"], ["Tinta", "Pintura opaca"], ["Colores", "Blanco · Negro · Plata"]], icon: stationeryIcon("#1A1A1A") },
+  { cat: "stationery", type: "Rotulador permanente", brand: "edding", brandCode: "e", brandColor: "#1A1A1A", model: "edding 300", photo: "../alquiler/img/edding-300-negro_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Rotulador permanente", 1], ["palette", "Color", "Negro", 1]], specs: [["Categoría", "Rotulador permanente"], ["Marca", "edding"], ["Descripción", "Rotulador permanente de punta cónica para marcar en cualquier superficie."], ["Punta", "Cónica 1,5–3 mm"], ["Colores", "Negro"]], icon: stationeryIcon("#1A1A1A") },
+  { cat: "stationery", type: "Rotulador no permanente", brand: "Staedtler", brandCode: "S", brandColor: "#003A70", model: "Staedtler Lumocolor non-permanent", photo: "../alquiler/img/staedtler-lumocolor-non-permanent-negro_SpTV.webp", color: "Negro|Rojo|Azul|Verde", colors: [{"name": "Negro", "hex": "#1A1A1A", "photo": "../alquiler/img/staedtler-lumocolor-non-permanent-negro_SpTV.webp"}, {"name": "Rojo", "hex": "#D0202E", "photo": "../alquiler/img/staedtler-lumocolor-non-permanent-rojo_SpTV.webp"}, {"name": "Azul", "hex": "#1F4FB8", "photo": "../alquiler/img/staedtler-lumocolor-non-permanent-azul_SpTV.webp"}, {"name": "Verde", "hex": "#1E8C3A", "photo": "../alquiler/img/staedtler-lumocolor-non-permanent-verde_SpTV.webp"}], info: [["tag", "Tipo", "Rotulador no permanente", 1], ["palette", "Colores", "4 colores", 1], ["capacity", "Formatos", "S 0,4 mm · F 0,6 mm · M 1 mm"]], specs: [["Categoría", "Rotulador no permanente"], ["Marca", "Staedtler"], ["Descripción", "Rotulador al agua para transparencias y superficies lisas: se borra con un paño húmedo."], ["Puntas", "S (0,4 mm) · F (0,6 mm) · M (1 mm)"], ["Colores", "Negro · Rojo · Azul · Verde"]], icon: stationeryIcon("#003A70") },
+  { cat: "stationery", type: "Rotulador no permanente", brand: "Pentel", brandCode: "P", brandColor: "#00539F", model: "Pentel Maxiflo", photo: "../alquiler/img/pentel-maxiflo-negro_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Rotulador no permanente", 1], ["palette", "Color", "Negro", 1], ["capacity", "Formatos", "Redonda 4 mm · Biselado fino · Biselado grueso"]], specs: [["Categoría", "Rotulador no permanente"], ["Marca", "Pentel"], ["Descripción", "Rotulador de pizarra blanca con pulsador para avivar la tinta."], ["Modelos", "MWL5SA punta redonda media 4 mm · MWL6 biselado fino · biselado grueso"], ["Colores", "Negro"]], icon: stationeryIcon("#00539F") },
+  { cat: "stationery", type: "Rotulador no permanente", brand: "edding", brandCode: "e", brandColor: "#1A1A1A", model: "edding 660", photo: "../alquiler/img/edding-660-negro_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Rotulador no permanente", 1], ["palette", "Color", "Negro", 1]], specs: [["Categoría", "Rotulador no permanente"], ["Marca", "edding"], ["Descripción", "Rotulador de pizarra blanca, borrable en seco."], ["Punta", "Redonda 1,5–3 mm"], ["Colores", "Negro"]], icon: stationeryIcon("#1A1A1A") },
+  { cat: "stationery", type: "Rotulador no permanente", brand: "edding", brandCode: "e", brandColor: "#1A1A1A", model: "edding 661", photo: "../alquiler/img/edding-661-negro_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Rotulador no permanente", 1], ["palette", "Color", "Negro", 1]], specs: [["Categoría", "Rotulador no permanente"], ["Marca", "edding"], ["Descripción", "Rotulador de pizarra blanca de punta fina, borrable en seco."], ["Punta", "Redonda 1–2 mm"], ["Colores", "Negro"]], icon: stationeryIcon("#1A1A1A") },
+  { cat: "stationery", type: "Rotulador no permanente", brand: "BIC", brandCode: "B", brandColor: "#F28C00", model: "BIC Velleda", photo: "", color: "Negro", colors: [], info: [["tag", "Tipo", "Rotulador no permanente", 1], ["palette", "Color", "Negro", 1]], specs: [["Categoría", "Rotulador no permanente"], ["Marca", "BIC"], ["Descripción", "Rotulador de pizarra blanca, borrable en seco."], ["Punta", "Redonda M"], ["Colores", "Negro"]], icon: stationeryIcon("#F28C00") },
+  { cat: "stationery", type: "Rotulador no permanente", brand: "Pilot", brandCode: "P", brandColor: "#00468C", model: "Pilot V Board Master", photo: "../alquiler/img/pilot-v-board-master-negro_SpTV.webp", color: "Negro|Azul", colors: [{"name": "Negro", "hex": "#1A1A1A", "photo": "../alquiler/img/pilot-v-board-master-negro_SpTV.webp"}, {"name": "Azul", "hex": "#1F4FB8", "photo": "../alquiler/img/pilot-v-board-master-azul_SpTV.webp"}], info: [["tag", "Tipo", "Rotulador no permanente", 1], ["palette", "Colores", "2 colores", 1], ["capacity", "Formatos", "M · S"]], specs: [["Categoría", "Rotulador no permanente"], ["Marca", "Pilot"], ["Descripción", "Rotulador de pizarra blanca recargable, con tinta líquida de color uniforme hasta el final."], ["Puntas", "Negro: M y S · Azul: S"], ["Recarga", "Sí (cartucho)"], ["Colores", "Negro · Azul"]], icon: stationeryIcon("#00468C") },
+  { cat: "stationery", type: "Rotulador no permanente", brand: "Pilot", brandCode: "P", brandColor: "#00468C", model: "Recambio Pilot V Board Master", photo: "../alquiler/img/pilot-v-board-master-recambio-negro_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Rotulador no permanente", 1], ["palette", "Color", "Negro", 1]], specs: [["Categoría", "Rotulador no permanente"], ["Marca", "Pilot"], ["Descripción", "Cartucho de tinta de recambio para el rotulador Pilot V Board Master."], ["Compatible con", "Pilot V Board Master"], ["Colores", "Negro"]], icon: stationeryIcon("#00468C") },
+  { cat: "stationery", type: "Tiza", brand: "Apli", brandCode: "A", brandColor: "#E2001A", model: "Tizas Apli", photo: "../alquiler/img/apli-tizas-blanco_SpTV.webp", color: "Blanco|Colores", colors: [{"name": "Blanco", "hex": "#FFFFFF", "photo": "../alquiler/img/apli-tizas-blanco_SpTV.webp"}, {"name": "Colores", "hex": "#E9A23B", "photo": "../alquiler/img/apli-tizas-colores_SpTV.webp"}], info: [["tag", "Tipo", "Tiza", 1], ["palette", "Colores", "2 colores", 1], ["capacity", "Formatos", "Pequeña · Jumbo"]], specs: [["Categoría", "Tiza"], ["Marca", "Apli"], ["Descripción", "Tizas para pizarra en caja de 10 unidades."], ["Formatos", "Blanca 10 ud (pequeña) · Colores 10 ud (pequeña) · Colores 10 ud (Jumbo)"], ["Colores", "Blanco · Colores"]], icon: stationeryIcon("#E2001A") },
+  { cat: "stationery", type: "Tiza", brand: "", brandCode: "", brandColor: "#5C6672", model: "Portatizas metálico", photo: "", color: "Plata", colors: [], info: [["tag", "Tipo", "Tiza", 1], ["palette", "Color", "Plata", 1]], specs: [["Categoría", "Tiza"], ["Descripción", "Portatizas de metal: escribes sin mancharte las manos y aprovechas la tiza hasta el final."], ["Material", "Metal"], ["Colores", "Plata"]], icon: stationeryIcon("#5C6672") },
+  { cat: "stationery", type: "Otros", brand: "", brandCode: "", brandColor: "#5C6672", model: "Terciopelo adhesivo", photo: "", color: "Negro", colors: [], info: [["tag", "Tipo", "Otros", 1], ["palette", "Color", "Negro", 1]], specs: [["Categoría", "Otros"], ["Descripción", "Lámina de terciopelo autoadhesiva para forrar, proteger superficies y evitar reflejos y arañazos."], ["Medida", "45 cm × 1 m"], ["Colores", "Negro"]], icon: stationeryIcon("#5C6672") },
+  { cat: "stationery", type: "Otros", brand: "", brandCode: "", brandColor: "#5C6672", model: "Cutter profesional", photo: "../alquiler/img/cutter-profesional-azul_SpTV.webp", color: "Azul", colors: [], info: [["tag", "Tipo", "Otros", 1], ["palette", "Color", "Azul", 1]], specs: [["Categoría", "Otros"], ["Descripción", "Cúter profesional de hoja retráctil para cortar cartón, cinta y materiales gruesos."], ["Hoja", "Retráctil"], ["Colores", "Azul"]], icon: stationeryIcon("#5C6672") }
+];
+
 // --- Model cards: one card per model; variants that only change storage are grouped ---
 const sizeInGB = v => /ilimitad/i.test(v) ? Infinity : parseFloat(String(v).replace(",", ".")) * (/TB/i.test(v) ? 1000 : 1) || 0;
 
@@ -3414,7 +3881,8 @@ function groupByModel(items) {
     const allValues = attr => [...new Set(variants.map(v => v[attr]).filter(Boolean))].join("|");
     return {
       ...first, variants, storages, specs,
-      storage: storages.join("|"), type: allValues("type"), group: allValues("group"), cpu: allValues("cpu")
+      storage: storages.join("|"), type: allValues("type"), group: allValues("group"), cpu: allValues("cpu"),
+      size: allValues("size"), voltage: allValues("voltage"), color: allValues("color")
     };
   });
 }
@@ -3464,6 +3932,9 @@ function renderModelCards(items, gridEl, info = CARD_INFO.storage) {
     card.dataset.type = p.type || "";
     card.dataset.group = p.group || "";
     card.dataset.cpu = p.cpu || "";
+    card.dataset.size = p.size || "";
+    card.dataset.voltage = p.voltage || "";
+    card.dataset.color = p.color || "";
     card.setAttribute("aria-haspopup", "dialog");
     const media = p.photo ? `<img src="${p.photo}" alt="${p.model}" loading="lazy" decoding="async">` : p.icon;
     const box = info(p);
@@ -3476,17 +3947,49 @@ function renderModelCards(items, gridEl, info = CARD_INFO.storage) {
         <div class="storage-icons">
           ${boxes.map(b => `<div class="storage-icon ${b.small ? "storage-icon-small" : "storage-icon-wide"}" title="${b.title}">${b.icon}<span>${b.text}</span></div>`).join("")}
         </div>
+        ${swatchesMarkup(p)}
         <span class="card-hint">Toca para ver la ficha técnica</span>
       </div>
     `;
+    bindSwatches(card, p, card.querySelector(".storage-photo img"));
     card.addEventListener("click", () => openPanel(p));
+    card._product = p;
     card.style.setProperty("--i", gridEl.children.length);
     gridEl.appendChild(card);
   });
 }
 
+// --- Colours: one dot per colour; the chosen one changes the photo and goes into the request ---
+function swatchesMarkup(p, extraClass = "") {
+  if (!p.colors || p.colors.length < 2) return "";
+  const sel = p.colorIndex || 0;
+  return `<div class="swatches ${extraClass}" role="group" aria-label="Colores">
+    ${p.colors.map((c, i) => `<span class="swatch" role="button" tabindex="0" data-i="${i}" style="--sw:${c.hex}" title="${c.name}" aria-label="${c.name}" aria-pressed="${i === sel}"></span>`).join("")}
+    <span class="swatch-name">${p.colors[sel].name}</span>
+  </div>`;
+}
+
+function bindSwatches(root, p, img, onPick) {
+  root.querySelectorAll(".swatch").forEach(sw => {
+    const pick = e => {
+      e.stopPropagation();
+      e.preventDefault();
+      const i = Number(sw.dataset.i);
+      p.colorIndex = i;
+      if (img && p.colors[i].photo) { img.src = p.colors[i].photo; img.alt = `${p.model} (${p.colors[i].name})`; }
+      root.querySelectorAll(".swatch").forEach(o => o.setAttribute("aria-pressed", String(o === sw)));
+      const label = sw.parentElement.querySelector(".swatch-name");
+      if (label) label.textContent = p.colors[i].name;
+      if (onPick) onPick(i);
+    };
+    sw.addEventListener("click", pick);
+    sw.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") pick(e); });
+  });
+}
+
 function openPanel(p) {
-  const stageContent = p.photo ? `<img src="${p.photo}" alt="${p.model}" loading="lazy" decoding="async">` : p.icon;
+  const photo = p.colors && p.colors.length ? p.colors[p.colorIndex || 0].photo : p.photo;
+  const stageContent = photo ? `<img src="${photo}" alt="${p.model}" loading="lazy" decoding="async">` : p.icon;
 
   const rows = p.specs.map(([label, value]) => `
     <div class="spec-label">${label}</div>
@@ -3502,20 +4005,29 @@ function openPanel(p) {
       <button class="close-btn" id="closeBtn" aria-label="Cerrar ficha">✕</button>
     </div>
     <div class="panel-stage">${stageContent}</div>
+    ${swatchesMarkup(p, "panel-swatches")}
     <p class="spec-title">Ficha técnica</p>
     <div class="spec-table">${rows}</div>
-    <span class="rental-tag">Disponible para alquiler</span>
+    <span class="rental-tag">${MODE === "compra" ? "Disponible para compra" : "Disponible para alquiler"}</span>
     <button class="primary-btn panel-request" id="panelRequest">Solicitar este material</button>
   `;
 
   scrim.classList.add("open");
   panel.classList.add("open");
   document.getElementById("closeBtn").addEventListener("click", closePanel);
+  // Keep the card in step with the colour picked in the sheet
+  bindSwatches(panel, p, panel.querySelector(".panel-stage img"), i => {
+    const card = [...document.querySelectorAll(".model-card")].find(c => c._product === p);
+    if (card) card.querySelector(`.swatch[data-i="${i}"]`)?.click();
+  });
   const cpu = p.cat === "computer" && p.variants.length === 1 ? specOf(p, "Procesador") : "";
-  const variants = [cpu, p.storages && p.storages.length > 1 ? p.storages.join(" / ") : ""].filter(Boolean).join(", ");
+  const sizes = p.cat === "battery" && p.size ? p.size.split("|").join(" / ") : "";
+  const variants = [cpu, sizes, p.storages && p.storages.length > 1 ? p.storages.join(" / ") : ""].filter(Boolean).join(", ");
   document.getElementById("panelRequest").addEventListener("click", () => {
     closePanel();
-    openRentFor(p.model + (variants ? ` (${variants})` : ""));
+    const colour = p.colors && p.colors.length > 1 ? `color ${p.colors[p.colorIndex || 0].name.toLowerCase()}` : "";
+    const extra = [variants, colour].filter(Boolean).join(", ");
+    openRentFor(p.model + (extra ? ` (${extra})` : ""));
   });
 }
 
@@ -3547,9 +4059,36 @@ renderModelCards(MONITORS, document.getElementById("gridMonitors"), CARD_INFO.mo
 renderModelCards(CONNECTIVITY, document.getElementById("gridConnectivity"), CARD_INFO.connectivity);
 renderStorage(STORAGE, document.getElementById("gridStorage"));
 setupStorageFilters();
+renderModelCards(BATTERIES, document.getElementById("gridBatteries"), CARD_INFO.custom);
+renderModelCards(SOUND, document.getElementById("gridSound"), CARD_INFO.custom);
+setupSoundFilters();
+renderModelCards(STATIONERY, document.getElementById("gridStationery"), CARD_INFO.custom);
+setupDataFilters(STATIONERY, "stationery");
 renderModelCards(CABINS, document.getElementById("gridCabins"), CARD_INFO.custom);
 renderModelCards(VIDEOCONF, document.getElementById("gridVideoconf"), CARD_INFO.custom);
 renderModelCards(PRINTERS, document.getElementById("gridPrinters"), CARD_INFO.custom);
+
+// Sound accessories: filter options come from the data (types, brands and colours, alphabetical)
+function setupSoundFilters() {
+  const opts = (id, values) => {
+    const sel = document.getElementById(id);
+    [...new Set(values)].filter(Boolean).sort((a, b) => a.localeCompare(b, "es")).forEach(v => sel.add(new Option(v, v)));
+  };
+  opts("soundTypeSelect", SOUND.flatMap(p => p.type.split("|")));
+  opts("soundBrandSelect", SOUND.map(p => p.brand));
+  opts("soundColorSelect", SOUND.flatMap(p => (p.color || "").split("|")));
+}
+
+// Same idea for any category whose filter options come from its data: <prefix>TypeSelect, BrandSelect, ColorSelect
+function setupDataFilters(items, prefix) {
+  const opts = (id, values) => {
+    const sel = document.getElementById(prefix + id);
+    [...new Set(values)].filter(Boolean).sort((a, b) => a.localeCompare(b, "es")).forEach(v => sel.add(new Option(v, v)));
+  };
+  opts("TypeSelect", items.flatMap(p => p.type.split("|")));
+  opts("BrandSelect", items.map(p => p.brand));
+  opts("ColorSelect", items.flatMap(p => (p.color || "").split("|")));
+}
 
 // Capacity options come from the data; speed is grouped in ranges (max read speed of each model)
 function setupStorageFilters() {
@@ -3593,6 +4132,9 @@ document.getElementById("monitorIconLarge").innerHTML = monitorIcon("#2B79C2");
 document.getElementById("connectivityIconLarge").innerHTML = routerIcon("#2B79C2");
 document.getElementById("storageIconLarge").innerHTML = driveIcon("#2B79C2");
 document.getElementById("cabinIconLarge").innerHTML = cabinIcon("#2B79C2");
+document.getElementById("batteryIconLarge").innerHTML = batteryIcon("#2B79C2");
+document.getElementById("soundIconLarge").innerHTML = soundIcon("#2B79C2");
+document.getElementById("stationeryIconLarge").innerHTML = stationeryIcon("#2B79C2");
 document.getElementById("videoconfIconLarge").innerHTML = videoconfIcon("#2B79C2");
 document.getElementById("printerIconLarge").innerHTML = printerIcon("#2B79C2");
 
@@ -3607,6 +4149,9 @@ const views = {
   connectivity: document.getElementById("viewConnectivity"),
   storage: document.getElementById("viewStorage"),
   cabins: document.getElementById("viewCabins"),
+  batteries: document.getElementById("viewBatteries"),
+  sound: document.getElementById("viewSound"),
+  stationery: document.getElementById("viewStationery"),
   videoconf: document.getElementById("viewVideoconf"),
   printers: document.getElementById("viewPrinters")
 };
@@ -3622,6 +4167,9 @@ const CATEGORY_INFO = {
   connectivity: "Conectividad",
   storage: "Almacenamiento",
   cabins: "Cabinas",
+  batteries: "Pilas y cargadores",
+  sound: "Accesorios de sonido",
+  stationery: "Papelería",
   videoconf: "Videoconferencia PRO",
   printers: "Impresoras"
 };
@@ -3632,7 +4180,7 @@ const HEADER_DEFAULT = ["Catálogo de alquiler", "Soporte TV", "Elige una catego
 const MODE = document.documentElement.dataset.mode === "compra" ? "compra" : "alquiler";
 const MODE_KEYS = {
   alquiler: ["tablets", "phones", "accessories", "computers", "mac", "monitors", "connectivity", "cabins", "videoconf", "printers"],
-  compra: ["storage"]
+  compra: ["storage", "batteries", "sound", "stationery"]
 };
 const OTHER_CATALOG = MODE === "compra" ? "../alquiler/" : "../compra/";
 const inMode = key => MODE_KEYS[MODE].includes(key);
@@ -3682,6 +4230,9 @@ const ROUTES = {
   conectividad: "connectivity",
   almacenamiento: "storage",
   cabinas: "cabins",
+  pilas: "batteries",
+  sonido: "sound",
+  papeleria: "stationery",
   videoconferencia: "videoconf",
   impresoras: "printers"
 };
@@ -3689,7 +4240,7 @@ const SLUGS = Object.fromEntries(Object.entries(ROUTES).map(([slug, key]) => [ke
 
 // Hide what belongs to the other catalogue: landing cards, menu and footer links
 const CARD_KEYS = { goTablets: "tablets", goPhones: "phones", goAccessories: "accessories", goComputers: "computers", goMac: "mac",
-  goMonitors: "monitors", goConnectivity: "connectivity", goStorage: "storage", goCabins: "cabins", goVideoconf: "videoconf", goPrinters: "printers" };
+  goMonitors: "monitors", goConnectivity: "connectivity", goStorage: "storage", goBatteries: "batteries", goSound: "sound", goStationery: "stationery", goCabins: "cabins", goVideoconf: "videoconf", goPrinters: "printers" };
 Object.entries(CARD_KEYS).forEach(([id, key]) => { if (!inMode(key)) document.getElementById(id).hidden = true; });
 document.querySelectorAll("[data-route]").forEach(a => { if (!inMode(ROUTES[a.dataset.route])) a.hidden = true; });
 document.querySelectorAll(".footer-col").forEach(col => {
@@ -3711,6 +4262,9 @@ document.getElementById("goMac").addEventListener("click", () => goTo("mac"));
 document.getElementById("goMonitors").addEventListener("click", () => goTo("monitors"));
 document.getElementById("goConnectivity").addEventListener("click", () => goTo("connectivity"));
 document.getElementById("goStorage").addEventListener("click", () => goTo("storage"));
+document.getElementById("goBatteries").addEventListener("click", () => goTo("batteries"));
+document.getElementById("goSound").addEventListener("click", () => goTo("sound"));
+document.getElementById("goStationery").addEventListener("click", () => goTo("stationery"));
 document.getElementById("goCabins").addEventListener("click", () => goTo("cabins"));
 document.getElementById("goVideoconf").addEventListener("click", () => goTo("videoconf"));
 document.getElementById("goPrinters").addEventListener("click", () => goTo("printers"));
@@ -3791,6 +4345,25 @@ setupFilters(document.getElementById("gridVideoconf"), [
 setupFilters(document.getElementById("gridPrinters"), [
   { select: document.getElementById("printerSizeSelect"), attr: "group" },
   { select: document.getElementById("printerColorSelect"), attr: "type" }
+]);
+
+setupFilters(document.getElementById("gridBatteries"), [
+  { select: document.getElementById("batteryTypeSelect"), attr: "type" },
+  { select: document.getElementById("batteryBrandSelect"), attr: "brand" },
+  { select: document.getElementById("batterySizeSelect"), attr: "size" },
+  { select: document.getElementById("batteryVoltSelect"), attr: "voltage" }
+]);
+
+setupFilters(document.getElementById("gridSound"), [
+  { select: document.getElementById("soundTypeSelect"), attr: "type" },
+  { select: document.getElementById("soundBrandSelect"), attr: "brand" },
+  { select: document.getElementById("soundColorSelect"), attr: "color" }
+]);
+
+setupFilters(document.getElementById("gridStationery"), [
+  { select: document.getElementById("stationeryTypeSelect"), attr: "type" },
+  { select: document.getElementById("stationeryBrandSelect"), attr: "brand" },
+  { select: document.getElementById("stationeryColorSelect"), attr: "color" }
 ]);
 
 setupFilters(document.getElementById("gridCabins"), [
