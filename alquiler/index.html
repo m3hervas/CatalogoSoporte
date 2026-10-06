@@ -582,7 +582,7 @@
   /* --- Storage: wide cards, two per row --- */
   /* Cards keep their size (459px); up to 3 per row when the screen is wide enough */
   #viewStorage, #viewTablets, #viewPhones, #viewAccessories, #viewComputers,
-  #viewMac, #viewCabins, #viewVideoconf, #viewPrinters, #viewMonitors, #viewConnectivity, #viewBatteries, #viewSound, #viewStationery { max-width: none; }
+  #viewMac, #viewCabins, #viewVideoconf, #viewPrinters, #viewMonitors, #viewConnectivity, #viewBatteries, #viewSound, #viewStationery, #viewProtection { max-width: none; }
 
   .storage-grid {
     display: grid;
@@ -1672,6 +1672,7 @@
         <a href="#pilas" data-route="pilas">Pilas y cargadores<small>Alcalinas, litio, botón, audífono y recargables</small></a>
         <a href="#sonido" data-route="sonido">Accesorios de sonido<small>Ursa, Rycote y Bubblebee</small></a>
         <a href="#papeleria" data-route="papeleria">Papelería<small>Rotuladores, bolígrafos, cinta y pegamento</small></a>
+        <a href="#proteccion" data-route="proteccion">Protección<small>Bolsas, fundas, mochilas, guantes y lonas</small></a>
         <a href="#cabinas" data-route="cabinas">Cabinas<small>Cabinas de discos y NAS</small></a>
         <a href="#conectividad" data-route="conectividad">Conectividad<small>MiFi, routers y Wi-Fi</small></a>
         <a href="#accesorios" data-route="accesorios">Accesorios<small>Estabilizadores, luz, audio</small></a>
@@ -1741,6 +1742,10 @@
   <button class="category-card" id="goStationery">
     <div class="category-icon" id="stationeryIconLarge"></div>
     <span class="category-label">Papelería</span>
+  </button>
+  <button class="category-card" id="goProtection">
+    <div class="category-icon" id="protectionIconLarge"></div>
+    <span class="category-label">Protección</span>
   </button>
   <button class="category-card" id="goCabins">
     <div class="category-icon" id="cabinIconLarge"></div>
@@ -2143,6 +2148,36 @@
   </div>
 </div>
 
+<div class="catalog-view" id="viewProtection" hidden>
+  <button class="back-btn" data-back>← Volver</button>
+
+  <div class="catalog-layout">
+    <aside class="filter-panel" aria-label="Filtros">
+      <p class="filter-panel-title">Filtrar</p>
+      <div class="filter-row">
+        <span class="filter-label">Tipo</span>
+        <select class="filter-select" id="protectionTypeSelect">
+          <option value="all">Todos</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Marca</span>
+        <select class="filter-select" id="protectionBrandSelect">
+          <option value="all">Todas las marcas</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Color</span>
+        <select class="filter-select" id="protectionColorSelect">
+          <option value="all">Todos</option>
+        </select>
+      </div>
+      <button class="filter-reset" type="button">Quitar filtros</button>
+    </aside>
+    <div class="storage-grid" id="gridProtection"></div>
+  </div>
+</div>
+
 <div class="catalog-view" id="viewCabins" hidden>
   <button class="back-btn" data-back>← Volver</button>
 
@@ -2308,6 +2343,7 @@
       <a href="#pilas" data-route="pilas">Pilas y cargadores</a>
       <a href="#sonido" data-route="sonido">Accesorios de sonido</a>
       <a href="#papeleria" data-route="papeleria">Papelería</a>
+      <a href="#proteccion" data-route="proteccion">Protección</a>
       <a href="#cabinas" data-route="cabinas">Cabinas</a>
       <a href="#conectividad" data-route="conectividad">Conectividad</a>
       <a href="#accesorios" data-route="accesorios">Accesorios</a>
@@ -2370,7 +2406,12 @@
       <li><strong>Comprobador de pilas</strong> — «Battery tester BT-168», por Ladislav Luppa. Licencia <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en" target="_blank" rel="noopener">CC0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Battery_tester_BT-168.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
       <li><strong>Comprobador de pilas digital</strong> — «Battery checker», por Jason7825. Dominio público, vía <a href="https://commons.wikimedia.org/wiki/File:Battery_checker.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
   </ul>
-  <p class="credits-note">Las fotos de accesorios, conectividad, pilas y cargadores genéricos son orientativas: el material entregado puede ser de otra marca o modelo equivalente. Resto de fotos de producto: imágenes oficiales de los fabricantes (Apple, Samsung, LG, JVC, Microsoft, HP, Dell, Lenovo, SanDisk / Western Digital, Areca, Stardom, TerraMaster, QNAP, Synology, Jabra, Phonak, Hollyland, Motorola, Ursa Straps, Rycote, Bubblebee Industries, Pilot, BIC, 3M / Scotch, Staedtler, Gorilla, Goobay, Loctite, edding, Sharpie, Pentel, Apli, Ricoh, Zhiyun, Wacom, Celly, Targus y Ubiquiti) o aportadas por Soporte TV.</p>
+  <p>Papelería y Protección</p>
+  <ul>
+      <li><strong>Cutter profesional</strong> — foto de alisia_chris_alpinger, <a href="https://pixabay.com/photos/cutter-knife-box-cutter-tool-1668382/" target="_blank" rel="noopener">Pixabay</a> (licencia de contenido de Pixabay). Adaptada (formato WebP).</li>
+      <li><strong>Gorro de ducha</strong> — «Einmalhotelduschhaube», por Gohnarch. Licencia <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Einmalhotelduschhaube.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
+  </ul>
+  <p class="credits-note">Las fotos de accesorios, conectividad, pilas, papelería y protección genéricos son orientativas: el material entregado puede ser de otra marca o modelo equivalente. Resto de fotos de producto: imágenes oficiales de los fabricantes (Apple, Samsung, LG, JVC, Microsoft, HP, Dell, Lenovo, SanDisk / Western Digital, Areca, Stardom, TerraMaster, QNAP, Synology, Jabra, Phonak, Hollyland, Motorola, Ursa Straps, Rycote, Bubblebee Industries, Pilot, BIC, 3M / Scotch, Staedtler, Gorilla, Goobay, Loctite, edding, Sharpie, Pentel, Apli, Cap It, Tenba, Hama, Xiaomi, HP, Dirty Rigger, Ricoh, Zhiyun, Wacom, Celly, Targus y Ubiquiti) o aportadas por Soporte TV.</p>
 </div>
 <div class="scrim rent-scrim" id="rentScrim"></div>
 <div class="rent-modal" id="rentModal" role="dialog" aria-modal="true" aria-labelledby="rentTitle">
@@ -2602,6 +2643,15 @@ function stationeryIcon(accent) {
       <path d="M84 42h10l10 8-10 8H84z" fill="${accent}"/>
       <rect x="10" y="40" width="12" height="20" rx="4" fill="${accent}"/>
     </g>
+  </svg>`;
+}
+
+// Shield for the protection card
+function protectionIcon(accent) {
+  return `<svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+    <path d="M60 8l34 12v26c0 22-14.5 38-34 46-19.5-8-34-24-34-46V20z" fill="#EDEFF2" stroke="${accent}" stroke-width="3.5" stroke-linejoin="round"/>
+    <path d="M60 22l22 8v17c0 14-9 25-22 31z" fill="#D9DEE4"/>
+    <path d="M46 50l10 10 18-20" fill="none" stroke="${accent}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
   </svg>`;
 }
 
@@ -3844,6 +3894,24 @@ const STATIONERY = [
   { cat: "stationery", type: "Otros", brand: "", brandCode: "", brandColor: "#5C6672", model: "Cutter profesional", photo: "img/cutter-profesional-azul_SpTV.webp", color: "Azul", colors: [], info: [["tag", "Tipo", "Otros", 1], ["palette", "Color", "Azul", 1]], specs: [["Categoría", "Otros"], ["Descripción", "Cúter profesional de hoja retráctil para cortar cartón, cinta y materiales gruesos."], ["Hoja", "Retráctil"], ["Colores", "Azul"]], icon: stationeryIcon("#5C6672") }
 ];
 
+// PROTECTION: purchase catalogue, official photos from each brand's website.
+// colors: one photo per colour; the dots on the card swap the photo (generated by tools/build_sonido_data.py)
+const PROTECTION = [
+  { cat: "protection", type: "Bolsa", brand: "Apli", brandCode: "A", brandColor: "#E2001A", model: "Bolsa zipper Apli", photo: "img/apli-bolsa-zipper-transparente_SpTV.webp", color: "Transparente|Kraft", colors: [{"name": "Transparente", "hex": "#E8EEF2", "photo": "img/apli-bolsa-zipper-transparente_SpTV.webp"}, {"name": "Kraft", "hex": "#C49A6C", "photo": "img/apli-bolsa-zipper-kraft_SpTV.webp"}], info: [["tag", "Tipo", "Bolsa", 1], ["palette", "Colores", "2 colores", 1], ["capacity", "Formatos", "A3 · A4 · A5 · A6 · Cheque"]], specs: [["Categoría", "Bolsa"], ["Marca", "Apli"], ["Descripción", "Sobre de plástico con cierre de cremallera para guardar documentos, cables y accesorios a salvo del polvo y la humedad."], ["Tamaños", "A3 · A4 (355 × 255 mm) · A5 (235 × 175 mm) · A6 (168 × 125 mm) · cheque (230 × 130 mm)"], ["Kraft", "En A6 y tamaño cheque"], ["Colores", "Transparente · Kraft"]], icon: protectionIcon("#E2001A") },
+  { cat: "protection", type: "Bolsa", brand: "Apli", brandCode: "A", brandColor: "#E2001A", model: "Bolsas de autocierre Apli", photo: "img/apli-bolsa-autocierre-transparente_SpTV.webp", color: "Transparente", colors: [], info: [["tag", "Tipo", "Bolsa", 1], ["palette", "Color", "Transparente", 1], ["capacity", "Formatos", "60 × 80 mm · 100 × 150 mm · 120 × 180 mm · 160 × 220 mm · 180 × 250 mm · 220 × 310 mm · 250 × 350 mm"]], specs: [["Categoría", "Bolsa"], ["Marca", "Apli"], ["Descripción", "Bolsas de plástico con cierre zip a presión, para guardar y separar piezas pequeñas, tornillería o tarjetas."], ["Medidas", "60 × 80 · 100 × 150 · 120 × 180 · 160 × 220 · 180 × 250 · 220 × 310 · 250 × 350 mm"], ["Formato", "Paquete de 100 unidades"], ["Colores", "Transparente"]], icon: protectionIcon("#E2001A") },
+  { cat: "protection", type: "Funda / cubierta", brand: "Cap It", brandCode: "C", brandColor: "#5C6672", model: "Cap It", photo: "img/cap-it-transparente_SpTV.webp", color: "Transparente", colors: [], info: [["tag", "Tipo", "Funda / cubierta", 1], ["palette", "Color", "Transparente", 1], ["capacity", "Formatos", "Medium · AKS (pequeño)"]], specs: [["Categoría", "Funda / cubierta"], ["Marca", "Cap It"], ["Descripción", "Tapa protectora elástica que cubre el objetivo o el micrófono y se ajusta sola."], ["Tamaños", "Medium · AKS (pequeño)"], ["Formato", "Pack de 3 unidades"], ["Colores", "Transparente"]], icon: protectionIcon("#5C6672") },
+  { cat: "protection", type: "Funda / cubierta", brand: "", brandCode: "", brandColor: "#5C6672", model: "Bolsa de cámara termosellada", photo: "", color: "Transparente", colors: [], info: [["tag", "Tipo", "Funda / cubierta", 1], ["palette", "Color", "Transparente", 1], ["capacity", "Formatos", "0,61 × 0,61 m · 0,80 × 0,80 m · 1,22 × 1,22 m"]], specs: [["Categoría", "Funda / cubierta"], ["Descripción", "Bolsa de polietileno termosellada para cubrir la cámara o el material frente a lluvia, polvo o arena."], ["Medidas", "0,61 × 0,61 m · 0,80 × 0,80 m · 1,22 × 1,22 m"], ["Colores", "Transparente"]], icon: protectionIcon("#5C6672") },
+  { cat: "protection", type: "Funda / cubierta", brand: "", brandCode: "", brandColor: "#5C6672", model: "Gorro de ducha", photo: "img/gorro-ducha-transparente_SpTV.webp", color: "Transparente", colors: [], info: [["tag", "Tipo", "Funda / cubierta", 1], ["palette", "Color", "Transparente", 1]], specs: [["Categoría", "Funda / cubierta"], ["Descripción", "El truco clásico de rodaje: cubre la cámara o el micrófono para protegerlos de la lluvia en un momento."], ["Uso", "Protección rápida contra lluvia y polvo"], ["Colores", "Transparente"]], icon: protectionIcon("#5C6672") },
+  { cat: "protection", type: "Funda / cubierta", brand: "Tenba", brandCode: "T", brandColor: "#1A1A1A", model: "Tenba Protective Wrap", photo: "img/tenba-protective-wrap-negro_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Funda / cubierta", 1], ["palette", "Color", "Negro", 1], ["capacity", "Formatos", "40 × 40 cm · 50 × 50 cm"]], specs: [["Categoría", "Funda / cubierta"], ["Marca", "Tenba"], ["Descripción", "Envoltorio de tela acolchada con cierre de velcro adaptable: envuelve cámaras, objetivos o portátiles dentro de la mochila."], ["Medidas", "40 × 40 cm · 50 × 50 cm"], ["Cierre", "Velcro adaptable"], ["Colores", "Negro"]], icon: protectionIcon("#1A1A1A") },
+  { cat: "protection", type: "Mochila / maletín", brand: "Hama", brandCode: "H", brandColor: "#E2001A", model: "Hama Miami 150", photo: "img/hama-miami-150-negro_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Mochila / maletín", 1], ["palette", "Color", "Negro", 1]], specs: [["Categoría", "Mochila / maletín"], ["Marca", "Hama"], ["Descripción", "Mochila para cámara de foto y vídeo con compartimentos acolchados."], ["Medidas", "22 × 24 cm"], ["Uso", "Cámara de foto / vídeo"], ["Colores", "Negro"]], icon: protectionIcon("#E2001A") },
+  { cat: "protection", type: "Mochila / maletín", brand: "Xiaomi", brandCode: "X", brandColor: "#FF6900", model: "Xiaomi Mi Casual Daypack", photo: "img/xiaomi-mochila-tablet-negro_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Mochila / maletín", 1], ["palette", "Color", "Negro", 1]], specs: [["Categoría", "Mochila / maletín"], ["Marca", "Xiaomi"], ["Descripción", "Mochila urbana ligera con compartimento para tablet."], ["Uso", "Tablet y accesorios"], ["Modelo de referencia", "Xiaomi Mi Casual Daypack (10 L, tablet hasta 10\")"], ["Colores", "Negro"]], icon: protectionIcon("#FF6900") },
+  { cat: "protection", type: "Mochila / maletín", brand: "HP", brandCode: "HP", brandColor: "#0096D6", model: "Maletín HP Renew Executive 16\"", photo: "img/hp-maletin-portatil-negro_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Mochila / maletín", 1], ["palette", "Color", "Negro", 1]], specs: [["Categoría", "Mochila / maletín"], ["Marca", "HP"], ["Descripción", "Maletín con compartimento acolchado para llevar el portátil y sus accesorios."], ["Uso", "Portátil"], ["Modelo de referencia", "HP Renew Executive 16-inch Laptop Bag (6B8Y2AA)"], ["Colores", "Negro"]], icon: protectionIcon("#0096D6") },
+  { cat: "protection", type: "Guantes", brand: "Dirty Rigger", brandCode: "DR", brandColor: "#1A1A1A", model: "Dirty Rigger Comfort Fit", photo: "img/dirty-rigger-comfort-fit-negro_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Guantes", 1], ["palette", "Color", "Negro", 1], ["capacity", "Formatos", "S · M · L · XL · XXL"]], specs: [["Categoría", "Guantes"], ["Marca", "Dirty Rigger"], ["Descripción", "Guantes de técnico (rigger) de dedos completos, cómodos y resistentes para montaje y manejo de material."], ["Tallas", "S · M · L · XL · XXL"], ["Dedos", "Completos"], ["Colores", "Negro"]], icon: protectionIcon("#1A1A1A") },
+  { cat: "protection", type: "Guantes", brand: "Dirty Rigger", brandCode: "DR", brandColor: "#1A1A1A", model: "Dirty Rigger Leather Grip", photo: "img/dirty-rigger-leather-grip-negro_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Guantes", 1], ["palette", "Color", "Negro", 1], ["capacity", "Formatos", "S · M · L · XL · XXL"]], specs: [["Categoría", "Guantes"], ["Marca", "Dirty Rigger"], ["Descripción", "Guantes de técnico de dedos completos con palma de piel para un agarre firme de cables, trípodes y estructuras."], ["Tallas", "S · M · L · XL · XXL"], ["Palma", "Piel"], ["Modelo de referencia", "Dirty Rigger Leather Grip 3.0 (dedos completos)"], ["Colores", "Negro"]], icon: protectionIcon("#1A1A1A") },
+  { cat: "protection", type: "Antihumedad", brand: "", brandCode: "", brandColor: "#5C6672", model: "Bolsitas de gel de sílice", photo: "", color: "Blanco", colors: [], info: [["tag", "Tipo", "Antihumedad", 1], ["palette", "Color", "Blanco", 1], ["capacity", "Formatos", "1 g · 20 g"]], specs: [["Categoría", "Antihumedad"], ["Descripción", "Bolsitas desecantes que absorben la humedad dentro de maletas, estuches y cajas de material."], ["Formatos", "1 g · 20 g"], ["Colores", "Blanco"]], icon: protectionIcon("#5C6672") },
+  { cat: "protection", type: "Lona", brand: "", brandCode: "", brandColor: "#5C6672", model: "Lona de rafia", photo: "", color: "Azul", colors: [], info: [["tag", "Tipo", "Lona", 1], ["palette", "Color", "Azul", 1], ["capacity", "Formatos", "2 × 3 m · 3 × 4 m"]], specs: [["Categoría", "Lona"], ["Descripción", "Lona impermeable de rafia con ojales para cubrir material o hacer de toldo."], ["Medidas", "2 × 3 m · 3 × 4 m"], ["Colores", "Azul"]], icon: protectionIcon("#5C6672") }
+];
+
 // --- Model cards: one card per model; variants that only change storage are grouped ---
 const sizeInGB = v => /ilimitad/i.test(v) ? Infinity : parseFloat(String(v).replace(",", ".")) * (/TB/i.test(v) ? 1000 : 1) || 0;
 
@@ -4063,6 +4131,8 @@ renderModelCards(SOUND, document.getElementById("gridSound"), CARD_INFO.custom);
 setupSoundFilters();
 renderModelCards(STATIONERY, document.getElementById("gridStationery"), CARD_INFO.custom);
 setupDataFilters(STATIONERY, "stationery");
+renderModelCards(PROTECTION, document.getElementById("gridProtection"), CARD_INFO.custom);
+setupDataFilters(PROTECTION, "protection");
 renderModelCards(CABINS, document.getElementById("gridCabins"), CARD_INFO.custom);
 renderModelCards(VIDEOCONF, document.getElementById("gridVideoconf"), CARD_INFO.custom);
 renderModelCards(PRINTERS, document.getElementById("gridPrinters"), CARD_INFO.custom);
@@ -4134,6 +4204,7 @@ document.getElementById("cabinIconLarge").innerHTML = cabinIcon("#2B79C2");
 document.getElementById("batteryIconLarge").innerHTML = batteryIcon("#2B79C2");
 document.getElementById("soundIconLarge").innerHTML = soundIcon("#2B79C2");
 document.getElementById("stationeryIconLarge").innerHTML = stationeryIcon("#2B79C2");
+document.getElementById("protectionIconLarge").innerHTML = protectionIcon("#2B79C2");
 document.getElementById("videoconfIconLarge").innerHTML = videoconfIcon("#2B79C2");
 document.getElementById("printerIconLarge").innerHTML = printerIcon("#2B79C2");
 
@@ -4151,6 +4222,7 @@ const views = {
   batteries: document.getElementById("viewBatteries"),
   sound: document.getElementById("viewSound"),
   stationery: document.getElementById("viewStationery"),
+  protection: document.getElementById("viewProtection"),
   videoconf: document.getElementById("viewVideoconf"),
   printers: document.getElementById("viewPrinters")
 };
@@ -4169,6 +4241,7 @@ const CATEGORY_INFO = {
   batteries: "Pilas y cargadores",
   sound: "Accesorios de sonido",
   stationery: "Papelería",
+  protection: "Protección",
   videoconf: "Videoconferencia PRO",
   printers: "Impresoras"
 };
@@ -4179,7 +4252,7 @@ const HEADER_DEFAULT = ["Catálogo de alquiler", "Soporte TV", "Elige una catego
 const MODE = document.documentElement.dataset.mode === "compra" ? "compra" : "alquiler";
 const MODE_KEYS = {
   alquiler: ["tablets", "phones", "accessories", "computers", "mac", "monitors", "connectivity", "cabins", "videoconf", "printers"],
-  compra: ["storage", "batteries", "sound", "stationery"]
+  compra: ["storage", "batteries", "sound", "stationery", "protection"]
 };
 const OTHER_CATALOG = MODE === "compra" ? "../alquiler/" : "../compra/";
 const inMode = key => MODE_KEYS[MODE].includes(key);
@@ -4232,6 +4305,7 @@ const ROUTES = {
   pilas: "batteries",
   sonido: "sound",
   papeleria: "stationery",
+  proteccion: "protection",
   videoconferencia: "videoconf",
   impresoras: "printers"
 };
@@ -4239,7 +4313,7 @@ const SLUGS = Object.fromEntries(Object.entries(ROUTES).map(([slug, key]) => [ke
 
 // Hide what belongs to the other catalogue: landing cards, menu and footer links
 const CARD_KEYS = { goTablets: "tablets", goPhones: "phones", goAccessories: "accessories", goComputers: "computers", goMac: "mac",
-  goMonitors: "monitors", goConnectivity: "connectivity", goStorage: "storage", goBatteries: "batteries", goSound: "sound", goStationery: "stationery", goCabins: "cabins", goVideoconf: "videoconf", goPrinters: "printers" };
+  goMonitors: "monitors", goConnectivity: "connectivity", goStorage: "storage", goBatteries: "batteries", goSound: "sound", goStationery: "stationery", goProtection: "protection", goCabins: "cabins", goVideoconf: "videoconf", goPrinters: "printers" };
 Object.entries(CARD_KEYS).forEach(([id, key]) => { if (!inMode(key)) document.getElementById(id).hidden = true; });
 document.querySelectorAll("[data-route]").forEach(a => { if (!inMode(ROUTES[a.dataset.route])) a.hidden = true; });
 document.querySelectorAll(".footer-col").forEach(col => {
@@ -4264,6 +4338,7 @@ document.getElementById("goStorage").addEventListener("click", () => goTo("stora
 document.getElementById("goBatteries").addEventListener("click", () => goTo("batteries"));
 document.getElementById("goSound").addEventListener("click", () => goTo("sound"));
 document.getElementById("goStationery").addEventListener("click", () => goTo("stationery"));
+document.getElementById("goProtection").addEventListener("click", () => goTo("protection"));
 document.getElementById("goCabins").addEventListener("click", () => goTo("cabins"));
 document.getElementById("goVideoconf").addEventListener("click", () => goTo("videoconf"));
 document.getElementById("goPrinters").addEventListener("click", () => goTo("printers"));
@@ -4363,6 +4438,12 @@ setupFilters(document.getElementById("gridStationery"), [
   { select: document.getElementById("stationeryTypeSelect"), attr: "type" },
   { select: document.getElementById("stationeryBrandSelect"), attr: "brand" },
   { select: document.getElementById("stationeryColorSelect"), attr: "color" }
+]);
+
+setupFilters(document.getElementById("gridProtection"), [
+  { select: document.getElementById("protectionTypeSelect"), attr: "type" },
+  { select: document.getElementById("protectionBrandSelect"), attr: "brand" },
+  { select: document.getElementById("protectionColorSelect"), attr: "color" }
 ]);
 
 setupFilters(document.getElementById("gridCabins"), [
