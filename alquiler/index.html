@@ -582,7 +582,7 @@
   /* --- Storage: wide cards, two per row --- */
   /* Cards keep their size (459px); up to 3 per row when the screen is wide enough */
   #viewStorage, #viewTablets, #viewPhones, #viewAccessories, #viewComputers,
-  #viewMac, #viewCabins, #viewVideoconf, #viewPrinters, #viewMonitors, #viewConnectivity, #viewBatteries, #viewSound, #viewStationery, #viewProtection, #viewElectric, #viewFilmset, #viewDulling, #viewLighting, #viewEffects, #viewCleaning { max-width: none; }
+  #viewMac, #viewCabins, #viewVideoconf, #viewPrinters, #viewMonitors, #viewConnectivity, #viewBatteries, #viewSound, #viewStationery, #viewProtection, #viewElectric, #viewFilmset, #viewDulling, #viewLighting, #viewEffects, #viewCleaning, #viewMarks { max-width: none; }
 
   .storage-grid {
     display: grid;
@@ -1683,6 +1683,7 @@
         <a href="#iluminacion" data-route="iluminacion">Iluminación<small>Gelatinas Rosco, Cinefoil y papel negro</small></a>
         <a href="#efectos" data-route="efectos">Efectos<small>Sprays Dirty Down y tabaco de atrezzo</small></a>
         <a href="#limpieza" data-route="limpieza">Limpieza<small>Aire comprimido, líquidos, gamuzas y kits</small></a>
+        <a href="#marcas-de-foco" data-route="marcas-de-foco">Marcas de foco<small>Marcas en T, salchichas, pegatinas y tees</small></a>
         <a href="#cabinas" data-route="cabinas">Cabinas<small>Cabinas de discos y NAS</small></a>
         <a href="#conectividad" data-route="conectividad">Conectividad<small>MiFi, routers y Wi-Fi</small></a>
         <a href="#accesorios" data-route="accesorios">Accesorios<small>Estabilizadores, luz, audio</small></a>
@@ -1780,6 +1781,10 @@
   <button class="category-card" id="goCleaning">
     <div class="category-icon" id="cleaningIconLarge"></div>
     <span class="category-label">Limpieza</span>
+  </button>
+  <button class="category-card" id="goMarks">
+    <div class="category-icon" id="marksIconLarge"></div>
+    <span class="category-label">Marcas de foco</span>
   </button>
   <button class="category-card" id="goCabins">
     <div class="category-icon" id="cabinIconLarge"></div>
@@ -2386,6 +2391,36 @@
   </div>
 </div>
 
+<div class="catalog-view" id="viewMarks" hidden>
+  <button class="back-btn" data-back>← Volver</button>
+
+  <div class="catalog-layout">
+    <aside class="filter-panel" aria-label="Filtros">
+      <p class="filter-panel-title">Filtrar</p>
+      <div class="filter-row">
+        <span class="filter-label">Tipo</span>
+        <select class="filter-select" id="marksTypeSelect">
+          <option value="all">Todos</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Marca</span>
+        <select class="filter-select" id="marksBrandSelect">
+          <option value="all">Todas las marcas</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Color</span>
+        <select class="filter-select" id="marksColorSelect">
+          <option value="all">Todos</option>
+        </select>
+      </div>
+      <button class="filter-reset" type="button">Quitar filtros</button>
+    </aside>
+    <div class="storage-grid" id="gridMarks"></div>
+  </div>
+</div>
+
 <div class="catalog-view" id="viewCabins" hidden>
   <button class="back-btn" data-back>← Volver</button>
 
@@ -2558,6 +2593,7 @@
       <a href="#iluminacion" data-route="iluminacion">Iluminación</a>
       <a href="#efectos" data-route="efectos">Efectos</a>
       <a href="#limpieza" data-route="limpieza">Limpieza</a>
+      <a href="#marcas-de-foco" data-route="marcas-de-foco">Marcas de foco</a>
       <a href="#cabinas" data-route="cabinas">Cabinas</a>
       <a href="#conectividad" data-route="conectividad">Conectividad</a>
       <a href="#accesorios" data-route="accesorios">Accesorios</a>
@@ -2629,14 +2665,15 @@
       <li><strong>Claqueta de color</strong> — foto de rawpixel. Licencia <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">CC0</a>, vía <a href="https://www.rawpixel.com/image/11189191/movie-clapper-filmmaking-production-advertising" target="_blank" rel="noopener">rawpixel</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
       <li><strong>Claqueta de insertos</strong> — «13-01-02-inventur-wmde-blitz-36», por Ralf Roletschek. Licencia <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:13-01-02-inventur-wmde-blitz-36.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
   </ul>
-  <p>Limpieza</p>
+  <p>Limpieza y Marcas de foco</p>
   <ul>
       <li><strong>Gel hidroalcohólico</strong> — «University Medical Pharmaceuticals Hand Sanitizer (transparent version)», por NeoBatfreak. Licencia <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:University_Medical_Pharmaceuticals_Hand_Sanitizer_(transparent_version).png" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
       <li><strong>Alcohol isopropílico</strong> — «Álcool Isopropílico», por João Carlos Ávila. Licencia <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:%C3%81lcool_Isoprop%C3%ADlico.png" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
       <li><strong>Trapo de microfibra</strong> — «Generic Ultramicrofiber», por EvSOP HGUM. Licencia <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Generic_Ultramicrofiber.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
       <li><strong>Rollo de papel de cocina</strong> — «Paper towel (Wikimedia Commons)», por Santeri Viinamäki. Licencia <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Paper_towel.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
+      <li><strong>Tees de madera</strong> — «Golf Tees», por J. Gracey Stinson. Licencia <a href="https://creativecommons.org/licenses/by/2.0" target="_blank" rel="noopener">CC BY 2.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Golf_Tees.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
   </ul>
-  <p class="credits-note">Las fotos de accesorios, conectividad, pilas, papelería, protección, conectividad, rodaje y limpieza genéricos son orientativas: el material entregado puede ser de otra marca o modelo equivalente. Resto de fotos de producto: imágenes oficiales de los fabricantes (Apple, Samsung, LG, JVC, Microsoft, HP, Dell, Lenovo, SanDisk / Western Digital, Areca, Stardom, TerraMaster, QNAP, Synology, Jabra, Phonak, Hollyland, Motorola, Ursa Straps, Rycote, Bubblebee Industries, Pilot, BIC, 3M / Scotch, Staedtler, Gorilla, Goobay, Loctite, edding, Sharpie, Pentel, Apli, Cap It, Tenba, Hama, Xiaomi, HP, Dirty Rigger, Bluestar, KleenSlate, Kenro, SW Kenyon (K-Line), Rosco, Dirty Down, Honeyrose, Ewent, tesa, Photographic Solutions, Pancro, Rain-X, Soudal, 3-En-Uno, WD-40, Sanytol, Zeiss, Foogy, Kimberly-Clark, Dodot, Green Clean, JJC, EDM, JAZ, Ricoh, Zhiyun, Wacom, Celly, Targus y Ubiquiti) o aportadas por Soporte TV.</p>
+  <p class="credits-note">Las fotos de accesorios, conectividad, pilas, papelería, protección, conectividad, rodaje, limpieza y marcas de foco genéricos son orientativas: el material entregado puede ser de otra marca o modelo equivalente. Resto de fotos de producto: imágenes oficiales de los fabricantes (Apple, Samsung, LG, JVC, Microsoft, HP, Dell, Lenovo, SanDisk / Western Digital, Areca, Stardom, TerraMaster, QNAP, Synology, Jabra, Phonak, Hollyland, Motorola, Ursa Straps, Rycote, Bubblebee Industries, Pilot, BIC, 3M / Scotch, Staedtler, Gorilla, Goobay, Loctite, edding, Sharpie, Pentel, Apli, Cap It, Tenba, Hama, Xiaomi, HP, Dirty Rigger, Bluestar, KleenSlate, Kenro, SW Kenyon (K-Line), Rosco, Dirty Down, Honeyrose, Ewent, tesa, Photographic Solutions, Pancro, Rain-X, Soudal, 3-En-Uno, WD-40, Sanytol, Zeiss, Foogy, Kimberly-Clark, Dodot, Green Clean, JJC, EDM, JAZ, Focus Rat, CGE Tools, Dylan Stoel, Modern Studio, Starlite, Ricoh, Zhiyun, Wacom, Celly, Targus y Ubiquiti) o aportadas por Soporte TV.</p>
 </div>
 <div class="scrim rent-scrim" id="rentScrim"></div>
 <div class="rent-modal" id="rentModal" role="dialog" aria-modal="true" aria-labelledby="rentTitle">
@@ -2941,6 +2978,14 @@ function cleaningIcon(accent) {
     <rect x="46" y="52" width="28" height="24" rx="3" fill="#D9DEE4"/>
     <path d="M50 36V24h22v12M72 26h14l6 6" fill="none" stroke="${accent}" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
     <circle cx="98" cy="22" r="2.5" fill="${accent}"/><circle cx="102" cy="32" r="2.5" fill="${accent}"/><circle cx="96" cy="40" r="2.5" fill="${accent}"/>
+  </svg>`;
+}
+
+// Icon for the "Marcas de foco" card
+function marksIcon(accent) {
+  return `<svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+    <path d="M20 30h80v18H70v44H50V48H20z" fill="#EDEFF2" stroke="${accent}" stroke-width="3.5" stroke-linejoin="round"/>
+    <path d="M28 39h64" stroke="${accent}" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 9"/>
   </svg>`;
 }
 
@@ -4297,6 +4342,18 @@ const CLEANING = [
   { cat: "cleaning", type: "Papel", brand: "", brandCode: "", brandColor: "#5C6672", model: "Rollo de papel industrial", photo: "", color: "Blanco|Azul", colors: [], info: [["tag", "Tipo", "Papel", 1], ["palette", "Colores", "2 colores", 1]], specs: [["Categoría", "Papel"], ["Descripción", "Bobina de papel de celulosa para limpieza en taller, plató y almacén."], ["Material", "Celulosa"], ["Colores", "Blanco · Azul"]], icon: cleaningIcon("#5C6672") }
 ];
 
+// MARKS: purchase catalogue, official photos and free-licence photos.
+// colors: one photo per colour; the dots on the card swap the photo (generated by tools/build_sonido_data.py)
+const MARKS = [
+  { cat: "marks", type: "Marca de tela", brand: "Modern Studio", brandCode: "", brandColor: "#5C6672", model: "Modern Studio marca salchicha", photo: "img/marca-salchicha-amarillo_SpTV.webp", color: "Amarillo|Azul|Blanco|Naranja|Morado|Negro|Rojo|Rosa|Verde", colors: [{"name": "Amarillo", "hex": "#F2C200", "photo": "img/marca-salchicha-amarillo_SpTV.webp"}, {"name": "Azul", "hex": "#1F5FD0", "photo": "img/marca-salchicha-azul_SpTV.webp"}, {"name": "Blanco", "hex": "#FFFFFF", "photo": "img/marca-salchicha-blanco_SpTV.webp"}, {"name": "Naranja", "hex": "#F07A1A", "photo": "img/marca-salchicha-naranja_SpTV.webp"}, {"name": "Morado", "hex": "#7B3FA0", "photo": "img/marca-salchicha-morado_SpTV.webp"}, {"name": "Negro", "hex": "#1A1A1A", "photo": "img/marca-salchicha-negro_SpTV.webp"}, {"name": "Rojo", "hex": "#D0202E", "photo": "img/marca-salchicha-rojo_SpTV.webp"}, {"name": "Rosa", "hex": "#F6B3CF", "photo": "img/marca-salchicha-rosa_SpTV.webp"}, {"name": "Verde", "hex": "#1E9C46", "photo": "img/marca-salchicha-verde_SpTV.webp"}], info: [["tag", "Tipo", "Marca de tela", 1], ["palette", "Colores", "9 colores", 1]], specs: [["Categoría", "Marca de tela"], ["Marca", "Modern Studio"], ["Descripción", "Marca de suelo de tela con forma alargada (salchicha) para señalar la posición de los actores y el foco; se ve bien y no resbala."], ["Material", "Tela"], ["Colores", "9 colores"], ["Colores", "Amarillo · Azul · Blanco · Naranja · Morado · Negro · Rojo · Rosa · Verde"]], icon: marksIcon("#5C6672") },
+  { cat: "marks", type: "Marca de tela", brand: "Modern Studio", brandCode: "", brandColor: "#5C6672", model: "Modern Studio marca en T de tela", photo: "img/marca-t-tela-amarillo_SpTV.webp", color: "Amarillo|Azul|Blanco|Naranja|Morado|Negro|Rojo|Rosa|Verde", colors: [{"name": "Amarillo", "hex": "#F2C200", "photo": "img/marca-t-tela-amarillo_SpTV.webp"}, {"name": "Azul", "hex": "#1F5FD0", "photo": "img/marca-t-tela-azul_SpTV.webp"}, {"name": "Blanco", "hex": "#FFFFFF", "photo": "img/marca-t-tela-blanco_SpTV.webp"}, {"name": "Naranja", "hex": "#F07A1A", "photo": "img/marca-t-tela-naranja_SpTV.webp"}, {"name": "Morado", "hex": "#7B3FA0", "photo": "img/marca-t-tela-morado_SpTV.webp"}, {"name": "Negro", "hex": "#1A1A1A", "photo": "img/marca-t-tela-negro_SpTV.webp"}, {"name": "Rojo", "hex": "#D0202E", "photo": "img/marca-t-tela-rojo_SpTV.webp"}, {"name": "Rosa", "hex": "#F6B3CF", "photo": "img/marca-t-tela-rosa_SpTV.webp"}, {"name": "Verde", "hex": "#1E9C46", "photo": "img/marca-t-tela-verde_SpTV.webp"}], info: [["tag", "Tipo", "Marca de tela", 1], ["palette", "Colores", "9 colores", 1]], specs: [["Categoría", "Marca de tela"], ["Marca", "Modern Studio"], ["Descripción", "Marca en forma de T de tela para señalar en el suelo la posición de los actores y las distancias de foco."], ["Forma", "T"], ["Material", "Tela"], ["Colores", "9 colores"], ["Colores", "Amarillo · Azul · Blanco · Naranja · Morado · Negro · Rojo · Rosa · Verde"]], icon: marksIcon("#5C6672") },
+  { cat: "marks", type: "Marca en T", brand: "CGE Tools", brandCode: "", brandColor: "#5C6672", model: "CGE Tools Industry Mark T flúor", photo: "img/cge-marca-t-fluor-naranja_SpTV.webp", color: "Flúor naranja|Flúor rosa|Flúor verde", colors: [{"name": "Flúor naranja", "hex": "#FF6A00", "photo": "img/cge-marca-t-fluor-naranja_SpTV.webp"}, {"name": "Flúor rosa", "hex": "#FF2D95", "photo": "img/cge-marca-t-fluor-rosa_SpTV.webp"}, {"name": "Flúor verde", "hex": "#5CFF2E", "photo": "img/cge-marca-t-fluor-verde_SpTV.webp"}], info: [["tag", "Tipo", "Marca en T", 1], ["palette", "Colores", "3 colores", 1]], specs: [["Categoría", "Marca en T"], ["Marca", "CGE Tools"], ["Descripción", "Marca en T rígida de acero recubierto de PVC en colores flúor, muy visible y duradera."], ["Forma", "T"], ["Material", "Acero / PVC"], ["Colores", "Flúor naranja · Flúor rosa · Flúor verde"]], icon: marksIcon("#5C6672") },
+  { cat: "marks", type: "Marca en T", brand: "Focus Rat", brandCode: "FR", brandColor: "#1A1A1A", model: "Focus Rat marca en T", photo: "img/focus-rat-t_SpTV.webp", color: "Amarillo|Azul oscuro|Naranja|Morado|Rojo|Rosa|Verde claro brillante|Verde oscuro", colors: [], info: [["tag", "Tipo", "Marca en T", 1], ["palette", "Colores", "8 colores", 1]], specs: [["Categoría", "Marca en T"], ["Marca", "Focus Rat"], ["Descripción", "Marca en T de silicona lavable, flexible y con peso para que no se mueva del suelo."], ["Forma", "T"], ["Material", "Silicona lavable"], ["Colores", "Amarillo · Azul oscuro · Naranja · Morado · Rojo · Rosa · Verde claro brillante · Verde oscuro"]], icon: marksIcon("#1A1A1A") },
+  { cat: "marks", type: "Marca luminosa", brand: "", brandCode: "", brandColor: "#5C6672", model: "Bastón de pesca luminoso", photo: "img/baston-pesca-luminoso-luminoso_SpTV.webp", color: "Luminoso", colors: [], info: [["tag", "Tipo", "Marca luminosa", 1], ["palette", "Color", "Luminoso", 1]], specs: [["Categoría", "Marca luminosa"], ["Descripción", "Barritas luminosas de pesca (luz química) para marcar posiciones en rodajes nocturnos o con poca luz."], ["Formato", "Pack de 5 unidades"], ["Tamaño", "37 mm"], ["Colores", "Luminoso"]], icon: marksIcon("#5C6672") },
+  { cat: "marks", type: "Marca de suelo", brand: "", brandCode: "", brandColor: "#5C6672", model: "Tees de madera", photo: "img/tees-madera-varios-colores_SpTV.webp", color: "Varios colores", colors: [], info: [["tag", "Tipo", "Marca de suelo", 1], ["palette", "Color", "Varios colores", 1]], specs: [["Categoría", "Marca de suelo"], ["Descripción", "Tees de madera de colores que se clavan en el césped o la tierra para marcar posiciones en exteriores."], ["Material", "Madera"], ["Colores", "Varios colores"], ["Colores", "Varios colores"]], icon: marksIcon("#5C6672") },
+  { cat: "marks", type: "Pegatinas", brand: "Dylan Stoel", brandCode: "D", brandColor: "#5C6672", model: "Pegatinas de marca Dylan Stoel", photo: "img/dylan-stoel-pegatinas-multicolor_SpTV.webp", color: "Multicolor|Multicolor transparente", colors: [{"name": "Multicolor", "hex": "#E9A23B", "photo": "img/dylan-stoel-pegatinas-multicolor_SpTV.webp"}, {"name": "Multicolor transparente", "hex": "#BFE3F2", "photo": "img/dylan-stoel-pegatinas-multicolor-transparente_SpTV.webp"}], info: [["tag", "Tipo", "Pegatinas", 1], ["palette", "Colores", "2 colores", 1]], specs: [["Categoría", "Pegatinas"], ["Marca", "Dylan Stoel"], ["Descripción", "Pegatinas de colores para marcar posiciones y referencias de foco, opacas o transparentes."], ["Versiones", "Multicolor no transparente · multicolor transparente"], ["Formato", "100 unidades"], ["Colores", "Multicolor · Multicolor transparente"]], icon: marksIcon("#5C6672") }
+];
+
 // --- Model cards: one card per model; variants that only change storage are grouped ---
 const sizeInGB = v => /ilimitad/i.test(v) ? Infinity : parseFloat(String(v).replace(",", ".")) * (/TB/i.test(v) ? 1000 : 1) || 0;
 
@@ -4529,6 +4586,8 @@ renderModelCards(EFFECTS, document.getElementById("gridEffects"), CARD_INFO.cust
 setupDataFilters(EFFECTS, "effects");
 renderModelCards(CLEANING, document.getElementById("gridCleaning"), CARD_INFO.custom);
 setupDataFilters(CLEANING, "cleaning");
+renderModelCards(MARKS, document.getElementById("gridMarks"), CARD_INFO.custom);
+setupDataFilters(MARKS, "marks");
 renderModelCards(CABINS, document.getElementById("gridCabins"), CARD_INFO.custom);
 renderModelCards(VIDEOCONF, document.getElementById("gridVideoconf"), CARD_INFO.custom);
 renderModelCards(PRINTERS, document.getElementById("gridPrinters"), CARD_INFO.custom);
@@ -4608,6 +4667,7 @@ document.getElementById("dullingIconLarge").innerHTML = dullingIcon("#2B79C2");
 document.getElementById("lightingIconLarge").innerHTML = lightingIcon("#2B79C2");
 document.getElementById("effectsIconLarge").innerHTML = effectsIcon("#2B79C2");
 document.getElementById("cleaningIconLarge").innerHTML = cleaningIcon("#2B79C2");
+document.getElementById("marksIconLarge").innerHTML = marksIcon("#2B79C2");
 document.getElementById("videoconfIconLarge").innerHTML = videoconfIcon("#2B79C2");
 document.getElementById("printerIconLarge").innerHTML = printerIcon("#2B79C2");
 
@@ -4632,6 +4692,7 @@ const views = {
   lighting: document.getElementById("viewLighting"),
   effects: document.getElementById("viewEffects"),
   cleaning: document.getElementById("viewCleaning"),
+  marks: document.getElementById("viewMarks"),
   videoconf: document.getElementById("viewVideoconf"),
   printers: document.getElementById("viewPrinters")
 };
@@ -4657,6 +4718,7 @@ const CATEGORY_INFO = {
   lighting: "Iluminación",
   effects: "Efectos",
   cleaning: "Limpieza",
+  marks: "Marcas de foco",
   videoconf: "Videoconferencia PRO",
   printers: "Impresoras"
 };
@@ -4667,7 +4729,7 @@ const HEADER_DEFAULT = ["Catálogo de alquiler", "Soporte TV", "Elige una catego
 const MODE = document.documentElement.dataset.mode === "compra" ? "compra" : "alquiler";
 const MODE_KEYS = {
   alquiler: ["tablets", "phones", "accessories", "computers", "mac", "monitors", "connectivity", "cabins", "videoconf", "printers"],
-  compra: ["storage", "batteries", "sound", "stationery", "protection", "electric", "filmset", "dulling", "lighting", "effects", "cleaning"]
+  compra: ["storage", "batteries", "sound", "stationery", "protection", "electric", "filmset", "dulling", "lighting", "effects", "cleaning", "marks"]
 };
 const OTHER_CATALOG = MODE === "compra" ? "../alquiler/" : "../compra/";
 const inMode = key => MODE_KEYS[MODE].includes(key);
@@ -4727,6 +4789,7 @@ const ROUTES = {
   iluminacion: "lighting",
   efectos: "effects",
   limpieza: "cleaning",
+  "marcas-de-foco": "marks",
   videoconferencia: "videoconf",
   impresoras: "printers"
 };
@@ -4734,7 +4797,7 @@ const SLUGS = Object.fromEntries(Object.entries(ROUTES).map(([slug, key]) => [ke
 
 // Hide what belongs to the other catalogue: landing cards, menu and footer links
 const CARD_KEYS = { goTablets: "tablets", goPhones: "phones", goAccessories: "accessories", goComputers: "computers", goMac: "mac",
-  goMonitors: "monitors", goConnectivity: "connectivity", goStorage: "storage", goBatteries: "batteries", goSound: "sound", goStationery: "stationery", goProtection: "protection", goElectric: "electric", goFilmset: "filmset", goDulling: "dulling", goLighting: "lighting", goEffects: "effects", goCleaning: "cleaning", goCabins: "cabins", goVideoconf: "videoconf", goPrinters: "printers" };
+  goMonitors: "monitors", goConnectivity: "connectivity", goStorage: "storage", goBatteries: "batteries", goSound: "sound", goStationery: "stationery", goProtection: "protection", goElectric: "electric", goFilmset: "filmset", goDulling: "dulling", goLighting: "lighting", goEffects: "effects", goCleaning: "cleaning", goMarks: "marks", goCabins: "cabins", goVideoconf: "videoconf", goPrinters: "printers" };
 Object.entries(CARD_KEYS).forEach(([id, key]) => { if (!inMode(key)) document.getElementById(id).hidden = true; });
 document.querySelectorAll("[data-route]").forEach(a => { if (!inMode(ROUTES[a.dataset.route])) a.hidden = true; });
 document.querySelectorAll(".footer-col").forEach(col => {
@@ -4766,6 +4829,7 @@ document.getElementById("goDulling").addEventListener("click", () => goTo("dulli
 document.getElementById("goLighting").addEventListener("click", () => goTo("lighting"));
 document.getElementById("goEffects").addEventListener("click", () => goTo("effects"));
 document.getElementById("goCleaning").addEventListener("click", () => goTo("cleaning"));
+document.getElementById("goMarks").addEventListener("click", () => goTo("marks"));
 document.getElementById("goCabins").addEventListener("click", () => goTo("cabins"));
 document.getElementById("goVideoconf").addEventListener("click", () => goTo("videoconf"));
 document.getElementById("goPrinters").addEventListener("click", () => goTo("printers"));
@@ -4906,6 +4970,12 @@ setupFilters(document.getElementById("gridCleaning"), [
   { select: document.getElementById("cleaningTypeSelect"), attr: "type" },
   { select: document.getElementById("cleaningBrandSelect"), attr: "brand" },
   { select: document.getElementById("cleaningColorSelect"), attr: "color" }
+]);
+
+setupFilters(document.getElementById("gridMarks"), [
+  { select: document.getElementById("marksTypeSelect"), attr: "type" },
+  { select: document.getElementById("marksBrandSelect"), attr: "brand" },
+  { select: document.getElementById("marksColorSelect"), attr: "color" }
 ]);
 
 setupFilters(document.getElementById("gridCabins"), [
