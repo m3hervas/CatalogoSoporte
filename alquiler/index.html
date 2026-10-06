@@ -582,7 +582,7 @@
   /* --- Storage: wide cards, two per row --- */
   /* Cards keep their size (459px); up to 3 per row when the screen is wide enough */
   #viewStorage, #viewTablets, #viewPhones, #viewAccessories, #viewComputers,
-  #viewMac, #viewCabins, #viewVideoconf, #viewPrinters, #viewMonitors, #viewConnectivity, #viewBatteries, #viewSound, #viewStationery, #viewProtection, #viewElectric, #viewFilmset, #viewDulling, #viewLighting, #viewEffects, #viewCleaning, #viewMarks { max-width: none; }
+  #viewMac, #viewCabins, #viewVideoconf, #viewPrinters, #viewMonitors, #viewConnectivity, #viewBatteries, #viewSound, #viewStationery, #viewProtection, #viewElectric, #viewFilmset, #viewDulling, #viewLighting, #viewEffects, #viewCleaning, #viewMarks, #viewFastening { max-width: none; }
 
   .storage-grid {
     display: grid;
@@ -1684,6 +1684,7 @@
         <a href="#efectos" data-route="efectos">Efectos<small>Sprays Dirty Down y tabaco de atrezzo</small></a>
         <a href="#limpieza" data-route="limpieza">Limpieza<small>Aire comprimido, líquidos, gamuzas y kits</small></a>
         <a href="#marcas-de-foco" data-route="marcas-de-foco">Marcas de foco<small>Marcas en T, salchichas, pegatinas y tees</small></a>
+        <a href="#sujecion" data-route="sujecion">Sujeción<small>Bridas, velcro, pinzas, cinchas e imanes</small></a>
         <a href="#cabinas" data-route="cabinas">Cabinas<small>Cabinas de discos y NAS</small></a>
         <a href="#conectividad" data-route="conectividad">Conectividad<small>MiFi, routers y Wi-Fi</small></a>
         <a href="#accesorios" data-route="accesorios">Accesorios<small>Estabilizadores, luz, audio</small></a>
@@ -1785,6 +1786,10 @@
   <button class="category-card" id="goMarks">
     <div class="category-icon" id="marksIconLarge"></div>
     <span class="category-label">Marcas de foco</span>
+  </button>
+  <button class="category-card" id="goFastening">
+    <div class="category-icon" id="fasteningIconLarge"></div>
+    <span class="category-label">Sujeción</span>
   </button>
   <button class="category-card" id="goCabins">
     <div class="category-icon" id="cabinIconLarge"></div>
@@ -2421,6 +2426,36 @@
   </div>
 </div>
 
+<div class="catalog-view" id="viewFastening" hidden>
+  <button class="back-btn" data-back>← Volver</button>
+
+  <div class="catalog-layout">
+    <aside class="filter-panel" aria-label="Filtros">
+      <p class="filter-panel-title">Filtrar</p>
+      <div class="filter-row">
+        <span class="filter-label">Tipo</span>
+        <select class="filter-select" id="fasteningTypeSelect">
+          <option value="all">Todos</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Marca</span>
+        <select class="filter-select" id="fasteningBrandSelect">
+          <option value="all">Todas las marcas</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Color</span>
+        <select class="filter-select" id="fasteningColorSelect">
+          <option value="all">Todos</option>
+        </select>
+      </div>
+      <button class="filter-reset" type="button">Quitar filtros</button>
+    </aside>
+    <div class="storage-grid" id="gridFastening"></div>
+  </div>
+</div>
+
 <div class="catalog-view" id="viewCabins" hidden>
   <button class="back-btn" data-back>← Volver</button>
 
@@ -2594,6 +2629,7 @@
       <a href="#efectos" data-route="efectos">Efectos</a>
       <a href="#limpieza" data-route="limpieza">Limpieza</a>
       <a href="#marcas-de-foco" data-route="marcas-de-foco">Marcas de foco</a>
+      <a href="#sujecion" data-route="sujecion">Sujeción</a>
       <a href="#cabinas" data-route="cabinas">Cabinas</a>
       <a href="#conectividad" data-route="conectividad">Conectividad</a>
       <a href="#accesorios" data-route="accesorios">Accesorios</a>
@@ -2673,7 +2709,17 @@
       <li><strong>Rollo de papel de cocina</strong> — «Paper towel (Wikimedia Commons)», por Santeri Viinamäki. Licencia <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Paper_towel.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
       <li><strong>Tees de madera</strong> — «Golf Tees», por J. Gracey Stinson. Licencia <a href="https://creativecommons.org/licenses/by/2.0" target="_blank" rel="noopener">CC BY 2.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Golf_Tees.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (recorte y formato WebP).</li>
   </ul>
-  <p class="credits-note">Las fotos de accesorios, conectividad, pilas, papelería, protección, conectividad, rodaje, limpieza y marcas de foco genéricos son orientativas: el material entregado puede ser de otra marca o modelo equivalente. Resto de fotos de producto: imágenes oficiales de los fabricantes (Apple, Samsung, LG, JVC, Microsoft, HP, Dell, Lenovo, SanDisk / Western Digital, Areca, Stardom, TerraMaster, QNAP, Synology, Jabra, Phonak, Hollyland, Motorola, Ursa Straps, Rycote, Bubblebee Industries, Pilot, BIC, 3M / Scotch, Staedtler, Gorilla, Goobay, Loctite, edding, Sharpie, Pentel, Apli, Cap It, Tenba, Hama, Xiaomi, HP, Dirty Rigger, Bluestar, KleenSlate, Kenro, SW Kenyon (K-Line), Rosco, Dirty Down, Honeyrose, Ewent, tesa, Photographic Solutions, Pancro, Rain-X, Soudal, 3-En-Uno, WD-40, Sanytol, Zeiss, Foogy, Kimberly-Clark, Dodot, Green Clean, JJC, EDM, JAZ, Focus Rat, CGE Tools, Dylan Stoel, Modern Studio, Starlite, Ricoh, Zhiyun, Wacom, Celly, Targus y Ubiquiti) o aportadas por Soporte TV.</p>
+  <p>Sujeción</p>
+  <ul>
+      <li><strong>Bridas negras</strong> — «Collier Rilsan (black nylon cable tie)», por Patatruc. Licencia <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Collier_Rilsan.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
+      <li><strong>Cable clamp</strong> — «Червячный хомут (worm-drive hose clamp)», por Alinkins. Licencia <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:%D0%A7%D0%B5%D1%80%D0%B2%D1%8F%D1%87%D0%BD%D1%8B%D0%B9_%D1%85%D0%BE%D0%BC%D1%83%D1%82.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
+      <li><strong>Pulpo con gancho</strong> — «Gepäckspanner (bungee cords with hooks)», por Lfuhr. Licencia <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Gep%C3%A4ckspanner.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
+      <li><strong>Cincha con carraca</strong> — «Custom made tie down strap (ratchet strap with hook)», por DustinMoving. Licencia <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Custom_made_tie_down_strap.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
+      <li><strong>Pinza cocodrilo</strong> — «Crocodile clip 55mm», por Suyash Dwivedi. Licencia <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Crocodile_clip_55mm.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
+      <li><strong>Pinzas de madera de 7 vueltas</strong> — «Clothespin-2459e», por David R. Tribble (Loadmaster). Licencia <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Clothespin-2459e.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
+      <li><strong>Pinza de plástico</strong> — «Red clamp 01 ies», por Frank Vincentz. Licencia <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Red_clamp_01_ies.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
+  </ul>
+  <p class="credits-note">Las fotos de accesorios, conectividad, pilas, papelería, protección, conectividad, rodaje, limpieza, marcas de foco y sujeción genéricos son orientativas: el material entregado puede ser de otra marca o modelo equivalente. Resto de fotos de producto: imágenes oficiales de los fabricantes (Apple, Samsung, LG, JVC, Microsoft, HP, Dell, Lenovo, SanDisk / Western Digital, Areca, Stardom, TerraMaster, QNAP, Synology, Jabra, Phonak, Hollyland, Motorola, Ursa Straps, Rycote, Bubblebee Industries, Pilot, BIC, 3M / Scotch, Staedtler, Gorilla, Goobay, Loctite, edding, Sharpie, Pentel, Apli, Cap It, Tenba, Hama, Xiaomi, HP, Dirty Rigger, Bluestar, KleenSlate, Kenro, SW Kenyon (K-Line), Rosco, Dirty Down, Honeyrose, Ewent, tesa, Photographic Solutions, Pancro, Rain-X, Soudal, 3-En-Uno, WD-40, Sanytol, Zeiss, Foogy, Kimberly-Clark, Dodot, Green Clean, JJC, EDM, JAZ, Focus Rat, CGE Tools, Dylan Stoel, Modern Studio, Starlite, Bongo Ties, Procab, Precygrap, StarTech, VELCRO, Kupo, 3M, Sprig, Piher, Wolfcraft, Ricoh, Zhiyun, Wacom, Celly, Targus y Ubiquiti) o aportadas por Soporte TV.</p>
 </div>
 <div class="scrim rent-scrim" id="rentScrim"></div>
 <div class="rent-modal" id="rentModal" role="dialog" aria-modal="true" aria-labelledby="rentTitle">
@@ -2986,6 +3032,16 @@ function marksIcon(accent) {
   return `<svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
     <path d="M20 30h80v18H70v44H50V48H20z" fill="#EDEFF2" stroke="${accent}" stroke-width="3.5" stroke-linejoin="round"/>
     <path d="M28 39h64" stroke="${accent}" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 9"/>
+  </svg>`;
+}
+
+// Icon for the "Sujeción" card
+function fasteningIcon(accent) {
+  return `<svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+    <path d="M30 70c0-22 16-40 34-40s30 14 30 30" fill="none" stroke="${accent}" stroke-width="5" stroke-linecap="round"/>
+    <rect x="22" y="62" width="40" height="24" rx="5" fill="#EDEFF2" stroke="${accent}" stroke-width="3.5"/>
+    <path d="M30 70h24M30 78h16" stroke="#D9DEE4" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M94 60l-6 14" stroke="${accent}" stroke-width="5" stroke-linecap="round"/>
   </svg>`;
 }
 
@@ -4354,6 +4410,44 @@ const MARKS = [
   { cat: "marks", type: "Pegatinas", brand: "Dylan Stoel", brandCode: "D", brandColor: "#5C6672", model: "Pegatinas de marca Dylan Stoel", photo: "img/dylan-stoel-pegatinas-multicolor_SpTV.webp", color: "Multicolor|Multicolor transparente", colors: [{"name": "Multicolor", "hex": "#E9A23B", "photo": "img/dylan-stoel-pegatinas-multicolor_SpTV.webp"}, {"name": "Multicolor transparente", "hex": "#BFE3F2", "photo": "img/dylan-stoel-pegatinas-multicolor-transparente_SpTV.webp"}], info: [["tag", "Tipo", "Pegatinas", 1], ["palette", "Colores", "2 colores", 1]], specs: [["Categoría", "Pegatinas"], ["Marca", "Dylan Stoel"], ["Descripción", "Pegatinas de colores para marcar posiciones y referencias de foco, opacas o transparentes."], ["Versiones", "Multicolor no transparente · multicolor transparente"], ["Formato", "100 unidades"], ["Colores", "Multicolor · Multicolor transparente"]], icon: marksIcon("#5C6672") }
 ];
 
+// FASTENING: purchase catalogue, official photos and free-licence photos.
+// colors: one photo per colour; the dots on the card swap the photo (generated by tools/build_sonido_data.py)
+const FASTENING = [
+  { cat: "fastening", type: "Brida", brand: "Bongo Ties", brandCode: "B", brandColor: "#1A1A1A", model: "Bongo Ties", photo: "img/bongo-ties-negro_SpTV.webp", color: "Negro|Negro (madera negra)|Rojo|Azul|Verde", colors: [{"name": "Negro", "hex": "#1A1A1A", "photo": "img/bongo-ties-negro_SpTV.webp"}, {"name": "Negro (madera negra)", "hex": "#2B2118", "photo": "img/bongo-ties-negro-madera_SpTV.webp"}, {"name": "Rojo", "hex": "#D0202E", "photo": "img/bongo-ties-rojo_SpTV.webp"}, {"name": "Azul", "hex": "#1F5FD0", "photo": "img/bongo-ties-azul_SpTV.webp"}, {"name": "Verde", "hex": "#1E9C46", "photo": "img/bongo-ties-verde_SpTV.webp"}], info: [["tag", "Tipo", "Brida", 1], ["palette", "Colores", "5 colores", 1]], specs: [["Categoría", "Brida"], ["Marca", "Bongo Ties"], ["Descripción", "Brida elástica reutilizable con pieza de madera: recoge cables y sujeta material en segundos."], ["Formato", "Paquete de 10 unidades"], ["Colores", "Negro · Negro (madera negra) · Rojo · Azul · Verde"]], icon: fasteningIcon("#1A1A1A") },
+  { cat: "fastening", type: "Brida", brand: "Procab", brandCode: "P", brandColor: "#E30613", model: "Bridas Procab", photo: "img/procab-bridas-negro_SpTV.webp", color: "Negro|Blanco", colors: [{"name": "Negro", "hex": "#1A1A1A", "photo": "img/procab-bridas-negro_SpTV.webp"}, {"name": "Blanco", "hex": "#FFFFFF", "photo": "img/procab-bridas-blanco_SpTV.webp"}], info: [["tag", "Tipo", "Brida", 1], ["palette", "Colores", "2 colores", 1], ["capacity", "Formatos", "200 × 3,6 mm · 360 × 4,8 mm"]], specs: [["Categoría", "Brida"], ["Marca", "Procab"], ["Descripción", "Bridas de nailon de un solo uso para sujetar cables."], ["Medidas", "Blanco: 200 × 3,6 mm · Negro: 200 × 3,6 mm y 360 × 4,8 mm"], ["Reutilizable", "No"], ["Colores", "Negro · Blanco"]], icon: fasteningIcon("#E30613") },
+  { cat: "fastening", type: "Brida", brand: "Precygrap", brandCode: "P", brandColor: "#00539F", model: "Bridas Precygrap", photo: "img/precygrap-bridas-negro_SpTV.webp", color: "Negro|Blanco", colors: [{"name": "Negro", "hex": "#1A1A1A", "photo": "img/precygrap-bridas-negro_SpTV.webp"}, {"name": "Blanco", "hex": "#FFFFFF", "photo": "img/precygrap-bridas-blanco_SpTV.webp"}], info: [["tag", "Tipo", "Brida", 1], ["palette", "Colores", "2 colores", 1], ["capacity", "Formatos", "200 × 4,8 mm · 300 × 4,8 mm · 370 × 4,8 mm"]], specs: [["Categoría", "Brida"], ["Marca", "Precygrap"], ["Descripción", "Bridas de nailon de un solo uso, resistentes, para cableado."], ["Medidas", "Blanco: 200 × 4,8 y 300 × 4,8 mm · Negro: 200 × 4,8, 300 × 4,8 y 370 × 4,8 mm"], ["Reutilizable", "No"], ["Colores", "Negro · Blanco"]], icon: fasteningIcon("#00539F") },
+  { cat: "fastening", type: "Brida", brand: "", brandCode: "", brandColor: "#5C6672", model: "Bridas negras", photo: "img/bridas-negras-negro_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Brida", 1], ["palette", "Color", "Negro", 1], ["capacity", "Formatos", "100 × 2,5 mm · 250 × 3,6 mm · 370 × 7,6 mm"]], specs: [["Categoría", "Brida"], ["Descripción", "Bridas negras de nailon de un solo uso."], ["Medidas", "100 × 2,5 · 250 × 3,6 · 370 × 7,6 mm"], ["Reutilizable", "No"], ["Colores", "Negro"]], icon: fasteningIcon("#5C6672") },
+  { cat: "fastening", type: "Brida", brand: "StarTech", brandCode: "S", brandColor: "#0B6EB5", model: "Bridas reutilizables StarTech", photo: "img/startech-bridas-reutilizables-negro_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Brida", 1], ["palette", "Color", "Negro", 1]], specs: [["Categoría", "Brida"], ["Marca", "StarTech"], ["Descripción", "Bridas de nailon que se pueden abrir y volver a usar."], ["Medida", "150 × 7,6 mm"], ["Reutilizable", "Sí"], ["Colores", "Negro"]], icon: fasteningIcon("#0B6EB5") },
+  { cat: "fastening", type: "Brida", brand: "Precygrap", brandCode: "P", brandColor: "#00539F", model: "Bridas reutilizables Precygrap", photo: "img/precygrap-bridas-reutilizables-negro_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Brida", 1], ["palette", "Color", "Negro", 1], ["capacity", "Formatos", "200 × 7,6 mm · 300 × 7,6 mm · 370 × 7,6 mm"]], specs: [["Categoría", "Brida"], ["Marca", "Precygrap"], ["Descripción", "Bridas de nailon reutilizables, con lengüeta para soltarlas."], ["Medidas", "200 × 7,6 · 300 × 7,6 · 370 × 7,6 mm"], ["Reutilizable", "Sí"], ["Colores", "Negro"]], icon: fasteningIcon("#00539F") },
+  { cat: "fastening", type: "Brida", brand: "VELCRO", brandCode: "V", brandColor: "#1A1A1A", model: "VELCRO ONE-WRAP bridas", photo: "img/velcro-one-wrap-negro_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Brida", 1], ["palette", "Color", "Negro", 1]], specs: [["Categoría", "Brida"], ["Marca", "VELCRO"], ["Descripción", "Bridas de velcro reutilizables para recoger y ordenar cables."], ["Medida", "20 × 200 mm"], ["Formato", "25 unidades"], ["Colores", "Negro"]], icon: fasteningIcon("#1A1A1A") },
+  { cat: "fastening", type: "Brida", brand: "Kupo", brandCode: "K", brandColor: "#E30613", model: "Kupo MEZ220 brida de velcro", photo: "img/kupo-mez220-negro_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Brida", 1], ["palette", "Color", "Negro", 1]], specs: [["Categoría", "Brida"], ["Marca", "Kupo"], ["Descripción", "Brida de velcro reutilizable para cables y mangueras."], ["Medida", "2 × 20 cm"], ["Colores", "Negro"]], icon: fasteningIcon("#E30613") },
+  { cat: "fastening", type: "Brida", brand: "3M", brandCode: "3M", brandColor: "#E2231A", model: "Base adhesiva para bridas 3M", photo: "img/3m-base-bridas-negro_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Brida", 1], ["palette", "Color", "Negro", 1], ["capacity", "Formatos", "19 × 19 mm · 28 × 28 mm"]], specs: [["Categoría", "Brida"], ["Marca", "3M"], ["Descripción", "Base autoadhesiva para fijar bridas a cualquier superficie lisa."], ["Medidas", "19 × 19 mm · 28 × 28 mm (para bridas de hasta 4,9 mm)"], ["Colores", "Negro"]], icon: fasteningIcon("#E2231A") },
+  { cat: "fastening", type: "Clip / soporte de cable", brand: "", brandCode: "", brandColor: "#5C6672", model: "Cable clamp", photo: "img/cable-clamp-unico_SpTV.webp", color: "Único", colors: [], info: [["tag", "Tipo", "Clip / soporte de cable", 1], ["palette", "Color", "Único", 1]], specs: [["Categoría", "Clip / soporte de cable"], ["Descripción", "Abrazadera para sujetar mangueras y cables a estructuras."], ["Medidas", "7,7 × 7,5 × 1,3 cm"], ["Interior", "4,5 cm"], ["Colores", "Único"]], icon: fasteningIcon("#5C6672") },
+  { cat: "fastening", type: "Cincha", brand: "", brandCode: "", brandColor: "#5C6672", model: "Cincha con carraca", photo: "img/cincha-carraca-unico_SpTV.webp", color: "Único", colors: [], info: [["tag", "Tipo", "Cincha", 1], ["palette", "Color", "Único", 1], ["capacity", "Formatos", "4 m · 6 m"]], specs: [["Categoría", "Cincha"], ["Descripción", "Cincha de amarre con carraca para asegurar material en el transporte."], ["Ancho", "2,5 cm"], ["Versiones", "Con gancho y carraca: 4 m y 6 m · con carraca: 4 m y 6 m"], ["Colores", "Único"]], icon: fasteningIcon("#5C6672") },
+  { cat: "fastening", type: "Pulpo", brand: "", brandCode: "", brandColor: "#5C6672", model: "Pulpo con gancho", photo: "img/pulpo-gancho-unico_SpTV.webp", color: "Único", colors: [], info: [["tag", "Tipo", "Pulpo", 1], ["palette", "Color", "Único", 1], ["capacity", "Formatos", "35 cm · 50 cm · 60 cm · 65 cm · 80 cm · 1 m"]], specs: [["Categoría", "Pulpo"], ["Descripción", "Cuerda elástica con ganchos, resistente al agua, para sujetar lonas, fundas y material."], ["Largos", "35 · 50 · 60 · 65 · 80 cm · 1 m"], ["Colores", "Único"]], icon: fasteningIcon("#5C6672") },
+  { cat: "fastening", type: "Eslinga / mosquetón", brand: "Kupo", brandCode: "K", brandColor: "#E30613", model: "Kupo SW04 eslinga", photo: "img/kupo-sw04-negro_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Eslinga / mosquetón", 1], ["palette", "Color", "Negro", 1]], specs: [["Categoría", "Eslinga / mosquetón"], ["Marca", "Kupo"], ["Descripción", "Eslinga de seguridad reforzada con PVC para asegurar focos y accesorios."], ["Largo", "75 cm"], ["Colores", "Negro"]], icon: fasteningIcon("#E30613") },
+  { cat: "fastening", type: "Eslinga / mosquetón", brand: "", brandCode: "", brandColor: "#5C6672", model: "Eslinga con mosquetones", photo: "", color: "Único", colors: [], info: [["tag", "Tipo", "Eslinga / mosquetón", 1], ["palette", "Color", "Único", 1]], specs: [["Categoría", "Eslinga / mosquetón"], ["Descripción", "Eslinga corta con mosquetones para asegurar material en altura."], ["Largo", "30 cm"], ["Colores", "Único"]], icon: fasteningIcon("#5C6672") },
+  { cat: "fastening", type: "Eslinga / mosquetón", brand: "Dirty Rigger", brandCode: "DR", brandColor: "#1A1A1A", model: "Dirty Rigger mosquetón para cintas", photo: "img/dirty-rigger-mosqueton-negro_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Eslinga / mosquetón", 1], ["palette", "Color", "Negro", 1]], specs: [["Categoría", "Eslinga / mosquetón"], ["Marca", "Dirty Rigger"], ["Descripción", "Cinta con hebilla y mosquetón para colgar y llevar cintas adhesivas y herramientas."], ["Incluye", "Hebilla y mosquetón"], ["Colores", "Negro"]], icon: fasteningIcon("#1A1A1A") },
+  { cat: "fastening", type: "Alambre / cuerda", brand: "", brandCode: "", brandColor: "#5C6672", model: "Rollo de alambre", photo: "", color: "Único", colors: [], info: [["tag", "Tipo", "Alambre / cuerda", 1], ["palette", "Color", "Único", 1], ["capacity", "Formatos", "0,65 mm × 96 m · 1 mm × 50 m · Aluminio 1,5 mm × 5 m"]], specs: [["Categoría", "Alambre / cuerda"], ["Descripción", "Alambre para atar y asegurar en montajes."], ["Versiones", "Acero galvanizado 0,65 mm × 96 m · acero galvanizado 1 mm × 50 m · aluminio 1,5 mm × 5 m"], ["Colores", "Único"]], icon: fasteningIcon("#5C6672") },
+  { cat: "fastening", type: "Alambre / cuerda", brand: "", brandCode: "", brandColor: "#5C6672", model: "Cordino negro", photo: "", color: "Negro", colors: [], info: [["tag", "Tipo", "Alambre / cuerda", 1], ["palette", "Color", "Negro", 1], ["capacity", "Formatos", "3 mm · 4 mm"]], specs: [["Categoría", "Alambre / cuerda"], ["Descripción", "Cordino negro para atar y colgar sin que se vea en plano."], ["Grosores", "3 mm · 4 mm"], ["Colores", "Negro"]], icon: fasteningIcon("#5C6672") },
+  { cat: "fastening", type: "Alambre / cuerda", brand: "Kupo", brandCode: "K", brandColor: "#E30613", model: "Kupo 4506 cordón elástico con bola", photo: "img/kupo-4506-negro_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Alambre / cuerda", 1], ["palette", "Color", "Negro", 1]], specs: [["Categoría", "Alambre / cuerda"], ["Marca", "Kupo"], ["Descripción", "Cordón elástico con bola para recoger cables y sujetar accesorios."], ["Referencia", "4506"], ["Colores", "Negro"]], icon: fasteningIcon("#E30613") },
+  { cat: "fastening", type: "Clip / soporte de cable", brand: "Sprig", brandCode: "S", brandColor: "#2E9E44", model: "Sprig clips para cables", photo: "img/sprig-clips-negro_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Clip / soporte de cable", 1], ["palette", "Color", "Negro", 1]], specs: [["Categoría", "Clip / soporte de cable"], ["Marca", "Sprig"], ["Descripción", "Clips para guiar y sujetar cables en mesa o pared."], ["Formato", "Pack de 6 unidades"], ["Colores", "Negro"]], icon: fasteningIcon("#2E9E44") },
+  { cat: "fastening", type: "Imán", brand: "", brandCode: "", brandColor: "#5C6672", model: "Imán de neodimio", photo: "", color: "Único", colors: [], info: [["tag", "Tipo", "Imán", 1], ["palette", "Color", "Único", 1], ["capacity", "Formatos", "Gancho 22 kg · Gancho 38 kg · Ojal 36 kg · Ojal 65 kg"]], specs: [["Categoría", "Imán"], ["Descripción", "Imán de neodimio de gran fuerza para colgar o fijar material en superficies metálicas."], ["Versiones", "Gancho: 22 kg / 25 mm y 38 kg / 32 mm · Ojal: 36 kg / 32 mm y 65 kg / 42 mm"], ["Colores", "Único"]], icon: fasteningIcon("#5C6672") },
+  { cat: "fastening", type: "Otros", brand: "", brandCode: "", brandColor: "#5C6672", model: "Núcleo de película", photo: "", color: "Único", colors: [], info: [["tag", "Tipo", "Otros", 1], ["palette", "Color", "Único", 1]], specs: [["Categoría", "Otros"], ["Descripción", "Núcleo de plástico para película de 35 mm; en rodaje se usa para enrollar cinta y cables."], ["Formato", "35 mm"], ["Colores", "Único"]], icon: fasteningIcon("#5C6672") },
+  { cat: "fastening", type: "Pinza", brand: "", brandCode: "", brandColor: "#5C6672", model: "Pinza cocodrilo", photo: "img/pinza-cocodrilo-unico_SpTV.webp", color: "Único", colors: [], info: [["tag", "Tipo", "Pinza", 1], ["palette", "Color", "Único", 1]], specs: [["Categoría", "Pinza"], ["Descripción", "Pinza tipo cocodrilo para sujetar telas, gelatinas y cables."], ["Tipo", "Cocodrilo"], ["Colores", "Único"]], icon: fasteningIcon("#5C6672") },
+  { cat: "fastening", type: "Pinza", brand: "Kupo", brandCode: "K", brandColor: "#E30613", model: "Kupo KCP347 pinzas de madera", photo: "img/kupo-kcp347-unico_SpTV.webp", color: "Único", colors: [], info: [["tag", "Tipo", "Pinza", 1], ["palette", "Color", "Único", 1]], specs: [["Categoría", "Pinza"], ["Marca", "Kupo"], ["Descripción", "Pinzas de madera (C-47) para fijar gelatinas y difusores a los focos."], ["Formato", "50 unidades"], ["Colores", "Único"]], icon: fasteningIcon("#E30613") },
+  { cat: "fastening", type: "Pinza", brand: "", brandCode: "", brandColor: "#5C6672", model: "Pinzas de madera de 7 vueltas", photo: "img/pinza-madera-7-vueltas-unico_SpTV.webp", color: "Único", colors: [], info: [["tag", "Tipo", "Pinza", 1], ["palette", "Color", "Único", 1]], specs: [["Categoría", "Pinza"], ["Descripción", "Pinzas de madera con muelle reforzado de 7 vueltas."], ["Formato", "24 unidades"], ["Colores", "Único"]], icon: fasteningIcon("#5C6672") },
+  { cat: "fastening", type: "Pinza", brand: "Piher", brandCode: "P", brandColor: "#E30613", model: "Piher 57025 pinza metálica", photo: "img/piher-57025-unico_SpTV.webp", color: "Único", colors: [], info: [["tag", "Tipo", "Pinza", 1], ["palette", "Color", "Único", 1]], specs: [["Categoría", "Pinza"], ["Marca", "Piher"], ["Descripción", "Pinza metálica de acero multiusos con puntas protectoras de polipropileno."], ["Largo", "11 cm"], ["Apertura", "2,5 cm / 3 cm"], ["Colores", "Único"]], icon: fasteningIcon("#E30613") },
+  { cat: "fastening", type: "Pinza", brand: "Piher", brandCode: "P", brandColor: "#E30613", model: "Piher 30007 pinza metálica aislada", photo: "img/piher-30007-unico_SpTV.webp", color: "Único", colors: [], info: [["tag", "Tipo", "Pinza", 1], ["palette", "Color", "Único", 1]], specs: [["Categoría", "Pinza"], ["Marca", "Piher"], ["Descripción", "Pinza metálica con protectores de PVC."], ["Largo", "11 cm"], ["Apertura", "3,5 cm / 3 cm"], ["Colores", "Único"]], icon: fasteningIcon("#E30613") },
+  { cat: "fastening", type: "Pinza", brand: "Piher", brandCode: "P", brandColor: "#E30613", model: "Piher pinza de plástico regulable", photo: "img/piher-pinza-plastico-unico_SpTV.webp", color: "Único", colors: [], info: [["tag", "Tipo", "Pinza", 1], ["palette", "Color", "Único", 1], ["capacity", "Formatos", "3 cm · 5 cm"]], specs: [["Categoría", "Pinza"], ["Marca", "Piher"], ["Descripción", "Pinza de nailon y fibra de vidrio con apertura regulable."], ["Modelos", "30910 (3 cm) · 30911 (5 cm)"], ["Colores", "Único"]], icon: fasteningIcon("#E30613") },
+  { cat: "fastening", type: "Pinza", brand: "Wolfcraft", brandCode: "W", brandColor: "#E2001A", model: "Wolfcraft pinza de resorte PRO", photo: "img/wolfcraft-pro-unico_SpTV.webp", color: "Único", colors: [], info: [["tag", "Tipo", "Pinza", 1], ["palette", "Color", "Único", 1], ["capacity", "Formatos", "40 mm · 60 mm"]], specs: [["Categoría", "Pinza"], ["Marca", "Wolfcraft"], ["Descripción", "Pinza de plástico con resorte, fuerte y ligera."], ["Modelos", "FZ40 (40 mm) · FZ60 (60 mm)"], ["Colores", "Único"]], icon: fasteningIcon("#E2001A") },
+  { cat: "fastening", type: "Pinza", brand: "", brandCode: "", brandColor: "#5C6672", model: "Pinza de plástico", photo: "img/pinza-plastico-unico_SpTV.webp", color: "Único", colors: [], info: [["tag", "Tipo", "Pinza", 1], ["palette", "Color", "Único", 1]], specs: [["Categoría", "Pinza"], ["Descripción", "Pinza de plástico no regulable."], ["Apertura", "2,4 cm"], ["Colores", "Único"]], icon: fasteningIcon("#5C6672") },
+  { cat: "fastening", type: "Velcro", brand: "3M", brandCode: "3M", brandColor: "#E2231A", model: "3M Dual Lock", photo: "img/3m-dual-lock-negro_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Velcro", 1], ["palette", "Color", "Negro", 1]], specs: [["Categoría", "Velcro"], ["Marca", "3M"], ["Descripción", "Cierre reutilizable de 3M, mucho más fuerte que el velcro, para fijar accesorios."], ["Ancho", "25,4 mm"], ["Colores", "Negro"]], icon: fasteningIcon("#E2231A") },
+  { cat: "fastening", type: "Velcro", brand: "VELCRO", brandCode: "V", brandColor: "#1A1A1A", model: "Velcro macho-hembra", photo: "img/velcro-macho-hembra-unico_SpTV.webp", color: "Único", colors: [], info: [["tag", "Tipo", "Velcro", 1], ["palette", "Color", "Único", 1], ["capacity", "Formatos", "20 mm · 25 mm · 50 mm"]], specs: [["Categoría", "Velcro"], ["Marca", "VELCRO"], ["Descripción", "Cinta de velcro macho y hembra para fijar y recoger."], ["Anchos", "20 · 25 · 50 mm"], ["Colores", "Único"]], icon: fasteningIcon("#1A1A1A") },
+  { cat: "fastening", type: "Velcro", brand: "StarTech", brandCode: "S", brandColor: "#0B6EB5", model: "StarTech velcro mágico", photo: "img/startech-velcro-magico-negro_SpTV.webp", color: "Negro|Azul|Verde|Rojo|Amarillo", colors: [{"name": "Negro", "hex": "#1A1A1A", "photo": "img/startech-velcro-magico-negro_SpTV.webp"}, {"name": "Azul", "hex": "#1F5FD0", "photo": "img/startech-velcro-magico-azul_SpTV.webp"}, {"name": "Verde", "hex": "#1E9C46", "photo": "img/startech-velcro-magico-verde_SpTV.webp"}, {"name": "Rojo", "hex": "#D0202E", "photo": "img/startech-velcro-magico-rojo_SpTV.webp"}, {"name": "Amarillo", "hex": "#F2C200", "photo": "img/startech-velcro-magico-amarillo_SpTV.webp"}], info: [["tag", "Tipo", "Velcro", 1], ["palette", "Colores", "5 colores", 1]], specs: [["Categoría", "Velcro"], ["Marca", "StarTech"], ["Descripción", "Rollo de velcro de doble cara para hacer bridas a medida."], ["Medida", "19 mm × 7,6 m"], ["Colores", "Negro · Azul · Verde · Rojo · Amarillo"]], icon: fasteningIcon("#0B6EB5") },
+  { cat: "fastening", type: "Velcro", brand: "Kupo", brandCode: "K", brandColor: "#E30613", model: "Kupo velcro mágico", photo: "img/kupo-velcro-magico-negro_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Velcro", 1], ["palette", "Color", "Negro", 1]], specs: [["Categoría", "Velcro"], ["Marca", "Kupo"], ["Descripción", "Rollo de velcro de doble cara para recoger cables."], ["Medida", "16 mm × 5 m"], ["Colores", "Negro"]], icon: fasteningIcon("#E30613") }
+];
+
 // --- Model cards: one card per model; variants that only change storage are grouped ---
 const sizeInGB = v => /ilimitad/i.test(v) ? Infinity : parseFloat(String(v).replace(",", ".")) * (/TB/i.test(v) ? 1000 : 1) || 0;
 
@@ -4588,6 +4682,8 @@ renderModelCards(CLEANING, document.getElementById("gridCleaning"), CARD_INFO.cu
 setupDataFilters(CLEANING, "cleaning");
 renderModelCards(MARKS, document.getElementById("gridMarks"), CARD_INFO.custom);
 setupDataFilters(MARKS, "marks");
+renderModelCards(FASTENING, document.getElementById("gridFastening"), CARD_INFO.custom);
+setupDataFilters(FASTENING, "fastening");
 renderModelCards(CABINS, document.getElementById("gridCabins"), CARD_INFO.custom);
 renderModelCards(VIDEOCONF, document.getElementById("gridVideoconf"), CARD_INFO.custom);
 renderModelCards(PRINTERS, document.getElementById("gridPrinters"), CARD_INFO.custom);
@@ -4668,6 +4764,7 @@ document.getElementById("lightingIconLarge").innerHTML = lightingIcon("#2B79C2")
 document.getElementById("effectsIconLarge").innerHTML = effectsIcon("#2B79C2");
 document.getElementById("cleaningIconLarge").innerHTML = cleaningIcon("#2B79C2");
 document.getElementById("marksIconLarge").innerHTML = marksIcon("#2B79C2");
+document.getElementById("fasteningIconLarge").innerHTML = fasteningIcon("#2B79C2");
 document.getElementById("videoconfIconLarge").innerHTML = videoconfIcon("#2B79C2");
 document.getElementById("printerIconLarge").innerHTML = printerIcon("#2B79C2");
 
@@ -4693,6 +4790,7 @@ const views = {
   effects: document.getElementById("viewEffects"),
   cleaning: document.getElementById("viewCleaning"),
   marks: document.getElementById("viewMarks"),
+  fastening: document.getElementById("viewFastening"),
   videoconf: document.getElementById("viewVideoconf"),
   printers: document.getElementById("viewPrinters")
 };
@@ -4719,6 +4817,7 @@ const CATEGORY_INFO = {
   effects: "Efectos",
   cleaning: "Limpieza",
   marks: "Marcas de foco",
+  fastening: "Sujeción",
   videoconf: "Videoconferencia PRO",
   printers: "Impresoras"
 };
@@ -4729,7 +4828,7 @@ const HEADER_DEFAULT = ["Catálogo de alquiler", "Soporte TV", "Elige una catego
 const MODE = document.documentElement.dataset.mode === "compra" ? "compra" : "alquiler";
 const MODE_KEYS = {
   alquiler: ["tablets", "phones", "accessories", "computers", "mac", "monitors", "connectivity", "cabins", "videoconf", "printers"],
-  compra: ["storage", "batteries", "sound", "stationery", "protection", "electric", "filmset", "dulling", "lighting", "effects", "cleaning", "marks"]
+  compra: ["storage", "batteries", "sound", "stationery", "protection", "electric", "filmset", "dulling", "lighting", "effects", "cleaning", "marks", "fastening"]
 };
 const OTHER_CATALOG = MODE === "compra" ? "../alquiler/" : "../compra/";
 const inMode = key => MODE_KEYS[MODE].includes(key);
@@ -4790,6 +4889,7 @@ const ROUTES = {
   efectos: "effects",
   limpieza: "cleaning",
   "marcas-de-foco": "marks",
+  sujecion: "fastening",
   videoconferencia: "videoconf",
   impresoras: "printers"
 };
@@ -4797,7 +4897,7 @@ const SLUGS = Object.fromEntries(Object.entries(ROUTES).map(([slug, key]) => [ke
 
 // Hide what belongs to the other catalogue: landing cards, menu and footer links
 const CARD_KEYS = { goTablets: "tablets", goPhones: "phones", goAccessories: "accessories", goComputers: "computers", goMac: "mac",
-  goMonitors: "monitors", goConnectivity: "connectivity", goStorage: "storage", goBatteries: "batteries", goSound: "sound", goStationery: "stationery", goProtection: "protection", goElectric: "electric", goFilmset: "filmset", goDulling: "dulling", goLighting: "lighting", goEffects: "effects", goCleaning: "cleaning", goMarks: "marks", goCabins: "cabins", goVideoconf: "videoconf", goPrinters: "printers" };
+  goMonitors: "monitors", goConnectivity: "connectivity", goStorage: "storage", goBatteries: "batteries", goSound: "sound", goStationery: "stationery", goProtection: "protection", goElectric: "electric", goFilmset: "filmset", goDulling: "dulling", goLighting: "lighting", goEffects: "effects", goCleaning: "cleaning", goMarks: "marks", goFastening: "fastening", goCabins: "cabins", goVideoconf: "videoconf", goPrinters: "printers" };
 Object.entries(CARD_KEYS).forEach(([id, key]) => { if (!inMode(key)) document.getElementById(id).hidden = true; });
 document.querySelectorAll("[data-route]").forEach(a => { if (!inMode(ROUTES[a.dataset.route])) a.hidden = true; });
 document.querySelectorAll(".footer-col").forEach(col => {
@@ -4830,6 +4930,7 @@ document.getElementById("goLighting").addEventListener("click", () => goTo("ligh
 document.getElementById("goEffects").addEventListener("click", () => goTo("effects"));
 document.getElementById("goCleaning").addEventListener("click", () => goTo("cleaning"));
 document.getElementById("goMarks").addEventListener("click", () => goTo("marks"));
+document.getElementById("goFastening").addEventListener("click", () => goTo("fastening"));
 document.getElementById("goCabins").addEventListener("click", () => goTo("cabins"));
 document.getElementById("goVideoconf").addEventListener("click", () => goTo("videoconf"));
 document.getElementById("goPrinters").addEventListener("click", () => goTo("printers"));
@@ -4976,6 +5077,12 @@ setupFilters(document.getElementById("gridMarks"), [
   { select: document.getElementById("marksTypeSelect"), attr: "type" },
   { select: document.getElementById("marksBrandSelect"), attr: "brand" },
   { select: document.getElementById("marksColorSelect"), attr: "color" }
+]);
+
+setupFilters(document.getElementById("gridFastening"), [
+  { select: document.getElementById("fasteningTypeSelect"), attr: "type" },
+  { select: document.getElementById("fasteningBrandSelect"), attr: "brand" },
+  { select: document.getElementById("fasteningColorSelect"), attr: "color" }
 ]);
 
 setupFilters(document.getElementById("gridCabins"), [
