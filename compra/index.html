@@ -583,7 +583,7 @@
   /* --- Storage: wide cards, two per row --- */
   /* Cards keep their size (459px); up to 3 per row when the screen is wide enough */
   #viewStorage, #viewTablets, #viewPhones, #viewAccessories, #viewComputers,
-  #viewMac, #viewCabins, #viewVideoconf, #viewPrinters, #viewMonitors, #viewConnectivity, #viewBatteries, #viewSound, #viewStationery, #viewProtection, #viewElectric, #viewFilmset, #viewDulling, #viewLighting, #viewEffects, #viewCleaning, #viewMarks, #viewFastening { max-width: none; }
+  #viewMac, #viewCabins, #viewVideoconf, #viewPrinters, #viewMonitors, #viewConnectivity, #viewBatteries, #viewSound, #viewStationery, #viewProtection, #viewElectric, #viewFilmset, #viewDulling, #viewLighting, #viewEffects, #viewCleaning, #viewMarks, #viewFastening, #viewTapes, #viewBackdrops { max-width: none; }
 
   .storage-grid {
     display: grid;
@@ -1585,6 +1585,26 @@
   /* Pages (16 products per page) */
   .storage-card[hidden] { display: none !important; }
 
+  /* "Sostenible" badge: big and green, on the category card and next to the category title */
+  .eco-badge {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 6px 13px 6px 10px; border-radius: 999px;
+    background: #E6F6EA; color: #11602F; border: 1.5px solid #39A85A;
+    font: 800 13px 'Inter', sans-serif; letter-spacing: 0.02em; text-transform: uppercase; white-space: nowrap;
+  }
+  .eco-badge svg { width: 18px; height: 18px; flex: none; }
+  .eco-badge[hidden] { display: none !important; }
+  .eco-badge--title { margin-top: 12px; padding: 9px 20px 9px 15px; font-size: 17px; gap: 9px; }
+  .eco-badge--title svg { width: 24px; height: 24px; }
+  header.in-category .brand-header { display: flex; flex-direction: column; align-items: center; }
+  .category-card .eco-badge { margin-top: -2px; }
+  [data-theme="dark"] .eco-badge { background: rgba(57,168,90,0.16); color: #9BE3B1; border-color: #39A85A; }
+  @media (max-width: 720px) {
+    .category-card .eco-badge { font-size: 10.5px; padding: 4px 9px 4px 7px; gap: 5px; }
+    .category-card .eco-badge svg { width: 14px; height: 14px; }
+    .eco-badge--title { font-size: 15px; padding: 7px 16px 7px 12px; }
+  }
+
   /* Colour swatches: products sold in several colours (card and technical sheet) */
   .swatches { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
   /* On the cards the dots go right under the product name, all in one row */
@@ -1686,6 +1706,8 @@
         <a href="#limpieza" data-route="limpieza">Limpieza<small>Aire comprimido, líquidos, gamuzas y kits</small></a>
         <a href="#marcas-de-foco" data-route="marcas-de-foco">Marcas de foco<small>Marcas en T, salchichas, pegatinas y tees</small></a>
         <a href="#sujecion" data-route="sujecion">Sujeción<small>Bridas, velcro, pinzas, cinchas e imanes</small></a>
+        <a href="#cintas-adhesivas" data-route="cintas-adhesivas">Cintas adhesivas<small>Gaffer, americana, doble cara, papel y más</small></a>
+        <a href="#fondos-telas" data-route="fondos-telas">Fondos / Telas<small>Tela molton negra con ojales</small></a>
         <a href="#cabinas" data-route="cabinas">Cabinas<small>Cabinas de discos y NAS</small></a>
         <a href="#conectividad" data-route="conectividad">Conectividad<small>MiFi, routers y Wi-Fi</small></a>
         <a href="#accesorios" data-route="accesorios">Accesorios<small>Estabilizadores, luz, audio</small></a>
@@ -1707,6 +1729,7 @@
     <img class="brand-logo brand-logo--light" src="../alquiler/img/logo-soporte-tv_SpTV.webp?v=20261004e" alt="Soporte TV" width="242" height="64">
     <img class="brand-logo brand-logo--dark" src="../alquiler/img/logo-soporte-tv-blanco_SpTV.webp?v=20261004e" alt="" width="242" height="64">
     <h1 id="catTitle">Soporte TV</h1>
+    <span class="eco-badge eco-badge--title" id="catBadge" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.5 3.5C11 3.6 5 8 5 15c0 1.3.3 2.5.8 3.5L3.6 20.7l1.4 1.4 2.3-2.3c1 .5 2.1.7 3.2.7 7 0 10.6-6.6 10-17zM9.8 18.1c-.7 0-1.4-.1-2-.4 2.5-3.6 5.3-6.3 8.6-8.4-3.6 1.4-6.6 3.8-9.9 7.3-.3-.6-.4-1.3-.4-2 0-5 4.1-8.7 11.2-9.4-.2 7.6-3 12.9-7.5 12.9z"/></svg>Sostenible</span>
   </div>
   <p id="catDesc">Elige una categoría para ver el material disponible para compra. Te asesoramos para elegir lo que necesitas.</p>
 </header>
@@ -1791,6 +1814,15 @@
   <button class="category-card" id="goFastening">
     <div class="category-icon" id="fasteningIconLarge"></div>
     <span class="category-label">Sujeción</span>
+  </button>
+  <button class="category-card" id="goTapes">
+    <div class="category-icon" id="tapesIconLarge"></div>
+    <span class="category-label">Cintas adhesivas</span>
+    <span class="eco-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.5 3.5C11 3.6 5 8 5 15c0 1.3.3 2.5.8 3.5L3.6 20.7l1.4 1.4 2.3-2.3c1 .5 2.1.7 3.2.7 7 0 10.6-6.6 10-17zM9.8 18.1c-.7 0-1.4-.1-2-.4 2.5-3.6 5.3-6.3 8.6-8.4-3.6 1.4-6.6 3.8-9.9 7.3-.3-.6-.4-1.3-.4-2 0-5 4.1-8.7 11.2-9.4-.2 7.6-3 12.9-7.5 12.9z"/></svg>Sostenible</span>
+  </button>
+  <button class="category-card" id="goBackdrops">
+    <div class="category-icon" id="backdropsIconLarge"></div>
+    <span class="category-label">Fondos / Telas</span>
   </button>
   <button class="category-card" id="goCabins">
     <div class="category-icon" id="cabinIconLarge"></div>
@@ -2457,6 +2489,66 @@
   </div>
 </div>
 
+<div class="catalog-view" id="viewTapes" hidden>
+  <button class="back-btn" data-back>← Volver</button>
+
+  <div class="catalog-layout">
+    <aside class="filter-panel" aria-label="Filtros">
+      <p class="filter-panel-title">Filtrar</p>
+      <div class="filter-row">
+        <span class="filter-label">Tipo</span>
+        <select class="filter-select" id="tapesTypeSelect">
+          <option value="all">Todos</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Marca</span>
+        <select class="filter-select" id="tapesBrandSelect">
+          <option value="all">Todas las marcas</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Color</span>
+        <select class="filter-select" id="tapesColorSelect">
+          <option value="all">Todos</option>
+        </select>
+      </div>
+      <button class="filter-reset" type="button">Quitar filtros</button>
+    </aside>
+    <div class="storage-grid" id="gridTapes"></div>
+  </div>
+</div>
+
+<div class="catalog-view" id="viewBackdrops" hidden>
+  <button class="back-btn" data-back>← Volver</button>
+
+  <div class="catalog-layout">
+    <aside class="filter-panel" aria-label="Filtros">
+      <p class="filter-panel-title">Filtrar</p>
+      <div class="filter-row">
+        <span class="filter-label">Tipo</span>
+        <select class="filter-select" id="backdropsTypeSelect">
+          <option value="all">Todos</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Marca</span>
+        <select class="filter-select" id="backdropsBrandSelect">
+          <option value="all">Todas las marcas</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Color</span>
+        <select class="filter-select" id="backdropsColorSelect">
+          <option value="all">Todos</option>
+        </select>
+      </div>
+      <button class="filter-reset" type="button">Quitar filtros</button>
+    </aside>
+    <div class="storage-grid" id="gridBackdrops"></div>
+  </div>
+</div>
+
 <div class="catalog-view" id="viewCabins" hidden>
   <button class="back-btn" data-back>← Volver</button>
 
@@ -2631,6 +2723,8 @@
       <a href="#limpieza" data-route="limpieza">Limpieza</a>
       <a href="#marcas-de-foco" data-route="marcas-de-foco">Marcas de foco</a>
       <a href="#sujecion" data-route="sujecion">Sujeción</a>
+      <a href="#cintas-adhesivas" data-route="cintas-adhesivas">Cintas adhesivas</a>
+      <a href="#fondos-telas" data-route="fondos-telas">Fondos / Telas</a>
       <a href="#cabinas" data-route="cabinas">Cabinas</a>
       <a href="#conectividad" data-route="conectividad">Conectividad</a>
       <a href="#accesorios" data-route="accesorios">Accesorios</a>
@@ -2720,7 +2814,7 @@
       <li><strong>Pinzas de madera de 7 vueltas</strong> — «Clothespin-2459e», por David R. Tribble (Loadmaster). Licencia <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Clothespin-2459e.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
       <li><strong>Pinza de plástico</strong> — «Red clamp 01 ies», por Frank Vincentz. Licencia <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Red_clamp_01_ies.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
   </ul>
-  <p class="credits-note">Las fotos de accesorios, conectividad, pilas, papelería, protección, conectividad, rodaje, limpieza, marcas de foco y sujeción genéricos son orientativas: el material entregado puede ser de otra marca o modelo equivalente. Resto de fotos de producto: imágenes oficiales de los fabricantes (Apple, Samsung, LG, JVC, Microsoft, HP, Dell, Lenovo, SanDisk / Western Digital, Areca, Stardom, TerraMaster, QNAP, Synology, Jabra, Phonak, Hollyland, Motorola, Ursa Straps, Rycote, Bubblebee Industries, Pilot, BIC, 3M / Scotch, Staedtler, Gorilla, Goobay, Loctite, edding, Sharpie, Pentel, Apli, Cap It, Tenba, Hama, Xiaomi, HP, Dirty Rigger, Bluestar, KleenSlate, Kenro, SW Kenyon (K-Line), Rosco, Dirty Down, Honeyrose, Ewent, tesa, Photographic Solutions, Pancro, Rain-X, Soudal, 3-En-Uno, WD-40, Sanytol, Zeiss, Foogy, Kimberly-Clark, Dodot, Green Clean, JJC, EDM, JAZ, Focus Rat, CGE Tools, Dylan Stoel, Modern Studio, Starlite, Bongo Ties, Procab, Precygrap, StarTech, VELCRO, Kupo, 3M, Sprig, Piher, Wolfcraft, Ricoh, Zhiyun, Wacom, Celly, Targus y Ubiquiti) o aportadas por Soporte TV.</p>
+  <p class="credits-note">Las fotos de accesorios, conectividad, pilas, papelería, protección, conectividad, rodaje, limpieza, marcas de foco y sujeción genéricos son orientativas: el material entregado puede ser de otra marca o modelo equivalente. Resto de fotos de producto: imágenes oficiales de los fabricantes (Apple, Samsung, LG, JVC, Microsoft, HP, Dell, Lenovo, SanDisk / Western Digital, Areca, Stardom, TerraMaster, QNAP, Synology, Jabra, Phonak, Hollyland, Motorola, Ursa Straps, Rycote, Bubblebee Industries, Pilot, BIC, 3M / Scotch, Staedtler, Gorilla, Goobay, Loctite, edding, Sharpie, Pentel, Apli, Cap It, Tenba, Hama, Xiaomi, HP, Dirty Rigger, Bluestar, KleenSlate, Kenro, SW Kenyon (K-Line), Rosco, Dirty Down, Honeyrose, Ewent, tesa, Photographic Solutions, Pancro, Rain-X, Soudal, 3-En-Uno, WD-40, Sanytol, Zeiss, Foogy, Kimberly-Clark, Dodot, Green Clean, JJC, EDM, JAZ, Focus Rat, CGE Tools, Dylan Stoel, Modern Studio, Starlite, Bongo Ties, Procab, Precygrap, StarTech, VELCRO, Kupo, 3M, Sprig, Piher, Wolfcraft, tesa, Progaff / Le Mark, Gorilla, Ceys, 3M / Solventum, Walker Tape, Joe's Sticky Stuff, Hide-a-mic, EDM, Shurtape, C-Tape, Adam Hall, Ricoh, Zhiyun, Wacom, Celly, Targus y Ubiquiti) o aportadas por Soporte TV.</p>
 </div>
 <div class="scrim rent-scrim" id="rentScrim"></div>
 <div class="rent-modal" id="rentModal" role="dialog" aria-modal="true" aria-labelledby="rentTitle">
@@ -3043,6 +3137,24 @@ function fasteningIcon(accent) {
     <rect x="22" y="62" width="40" height="24" rx="5" fill="#EDEFF2" stroke="${accent}" stroke-width="3.5"/>
     <path d="M30 70h24M30 78h16" stroke="#D9DEE4" stroke-width="3.5" stroke-linecap="round"/>
     <path d="M94 60l-6 14" stroke="${accent}" stroke-width="5" stroke-linecap="round"/>
+  </svg>`;
+}
+
+// Icon for the "Cintas adhesivas" card
+function tapesIcon(accent) {
+  return `<svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="54" cy="50" r="34" fill="#EDEFF2" stroke="${accent}" stroke-width="3.5"/>
+    <circle cx="54" cy="50" r="14" fill="#FFFFFF" stroke="${accent}" stroke-width="3.5"/>
+    <path d="M88 50h22v14H84" fill="#D9DEE4" stroke="${accent}" stroke-width="3.5" stroke-linejoin="round"/>
+  </svg>`;
+}
+
+// Icon for the "Fondos / Telas" card
+function backdropsIcon(accent) {
+  return `<svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 16h84" stroke="${accent}" stroke-width="5" stroke-linecap="round"/>
+    <path d="M24 16v70c8-6 14 6 22 0s14 6 22 0 14 6 22 0 8 4 8 4V16" fill="#EDEFF2" stroke="${accent}" stroke-width="3.5" stroke-linejoin="round"/>
+    <path d="M42 22v58M60 22v58M78 22v58" stroke="#D9DEE4" stroke-width="3"/>
   </svg>`;
 }
 
@@ -4449,6 +4561,64 @@ const FASTENING = [
   { cat: "fastening", type: "Velcro", brand: "Kupo", brandCode: "K", brandColor: "#E30613", model: "Kupo velcro mágico", photo: "../alquiler/img/kupo-velcro-magico-negro_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Velcro", 1], ["palette", "Color", "Negro", 1]], specs: [["Categoría", "Velcro"], ["Marca", "Kupo"], ["Descripción", "Rollo de velcro de doble cara para recoger cables."], ["Medida", "16 mm × 5 m"], ["Colores", "Negro"]], icon: fasteningIcon("#E30613") }
 ];
 
+// TAPES: purchase catalogue, official photos from each brand's website.
+// colors: one photo per colour; the dots on the card swap the photo (generated by tools/build_sonido_data.py)
+const TAPES = [
+  { cat: "tapes", type: "Cinta de cámara (gaffer)", brand: "tesa", brandCode: "t", brandColor: "#E2001A", model: "tesa 4661", photo: "../alquiler/img/tesa-4661-rojo_SpTV.webp", color: "Negro|Blanco|Amarillo|Gris|Azul|Rojo", colors: [], info: [["tag", "Tipo", "Cinta de cámara (gaffer)", 1], ["palette", "Colores", "6 colores", 1], ["capacity", "Formatos", "25 mm × 50 m · 50 mm × 50 m"]], specs: [["Categoría", "Cinta de cámara (gaffer)"], ["Marca", "tesa"], ["Descripción", "Cinta de tela mate (gaffer) que se arranca a mano, no deja residuos y no refleja la luz. Calidad estándar de tesa para rodaje y escenario."], ["Medidas", "25 mm × 50 m · 50 mm × 50 m"], ["Colores 25 mm", "Blanco, negro, amarillo y gris"], ["Colores 50 mm", "Blanco, negro, amarillo, azul y rojo"], ["Colores", "Negro · Blanco · Amarillo · Gris · Azul · Rojo"]], icon: tapesIcon("#E2001A") },
+  { cat: "tapes", type: "Cinta de cámara (gaffer)", brand: "tesa", brandCode: "t", brandColor: "#E2001A", model: "tesa 4651", photo: "../alquiler/img/tesa-4651-rojo_SpTV.webp", color: "Azul|Rojo|Verde|Azul croma|Verde croma", colors: [], info: [["tag", "Tipo", "Cinta de cámara (gaffer)", 1], ["palette", "Colores", "5 colores", 1], ["capacity", "Formatos", "25 mm × 50 m · 50 mm × 50 m"]], specs: [["Categoría", "Cinta de cámara (gaffer)"], ["Marca", "tesa"], ["Descripción", "Cinta de tela de alta resistencia; en 50 mm, colores croma para fondos azules y verdes."], ["Medidas", "25 mm × 50 m · 50 mm × 50 m"], ["Colores 25 mm", "Azul, rojo y verde"], ["Colores 50 mm", "Azul croma y verde croma"], ["Colores", "Azul · Rojo · Verde · Azul croma · Verde croma"]], icon: tapesIcon("#E2001A") },
+  { cat: "tapes", type: "Cinta de cámara (gaffer)", brand: "tesa", brandCode: "t", brandColor: "#E2001A", model: "tesa 4671", photo: "", color: "Negro|Blanco|Flúor rosa|Flúor naranja|Flúor verde|Flúor amarillo", colors: [], info: [["tag", "Tipo", "Cinta de cámara (gaffer)", 1], ["palette", "Colores", "6 colores", 1], ["capacity", "Formatos", "25 mm · 50 mm"]], specs: [["Categoría", "Cinta de cámara (gaffer)"], ["Marca", "tesa"], ["Descripción", "Cinta de tela mate (gaffer) que se arranca a mano, no deja residuos y no refleja la luz. Colores flúor muy visibles bajo luz negra y en oscuridad."], ["Medidas", "25 mm × 25 m (flúor) · 50 mm × 50 m (blanco y negro) · 50 mm × 25 m (flúor)"], ["Colores", "Negro · Blanco · Flúor rosa · Flúor naranja · Flúor verde · Flúor amarillo"]], icon: tapesIcon("#E2001A") },
+  { cat: "tapes", type: "Cinta de cámara (gaffer)", brand: "tesa", brandCode: "t", brandColor: "#E2001A", model: "tesa 53949 gaffer mate", photo: "../alquiler/img/tesa-53949-negro_SpTV.webp", color: "Negro|Blanco|Gris", colors: [{"name": "Negro", "hex": "#1A1A1A", "photo": "../alquiler/img/tesa-53949-negro_SpTV.webp"}, {"name": "Blanco", "hex": "#FFFFFF", "photo": "../alquiler/img/tesa-53949-blanco_SpTV.webp"}, {"name": "Gris", "hex": "#8A8F96", "photo": "../alquiler/img/tesa-53949-gris_SpTV.webp"}], info: [["tag", "Tipo", "Cinta de cámara (gaffer)", 1], ["palette", "Colores", "3 colores", 1]], specs: [["Categoría", "Cinta de cámara (gaffer)"], ["Marca", "tesa"], ["Descripción", "Gaffer de acabado mate profesional, sin reflejos."], ["Medida", "50 mm × 50 m"], ["Colores", "Negro · Blanco · Gris"]], icon: tapesIcon("#E2001A") },
+  { cat: "tapes", type: "Cinta de cámara (gaffer)", brand: "Progaff", brandCode: "P", brandColor: "#1A1A1A", model: "Progaff cinta de cámara 24 mm", photo: "../alquiler/img/progaff-estrecha-negro_SpTV.webp", color: "Negro|Blanco|Amarillo|Azul oscuro|Gris|Marrón|Morado|Rojo|Flúor rosa|Flúor verde|Flúor azul", colors: [{"name": "Negro", "hex": "#1A1A1A", "photo": "../alquiler/img/progaff-estrecha-negro_SpTV.webp"}, {"name": "Blanco", "hex": "#FFFFFF", "photo": "../alquiler/img/progaff-estrecha-blanco_SpTV.webp"}, {"name": "Amarillo", "hex": "#F2C200", "photo": "../alquiler/img/progaff-estrecha-amarillo_SpTV.webp"}, {"name": "Azul oscuro", "hex": "#1A2F7A", "photo": "../alquiler/img/progaff-estrecha-azul-oscuro_SpTV.webp"}, {"name": "Gris", "hex": "#8A8F96", "photo": "../alquiler/img/progaff-estrecha-gris_SpTV.webp"}, {"name": "Marrón", "hex": "#6B4A2B", "photo": "../alquiler/img/progaff-estrecha-marron_SpTV.webp"}, {"name": "Morado", "hex": "#7B3FA0", "photo": "../alquiler/img/progaff-estrecha-morado_SpTV.webp"}, {"name": "Rojo", "hex": "#D0202E", "photo": "../alquiler/img/progaff-estrecha-rojo_SpTV.webp"}, {"name": "Flúor rosa", "hex": "#FF2D95", "photo": "../alquiler/img/progaff-estrecha-fluor-rosa_SpTV.webp"}, {"name": "Flúor verde", "hex": "#5CFF2E", "photo": "../alquiler/img/progaff-estrecha-fluor-verde_SpTV.webp"}, {"name": "Flúor azul", "hex": "#00B7FF", "photo": "../alquiler/img/progaff-estrecha-fluor-azul_SpTV.webp"}], info: [["tag", "Tipo", "Cinta de cámara (gaffer)", 1], ["palette", "Colores", "11 colores", 1]], specs: [["Categoría", "Cinta de cámara (gaffer)"], ["Marca", "Progaff"], ["Descripción", "Cinta de tela mate (gaffer) que se arranca a mano, no deja residuos y no refleja la luz."], ["Medidas", "24 mm × 22,8 m · blanco 24 mm × 50 m · azul oscuro 24 mm × 55 m"], ["Colores", "Negro · Blanco · Amarillo · Azul oscuro · Gris · Marrón · Morado · Rojo · Flúor rosa · Flúor verde · Flúor azul"]], icon: tapesIcon("#1A1A1A") },
+  { cat: "tapes", type: "Cinta de cámara (gaffer)", brand: "Nichiban", brandCode: "N", brandColor: "#E60012", model: "Nichiban cinta de cámara", photo: "", color: "Morado", colors: [], info: [["tag", "Tipo", "Cinta de cámara (gaffer)", 1], ["palette", "Color", "Morado", 1]], specs: [["Categoría", "Cinta de cámara (gaffer)"], ["Marca", "Nichiban"], ["Descripción", "Cinta de tela mate (gaffer) que se arranca a mano, no deja residuos y no refleja la luz."], ["Medida", "50 mm × 50 m"], ["Colores", "Morado"]], icon: tapesIcon("#E60012") },
+  { cat: "tapes", type: "Cinta de cámara pocket", brand: "Progaff", brandCode: "P", brandColor: "#1A1A1A", model: "Progaff pocket", photo: "../alquiler/img/progaff-pocket-negro_SpTV.webp", color: "Negro|Blanco|Amarillo|Rojo|Flúor amarillo|Flúor azul|Flúor naranja|Flúor rosa|Flúor verde", colors: [{"name": "Negro", "hex": "#1A1A1A", "photo": "../alquiler/img/progaff-pocket-negro_SpTV.webp"}, {"name": "Blanco", "hex": "#FFFFFF", "photo": "../alquiler/img/progaff-pocket-blanco_SpTV.webp"}, {"name": "Amarillo", "hex": "#F2C200", "photo": "../alquiler/img/progaff-pocket-amarillo_SpTV.webp"}, {"name": "Rojo", "hex": "#D0202E", "photo": "../alquiler/img/progaff-pocket-rojo_SpTV.webp"}, {"name": "Flúor amarillo", "hex": "#E6FF00", "photo": "../alquiler/img/progaff-pocket-fluor-amarillo_SpTV.webp"}, {"name": "Flúor azul", "hex": "#00B7FF", "photo": "../alquiler/img/progaff-pocket-fluor-azul_SpTV.webp"}, {"name": "Flúor naranja", "hex": "#FF6A00", "photo": "../alquiler/img/progaff-pocket-fluor-naranja_SpTV.webp"}, {"name": "Flúor rosa", "hex": "#FF2D95", "photo": "../alquiler/img/progaff-pocket-fluor-rosa_SpTV.webp"}, {"name": "Flúor verde", "hex": "#5CFF2E", "photo": "../alquiler/img/progaff-pocket-fluor-verde_SpTV.webp"}], info: [["tag", "Tipo", "Cinta de cámara pocket", 1], ["palette", "Colores", "9 colores", 1], ["capacity", "Formatos", "5,5 m · Plus 11 m"]], specs: [["Categoría", "Cinta de cámara pocket"], ["Marca", "Progaff"], ["Descripción", "Rollo pequeño de gaffer para llevar encima."], ["Medidas", "24 mm × 5,5 m · Plus (negro) 24 mm × 11 m"], ["Colores", "Negro · Blanco · Amarillo · Rojo · Flúor amarillo · Flúor azul · Flúor naranja · Flúor rosa · Flúor verde"]], icon: tapesIcon("#1A1A1A") },
+  { cat: "tapes", type: "Cinta de cámara pocket", brand: "Progaff", brandCode: "P", brandColor: "#1A1A1A", model: "Progaff MiniMix pack 5 colores", photo: "../alquiler/img/pocket-pack-5-multicolor_SpTV.webp", color: "Multicolor", colors: [], info: [["tag", "Tipo", "Cinta de cámara pocket", 1], ["palette", "Color", "Multicolor", 1]], specs: [["Categoría", "Cinta de cámara pocket"], ["Marca", "Progaff"], ["Descripción", "Pack de 5 rollos pequeños de colores para marcar y etiquetar."], ["Medida", "12 mm × 5,4 m"], ["Formato", "Pack de 5 colores"], ["Colores", "Multicolor"]], icon: tapesIcon("#1A1A1A") },
+  { cat: "tapes", type: "Cinta americana", brand: "tesa", brandCode: "t", brandColor: "#E2001A", model: "tesa 74613 Profesional", photo: "../alquiler/img/tesa-74613-negro_SpTV.webp", color: "Negro|Gris plata", colors: [{"name": "Negro", "hex": "#1A1A1A", "photo": "../alquiler/img/tesa-74613-negro_SpTV.webp"}, {"name": "Gris plata", "hex": "#B8BDC2", "photo": "../alquiler/img/tesa-74613-gris-plata_SpTV.webp"}], info: [["tag", "Tipo", "Cinta americana", 1], ["palette", "Colores", "2 colores", 1]], specs: [["Categoría", "Cinta americana"], ["Marca", "tesa"], ["Descripción", "Cinta americana profesional de tela para reparaciones y sujeción."], ["Medida", "48 mm × 50 m"], ["Colores", "Negro · Gris plata"]], icon: tapesIcon("#E2001A") },
+  { cat: "tapes", type: "Cinta americana", brand: "tesa", brandCode: "t", brandColor: "#E2001A", model: "tesa 56389 Extra Power", photo: "", color: "Gris plata|Blanco|Negro", colors: [], info: [["tag", "Tipo", "Cinta americana", 1], ["palette", "Colores", "3 colores", 1]], specs: [["Categoría", "Cinta americana"], ["Marca", "tesa"], ["Descripción", "Cinta americana muy resistente de tesa (Extra Power)."], ["Medida", "50 mm × 50 m"], ["Colores", "Gris plata · Blanco · Negro"]], icon: tapesIcon("#E2001A") },
+  { cat: "tapes", type: "Cinta americana", brand: "Gorilla", brandCode: "G", brandColor: "#1A1A1A", model: "Gorilla Tape", photo: "../alquiler/img/gorilla-tape-negro_SpTV.webp", color: "Negro|Plata", colors: [{"name": "Negro", "hex": "#1A1A1A", "photo": "../alquiler/img/gorilla-tape-negro_SpTV.webp"}, {"name": "Plata", "hex": "#C0C4C8", "photo": "../alquiler/img/gorilla-tape-plata_SpTV.webp"}], info: [["tag", "Tipo", "Cinta americana", 1], ["palette", "Colores", "2 colores", 1], ["capacity", "Formatos", "25 mm · 48 mm"]], specs: [["Categoría", "Cinta americana"], ["Marca", "Gorilla"], ["Descripción", "Cinta americana extrafuerte de doble capa de adhesivo, para superficies rugosas."], ["Medidas", "Negro: 25 mm × 9,4 m y 48 mm × 32 m · Plata: 48 mm × 32 m"], ["Colores", "Negro · Plata"]], icon: tapesIcon("#1A1A1A") },
+  { cat: "tapes", type: "Doble cara", brand: "Ceys", brandCode: "C", brandColor: "#E30613", model: "Ceys Montack", photo: "../alquiler/img/ceys-montack-unico_SpTV.webp", color: "Único", colors: [], info: [["tag", "Tipo", "Doble cara", 1], ["palette", "Color", "Único", 1], ["capacity", "Formatos", "2,5 m · 7,5 m"]], specs: [["Categoría", "Doble cara"], ["Marca", "Ceys"], ["Descripción", "Cinta de montaje de doble cara: sustituye a tornillos y clavos."], ["Medidas", "19 mm × 2,5 m · 19 mm × 7,5 m"], ["Colores", "Único"]], icon: tapesIcon("#E30613") },
+  { cat: "tapes", type: "Doble cara", brand: "tesa", brandCode: "t", brandColor: "#E2001A", model: "tesa 4934", photo: "../alquiler/img/tesa-4934-unico_SpTV.webp", color: "Único", colors: [], info: [["tag", "Tipo", "Doble cara", 1], ["palette", "Color", "Único", 1], ["capacity", "Formatos", "25 mm · 50 mm"]], specs: [["Categoría", "Doble cara"], ["Marca", "tesa"], ["Descripción", "Cinta de doble cara de tela para fijar moquetas y alfombras."], ["Medidas", "25 mm × 25 m · 50 mm × 25 m"], ["Colores", "Único"]], icon: tapesIcon("#E2001A") },
+  { cat: "tapes", type: "Doble cara", brand: "tesa", brandCode: "t", brandColor: "#E2001A", model: "tesa 4964 Premium", photo: "../alquiler/img/tesa-4964-unico_SpTV.webp", color: "Único", colors: [], info: [["tag", "Tipo", "Doble cara", 1], ["palette", "Color", "Único", 1], ["capacity", "Formatos", "25 × 50 m · 50 × 25 m · 50 × 50 m"]], specs: [["Categoría", "Doble cara"], ["Marca", "tesa"], ["Descripción", "Cinta de doble cara de tela de alta adhesión, para suelos y escenarios."], ["Medidas", "25 mm × 50 m · 50 mm × 25 m · 50 mm × 50 m"], ["Colores", "Único"]], icon: tapesIcon("#E2001A") },
+  { cat: "tapes", type: "Doble cara", brand: "tesa", brandCode: "t", brandColor: "#E2001A", model: "tesa 4970", photo: "../alquiler/img/tesa-4970-unico_SpTV.webp", color: "Único", colors: [], info: [["tag", "Tipo", "Doble cara", 1], ["palette", "Color", "Único", 1]], specs: [["Categoría", "Doble cara"], ["Marca", "tesa"], ["Descripción", "Cinta de doble cara de alta adhesión para fijaciones permanentes."], ["Medida", "19 mm × 50 m"], ["Colores", "Único"]], icon: tapesIcon("#E2001A") },
+  { cat: "tapes", type: "Doble cara", brand: "tesa", brandCode: "t", brandColor: "#E2001A", model: "tesa 4965", photo: "../alquiler/img/tesa-4965-unico_SpTV.webp", color: "Único", colors: [], info: [["tag", "Tipo", "Doble cara", 1], ["palette", "Color", "Único", 1]], specs: [["Categoría", "Doble cara"], ["Marca", "tesa"], ["Descripción", "Cinta de doble cara transparente de alto rendimiento (protector rojo)."], ["Medida", "25 mm × 50 m"], ["Colores", "Único"]], icon: tapesIcon("#E2001A") },
+  { cat: "tapes", type: "Doble cara", brand: "tesa", brandCode: "t", brandColor: "#E2001A", model: "tesa 4944", photo: "../alquiler/img/tesa-4944-unico_SpTV.webp", color: "Único", colors: [], info: [["tag", "Tipo", "Doble cara", 1], ["palette", "Color", "Único", 1]], specs: [["Categoría", "Doble cara"], ["Marca", "tesa"], ["Descripción", "Cinta de doble cara extrafuerte para fijar suelos y moquetas."], ["Medida", "50 mm × 25 m"], ["Colores", "Único"]], icon: tapesIcon("#E2001A") },
+  { cat: "tapes", type: "Doble cara", brand: "3M", brandCode: "3M", brandColor: "#E2231A", model: "3M tiras transparentes para peluca", photo: "../alquiler/img/3m-clear-peluca-unico_SpTV.webp", color: "Único", colors: [], info: [["tag", "Tipo", "Doble cara", 1], ["palette", "Color", "Único", 1]], specs: [["Categoría", "Doble cara"], ["Marca", "3M"], ["Descripción", "Tiras de doble cara transparentes para fijar pelucas y postizos."], ["Formato", "36 tiras de 3/4''"], ["Colores", "Único"]], icon: tapesIcon("#E2231A") },
+  { cat: "tapes", type: "Doble cara", brand: "3M", brandCode: "3M", brandColor: "#E2231A", model: "3M Health Care cinta para peluca", photo: "../alquiler/img/3m-health-care-peluca-unico_SpTV.webp", color: "Único", colors: [], info: [["tag", "Tipo", "Doble cara", 1], ["palette", "Color", "Único", 1]], specs: [["Categoría", "Doble cara"], ["Marca", "3M"], ["Descripción", "Cinta de doble cara de uso médico para fijar pelucas."], ["Medida", "19 mm × 4,5 m"], ["Colores", "Único"]], icon: tapesIcon("#E2231A") },
+  { cat: "tapes", type: "Doble cara", brand: "Joe's Sticky Stuff", brandCode: "J", brandColor: "#1A1A1A", model: "Joe's Sticky Stuff", photo: "../alquiler/img/joes-sticky-stuff-unico_SpTV.webp", color: "Único", colors: [], info: [["tag", "Tipo", "Doble cara", 1], ["palette", "Color", "Único", 1]], specs: [["Categoría", "Doble cara"], ["Marca", "Joe's Sticky Stuff"], ["Descripción", "Cinta de doble cara muy fuerte que se retira limpia, muy usada en atrezzo y rodaje."], ["Medida", "25 mm × 6,1 m"], ["Colores", "Único"]], icon: tapesIcon("#1A1A1A") },
+  { cat: "tapes", type: "Doble cara", brand: "Hippo", brandCode: "H", brandColor: "#5C6672", model: "Hippo-SKIN", photo: "", color: "Único", colors: [], info: [["tag", "Tipo", "Doble cara", 1], ["palette", "Color", "Único", 1], ["capacity", "Formatos", "Mini Roll · Regular"]], specs: [["Categoría", "Doble cara"], ["Marca", "Hippo"], ["Descripción", "Cinta de doble cara de uso sobre piel para fijar micrófonos de solapa y transmisores."], ["Formatos", "Mini Roll · Regular"], ["Colores", "Único"]], icon: tapesIcon("#5C6672") },
+  { cat: "tapes", type: "Cinta de butilo", brand: "Hide-a-mic", brandCode: "H", brandColor: "#1A1A1A", model: "Hide-a-mic cinta de butilo", photo: "../alquiler/img/hide-a-mic-butilo-unico_SpTV.webp", color: "Único", colors: [], info: [["tag", "Tipo", "Cinta de butilo", 1], ["palette", "Color", "Único", 1]], specs: [["Categoría", "Cinta de butilo"], ["Marca", "Hide-a-mic"], ["Descripción", "Cinta de butilo moldeable para fijar y amortiguar micrófonos de solapa."], ["Medida", "12 mm × 3 m"], ["Uso", "Sonido"], ["Colores", "Único"]], icon: tapesIcon("#1A1A1A") },
+  { cat: "tapes", type: "Carrocero", brand: "tesa", brandCode: "t", brandColor: "#E2001A", model: "tesa NOPI 4349", photo: "../alquiler/img/tesa-4349-beige_SpTV.webp", color: "Beige", colors: [], info: [["tag", "Tipo", "Carrocero", 1], ["palette", "Color", "Beige", 1], ["capacity", "Formatos", "25 mm · 30 mm · 50 mm"]], specs: [["Categoría", "Carrocero"], ["Marca", "tesa"], ["Descripción", "Cinta de carrocero de papel para enmascarar y rotular."], ["Medidas", "25 mm × 45 m · 30 mm × 45 m · 50 mm × 50 m"], ["Colores", "Beige"]], icon: tapesIcon("#E2001A") },
+  { cat: "tapes", type: "Carrocero", brand: "tesa", brandCode: "t", brandColor: "#E2001A", model: "tesa 4323", photo: "../alquiler/img/tesa-4323-beige_SpTV.webp", color: "Beige", colors: [], info: [["tag", "Tipo", "Carrocero", 1], ["palette", "Color", "Beige", 1]], specs: [["Categoría", "Carrocero"], ["Marca", "tesa"], ["Descripción", "Cinta de carrocero de papel de uso general."], ["Medida", "50 mm × 50 m"], ["Colores", "Beige"]], icon: tapesIcon("#E2001A") },
+  { cat: "tapes", type: "Carrocero", brand: "tesa", brandCode: "t", brandColor: "#E2001A", model: "tesa Mask superficies delicadas", photo: "../alquiler/img/tesa-mask-rosa-rosa_SpTV.webp", color: "Rosa", colors: [], info: [["tag", "Tipo", "Carrocero", 1], ["palette", "Color", "Rosa", 1]], specs: [["Categoría", "Carrocero"], ["Marca", "tesa"], ["Descripción", "Cinta de enmascarar de baja adhesión para superficies delicadas."], ["Medida", "19 mm × 50 m"], ["Colores", "Rosa"]], icon: tapesIcon("#E2001A") },
+  { cat: "tapes", type: "Cinta de papel", brand: "Progaff", brandCode: "P", brandColor: "#1A1A1A", model: "Progaff cinta de papel", photo: "../alquiler/img/progaff-papel-negro_SpTV.webp", color: "Negro|Blanco|Amarillo|Azul claro|Azul oscuro|Marrón|Morado|Naranja|Rojo|Rosa claro|Verde claro|Verde oscuro", colors: [{"name": "Negro", "hex": "#1A1A1A", "photo": "../alquiler/img/progaff-papel-negro_SpTV.webp"}, {"name": "Blanco", "hex": "#FFFFFF", "photo": "../alquiler/img/progaff-papel-blanco_SpTV.webp"}, {"name": "Amarillo", "hex": "#F2C200", "photo": "../alquiler/img/progaff-papel-amarillo_SpTV.webp"}, {"name": "Azul claro", "hex": "#7FB6F0", "photo": "../alquiler/img/progaff-papel-azul-claro_SpTV.webp"}, {"name": "Azul oscuro", "hex": "#1A2F7A", "photo": "../alquiler/img/progaff-papel-azul-oscuro_SpTV.webp"}, {"name": "Morado", "hex": "#7B3FA0", "photo": "../alquiler/img/progaff-papel-morado_SpTV.webp"}, {"name": "Naranja", "hex": "#F07A1A", "photo": "../alquiler/img/progaff-papel-naranja_SpTV.webp"}, {"name": "Rojo", "hex": "#D0202E", "photo": "../alquiler/img/progaff-papel-rojo_SpTV.webp"}, {"name": "Rosa claro", "hex": "#F6B3CF", "photo": "../alquiler/img/progaff-papel-rosa-claro_SpTV.webp"}, {"name": "Verde claro", "hex": "#8BD17C", "photo": "../alquiler/img/progaff-papel-verde-claro_SpTV.webp"}, {"name": "Verde oscuro", "hex": "#1F5E33", "photo": "../alquiler/img/progaff-papel-verde-oscuro_SpTV.webp"}], info: [["tag", "Tipo", "Cinta de papel", 1], ["palette", "Colores", "12 colores", 1], ["capacity", "Formatos", "24 mm · 48 mm"]], specs: [["Categoría", "Cinta de papel"], ["Marca", "Progaff"], ["Descripción", "Cinta de papel (spike tape) para marcar y etiquetar: se escribe encima y se quita limpia."], ["Medidas", "24 mm × 55 m (PRO46) · marrón 24 mm × 22,86 m · negro 48 mm × 55 m"], ["Colores", "Negro · Blanco · Amarillo · Azul claro · Azul oscuro · Marrón · Morado · Naranja · Rojo · Rosa claro · Verde claro · Verde oscuro"]], icon: tapesIcon("#1A1A1A") },
+  { cat: "tapes", type: "Cinta de papel", brand: "Progaff", brandCode: "P", brandColor: "#1A1A1A", model: "Progaff Console flúor", photo: "", color: "Flúor amarillo|Flúor naranja|Flúor rosa|Flúor verde", colors: [], info: [["tag", "Tipo", "Cinta de papel", 1], ["palette", "Colores", "4 colores", 1]], specs: [["Categoría", "Cinta de papel"], ["Marca", "Progaff"], ["Descripción", "Cinta de papel flúor para consolas y marcas, muy visible."], ["Medida", "24 mm × 22,9 m"], ["Colores", "Flúor amarillo · Flúor naranja · Flúor rosa · Flúor verde"]], icon: tapesIcon("#1A1A1A") },
+  { cat: "tapes", type: "Cinta de papel", brand: "tesa", brandCode: "t", brandColor: "#E2001A", model: "tesa 4328", photo: "../alquiler/img/tesa-4328-negro_SpTV.webp", color: "Negro|Azul|Rojo", colors: [{"name": "Negro", "hex": "#1A1A1A", "photo": "../alquiler/img/tesa-4328-negro_SpTV.webp"}, {"name": "Rojo", "hex": "#D0202E", "photo": "../alquiler/img/tesa-4328-rojo_SpTV.webp"}], info: [["tag", "Tipo", "Cinta de papel", 1], ["palette", "Colores", "3 colores", 1]], specs: [["Categoría", "Cinta de papel"], ["Marca", "tesa"], ["Descripción", "Cinta de papel de colores para marcar y señalizar."], ["Medidas", "Azul y rojo 19 mm × 50 m · negro 25 mm × 50 m y 50 mm × 50 m"], ["Colores", "Negro · Azul · Rojo"]], icon: tapesIcon("#E2001A") },
+  { cat: "tapes", type: "Cinta de papel", brand: "Apli", brandCode: "A", brandColor: "#E2001A", model: "Apli pack cinta flúor", photo: "", color: "Multicolor", colors: [], info: [["tag", "Tipo", "Cinta de papel", 1], ["palette", "Color", "Multicolor", 1]], specs: [["Categoría", "Cinta de papel"], ["Marca", "Apli"], ["Descripción", "Pack de 4 cintas de papel flúor para marcar."], ["Medida", "15 mm × 10 m"], ["Formato", "Pack de 4"], ["Colores", "Multicolor"]], icon: tapesIcon("#E2001A") },
+  { cat: "tapes", type: "Cinta de papel", brand: "Shurtape", brandCode: "S", brandColor: "#0047AB", model: "Shurtape CP-743", photo: "../alquiler/img/shurtape-p743-negro_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Cinta de papel", 1], ["palette", "Color", "Negro", 1]], specs: [["Categoría", "Cinta de papel"], ["Marca", "Shurtape"], ["Descripción", "Cinta de papel negra mate de uso profesional en iluminación (blackwrap)."], ["Medida", "48 mm × 50 m"], ["Colores", "Negro"]], icon: tapesIcon("#0047AB") },
+  { cat: "tapes", type: "Cinta aislante", brand: "tesa", brandCode: "t", brandColor: "#E2001A", model: "tesa 53988 aislante", photo: "../alquiler/img/tesa-53988-azul_SpTV.webp", color: "Negro|Blanco|Amarillo|Azul|Gris|Marrón|Rojo|Verde|Verde-amarillo", colors: [{"name": "Azul", "hex": "#1F5FD0", "photo": "../alquiler/img/tesa-53988-azul_SpTV.webp"}, {"name": "Gris", "hex": "#8A8F96", "photo": "../alquiler/img/tesa-53988-gris_SpTV.webp"}, {"name": "Marrón", "hex": "#6B4A2B", "photo": "../alquiler/img/tesa-53988-marron_SpTV.webp"}, {"name": "Rojo", "hex": "#D0202E", "photo": "../alquiler/img/tesa-53988-rojo_SpTV.webp"}], info: [["tag", "Tipo", "Cinta aislante", 1], ["palette", "Colores", "9 colores", 1]], specs: [["Categoría", "Cinta aislante"], ["Marca", "tesa"], ["Descripción", "Cinta aislante de PVC para electricidad, en todos los colores de cableado."], ["Medida", "19 mm × 20 m"], ["Colores", "Negro · Blanco · Amarillo · Azul · Gris · Marrón · Rojo · Verde · Verde-amarillo"]], icon: tapesIcon("#E2001A") },
+  { cat: "tapes", type: "Cinta aislante", brand: "EDM", brandCode: "E", brandColor: "#E30613", model: "EDM Supra aislante", photo: "../alquiler/img/edm-supra-negro_SpTV.webp", color: "Negro|Blanco", colors: [{"name": "Negro", "hex": "#1A1A1A", "photo": "../alquiler/img/edm-supra-negro_SpTV.webp"}, {"name": "Blanco", "hex": "#FFFFFF", "photo": "../alquiler/img/edm-supra-blanco_SpTV.webp"}], info: [["tag", "Tipo", "Cinta aislante", 1], ["palette", "Colores", "2 colores", 1]], specs: [["Categoría", "Cinta aislante"], ["Marca", "EDM"], ["Descripción", "Cinta aislante de PVC."], ["Medida", "19 mm × 20 m"], ["Colores", "Negro · Blanco"]], icon: tapesIcon("#E30613") },
+  { cat: "tapes", type: "Señalización", brand: "tesa", brandCode: "t", brandColor: "#E2001A", model: "tesa 60760 señalización PVC", photo: "../alquiler/img/tesa-60760-negro-amarillo_SpTV.webp", color: "Negro-amarillo|Rojo-blanco", colors: [{"name": "Negro-amarillo", "hex": "#2B2B00", "photo": "../alquiler/img/tesa-60760-negro-amarillo_SpTV.webp"}, {"name": "Rojo-blanco", "hex": "#E8505B", "photo": "../alquiler/img/tesa-60760-rojo-blanco_SpTV.webp"}], info: [["tag", "Tipo", "Señalización", 1], ["palette", "Colores", "2 colores", 1]], specs: [["Categoría", "Señalización"], ["Marca", "tesa"], ["Descripción", "Cinta adhesiva de señalización de PVC para marcar zonas de peligro y pasos."], ["Medida", "50 mm × 33 m"], ["Colores", "Negro-amarillo · Rojo-blanco"]], icon: tapesIcon("#E2001A") },
+  { cat: "tapes", type: "Señalización", brand: "tesa", brandCode: "t", brandColor: "#E2001A", model: "tesa 58133 / 58134 señalización", photo: "../alquiler/img/tesa-5813x-negro-amarillo_SpTV.webp", color: "Negro-amarillo|Rojo-blanco", colors: [{"name": "Negro-amarillo", "hex": "#2B2B00", "photo": "../alquiler/img/tesa-5813x-negro-amarillo_SpTV.webp"}, {"name": "Rojo-blanco", "hex": "#E8505B", "photo": "../alquiler/img/tesa-5813x-rojo-blanco_SpTV.webp"}], info: [["tag", "Tipo", "Señalización", 1], ["palette", "Colores", "2 colores", 1]], specs: [["Categoría", "Señalización"], ["Marca", "tesa"], ["Descripción", "Cinta adhesiva de señalización de polipropileno."], ["Medida", "50 mm × 66 m"], ["Referencias", "58133 negro-amarillo · 58134 rojo-blanco"], ["Colores", "Negro-amarillo · Rojo-blanco"]], icon: tapesIcon("#E2001A") },
+  { cat: "tapes", type: "Señalización", brand: "tesa", brandCode: "t", brandColor: "#E2001A", model: "tesa 58137 cinta de balizamiento", photo: "../alquiler/img/tesa-58137-rojo-blanco_SpTV.webp", color: "Rojo-blanco", colors: [], info: [["tag", "Tipo", "Señalización", 1], ["palette", "Color", "Rojo-blanco", 1]], specs: [["Categoría", "Señalización"], ["Marca", "tesa"], ["Descripción", "Cinta de balizamiento no adhesiva para acordonar zonas."], ["Medida", "80 mm × 100 m"], ["Colores", "Rojo-blanco"]], icon: tapesIcon("#E2001A") },
+  { cat: "tapes", type: "Señalización", brand: "tesa", brandCode: "t", brandColor: "#E2001A", model: "tesa fotoluminiscente antideslizante", photo: "../alquiler/img/tesa-fotoluminiscente-fotoluminiscente_SpTV.webp", color: "Fotoluminiscente", colors: [], info: [["tag", "Tipo", "Señalización", 1], ["palette", "Color", "Fotoluminiscente", 1], ["capacity", "Formatos", "5 m · 15 m"]], specs: [["Categoría", "Señalización"], ["Marca", "tesa"], ["Descripción", "Cinta que brilla en la oscuridad y antideslizante, para marcar escalones y salidas."], ["Medidas", "25 mm × 5 m · 25 mm × 15 m"], ["Colores", "Fotoluminiscente"]], icon: tapesIcon("#E2001A") },
+  { cat: "tapes", type: "Pasacables", brand: "tesa", brandCode: "t", brandColor: "#E2001A", model: "tesa Tunnel Tape 4611", photo: "../alquiler/img/tesa-4611-negro_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Pasacables", 1], ["palette", "Color", "Negro", 1]], specs: [["Categoría", "Pasacables"], ["Marca", "tesa"], ["Descripción", "Cinta pasacables que cubre y protege los cables en el suelo con tira central sin adhesivo."], ["Medida", "150 mm × 25 m"], ["Colores", "Negro"]], icon: tapesIcon("#E2001A") },
+  { cat: "tapes", type: "Cinta médica", brand: "3M", brandCode: "3M", brandColor: "#E2231A", model: "3M Transpore", photo: "../alquiler/img/3m-transpore-transparente_SpTV.webp", color: "Transparente", colors: [], info: [["tag", "Tipo", "Cinta médica", 1], ["palette", "Color", "Transparente", 1]], specs: [["Categoría", "Cinta médica"], ["Marca", "3M"], ["Descripción", "Esparadrapo transparente y perforado, se corta con la mano."], ["Medida", "2,5 cm × 9 m"], ["Colores", "Transparente"]], icon: tapesIcon("#E2231A") },
+  { cat: "tapes", type: "Cinta médica", brand: "3M", brandCode: "3M", brandColor: "#E2231A", model: "3M Nexcare Active Tape", photo: "../alquiler/img/3m-nexcare-active-carne_SpTV.webp", color: "Carne", colors: [], info: [["tag", "Tipo", "Cinta médica", 1], ["palette", "Color", "Carne", 1]], specs: [["Categoría", "Cinta médica"], ["Marca", "3M"], ["Descripción", "Esparadrapo de tela resistente al agua y flexible."], ["Medida", "2,54 cm × 4,5 m"], ["Colores", "Carne"]], icon: tapesIcon("#E2231A") },
+  { cat: "tapes", type: "Cinta médica", brand: "3M", brandCode: "3M", brandColor: "#E2231A", model: "3M Micropore", photo: "../alquiler/img/3m-micropore-carne_SpTV.webp", color: "Carne|Blanco", colors: [{"name": "Carne", "hex": "#E8C4A8", "photo": "../alquiler/img/3m-micropore-carne_SpTV.webp"}, {"name": "Blanco", "hex": "#FFFFFF", "photo": "../alquiler/img/3m-micropore-blanco_SpTV.webp"}], info: [["tag", "Tipo", "Cinta médica", 1], ["palette", "Colores", "2 colores", 1]], specs: [["Categoría", "Cinta médica"], ["Marca", "3M"], ["Descripción", "Esparadrapo de papel suave para piel sensible."], ["Medida", "2,5 cm × 9 m"], ["Colores", "Carne · Blanco"]], icon: tapesIcon("#E2231A") },
+  { cat: "tapes", type: "Cinta médica", brand: "", brandCode: "", brandColor: "#5C6672", model: "Cinta de kinesiología", photo: "", color: "Carne|Negro", colors: [], info: [["tag", "Tipo", "Cinta médica", 1], ["palette", "Colores", "2 colores", 1]], specs: [["Categoría", "Cinta médica"], ["Descripción", "Cinta elástica de kinesiología; en rodaje se usa para fijar micrófonos y cables a la piel."], ["Medida", "50 mm × 5 m"], ["Colores", "Carne · Negro"]], icon: tapesIcon("#5C6672") },
+  { cat: "tapes", type: "Cinta térmica", brand: "tesa", brandCode: "t", brandColor: "#E2001A", model: "tesa 50577 anticalórica", photo: "../alquiler/img/tesa-50577-negro_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Cinta térmica", 1], ["palette", "Color", "Negro", 1]], specs: [["Categoría", "Cinta térmica"], ["Marca", "tesa"], ["Descripción", "Cinta resistente al calor para focos y equipos que se calientan."], ["Medida", "50 mm × 25 m"], ["Colores", "Negro"]], icon: tapesIcon("#E2001A") },
+  { cat: "tapes", type: "Cinta térmica", brand: "tesa", brandCode: "t", brandColor: "#E2001A", model: "tesa cinta de aluminio", photo: "../alquiler/img/tesa-aluminio-aluminio_SpTV.webp", color: "Aluminio", colors: [], info: [["tag", "Tipo", "Cinta térmica", 1], ["palette", "Color", "Aluminio", 1]], specs: [["Categoría", "Cinta térmica"], ["Marca", "tesa"], ["Descripción", "Cinta de aluminio de 50 micras, refleja el calor y sella."], ["Medida", "50 mm × 10 m"], ["Colores", "Aluminio"]], icon: tapesIcon("#E2001A") },
+  { cat: "tapes", type: "Embalaje", brand: "tesa", brandCode: "t", brandColor: "#E2001A", model: "tesa precinto", photo: "", color: "Transparente", colors: [], info: [["tag", "Tipo", "Embalaje", 1], ["palette", "Color", "Transparente", 1]], specs: [["Categoría", "Embalaje"], ["Marca", "tesa"], ["Descripción", "Cinta de embalaje para cerrar cajas."], ["Medida", "48 mm × 126 m"], ["Colores", "Transparente"]], icon: tapesIcon("#E2001A") },
+  { cat: "tapes", type: "Embalaje", brand: "", brandCode: "", brandColor: "#5C6672", model: "Film industrial", photo: "", color: "Transparente", colors: [], info: [["tag", "Tipo", "Embalaje", 1], ["palette", "Color", "Transparente", 1]], specs: [["Categoría", "Embalaje"], ["Descripción", "Film estirable para embalar y proteger material en palés y transporte."], ["Medida", "50 cm × 125 m"], ["Colores", "Transparente"]], icon: tapesIcon("#5C6672") },
+  { cat: "tapes", type: "Reparación", brand: "Gorilla", brandCode: "G", brandColor: "#1A1A1A", model: "Gorilla cinta de reparación transparente", photo: "../alquiler/img/gorilla-transparente-transparente_SpTV.webp", color: "Transparente", colors: [], info: [["tag", "Tipo", "Reparación", 1], ["palette", "Color", "Transparente", 1]], specs: [["Categoría", "Reparación"], ["Marca", "Gorilla"], ["Descripción", "Cinta de reparación transparente y extrafuerte, para interior y exterior."], ["Medida", "48 mm × 8,2 m"], ["Colores", "Transparente"]], icon: tapesIcon("#1A1A1A") },
+  { cat: "tapes", type: "Cinta de datos", brand: "C-Tape", brandCode: "C", brandColor: "#1A1A1A", model: "C-Tape cinta de datos", photo: "../alquiler/img/c-tape-blanco_SpTV.webp", color: "Blanco|Amarillo|Azul|Rojo|Verde", colors: [{"name": "Blanco", "hex": "#FFFFFF", "photo": "../alquiler/img/c-tape-blanco_SpTV.webp"}, {"name": "Amarillo", "hex": "#F2C200", "photo": "../alquiler/img/c-tape-amarillo_SpTV.webp"}, {"name": "Azul", "hex": "#1F5FD0", "photo": "../alquiler/img/c-tape-azul_SpTV.webp"}, {"name": "Rojo", "hex": "#D0202E", "photo": "../alquiler/img/c-tape-rojo_SpTV.webp"}, {"name": "Verde", "hex": "#1E9C46", "photo": "../alquiler/img/c-tape-verde_SpTV.webp"}], info: [["tag", "Tipo", "Cinta de datos", 1], ["palette", "Colores", "5 colores", 1]], specs: [["Categoría", "Cinta de datos"], ["Marca", "C-Tape"], ["Descripción", "Etiquetas de datos para cámaras, cargadores y tarjetas: se escriben y se quitan sin dejar restos."], ["Medida", "25 mm × 15 m"], ["Formato", "250 unidades"], ["Colores", "Blanco · Amarillo · Azul · Rojo · Verde"]], icon: tapesIcon("#1A1A1A") }
+];
+
+// BACKDROPS: purchase catalogue, official photos from each brand's website.
+// colors: one photo per colour; the dots on the card swap the photo (generated by tools/build_sonido_data.py)
+const BACKDROPS = [
+  { cat: "backdrops", type: "Tela molton", brand: "Adam Hall", brandCode: "AH", brandColor: "#1A1A1A", model: "Adam Hall tela molton negra", photo: "../alquiler/img/adam-hall-molton-negro_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Tela molton", 1], ["palette", "Color", "Negro", 1], ["capacity", "Formatos", "160 g · 6 × 6 m · 300 g · 3 × 3 m · 300 g · 4 × 3 m · 300 g · 6 × 6 m"]], specs: [["Categoría", "Tela molton"], ["Marca", "Adam Hall"], ["Descripción", "Tela molton negra con ojales para fondos, aforos y tapar luz; absorbe la luz y amortigua el sonido."], ["Medidas", "160 g/m²: 6 × 6 m · 300 g/m²: 3 × 3 m, 4 × 3 m y 6 × 6 m"], ["Acabado", "Con ojales"], ["Colores", "Negro"]], icon: backdropsIcon("#1A1A1A") }
+];
+
 // --- Model cards: one card per model; variants that only change storage are grouped ---
 const sizeInGB = v => /ilimitad/i.test(v) ? Infinity : parseFloat(String(v).replace(",", ".")) * (/TB/i.test(v) ? 1000 : 1) || 0;
 
@@ -4685,6 +4855,10 @@ renderModelCards(MARKS, document.getElementById("gridMarks"), CARD_INFO.custom);
 setupDataFilters(MARKS, "marks");
 renderModelCards(FASTENING, document.getElementById("gridFastening"), CARD_INFO.custom);
 setupDataFilters(FASTENING, "fastening");
+renderModelCards(TAPES, document.getElementById("gridTapes"), CARD_INFO.custom);
+setupDataFilters(TAPES, "tapes");
+renderModelCards(BACKDROPS, document.getElementById("gridBackdrops"), CARD_INFO.custom);
+setupDataFilters(BACKDROPS, "backdrops");
 renderModelCards(CABINS, document.getElementById("gridCabins"), CARD_INFO.custom);
 renderModelCards(VIDEOCONF, document.getElementById("gridVideoconf"), CARD_INFO.custom);
 renderModelCards(PRINTERS, document.getElementById("gridPrinters"), CARD_INFO.custom);
@@ -4766,6 +4940,8 @@ document.getElementById("effectsIconLarge").innerHTML = effectsIcon("#2B79C2");
 document.getElementById("cleaningIconLarge").innerHTML = cleaningIcon("#2B79C2");
 document.getElementById("marksIconLarge").innerHTML = marksIcon("#2B79C2");
 document.getElementById("fasteningIconLarge").innerHTML = fasteningIcon("#2B79C2");
+document.getElementById("tapesIconLarge").innerHTML = tapesIcon("#2B79C2");
+document.getElementById("backdropsIconLarge").innerHTML = backdropsIcon("#2B79C2");
 document.getElementById("videoconfIconLarge").innerHTML = videoconfIcon("#2B79C2");
 document.getElementById("printerIconLarge").innerHTML = printerIcon("#2B79C2");
 
@@ -4792,6 +4968,8 @@ const views = {
   cleaning: document.getElementById("viewCleaning"),
   marks: document.getElementById("viewMarks"),
   fastening: document.getElementById("viewFastening"),
+  tapes: document.getElementById("viewTapes"),
+  backdrops: document.getElementById("viewBackdrops"),
   videoconf: document.getElementById("viewVideoconf"),
   printers: document.getElementById("viewPrinters")
 };
@@ -4819,6 +4997,8 @@ const CATEGORY_INFO = {
   cleaning: "Limpieza",
   marks: "Marcas de foco",
   fastening: "Sujeción",
+  tapes: "Cintas adhesivas",
+  backdrops: "Fondos / Telas",
   videoconf: "Videoconferencia PRO",
   printers: "Impresoras"
 };
@@ -4829,13 +5009,19 @@ const HEADER_DEFAULT = ["Catálogo de alquiler", "Soporte TV", "Elige una catego
 const MODE = document.documentElement.dataset.mode === "compra" ? "compra" : "alquiler";
 const MODE_KEYS = {
   alquiler: ["tablets", "phones", "accessories", "computers", "mac", "monitors", "connectivity", "cabins", "videoconf", "printers"],
-  compra: ["storage", "batteries", "sound", "stationery", "protection", "electric", "filmset", "dulling", "lighting", "effects", "cleaning", "marks", "fastening"]
+  compra: ["storage", "batteries", "sound", "stationery", "protection", "electric", "filmset", "dulling", "lighting", "effects", "cleaning", "marks", "fastening", "tapes", "backdrops"]
 };
 const OTHER_CATALOG = MODE === "compra" ? "../alquiler/" : "../compra/";
 const inMode = key => MODE_KEYS[MODE].includes(key);
 
+// Categories with the "Sostenible" badge (card on the landing + next to the title)
+const CATEGORY_BADGES = {
+  tapes: true,
+};
+
 function setCatalogHeader(key) {
   const info = key && CATEGORY_INFO[key];
+  document.getElementById("catBadge").hidden = !(info && CATEGORY_BADGES[key]);
   const featured = document.getElementById("destacados");
   if (featured) featured.hidden = !!info || MODE === "compra";
   document.getElementById("catalogo").classList.toggle("in-category", !!info);
@@ -4891,6 +5077,8 @@ const ROUTES = {
   limpieza: "cleaning",
   "marcas-de-foco": "marks",
   sujecion: "fastening",
+  "cintas-adhesivas": "tapes",
+  "fondos-telas": "backdrops",
   videoconferencia: "videoconf",
   impresoras: "printers"
 };
@@ -4898,7 +5086,7 @@ const SLUGS = Object.fromEntries(Object.entries(ROUTES).map(([slug, key]) => [ke
 
 // Hide what belongs to the other catalogue: landing cards, menu and footer links
 const CARD_KEYS = { goTablets: "tablets", goPhones: "phones", goAccessories: "accessories", goComputers: "computers", goMac: "mac",
-  goMonitors: "monitors", goConnectivity: "connectivity", goStorage: "storage", goBatteries: "batteries", goSound: "sound", goStationery: "stationery", goProtection: "protection", goElectric: "electric", goFilmset: "filmset", goDulling: "dulling", goLighting: "lighting", goEffects: "effects", goCleaning: "cleaning", goMarks: "marks", goFastening: "fastening", goCabins: "cabins", goVideoconf: "videoconf", goPrinters: "printers" };
+  goMonitors: "monitors", goConnectivity: "connectivity", goStorage: "storage", goBatteries: "batteries", goSound: "sound", goStationery: "stationery", goProtection: "protection", goElectric: "electric", goFilmset: "filmset", goDulling: "dulling", goLighting: "lighting", goEffects: "effects", goCleaning: "cleaning", goMarks: "marks", goFastening: "fastening", goTapes: "tapes", goBackdrops: "backdrops", goCabins: "cabins", goVideoconf: "videoconf", goPrinters: "printers" };
 Object.entries(CARD_KEYS).forEach(([id, key]) => { if (!inMode(key)) document.getElementById(id).hidden = true; });
 document.querySelectorAll("[data-route]").forEach(a => { if (!inMode(ROUTES[a.dataset.route])) a.hidden = true; });
 document.querySelectorAll(".footer-col").forEach(col => {
@@ -4932,6 +5120,8 @@ document.getElementById("goEffects").addEventListener("click", () => goTo("effec
 document.getElementById("goCleaning").addEventListener("click", () => goTo("cleaning"));
 document.getElementById("goMarks").addEventListener("click", () => goTo("marks"));
 document.getElementById("goFastening").addEventListener("click", () => goTo("fastening"));
+document.getElementById("goTapes").addEventListener("click", () => goTo("tapes"));
+document.getElementById("goBackdrops").addEventListener("click", () => goTo("backdrops"));
 document.getElementById("goCabins").addEventListener("click", () => goTo("cabins"));
 document.getElementById("goVideoconf").addEventListener("click", () => goTo("videoconf"));
 document.getElementById("goPrinters").addEventListener("click", () => goTo("printers"));
@@ -5084,6 +5274,18 @@ setupFilters(document.getElementById("gridFastening"), [
   { select: document.getElementById("fasteningTypeSelect"), attr: "type" },
   { select: document.getElementById("fasteningBrandSelect"), attr: "brand" },
   { select: document.getElementById("fasteningColorSelect"), attr: "color" }
+]);
+
+setupFilters(document.getElementById("gridTapes"), [
+  { select: document.getElementById("tapesTypeSelect"), attr: "type" },
+  { select: document.getElementById("tapesBrandSelect"), attr: "brand" },
+  { select: document.getElementById("tapesColorSelect"), attr: "color" }
+]);
+
+setupFilters(document.getElementById("gridBackdrops"), [
+  { select: document.getElementById("backdropsTypeSelect"), attr: "type" },
+  { select: document.getElementById("backdropsBrandSelect"), attr: "brand" },
+  { select: document.getElementById("backdropsColorSelect"), attr: "color" }
 ]);
 
 setupFilters(document.getElementById("gridCabins"), [
