@@ -582,7 +582,7 @@
   /* --- Storage: wide cards, two per row --- */
   /* Cards keep their size (459px); up to 3 per row when the screen is wide enough */
   #viewStorage, #viewTablets, #viewPhones, #viewAccessories, #viewComputers,
-  #viewMac, #viewCabins, #viewVideoconf, #viewPrinters, #viewMonitors, #viewConnectivity, #viewBatteries, #viewSound, #viewStationery, #viewProtection, #viewElectric, #viewFilmset, #viewDulling, #viewLighting, #viewEffects, #viewCleaning, #viewMarks, #viewFastening, #viewTapes, #viewBackdrops { max-width: none; }
+  #viewMac, #viewCabins, #viewVideoconf, #viewPrinters, #viewMonitors, #viewConnectivity, #viewBatteries, #viewSound, #viewStationery, #viewProtection, #viewElectric, #viewFilmset, #viewDulling, #viewLighting, #viewEffects, #viewCleaning, #viewMarks, #viewFastening, #viewTapes, #viewBackdrops, #viewOthersound, #viewLavacc { max-width: none; }
 
   .storage-grid {
     display: grid;
@@ -1593,6 +1593,13 @@
   }
   .eco-badge svg { width: 18px; height: 18px; flex: none; }
   .eco-badge[hidden] { display: none !important; }
+  /* "Pendiente": same shape as "Sostenible", in amber */
+  .pending-badge { background: #FFF3D6; color: #8A5300; border-color: #F0A500; }
+  [data-theme="dark"] .pending-badge { background: rgba(240,165,0,0.16); color: #FFD27A; border-color: #F0A500; }
+  .filter-panel[hidden] { display: none !important; }
+  .catalog-layout:has(> .filter-panel[hidden]) { display: block; }
+  .pending-notice { grid-column: 1 / -1; margin: 10px auto; max-width: 520px; text-align: center; color: var(--ink-soft); font-size: 16px; line-height: 1.6; }
+  .pending-notice strong { display: block; color: var(--ink); font-size: 20px; margin-bottom: 6px; }
   .eco-badge--title { margin-top: 12px; padding: 9px 20px 9px 15px; font-size: 17px; gap: 9px; }
   .eco-badge--title svg { width: 24px; height: 24px; }
   header.in-category .brand-header { display: flex; flex-direction: column; align-items: center; }
@@ -1707,6 +1714,8 @@
         <a href="#sujecion" data-route="sujecion">Sujeción<small>Bridas, velcro, pinzas, cinchas e imanes</small></a>
         <a href="#cintas-adhesivas" data-route="cintas-adhesivas">Cintas adhesivas<small>Gaffer, americana, doble cara, papel y más</small></a>
         <a href="#fondos-telas" data-route="fondos-telas">Fondos / Telas<small>Tela molton negra con ojales</small></a>
+        <a href="#otros-sonidos" data-route="otros-sonidos">Otros sonidos<small>Auriculares, aislantes, cartón pluma y tacones</small></a>
+        <a href="#accesorios-petaca-micro" data-route="accesorios-petaca-micro">Accesorios Petaca/Micro<small>Pendiente</small></a>
         <a href="#cabinas" data-route="cabinas">Cabinas<small>Cabinas de discos y NAS</small></a>
         <a href="#conectividad" data-route="conectividad">Conectividad<small>MiFi, routers y Wi-Fi</small></a>
         <a href="#accesorios" data-route="accesorios">Accesorios<small>Estabilizadores, luz, audio</small></a>
@@ -1728,6 +1737,7 @@
     <img class="brand-logo brand-logo--light" src="img/logo-soporte-tv_SpTV.webp?v=20261004e" alt="Soporte TV" width="242" height="64">
     <img class="brand-logo brand-logo--dark" src="img/logo-soporte-tv-blanco_SpTV.webp?v=20261004e" alt="" width="242" height="64">
     <h1 id="catTitle">Soporte TV</h1>
+    <span class="eco-badge eco-badge--title pending-badge" id="catPending" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Pendiente</span>
     <span class="eco-badge eco-badge--title" id="catBadge" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.5 3.5C11 3.6 5 8 5 15c0 1.3.3 2.5.8 3.5L3.6 20.7l1.4 1.4 2.3-2.3c1 .5 2.1.7 3.2.7 7 0 10.6-6.6 10-17zM9.8 18.1c-.7 0-1.4-.1-2-.4 2.5-3.6 5.3-6.3 8.6-8.4-3.6 1.4-6.6 3.8-9.9 7.3-.3-.6-.4-1.3-.4-2 0-5 4.1-8.7 11.2-9.4-.2 7.6-3 12.9-7.5 12.9z"/></svg>Sostenible</span>
   </div>
   <p id="catDesc">Elige una categoría para ver los productos disponibles para alquiler.</p>
@@ -1822,6 +1832,15 @@
   <button class="category-card" id="goBackdrops">
     <div class="category-icon" id="backdropsIconLarge"></div>
     <span class="category-label">Fondos / Telas</span>
+  </button>
+  <button class="category-card" id="goOthersound">
+    <div class="category-icon" id="othersoundIconLarge"></div>
+    <span class="category-label">Otros sonidos</span>
+  </button>
+  <button class="category-card" id="goLavacc">
+    <div class="category-icon" id="lavaccIconLarge"></div>
+    <span class="category-label">Accesorios Petaca/Micro</span>
+    <span class="eco-badge pending-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Pendiente</span>
   </button>
   <button class="category-card" id="goCabins">
     <div class="category-icon" id="cabinIconLarge"></div>
@@ -2548,6 +2567,68 @@
   </div>
 </div>
 
+<div class="catalog-view" id="viewOthersound" hidden>
+  <button class="back-btn" data-back>← Volver</button>
+
+  <div class="catalog-layout">
+    <aside class="filter-panel" aria-label="Filtros">
+      <p class="filter-panel-title">Filtrar</p>
+      <div class="filter-row">
+        <span class="filter-label">Tipo</span>
+        <select class="filter-select" id="othersoundTypeSelect">
+          <option value="all">Todos</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Marca</span>
+        <select class="filter-select" id="othersoundBrandSelect">
+          <option value="all">Todas las marcas</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Color</span>
+        <select class="filter-select" id="othersoundColorSelect">
+          <option value="all">Todos</option>
+        </select>
+      </div>
+      <button class="filter-reset" type="button">Quitar filtros</button>
+    </aside>
+    <div class="storage-grid" id="gridOthersound"></div>
+  </div>
+</div>
+
+<div class="catalog-view" id="viewLavacc" hidden>
+  <button class="back-btn" data-back>← Volver</button>
+
+  <div class="catalog-layout">
+    <aside class="filter-panel" aria-label="Filtros" hidden>
+      <p class="filter-panel-title">Filtrar</p>
+      <div class="filter-row">
+        <span class="filter-label">Tipo</span>
+        <select class="filter-select" id="lavaccTypeSelect">
+          <option value="all">Todos</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Marca</span>
+        <select class="filter-select" id="lavaccBrandSelect">
+          <option value="all">Todas las marcas</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Color</span>
+        <select class="filter-select" id="lavaccColorSelect">
+          <option value="all">Todos</option>
+        </select>
+      </div>
+      <button class="filter-reset" type="button">Quitar filtros</button>
+    </aside>
+    <div class="storage-grid" id="gridLavacc">
+      <p class="pending-notice"><strong>Estamos preparando esta categoría.</strong>Muy pronto verás aquí los productos. Mientras, pregúntanos por lo que necesites y te asesoramos.</p>
+    </div>
+  </div>
+</div>
+
 <div class="catalog-view" id="viewCabins" hidden>
   <button class="back-btn" data-back>← Volver</button>
 
@@ -2724,6 +2805,8 @@
       <a href="#sujecion" data-route="sujecion">Sujeción</a>
       <a href="#cintas-adhesivas" data-route="cintas-adhesivas">Cintas adhesivas</a>
       <a href="#fondos-telas" data-route="fondos-telas">Fondos / Telas</a>
+      <a href="#otros-sonidos" data-route="otros-sonidos">Otros sonidos</a>
+      <a href="#accesorios-petaca-micro" data-route="accesorios-petaca-micro">Accesorios Petaca/Micro</a>
       <a href="#cabinas" data-route="cabinas">Cabinas</a>
       <a href="#conectividad" data-route="conectividad">Conectividad</a>
       <a href="#accesorios" data-route="accesorios">Accesorios</a>
@@ -2813,7 +2896,7 @@
       <li><strong>Pinzas de madera de 7 vueltas</strong> — «Clothespin-2459e», por David R. Tribble (Loadmaster). Licencia <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Clothespin-2459e.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
       <li><strong>Pinza de plástico</strong> — «Red clamp 01 ies», por Frank Vincentz. Licencia <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Red_clamp_01_ies.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
   </ul>
-  <p class="credits-note">Las fotos de accesorios, conectividad, pilas, papelería, protección, conectividad, rodaje, limpieza, marcas de foco y sujeción genéricos son orientativas: el material entregado puede ser de otra marca o modelo equivalente. Resto de fotos de producto: imágenes oficiales de los fabricantes (Apple, Samsung, LG, JVC, Microsoft, HP, Dell, Lenovo, SanDisk / Western Digital, Areca, Stardom, TerraMaster, QNAP, Synology, Jabra, Phonak, Hollyland, Motorola, Ursa Straps, Rycote, Bubblebee Industries, Pilot, BIC, 3M / Scotch, Staedtler, Gorilla, Goobay, Loctite, edding, Sharpie, Pentel, Apli, Cap It, Tenba, Hama, Xiaomi, HP, Dirty Rigger, Bluestar, KleenSlate, Kenro, SW Kenyon (K-Line), Rosco, Dirty Down, Honeyrose, Ewent, tesa, Photographic Solutions, Pancro, Rain-X, Soudal, 3-En-Uno, WD-40, Sanytol, Zeiss, Foogy, Kimberly-Clark, Dodot, Green Clean, JJC, EDM, JAZ, Focus Rat, CGE Tools, Dylan Stoel, Modern Studio, Starlite, Bongo Ties, Procab, Precygrap, StarTech, VELCRO, Kupo, 3M, Sprig, Piher, Wolfcraft, tesa, Progaff / Le Mark, Gorilla, Ceys, 3M / Solventum, Walker Tape, Joe's Sticky Stuff, Hide-a-mic, EDM, Shurtape, C-Tape, Adam Hall, Ricoh, Zhiyun, Wacom, Celly, Targus y Ubiquiti) o aportadas por Soporte TV.</p>
+  <p class="credits-note">Las fotos de accesorios, conectividad, pilas, papelería, protección, conectividad, rodaje, limpieza, marcas de foco y sujeción genéricos son orientativas: el material entregado puede ser de otra marca o modelo equivalente. Resto de fotos de producto: imágenes oficiales de los fabricantes (Apple, Samsung, LG, JVC, Microsoft, HP, Dell, Lenovo, SanDisk / Western Digital, Areca, Stardom, TerraMaster, QNAP, Synology, Jabra, Phonak, Hollyland, Motorola, Ursa Straps, Rycote, Bubblebee Industries, Pilot, BIC, 3M / Scotch, Staedtler, Gorilla, Goobay, Loctite, edding, Sharpie, Pentel, Apli, Cap It, Tenba, Hama, Xiaomi, HP, Dirty Rigger, Bluestar, KleenSlate, Kenro, SW Kenyon (K-Line), Rosco, Dirty Down, Honeyrose, Ewent, tesa, Photographic Solutions, Pancro, Rain-X, Soudal, 3-En-Uno, WD-40, Sanytol, Zeiss, Foogy, Kimberly-Clark, Dodot, Green Clean, JJC, EDM, JAZ, Focus Rat, CGE Tools, Dylan Stoel, Modern Studio, Starlite, Bongo Ties, Procab, Precygrap, StarTech, VELCRO, Kupo, 3M, Sprig, Piher, Wolfcraft, tesa, Progaff / Le Mark, Gorilla, Ceys, 3M / Solventum, Walker Tape, Joe's Sticky Stuff, Hide-a-mic, EDM, Shurtape, C-Tape, Adam Hall, Sennheiser, Sony, Logitech, Ricoh, Zhiyun, Wacom, Celly, Targus y Ubiquiti) o aportadas por Soporte TV.</p>
 </div>
 <div class="scrim rent-scrim" id="rentScrim"></div>
 <div class="rent-modal" id="rentModal" role="dialog" aria-modal="true" aria-labelledby="rentTitle">
@@ -3154,6 +3237,25 @@ function backdropsIcon(accent) {
     <path d="M18 16h84" stroke="${accent}" stroke-width="5" stroke-linecap="round"/>
     <path d="M24 16v70c8-6 14 6 22 0s14 6 22 0 14 6 22 0 8 4 8 4V16" fill="#EDEFF2" stroke="${accent}" stroke-width="3.5" stroke-linejoin="round"/>
     <path d="M42 22v58M60 22v58M78 22v58" stroke="#D9DEE4" stroke-width="3"/>
+  </svg>`;
+}
+
+// Icon for the "Otros sonidos" card
+function othersoundIcon(accent) {
+  return `<svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+    <path d="M28 62V52a32 32 0 0 1 64 0v10" fill="none" stroke="${accent}" stroke-width="4" stroke-linecap="round"/>
+    <rect x="20" y="58" width="18" height="30" rx="7" fill="#EDEFF2" stroke="${accent}" stroke-width="3.5"/>
+    <rect x="82" y="58" width="18" height="30" rx="7" fill="#EDEFF2" stroke="${accent}" stroke-width="3.5"/>
+  </svg>`;
+}
+
+// Icon for the "Accesorios Petaca/Micro" card
+function lavaccIcon(accent) {
+  return `<svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="40" y="30" width="40" height="56" rx="7" fill="#EDEFF2" stroke="${accent}" stroke-width="3.5"/>
+    <path d="M52 30V16M68 30V20" stroke="${accent}" stroke-width="4" stroke-linecap="round"/>
+    <rect x="48" y="44" width="24" height="12" rx="2.5" fill="#D9DEE4"/>
+    <circle cx="60" cy="72" r="5" fill="${accent}"/>
   </svg>`;
 }
 
@@ -4618,6 +4720,21 @@ const BACKDROPS = [
   { cat: "backdrops", type: "Tela molton", brand: "Adam Hall", brandCode: "AH", brandColor: "#1A1A1A", model: "Adam Hall tela molton negra", photo: "img/adam-hall-molton-negro_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Tela molton", 1], ["palette", "Color", "Negro", 1], ["capacity", "Formatos", "160 g · 6 × 6 m · 300 g · 3 × 3 m · 300 g · 4 × 3 m · 300 g · 6 × 6 m"]], specs: [["Categoría", "Tela molton"], ["Marca", "Adam Hall"], ["Descripción", "Tela molton negra con ojales para fondos, aforos y tapar luz; absorbe la luz y amortigua el sonido."], ["Medidas", "160 g/m²: 6 × 6 m · 300 g/m²: 3 × 3 m, 4 × 3 m y 6 × 6 m"], ["Acabado", "Con ojales"], ["Colores", "Negro"]], icon: backdropsIcon("#1A1A1A") }
 ];
 
+// OTHERSOUND: purchase catalogue, official photos and free-licence photos.
+// colors: one photo per colour; the dots on the card swap the photo (generated by tools/build_sonido_data.py)
+const OTHERSOUND = [
+  { cat: "othersound", type: "Aislamiento", brand: "", brandCode: "", brandColor: "#5C6672", model: "Neopreno adhesivo esponjoso", photo: "", color: "Negro", colors: [], info: [["tag", "Tipo", "Aislamiento", 1], ["palette", "Color", "Negro", 1]], specs: [["Categoría", "Aislamiento"], ["Descripción", "Lámina de neopreno esponjoso con adhesivo para amortiguar golpes y ruidos y aislar superficies."], ["Medida", "1 m × 1 m × 3 mm"], ["Adhesivo", "Sí"], ["Colores", "Negro"]], icon: othersoundIcon("#5C6672") },
+  { cat: "othersound", type: "Aislamiento", brand: "", brandCode: "", brandColor: "#5C6672", model: "Depron aislante", photo: "", color: "Blanco", colors: [], info: [["tag", "Tipo", "Aislamiento", 1], ["palette", "Color", "Blanco", 1]], specs: [["Categoría", "Aislamiento"], ["Descripción", "Plancha de espuma Depron ligera y aislante, fácil de cortar."], ["Medida", "120 × 80 mm × 3 mm"], ["Color", "Blanco"], ["Colores", "Blanco"]], icon: othersoundIcon("#5C6672") },
+  { cat: "othersound", type: "Panel", brand: "", brandCode: "", brandColor: "#5C6672", model: "Cartón pluma", photo: "", color: "Blanco|Negro", colors: [], info: [["tag", "Tipo", "Panel", 1], ["palette", "Colores", "2 colores", 1]], specs: [["Categoría", "Panel"], ["Descripción", "Panel ligero de cartón pluma para rebotar o quitar luz, hacer pantallas y montajes."], ["Medidas", "Blanco: 70 × 100 cm × 3 mm · Negro (dos caras): 70 × 100 cm × 5 mm"], ["Adhesivo", "No"], ["Colores", "Blanco · Negro"]], icon: othersoundIcon("#5C6672") },
+  { cat: "othersound", type: "Ruido de pasos", brand: "", brandCode: "", brandColor: "#5C6672", model: "Tacones silenciadores", photo: "", color: "Negro|Transparente", colors: [], info: [["tag", "Tipo", "Ruido de pasos", 1], ["palette", "Colores", "2 colores", 1], ["capacity", "Formatos", "XS · S · M · L"]], specs: [["Categoría", "Ruido de pasos"], ["Descripción", "Protectores para tacones que amortiguan el ruido de los pasos durante la toma de sonido."], ["Tallas", "XS · S · M · L"], ["Colores", "Negro · Transparente"]], icon: othersoundIcon("#5C6672") },
+  { cat: "othersound", type: "Auriculares", brand: "Sennheiser", brandCode: "S", brandColor: "#0A2C5E", model: "Sennheiser HD 206", photo: "img/sennheiser-hd206-negro_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Auriculares", 1], ["palette", "Color", "Negro", 1]], specs: [["Categoría", "Auriculares"], ["Marca", "Sennheiser"], ["Descripción", "Auriculares cerrados de diadema para monitorizar sonido."], ["Tipo", "Cerrados, de diadema"], ["Conexión", "Jack 3,5 mm (con adaptador a 6,3 mm)"], ["Colores", "Negro"]], icon: othersoundIcon("#0A2C5E") },
+  { cat: "othersound", type: "Auriculares", brand: "Sony", brandCode: "S", brandColor: "#1A1A1A", model: "Sony MDR-ZX110", photo: "img/sony-mdr-zx-negro_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Auriculares", 1], ["palette", "Color", "Negro", 1]], specs: [["Categoría", "Auriculares"], ["Marca", "Sony"], ["Descripción", "Auriculares de diadema ligeros y plegables."], ["Tipo", "Diadema"], ["Conexión", "Jack 3,5 mm"], ["Colores", "Negro"]], icon: othersoundIcon("#1A1A1A") },
+  { cat: "othersound", type: "Auriculares", brand: "Logitech", brandCode: "L", brandColor: "#00B8FC", model: "Logitech H390", photo: "img/logitech-h390-negro_SpTV.webp", color: "Negro", colors: [], info: [["tag", "Tipo", "Auriculares", 1], ["palette", "Color", "Negro", 1]], specs: [["Categoría", "Auriculares"], ["Marca", "Logitech"], ["Descripción", "Auriculares USB con micrófono con cancelación de ruido, para videollamadas."], ["Conexión", "USB"], ["Micrófono", "Sí, con cancelación de ruido"], ["Colores", "Negro"]], icon: othersoundIcon("#00B8FC") }
+];
+
+// Accesorios Petaca/Micro: still being prepared (no products yet)
+const LAVACC = [];
+
 // --- Model cards: one card per model; variants that only change storage are grouped ---
 const sizeInGB = v => /ilimitad/i.test(v) ? Infinity : parseFloat(String(v).replace(",", ".")) * (/TB/i.test(v) ? 1000 : 1) || 0;
 
@@ -4858,6 +4975,10 @@ renderModelCards(TAPES, document.getElementById("gridTapes"), CARD_INFO.custom);
 setupDataFilters(TAPES, "tapes");
 renderModelCards(BACKDROPS, document.getElementById("gridBackdrops"), CARD_INFO.custom);
 setupDataFilters(BACKDROPS, "backdrops");
+renderModelCards(OTHERSOUND, document.getElementById("gridOthersound"), CARD_INFO.custom);
+setupDataFilters(OTHERSOUND, "othersound");
+renderModelCards(LAVACC, document.getElementById("gridLavacc"), CARD_INFO.custom);
+setupDataFilters(LAVACC, "lavacc");
 renderModelCards(CABINS, document.getElementById("gridCabins"), CARD_INFO.custom);
 renderModelCards(VIDEOCONF, document.getElementById("gridVideoconf"), CARD_INFO.custom);
 renderModelCards(PRINTERS, document.getElementById("gridPrinters"), CARD_INFO.custom);
@@ -4941,6 +5062,8 @@ document.getElementById("marksIconLarge").innerHTML = marksIcon("#2B79C2");
 document.getElementById("fasteningIconLarge").innerHTML = fasteningIcon("#2B79C2");
 document.getElementById("tapesIconLarge").innerHTML = tapesIcon("#2B79C2");
 document.getElementById("backdropsIconLarge").innerHTML = backdropsIcon("#2B79C2");
+document.getElementById("othersoundIconLarge").innerHTML = othersoundIcon("#2B79C2");
+document.getElementById("lavaccIconLarge").innerHTML = lavaccIcon("#2B79C2");
 document.getElementById("videoconfIconLarge").innerHTML = videoconfIcon("#2B79C2");
 document.getElementById("printerIconLarge").innerHTML = printerIcon("#2B79C2");
 
@@ -4969,6 +5092,8 @@ const views = {
   fastening: document.getElementById("viewFastening"),
   tapes: document.getElementById("viewTapes"),
   backdrops: document.getElementById("viewBackdrops"),
+  othersound: document.getElementById("viewOthersound"),
+  lavacc: document.getElementById("viewLavacc"),
   videoconf: document.getElementById("viewVideoconf"),
   printers: document.getElementById("viewPrinters")
 };
@@ -4998,6 +5123,8 @@ const CATEGORY_INFO = {
   fastening: "Sujeción",
   tapes: "Cintas adhesivas",
   backdrops: "Fondos / Telas",
+  othersound: "Otros sonidos",
+  lavacc: "Accesorios Petaca/Micro",
   videoconf: "Videoconferencia PRO",
   printers: "Impresoras"
 };
@@ -5008,12 +5135,16 @@ const HEADER_DEFAULT = ["Catálogo de alquiler", "Soporte TV", "Elige una catego
 const MODE = document.documentElement.dataset.mode === "compra" ? "compra" : "alquiler";
 const MODE_KEYS = {
   alquiler: ["tablets", "phones", "accessories", "computers", "mac", "monitors", "connectivity", "cabins", "videoconf", "printers"],
-  compra: ["storage", "batteries", "sound", "stationery", "protection", "electric", "filmset", "dulling", "lighting", "effects", "cleaning", "marks", "fastening", "tapes", "backdrops"]
+  compra: ["storage", "batteries", "sound", "stationery", "protection", "electric", "filmset", "dulling", "lighting", "effects", "cleaning", "marks", "fastening", "tapes", "backdrops", "othersound", "lavacc"]
 };
 const OTHER_CATALOG = MODE === "compra" ? "../alquiler/" : "../compra/";
 const inMode = key => MODE_KEYS[MODE].includes(key);
 
 // Categories with the "Sostenible" badge (card on the landing + next to the title)
+// Categories still being prepared ("Pendiente" badge on the card and next to the title)
+const CATEGORY_PENDING = {
+  lavacc: true,
+};
 const CATEGORY_BADGES = {
   tapes: true,
 };
@@ -5021,6 +5152,7 @@ const CATEGORY_BADGES = {
 function setCatalogHeader(key) {
   const info = key && CATEGORY_INFO[key];
   document.getElementById("catBadge").hidden = !(info && CATEGORY_BADGES[key]);
+  document.getElementById("catPending").hidden = !(info && CATEGORY_PENDING[key]);
   const featured = document.getElementById("destacados");
   if (featured) featured.hidden = !!info || MODE === "compra";
   document.getElementById("catalogo").classList.toggle("in-category", !!info);
@@ -5078,6 +5210,8 @@ const ROUTES = {
   sujecion: "fastening",
   "cintas-adhesivas": "tapes",
   "fondos-telas": "backdrops",
+  "otros-sonidos": "othersound",
+  "accesorios-petaca-micro": "lavacc",
   videoconferencia: "videoconf",
   impresoras: "printers"
 };
@@ -5085,7 +5219,7 @@ const SLUGS = Object.fromEntries(Object.entries(ROUTES).map(([slug, key]) => [ke
 
 // Hide what belongs to the other catalogue: landing cards, menu and footer links
 const CARD_KEYS = { goTablets: "tablets", goPhones: "phones", goAccessories: "accessories", goComputers: "computers", goMac: "mac",
-  goMonitors: "monitors", goConnectivity: "connectivity", goStorage: "storage", goBatteries: "batteries", goSound: "sound", goStationery: "stationery", goProtection: "protection", goElectric: "electric", goFilmset: "filmset", goDulling: "dulling", goLighting: "lighting", goEffects: "effects", goCleaning: "cleaning", goMarks: "marks", goFastening: "fastening", goTapes: "tapes", goBackdrops: "backdrops", goCabins: "cabins", goVideoconf: "videoconf", goPrinters: "printers" };
+  goMonitors: "monitors", goConnectivity: "connectivity", goStorage: "storage", goBatteries: "batteries", goSound: "sound", goStationery: "stationery", goProtection: "protection", goElectric: "electric", goFilmset: "filmset", goDulling: "dulling", goLighting: "lighting", goEffects: "effects", goCleaning: "cleaning", goMarks: "marks", goFastening: "fastening", goTapes: "tapes", goBackdrops: "backdrops", goOthersound: "othersound", goLavacc: "lavacc", goCabins: "cabins", goVideoconf: "videoconf", goPrinters: "printers" };
 Object.entries(CARD_KEYS).forEach(([id, key]) => { if (!inMode(key)) document.getElementById(id).hidden = true; });
 document.querySelectorAll("[data-route]").forEach(a => { if (!inMode(ROUTES[a.dataset.route])) a.hidden = true; });
 document.querySelectorAll(".footer-col").forEach(col => {
@@ -5121,6 +5255,8 @@ document.getElementById("goMarks").addEventListener("click", () => goTo("marks")
 document.getElementById("goFastening").addEventListener("click", () => goTo("fastening"));
 document.getElementById("goTapes").addEventListener("click", () => goTo("tapes"));
 document.getElementById("goBackdrops").addEventListener("click", () => goTo("backdrops"));
+document.getElementById("goOthersound").addEventListener("click", () => goTo("othersound"));
+document.getElementById("goLavacc").addEventListener("click", () => goTo("lavacc"));
 document.getElementById("goCabins").addEventListener("click", () => goTo("cabins"));
 document.getElementById("goVideoconf").addEventListener("click", () => goTo("videoconf"));
 document.getElementById("goPrinters").addEventListener("click", () => goTo("printers"));
@@ -5285,6 +5421,18 @@ setupFilters(document.getElementById("gridBackdrops"), [
   { select: document.getElementById("backdropsTypeSelect"), attr: "type" },
   { select: document.getElementById("backdropsBrandSelect"), attr: "brand" },
   { select: document.getElementById("backdropsColorSelect"), attr: "color" }
+]);
+
+setupFilters(document.getElementById("gridOthersound"), [
+  { select: document.getElementById("othersoundTypeSelect"), attr: "type" },
+  { select: document.getElementById("othersoundBrandSelect"), attr: "brand" },
+  { select: document.getElementById("othersoundColorSelect"), attr: "color" }
+]);
+
+setupFilters(document.getElementById("gridLavacc"), [
+  { select: document.getElementById("lavaccTypeSelect"), attr: "type" },
+  { select: document.getElementById("lavaccBrandSelect"), attr: "brand" },
+  { select: document.getElementById("lavaccColorSelect"), attr: "color" }
 ]);
 
 setupFilters(document.getElementById("gridCabins"), [
