@@ -11,7 +11,10 @@ import base64, hashlib, io, json, os, re, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
-SRC = os.path.join(ROOT, "alquiler", "index.html")
+# Editable master with the CSS and JS inline (the published alquiler/index.html loads them from separate files)
+SRC = os.path.join(ROOT, "tools", "catalogo_fuente.html")
+if not os.path.exists(SRC):
+    SRC = os.path.join(ROOT, "alquiler", "index.html")
 IMG_DIR = os.path.join(ROOT, "alquiler", "img")
 PUBLIC_IMG = "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/"
 PUBLIC_SITE = "https://m3hervas.github.io/CatalogoSoporte/"
