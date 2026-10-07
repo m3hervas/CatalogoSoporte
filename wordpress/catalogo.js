@@ -2072,7 +2072,7 @@ renderStorage(STORAGE, shadow.getElementById("gridStorage"));
 setupStorageFilters();
 renderModelCards(BATTERIES, shadow.getElementById("gridBatteries"), CARD_INFO.custom);
 renderModelCards(SOUND, shadow.getElementById("gridSound"), CARD_INFO.custom);
-setupSoundFilters();
+setupDataFilters(SOUND, "sound");
 renderModelCards(STATIONERY, shadow.getElementById("gridStationery"), CARD_INFO.custom);
 setupDataFilters(STATIONERY, "stationery");
 renderModelCards(PROTECTION, shadow.getElementById("gridProtection"), CARD_INFO.custom);
@@ -2105,18 +2105,7 @@ renderModelCards(CABINS, shadow.getElementById("gridCabins"), CARD_INFO.custom);
 renderModelCards(VIDEOCONF, shadow.getElementById("gridVideoconf"), CARD_INFO.custom);
 renderModelCards(PRINTERS, shadow.getElementById("gridPrinters"), CARD_INFO.custom);
 
-// Sound accessories: filter options come from the data (types, brands and colours, alphabetical)
-function setupSoundFilters() {
-  const opts = (id, values) => {
-    const sel = shadow.getElementById(id);
-    [...new Set(values)].filter(Boolean).sort((a, b) => a.localeCompare(b, "es")).forEach(v => sel.add(new Option(v, v)));
-  };
-  opts("soundTypeSelect", SOUND.flatMap(p => p.type.split("|")));
-  opts("soundBrandSelect", SOUND.map(p => p.brand));
-  opts("soundColorSelect", SOUND.flatMap(p => (p.color || "").split("|")));
-}
-
-// Same idea for any category whose filter options come from its data: <prefix>TypeSelect, BrandSelect, ColorSelect
+// Categories whose filter options come from their data: <prefix>TypeSelect, BrandSelect, ColorSelect
 function setupDataFilters(items, prefix) {
   const opts = (id, values) => {
     const sel = shadow.getElementById(prefix + id);
