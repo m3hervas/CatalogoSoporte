@@ -2,6 +2,24 @@
 // Products marked "No" in the column "¿Se muestra en la web?" of Productos_web_SoporteTV.xlsx (filled in by tools/build_catalogo.py)
 const HIDDEN_PRODUCTS = new Set([]);
 const productId = (gridEl, p) => [gridEl.id, p.brand || "", p.model, p.key || ""].join("|");
+
+// Cards are drawn only when their category is opened: drawing 360+ cards at load froze phones for a moment
+const PENDING_GRIDS = new Map();
+const deferRender = (gridEl, draw) => {
+  if (!gridEl) return;
+  const queue = PENDING_GRIDS.get(gridEl) || [];
+  queue.push(draw);
+  PENDING_GRIDS.set(gridEl, queue);
+};
+function flushRender(container) {
+  container.querySelectorAll(".storage-grid").forEach(grid => {
+    const queue = PENDING_GRIDS.get(grid);
+    if (!queue) return;
+    PENDING_GRIDS.delete(grid);
+    queue.forEach(draw => draw());
+  });
+}
+const flushAllRenders = () => flushRender(document);
 function tabletIcon(accent) {
   return `<svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
     <rect x="6" y="4" width="88" height="112" rx="5" fill="#EDEFF2" stroke="${accent}" stroke-width="3"/>
@@ -1270,6 +1288,10 @@ const STORAGE = [
 ];
 
 function renderStorage(items, gridEl) {
+  deferRender(gridEl, () => drawStorage(items, gridEl));
+}
+
+function drawStorage(items, gridEl) {
   items.forEach(d => {
     const pid = productId(gridEl, d);
     if (HIDDEN_PRODUCTS.has(pid)) return;
@@ -1874,6 +1896,10 @@ const CARD_INFO = {
 };
 
 function renderModelCards(items, gridEl, info = CARD_INFO.storage) {
+  deferRender(gridEl, () => drawModelCards(items, gridEl, info));
+}
+
+function drawModelCards(items, gridEl, info) {
   groupByModel(items).forEach(p => {
     const pid = productId(gridEl, p);
     if (HIDDEN_PRODUCTS.has(pid)) return;
@@ -2226,6 +2252,7 @@ function setCatalogHeader(key) {
 }
 
 function showView(key) {
+  flushRender(views[key]);
   setCatalogHeader(key);
   viewLanding.hidden = true;
   Object.values(views).forEach(v => v.hidden = true);
@@ -2554,7 +2581,7 @@ function setupPagination(grid) {
   }
   // A filter changed some card's "hidden" class: start again from page 1
   new MutationObserver(() => { page = 0; render(false); })
-    .observe(grid, { subtree: true, attributes: true, attributeFilter: ["class"] });
+    .observe(grid, { subtree: true, childList: true, attributes: true, attributeFilter: ["class"] });
   render(false);
 }
 document.querySelectorAll(".storage-grid").forEach(setupPagination);

@@ -49,11 +49,11 @@
         <svg class="nav-chevron" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
       </button>
       <div class="nav-dropdown" id="navDropdown">
-        <a href="#tablets" data-route="tablets">Tablets<small>Android y iPad</small></a>
-        <a href="#moviles" data-route="moviles">Móviles<small>Android y iPhone</small></a>
-        <a href="#mac" data-route="mac">Mac<small>MacBook, iMac, Mac mini y Studio</small></a>
-        <a href="#ordenadores" data-route="ordenadores">Ordenadores<small>Portátiles, Surface, AIO y CPU</small></a>
-        <a href="#monitores" data-route="monitores">Monitores / TV<small>LED, 4K, estudio y TV</small></a>
+        <a href="#tablets" data-route="tablets" hidden data-static-hidden>Tablets<small>Android y iPad</small></a>
+        <a href="#moviles" data-route="moviles" hidden data-static-hidden>Móviles<small>Android y iPhone</small></a>
+        <a href="#mac" data-route="mac" hidden data-static-hidden>Mac<small>MacBook, iMac, Mac mini y Studio</small></a>
+        <a href="#ordenadores" data-route="ordenadores" hidden data-static-hidden>Ordenadores<small>Portátiles, Surface, AIO y CPU</small></a>
+        <a href="#monitores" data-route="monitores" hidden data-static-hidden>Monitores / TV<small>LED, 4K, estudio y TV</small></a>
         <a href="#almacenamiento" data-route="almacenamiento">Almacenamiento<small>SSD portátiles y de escritorio</small></a>
         <a href="#pilas" data-route="pilas">Pilas y cargadores<small>Alcalinas, litio, botón, audífono y recargables</small></a>
         <a href="#sonido" data-route="sonido">Accesorios de sonido<small>Ursa, Rycote y Bubblebee</small></a>
@@ -71,11 +71,11 @@
         <a href="#fondos-telas" data-route="fondos-telas">Fondos / Telas<small>Tela molton negra con ojales</small></a>
         <a href="#otros-sonidos" data-route="otros-sonidos">Otros sonidos<small>Auriculares, aislantes, cartón pluma y tacones</small></a>
         <a href="#accesorios-petaca-micro" data-route="accesorios-petaca-micro">Accesorios Petaca/Micro<small>Pendiente</small></a>
-        <a href="#cabinas" data-route="cabinas">Cabinas<small>Cabinas de discos y NAS</small></a>
-        <a href="#conectividad" data-route="conectividad">Conectividad<small>MiFi, routers y Wi-Fi</small></a>
-        <a href="#accesorios" data-route="accesorios">Accesorios<small>Estabilizadores, luz, audio</small></a>
-        <a href="#videoconferencia" data-route="videoconferencia">Videoconferencia PRO<small>Videoconferencia, intercom y walkies</small></a>
-        <a href="#impresoras" data-route="impresoras">Impresoras<small>Multifunción A4 / A3 con coste por página</small></a>
+        <a href="#cabinas" data-route="cabinas" hidden data-static-hidden>Cabinas<small>Cabinas de discos y NAS</small></a>
+        <a href="#conectividad" data-route="conectividad" hidden data-static-hidden>Conectividad<small>MiFi, routers y Wi-Fi</small></a>
+        <a href="#accesorios" data-route="accesorios" hidden data-static-hidden>Accesorios<small>Estabilizadores, luz, audio</small></a>
+        <a href="#videoconferencia" data-route="videoconferencia" hidden data-static-hidden>Videoconferencia PRO<small>Videoconferencia, intercom y walkies</small></a>
+        <a href="#impresoras" data-route="impresoras" hidden data-static-hidden>Impresoras<small>Multifunción A4 / A3 con coste por página</small></a>
       </div>
     </div>
     <a class="nav-link" href="#contacto" data-nav="contact">Contacto</a>
@@ -99,31 +99,31 @@
 </header>
 
 <div class="landing" id="viewLanding">
-  <button class="category-card" id="goTablets">
+  <button class="category-card" id="goTablets" hidden data-static-hidden>
     <div class="category-icon" id="tabletIconLarge"></div>
     <span class="category-label">Tablets</span>
   </button>
-  <button class="category-card" id="goPhones">
+  <button class="category-card" id="goPhones" hidden data-static-hidden>
     <div class="category-icon" id="phoneIconLarge"></div>
     <span class="category-label">Móviles</span>
   </button>
-  <button class="category-card" id="goAccessories">
+  <button class="category-card" id="goAccessories" hidden data-static-hidden>
     <div class="category-icon" id="accessoryIconLarge"></div>
     <span class="category-label">Accesorios</span>
   </button>
-  <button class="category-card" id="goMac">
+  <button class="category-card" id="goMac" hidden data-static-hidden>
     <div class="category-icon" id="macIconLarge"></div>
     <span class="category-label">Mac</span>
   </button>
-  <button class="category-card" id="goComputers">
+  <button class="category-card" id="goComputers" hidden data-static-hidden>
     <div class="category-icon" id="computerIconLarge"></div>
     <span class="category-label">Ordenadores</span>
   </button>
-  <button class="category-card" id="goMonitors">
+  <button class="category-card" id="goMonitors" hidden data-static-hidden>
     <div class="category-icon" id="monitorIconLarge"></div>
     <span class="category-label">Monitores / TV</span>
   </button>
-  <button class="category-card" id="goConnectivity">
+  <button class="category-card" id="goConnectivity" hidden data-static-hidden>
     <div class="category-icon" id="connectivityIconLarge"></div>
     <span class="category-label">Conectividad</span>
   </button>
@@ -197,15 +197,15 @@
     <span class="category-label">Accesorios Petaca/Micro</span>
     <span class="eco-badge pending-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Pendiente</span>
   </button>
-  <button class="category-card" id="goCabins">
+  <button class="category-card" id="goCabins" hidden data-static-hidden>
     <div class="category-icon" id="cabinIconLarge"></div>
     <span class="category-label">Cabinas</span>
   </button>
-  <button class="category-card" id="goVideoconf">
+  <button class="category-card" id="goVideoconf" hidden data-static-hidden>
     <div class="category-icon" id="videoconfIconLarge"></div>
     <span class="category-label">Videoconferencia PRO</span>
   </button>
-  <button class="category-card" id="goPrinters">
+  <button class="category-card" id="goPrinters" hidden data-static-hidden>
     <div class="category-icon" id="printerIconLarge"></div>
     <span class="category-label">Impresoras</span>
   </button>
@@ -1073,7 +1073,7 @@
   </div>
 </div>
 
-<section class="featured reveal" id="destacados" aria-label="Modelos destacados">
+<section class="featured reveal" id="destacados" hidden data-static-hidden aria-label="Modelos destacados">
   <div class="featured-head">
     <p class="eyebrow">Destacados</p>
     <h2>Modelos destacados</h2>
@@ -1135,16 +1135,16 @@
       <p>Venta de material audiovisual e informático, con asesoramiento directo para elegir lo que necesitas.</p>
       <button class="primary-btn" data-nav="rent">Solicitar presupuesto</button>
     </div>
-    <div class="footer-col">
+    <div class="footer-col" hidden data-static-hidden>
       <h4>Catálogo</h4>
-      <a href="#tablets" data-route="tablets">Tablets</a>
-      <a href="#moviles" data-route="moviles">Móviles</a>
-      <a href="#mac" data-route="mac">Mac</a>
-      <a href="#ordenadores" data-route="ordenadores">Ordenadores</a>
+      <a href="#tablets" data-route="tablets" hidden data-static-hidden>Tablets</a>
+      <a href="#moviles" data-route="moviles" hidden data-static-hidden>Móviles</a>
+      <a href="#mac" data-route="mac" hidden data-static-hidden>Mac</a>
+      <a href="#ordenadores" data-route="ordenadores" hidden data-static-hidden>Ordenadores</a>
     </div>
     <div class="footer-col">
       <h4>Catálogo</h4>
-      <a href="#monitores" data-route="monitores">Monitores / TV</a>
+      <a href="#monitores" data-route="monitores" hidden data-static-hidden>Monitores / TV</a>
       <a href="#almacenamiento" data-route="almacenamiento">Almacenamiento</a>
       <a href="#pilas" data-route="pilas">Pilas y cargadores</a>
       <a href="#sonido" data-route="sonido">Accesorios de sonido</a>
@@ -1162,11 +1162,11 @@
       <a href="#fondos-telas" data-route="fondos-telas">Fondos / Telas</a>
       <a href="#otros-sonidos" data-route="otros-sonidos">Otros sonidos</a>
       <a href="#accesorios-petaca-micro" data-route="accesorios-petaca-micro">Accesorios Petaca/Micro</a>
-      <a href="#cabinas" data-route="cabinas">Cabinas</a>
-      <a href="#conectividad" data-route="conectividad">Conectividad</a>
-      <a href="#accesorios" data-route="accesorios">Accesorios</a>
-      <a href="#videoconferencia" data-route="videoconferencia">Videoconferencia PRO</a>
-      <a href="#impresoras" data-route="impresoras">Impresoras</a>
+      <a href="#cabinas" data-route="cabinas" hidden data-static-hidden>Cabinas</a>
+      <a href="#conectividad" data-route="conectividad" hidden data-static-hidden>Conectividad</a>
+      <a href="#accesorios" data-route="accesorios" hidden data-static-hidden>Accesorios</a>
+      <a href="#videoconferencia" data-route="videoconferencia" hidden data-static-hidden>Videoconferencia PRO</a>
+      <a href="#impresoras" data-route="impresoras" hidden data-static-hidden>Impresoras</a>
     </div>
   </div>
   <div class="footer-bottom">
@@ -1298,7 +1298,7 @@
 
 </div>
 
-<script src="../alquiler/catalogo.js?v=e8f45ca048"></script>
+<script src="../alquiler/catalogo.js?v=d6b928a192"></script>
 
 </body>
 </html>
