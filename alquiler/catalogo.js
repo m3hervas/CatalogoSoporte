@@ -1,4 +1,7 @@
 /* GENERATED from tools/catalogo_fuente.html by tools/build_catalogo.py — do not edit by hand */
+// Products marked "No" in the column "¿Se muestra en la web?" of Productos_web_SoporteTV.xlsx (filled in by tools/build_catalogo.py)
+const HIDDEN_PRODUCTS = new Set([]);
+const productId = (gridEl, p) => [gridEl.id, p.brand || "", p.model, p.key || ""].join("|");
 function tabletIcon(accent) {
   return `<svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
     <rect x="6" y="4" width="88" height="112" rx="5" fill="#EDEFF2" stroke="${accent}" stroke-width="3"/>
@@ -1268,8 +1271,11 @@ const STORAGE = [
 
 function renderStorage(items, gridEl) {
   items.forEach(d => {
+    const pid = productId(gridEl, d);
+    if (HIDDEN_PRODUCTS.has(pid)) return;
     const card = document.createElement("article");
     card.className = "storage-card";
+    card.dataset.pid = pid;
     card.style.setProperty("--i", gridEl.children.length);
     card.dataset.type = d.type;
     card.dataset.caps = "|" + d.capacities.join("|") + "|";
@@ -1869,8 +1875,11 @@ const CARD_INFO = {
 
 function renderModelCards(items, gridEl, info = CARD_INFO.storage) {
   groupByModel(items).forEach(p => {
+    const pid = productId(gridEl, p);
+    if (HIDDEN_PRODUCTS.has(pid)) return;
     const card = document.createElement("button");
     card.className = "storage-card model-card";
+    card.dataset.pid = pid;
     card.dataset.cat = p.cat;
     card.dataset.brand = p.brand || "Sin marca";
     card.dataset.storage = p.storage;
@@ -2717,7 +2726,8 @@ route();
   }, "nav");
 
   safe(() => {
-    document.querySelectorAll(".category-card").forEach((card, i) => { card.classList.add("reveal"); card.style.setProperty("--i", i); });
+    // Only the visible cards count for the cascade (the other catalogue's cards are hidden)
+    [...document.querySelectorAll(".category-card")].filter(c => !c.hidden).forEach((card, i) => { card.classList.add("reveal"); card.style.setProperty("--i", i); });
     const items = [...document.querySelectorAll(".reveal")];
     const showAll = () => items.forEach(el => el.classList.add("is-visible"));
     if (!("IntersectionObserver" in window)) return showAll();

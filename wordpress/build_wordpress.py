@@ -25,6 +25,13 @@ img_base = "../alquiler/img/" if local else PUBLIC_IMG
 site_base = "../" if local else PUBLIC_SITE  # fonts and legal pages shared with the home page
 
 html = io.open(SRC, encoding="utf-8").read()
+# Products marked "No" in the products Excel are left out (helper lives in the local tools/ folder)
+sys.path.insert(0, os.path.join(ROOT, "tools"))
+try:
+    from visibility import fill
+    html, _hidden = fill(html)
+except ImportError:
+    html = html.replace("/*HIDDEN*/[]", "[]")
 
 # --- 1. Imágenes base64 -> archivos ---
 os.makedirs(IMG_DIR, exist_ok=True)
