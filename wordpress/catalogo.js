@@ -34,6 +34,8 @@ window.addEventListener("resize", fitFullWidth);
 // Products marked "No" in the column "¿Se muestra en la web?" of Productos_web_SoporteTV.xlsx (filled in by tools/build_catalogo.py)
 const HIDDEN_PRODUCTS = new Set([]);
 const productId = (gridEl, p) => [gridEl.id, p.brand || "", p.model, p.key || ""].join("|");
+// Cards and thumbnails use the 480 px copy of each photo (https://m3hervas.github.io/CatalogoSoporte/alquiler/img/s/, made by tools/build_catalogo.py); the sheet the full one
+const smallPhoto = src => src ? src.replace(/(^|\/)img\/(?!s\/)/, "$1img/s/") : src;
 
 // Cards are drawn only when their category is opened: drawing 360+ cards at load froze phones for a moment
 const PENDING_GRIDS = new Map();
@@ -1338,7 +1340,7 @@ function drawStorage(items, gridEl) {
     card.dataset.type = d.type;
     card.dataset.caps = "|" + d.capacities.join("|") + "|";
     card.dataset.speed = Math.max(...(d.speed.match(/\d+/g) || [0]).map(Number));
-    const media = d.photo ? `<img src="${d.photo}" alt="${d.model}" loading="lazy" decoding="async">` : driveIcon("#2B79C2");
+    const media = d.photo ? `<img src="${smallPhoto(d.photo)}" alt="${d.model}" loading="lazy" decoding="async">` : driveIcon("#2B79C2");
     card.innerHTML = `
       <div class="storage-photo">${media}</div>
       <div class="storage-info">
@@ -1971,7 +1973,7 @@ function drawModelCards(items, gridEl, info) {
     card.dataset.voltage = p.voltage || "";
     card.dataset.color = p.color || "";
     card.setAttribute("aria-haspopup", "dialog");
-    const media = p.photo ? `<img src="${p.photo}" alt="${p.model}" loading="lazy" decoding="async">` : p.icon;
+    const media = p.photo ? `<img src="${smallPhoto(p.photo)}" alt="${p.model}" loading="lazy" decoding="async">` : p.icon;
     const box = info(p);
     const boxes = Array.isArray(box) ? box : [box];
     card.innerHTML = `
@@ -2010,7 +2012,7 @@ function bindSwatches(root, p, img) {
       e.preventDefault();
       const i = Number(sw.dataset.i);
       p.colorIndex = i;
-      if (img && p.colors[i].photo) { img.src = p.colors[i].photo; img.alt = `${p.model} (${p.colors[i].name})`; }
+      if (img && p.colors[i].photo) { img.src = smallPhoto(p.colors[i].photo); img.alt = `${p.model} (${p.colors[i].name})`; }
       root.querySelectorAll(".swatch").forEach(o => o.setAttribute("aria-pressed", String(o === sw)));
       const label = sw.parentElement.querySelector(".swatch-name");
       if (label) label.textContent = p.colors[i].name;
@@ -2064,7 +2066,7 @@ function openPanel(p) {
   const kind = String(p.type || p.catLabel || "").split("|")[0];
   const singleColor = !colors.length && p.color && !String(p.color).includes("|") ? p.color : "";
   const thumbs = colors.filter(c => c.photo).length > 1
-    ? colors.map((c, i) => c.photo ? `<button type="button" class="pv-thumb" data-i="${i}" aria-label="Ver en ${c.name}" aria-pressed="${i === ci()}"><img src="${c.photo}" alt="" decoding="async"></button>` : "").join("")
+    ? colors.map((c, i) => c.photo ? `<button type="button" class="pv-thumb" data-i="${i}" aria-label="Ver en ${c.name}" aria-pressed="${i === ci()}"><img src="${smallPhoto(c.photo)}" alt="" decoding="async"></button>` : "").join("")
     : "";
 
   panel.innerHTML = `
@@ -3305,7 +3307,7 @@ route();
         const list = found.slice(0, 6);
         pop.innerHTML = `<div class="vs-pop-head">En otras categorías</div>` + list.map((e, i) => {
           const photo = photoOf(e.p);
-          const thumb = photo ? `<img src="${esc(photo)}" alt="" decoding="async">` : (e.p.icon || "");
+          const thumb = photo ? `<img src="${esc(smallPhoto(photo))}" alt="" decoding="async">` : (e.p.icon || "");
           return `<div class="vs-opt" role="option" id="${id}-o${i}" aria-selected="false" data-i="${i}">
             <span class="vs-thumb">${thumb}</span>
             <span><span class="vs-opt-name">${highlight(e.p.model, ts)}</span><span class="vs-opt-cat">${esc([e.p.brand, CATEGORY_INFO[e.key]].filter(Boolean).join(" · "))}</span></span>
