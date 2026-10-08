@@ -1061,12 +1061,12 @@
     width: max-content; max-width: calc(100vw - 32px); max-height: calc(100vh - 120px);
     display: flex; align-items: flex-start; gap: 0 10px; padding: 16px; overflow: auto; overscroll-behavior: contain;
   }
-  .mega-col { display: flex; flex-direction: column; gap: 10px; flex: 0 1 max-content; min-width: 118px; max-width: 172px; }
+  .mega-col { display: flex; flex-direction: column; gap: 8px; flex: 0 1 max-content; min-width: 110px; max-width: 160px; }
   .mega-cat { display: flex; flex-direction: column; }
   /* One line each; a very long name wraps instead of being cut */
-  .nav-dropdown.is-mega a { display: block; min-height: 30px; padding: 6px 8px; border-radius: 8px; overflow-wrap: anywhere; }
-  .nav-dropdown.is-mega .mega-head { font: 700 13.5px/18px 'Inter', sans-serif; color: #0F172A; }
-  .nav-dropdown.is-mega .mega-sub { padding-left: 14px; font: 500 12.5px/18px 'Inter', sans-serif; color: #475569; }
+  .nav-dropdown.is-mega a { display: block; padding: 2px 8px; border-radius: 6px; overflow-wrap: anywhere; }
+  .nav-dropdown.is-mega .mega-head { padding-block: 4px 3px; font: 700 12.5px/17px 'Inter', sans-serif; color: #0F172A; }
+  .nav-dropdown.is-mega .mega-sub { padding-left: 14px; font: 500 11.5px/16px 'Inter', sans-serif; color: #475569; }
   @media (hover: hover) and (pointer: fine) {
     .nav-dropdown.is-mega .mega-sub:hover { color: #0F172A; }
   }
