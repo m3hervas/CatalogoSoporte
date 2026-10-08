@@ -1657,7 +1657,7 @@
   .swatches { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
   /* On the cards the dots go right under the product name, all in one row */
   .title-row { display: flex; flex-direction: column; gap: 6px; }
-  .card-swatches { flex-wrap: nowrap; overflow: hidden; gap: 5px; }
+  .card-swatches { flex-wrap: nowrap; overflow: hidden; gap: 5px; padding: 5px; margin: -5px; }
   .card-swatches .swatch-name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
   .swatch {
     width: 18px; height: 18px; border-radius: 50%; background: var(--sw); cursor: pointer; flex: none;
