@@ -137,6 +137,7 @@ scoped += f"""
   {SCOPE} .scrim, {SCOPE} .rent-scrim {{ z-index: 99990; }}
   {SCOPE} .panel {{ z-index: 99991; }}
   {SCOPE} .rent-modal {{ z-index: 99992; }}
+  {SCOPE} .list-fab {{ z-index: 99989; }}
   {SCOPE} :where(h1, h2, h3, p, span, label, div) {{
     font-family: inherit; text-transform: none; letter-spacing: normal;
   }}
