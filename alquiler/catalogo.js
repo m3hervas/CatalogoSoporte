@@ -1988,58 +1988,151 @@ function bindSwatches(root, p, img, onPick) {
   });
 }
 
-function openPanel(p) {
-  const photo = p.colors && p.colors.length ? p.colors[p.colorIndex || 0].photo : p.photo;
-  const stageContent = photo ? `<img src="${photo}" alt="${p.model}" loading="lazy" decoding="async">` : p.icon;
+// --- Product sheet ---
+// Technical-sheet rows that list several versions of the product ("S · M · L", "128 GB / 256 GB"...) become
+// buttons to choose from; the label is the name of the choice
+const OPTION_SPECS = {
+  Almacenamiento: "Capacidad", Procesador: "Procesador", RAM: "RAM", Modelos: "Modelo", Red: "Red", Datos: "Datos",
+  Tamaños: "Tamaño", Tallas: "Talla", Medidas: "Medida", Formatos: "Formato", Versiones: "Versión", Puntas: "Punta",
+  Alturas: "Altura", Anchos: "Ancho", Largos: "Largo", Grosores: "Grosor", Apertura: "Apertura", Referencias: "Referencia", Efectos: "Efecto"
+};
+function optionGroups(p) {
+  const groups = [];
+  p.specs.forEach(([label, value]) => {
+    if (!OPTION_SPECS[label] || /<br>/.test(value)) return;
+    const parts = String(value).split(/ · | \/ /).map(x => x.trim()).filter(Boolean);
+    if (parts.length < 2 || parts.some(x => x.length > 48)) return;
+    // "10 · 15 · 30 mm": the unit written once at the end goes on every number before it
+    let unit = "";
+    for (let i = parts.length - 1; i >= 0; i--) {
+      const m = parts[i].match(/^[\d.,]+(?:\s*×\s*[\d.,]+)?\s*([a-zA-Z]+)$/);
+      if (m) unit = m[1];
+      else if (unit && /^[\d.,]+(?:\s*×\s*[\d.,]+)?$/.test(parts[i])) parts[i] += " " + unit;
+    }
+    groups.push({ label: OPTION_SPECS[label], spec: label, options: parts });
+  });
+  return groups;
+}
 
-  const rows = p.specs.map(([label, value]) => `
-    <div class="spec-label">${label}</div>
-    <div class="spec-value">${value}</div>
-  `).join("");
+let panelReturnFocus = null;
+function openPanel(p) {
+  panelReturnFocus = document.activeElement;
+  const colors = p.colors && p.colors.length > 1 ? p.colors : [];
+  const ci = () => p.colorIndex || 0;
+  const photo = (colors.length && colors[ci()].photo) || p.photo || "";
+  const groups = optionGroups(p);
+  const chosen = groups.map(() => null);
+  const used = new Set(["Descripción", "Colores", ...groups.map(g => g.spec)]);
+  const desc = specOf(p, "Descripción");
+  const rows = p.specs.filter(([l]) => !used.has(l)).map(([l, v]) => `<tr><th scope="row">${l}</th><td>${v}</td></tr>`).join("");
+  const kind = String(p.type || p.catLabel || "").split("|")[0];
+  const singleColor = !colors.length && p.color && !String(p.color).includes("|") ? p.color : "";
+  const thumbs = colors.filter(c => c.photo).length > 1
+    ? colors.map((c, i) => c.photo ? `<button type="button" class="pv-thumb" data-i="${i}" aria-label="Ver en ${c.name}" aria-pressed="${i === ci()}"><img src="${c.photo}" alt="" decoding="async"></button>` : "").join("")
+    : "";
 
   panel.innerHTML = `
-    <div class="panel-top">
-      <div class="panel-heading">
-        ${p.brand ? `<div class="panel-brand-line">${badgeMarkup(p)}</div>` : ""}
-        <h2 id="panel-name">${p.model}</h2>
-      </div>
-      <button class="close-btn" id="closeBtn" aria-label="Cerrar ficha">✕</button>
+    <button class="pv-close" id="closeBtn" type="button" aria-label="Cerrar ficha"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    <div class="pv-media">
+      <div class="pv-stage">${photo
+        ? `<img id="pvImg" src="${photo}" alt="${p.model}${colors.length ? ` (${colors[ci()].name})` : ""}" decoding="async">`
+        : `<div class="pv-icon">${p.icon || ""}</div>`}</div>
+      ${thumbs ? `<div class="pv-thumbs" role="group" aria-label="Fotos por color">${thumbs}</div>` : ""}
     </div>
-    <div class="panel-stage">${stageContent}</div>
-    ${swatchesMarkup(p, "panel-swatches")}
-    <p class="spec-title">Ficha técnica</p>
-    <div class="spec-table">${rows}</div>
-    <span class="rental-tag">${MODE === "compra" ? "Disponible para compra" : "Disponible para alquiler"}</span>
-    <div class="panel-actions">
-      <div class="qty" role="group" aria-label="Cantidad">
-        <button type="button" data-step="-1" aria-label="Uno menos" disabled>−</button><span class="qty-n" id="panelQty" aria-live="polite">1</span><button type="button" data-step="1" aria-label="Uno más">+</button>
+    <div class="pv-info">
+      ${p.brand ? `<div class="pv-brand">${badgeMarkup(p)}</div>` : ""}
+      <h2 class="pv-title" id="panel-name">${p.model}</h2>
+      ${kind ? `<p class="pv-kind">${kind}</p>` : ""}
+      <div class="pv-avail">
+        <span class="rental-tag">${MODE === "compra" ? "Disponible para compra" : "Disponible para alquiler"}</span>
+        <span class="pv-price">Precio bajo presupuesto, sin compromiso</span>
       </div>
-      <button class="primary-btn panel-request" id="panelRequest">Añadir a mi lista</button>
+      ${colors.length ? `<div class="pv-group">
+        <p class="pv-group-label">Color: <strong id="pvColorName">${colors[ci()].name}</strong></p>
+        <div class="pv-choices" role="group" aria-label="Color">${colors.map((c, i) =>
+          `<button type="button" class="pv-color" data-i="${i}" aria-pressed="${i === ci()}"><span class="pv-dot" style="--sw:${c.hex}"></span>${c.name}</button>`).join("")}</div>
+      </div>` : singleColor ? `<div class="pv-group"><p class="pv-group-label">Color: <strong>${singleColor}</strong></p></div>` : ""}
+      ${groups.map((g, gi) => `<div class="pv-group" data-g="${gi}">
+        <p class="pv-group-label">${g.label}: <strong class="pv-pick">elige una opción</strong></p>
+        <div class="pv-choices" role="group" aria-label="${g.label}">${g.options.map((o, oi) =>
+          `<button type="button" class="pv-chip" data-oi="${oi}" aria-pressed="false">${o}</button>`).join("")}</div>
+        <p class="pv-need" hidden>Elige ${g.label.toLowerCase()} para añadirlo a tu lista.</p>
+      </div>`).join("")}
+      <div class="pv-buy">
+        <div class="qty" role="group" aria-label="Cantidad">
+          <button type="button" data-step="-1" aria-label="Uno menos" disabled>−</button><span class="qty-n" id="panelQty" aria-live="polite">1</span><button type="button" data-step="1" aria-label="Uno más">+</button>
+        </div>
+        <button class="primary-btn pv-add" id="panelRequest" type="button">Añadir a mi lista</button>
+        <p class="panel-added" id="panelAdded" role="status" hidden></p>
+        <p class="pv-note">Te enviamos el presupuesto por correo, sin compromiso.</p>
+      </div>
+      ${desc ? `<section class="pv-section"><h3>Sobre este producto</h3><p>${desc}</p></section>` : ""}
+      ${rows ? `<section class="pv-section"><h3>Ficha técnica</h3><div class="pv-specs-wrap"><table class="pv-specs"><tbody>${rows}</tbody></table></div></section>` : ""}
     </div>
-    <p class="panel-added" id="panelAdded" role="status" hidden></p>
   `;
 
   scrim.classList.add("open");
   panel.classList.add("open");
+  document.documentElement.classList.add("sheet-open");
+  panel.scrollTop = 0;
   document.getElementById("closeBtn").addEventListener("click", closePanel);
-  // Keep the card in step with the colour picked in the sheet
-  bindSwatches(panel, p, panel.querySelector(".panel-stage img"), i => {
-    const card = [...document.querySelectorAll(".model-card")].find(c => c._product === p);
-    if (card) card.querySelector(`.swatch[data-i="${i}"]`)?.click();
+  document.getElementById("closeBtn").focus({ preventScroll: true });
+
+  // Colour: buttons and thumbnails change the photo; the card behind shows the same colour
+  const img = document.getElementById("pvImg");
+  const pickColor = i => {
+    p.colorIndex = i;
+    const c = colors[i];
+    if (img && c.photo) { img.src = c.photo; img.alt = `${p.model} (${c.name})`; }
+    document.getElementById("pvColorName").textContent = c.name;
+    panel.querySelectorAll(".pv-color, .pv-thumb").forEach(b => b.setAttribute("aria-pressed", String(Number(b.dataset.i) === i)));
+    const card = [...document.querySelectorAll(".model-card")].find(cd => cd._product === p);
+    const sw = card && card.querySelector(`.swatch[data-i="${i}"]`);
+    if (sw && sw.getAttribute("aria-pressed") !== "true") sw.click();
+  };
+  panel.querySelectorAll(".pv-color, .pv-thumb").forEach(b => b.addEventListener("click", () => pickColor(Number(b.dataset.i))));
+
+  // Other choices (size, capacity, format...)
+  panel.querySelectorAll(".pv-group[data-g]").forEach(groupEl => {
+    const gi = Number(groupEl.dataset.g);
+    groupEl.querySelectorAll(".pv-chip").forEach(chip => chip.addEventListener("click", () => {
+      chosen[gi] = Number(chip.dataset.oi);
+      groupEl.querySelectorAll(".pv-chip").forEach(o => o.setAttribute("aria-pressed", String(o === chip)));
+      const pick = groupEl.querySelector(".pv-group-label strong");
+      pick.textContent = groups[gi].options[chosen[gi]];
+      pick.classList.remove("pv-pick");
+      groupEl.classList.remove("is-missing");
+      groupEl.querySelector(".pv-need").hidden = true;
+    }));
   });
-  const cpu = p.cat === "computer" && p.variants.length === 1 ? specOf(p, "Procesador") : "";
-  const sizes = p.cat === "battery" && p.size ? p.size.split("|").join(" / ") : "";
-  const variants = [cpu, sizes, p.storages && p.storages.length > 1 ? p.storages.join(" / ") : ""].filter(Boolean).join(", ");
+
   let qty = 1;
   const qtyN = document.getElementById("panelQty");
-  panel.querySelectorAll(".panel-actions [data-step]").forEach(b => b.addEventListener("click", () => {
+  panel.querySelectorAll(".pv-buy [data-step]").forEach(b => b.addEventListener("click", () => {
     qty = Math.max(1, Math.min(99, qty + Number(b.dataset.step)));
     qtyN.textContent = qty;
-    panel.querySelector('.panel-actions [data-step="-1"]').disabled = qty === 1;
+    panel.querySelector('.pv-buy [data-step="-1"]').disabled = qty === 1;
   }));
+
+  const cpu = p.cat === "computer" && !groups.some(g => g.spec === "Procesador") && p.variants && p.variants.length === 1 ? specOf(p, "Procesador") : "";
   document.getElementById("panelRequest").addEventListener("click", () => {
-    const colour = p.colors && p.colors.length > 1 ? `color ${p.colors[p.colorIndex || 0].name.toLowerCase()}` : "";
-    const extra = [variants, colour].filter(Boolean).join(", ");
+    const missing = groups.map((g, gi) => chosen[gi] === null ? gi : -1).filter(gi => gi > -1);
+    if (missing.length) {
+      missing.forEach(gi => {
+        const groupEl = panel.querySelector(`.pv-group[data-g="${gi}"]`);
+        groupEl.classList.add("is-missing");
+        groupEl.querySelector(".pv-need").hidden = false;
+      });
+      const first = panel.querySelector(`.pv-group[data-g="${missing[0]}"]`);
+      first.scrollIntoView({ behavior: "smooth", block: "center" });
+      first.querySelector(".pv-chip").focus({ preventScroll: true });
+      return;
+    }
+    const extra = [
+      cpu,
+      ...groups.map((g, gi) => `${g.label.toLowerCase()} ${g.options[chosen[gi]]}`),
+      colors.length ? `color ${colors[ci()].name.toLowerCase()}` : ""
+    ].filter(Boolean).join(", ");
     const name = p.model + (extra ? ` (${extra})` : "");
     addToList(name, qty);
     const added = document.getElementById("panelAdded");
@@ -2050,8 +2143,11 @@ function openPanel(p) {
 }
 
 function closePanel() {
+  const wasOpen = panel.classList.contains("open");
   scrim.classList.remove("open");
   panel.classList.remove("open");
+  document.documentElement.classList.remove("sheet-open");
+  if (wasOpen && panelReturnFocus && document.contains(panelReturnFocus)) panelReturnFocus.focus({ preventScroll: true });
 }
 
 scrim.addEventListener("click", closePanel);
