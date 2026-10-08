@@ -19,6 +19,7 @@ function flushRender(container) {
     queue.forEach(draw => draw());
   });
 }
+// Draws every grid at once (used by tools/collect_products.js for the Excel export)
 const flushAllRenders = () => flushRender(document);
 // What each grid shows, for the search (it needs every category's products without drawing their cards)
 const SEARCH_SOURCES = [];
@@ -1970,7 +1971,7 @@ function swatchesMarkup(p, extraClass = "") {
   </div>`;
 }
 
-function bindSwatches(root, p, img, onPick) {
+function bindSwatches(root, p, img) {
   root.querySelectorAll(".swatch").forEach(sw => {
     const pick = e => {
       e.stopPropagation();
@@ -1981,7 +1982,6 @@ function bindSwatches(root, p, img, onPick) {
       root.querySelectorAll(".swatch").forEach(o => o.setAttribute("aria-pressed", String(o === sw)));
       const label = sw.parentElement.querySelector(".swatch-name");
       if (label) label.textContent = p.colors[i].name;
-      if (onPick) onPick(i);
     };
     sw.addEventListener("click", pick);
     sw.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") pick(e); });
@@ -2991,6 +2991,56 @@ route();
       closeAll();
       goTo(ROUTES[el.dataset.route]);
     }));
+
+    // Catálogo as a list: each category of this catalogue and, under it, its subcategories (the options of its
+    // "Tipo" filter; "Marca" or "Formato" where there is no type). A new column every 15 lines; a category
+    // never splits between columns. A subcategory opens its category with only that subcategory showing.
+    const MEGA_LINES = 15;
+    const dropdown = document.getElementById("navDropdown");
+    const escAttr = v => String(v).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+    const entries = [...dropdown.querySelectorAll("a[data-route]")]
+      .filter(a => !a.hidden && inMode(ROUTES[a.dataset.route]))
+      .map(a => {
+        const key = ROUTES[a.dataset.route];
+        const rows = [...views[key].querySelectorAll(".filter-panel .filter-row")];
+        const labelOf = r => (r.querySelector(".filter-label")?.textContent || "").trim().toLowerCase();
+        const row = ["tipo", "marca", "formato"].map(l => rows.find(r => labelOf(r) === l)).find(Boolean);
+        const select = row ? row.querySelector("select") : null;
+        const subs = select ? [...select.options].filter(o => o.value !== "all").map(o => ({ value: o.value, label: o.text })) : [];
+        return { key, route: a.dataset.route, label: a.firstChild.textContent.trim(), select, subs: subs.length > 1 ? subs : [] };
+      });
+    // Each category goes in the first column where it still fits (fewer, fuller columns); a category longer
+    // than 15 lines gets a column of its own
+    const columns = [];
+    entries.forEach(e => {
+      const n = 1 + e.subs.length;
+      let col = columns.find(c => c.lines + n <= MEGA_LINES);
+      if (!col) { col = { lines: 0, items: [] }; columns.push(col); }
+      col.items.push(e);
+      col.lines += n;
+    });
+    dropdown.innerHTML = columns.map(col => `<div class="mega-col">${col.items.map(e => `
+      <div class="mega-cat" role="group" aria-label="${escAttr(e.label)}">
+        <a class="mega-head" href="#${e.route}" data-cat="${e.key}">${escAttr(e.label)}</a>
+        ${e.subs.map(sub => `<a class="mega-sub" href="#${e.route}" data-cat="${e.key}" data-sub="${escAttr(sub.value)}" title="${escAttr(sub.label)}">${escAttr(sub.label)}</a>`).join("")}
+      </div>`).join("")}</div>`).join("");
+    dropdown.classList.add("is-mega");
+    group.classList.add("has-mega");
+    dropdown.addEventListener("click", e => {
+      const link = e.target.closest("a[data-cat]");
+      if (!link) return;
+      e.preventDefault();
+      closeAll();
+      const key = link.dataset.cat;
+      goTo(key);
+      // Start from the whole category (no filters, no search), then apply the subcategory
+      views[key].querySelector(".filter-reset")?.click();
+      const entry = entries.find(x => x.key === key);
+      if (link.dataset.sub !== undefined && entry.select) {
+        entry.select.value = link.dataset.sub;
+        entry.select.dispatchEvent(new Event("change"));
+      }
+    });
   }, "nav");
 
   safe(() => {
