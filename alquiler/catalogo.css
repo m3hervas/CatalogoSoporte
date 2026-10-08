@@ -802,13 +802,16 @@
     margin-bottom: 28px;
     border-radius: 18px;
     border: 1px solid transparent;
-    transition: background-color 250ms ease, border-color 250ms ease, box-shadow 250ms ease;
+    transition: background-color 250ms ease, border-color 250ms ease, box-shadow 250ms ease,
+      transform 320ms var(--ease-out), opacity 220ms ease;
     background: rgba(255,255,255,0.86);
     -webkit-backdrop-filter: blur(16px) saturate(160%);
     backdrop-filter: blur(16px) saturate(160%);
     border-color: var(--line);
     box-shadow: 0 10px 30px rgba(15,23,42,0.08);
   }
+  /* Hidden while scrolling down or with a product sheet open */
+  .site-nav.nav-hidden { transform: translateY(calc(-100% - 24px)); opacity: 0; pointer-events: none; }
   [data-theme="dark"] .site-nav { background: none; -webkit-backdrop-filter: none; backdrop-filter: none; border-color: transparent; box-shadow: none; }
 
   [data-theme="dark"] .site-nav.is-solid {

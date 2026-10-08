@@ -2802,13 +2802,39 @@ route();
     const toggle = document.getElementById("navToggle");
     const group = document.getElementById("navCatalog");
     const groupBtn = document.getElementById("navCatalogBtn");
-    const setGroup = open => { group.classList.toggle("open", open); groupBtn.setAttribute("aria-expanded", String(open)); };
-    const setMenu = open => { nav.classList.toggle("menu-open", open); toggle.setAttribute("aria-expanded", String(open)); };
+    // The bar hides while scrolling down or while a product sheet is open; it comes back on scrolling up,
+    // when the sheet closes, with the pointer at the top of the window, or while its menus or focus are in use
+    let lastY = getScrollY(), away = false, pointerTop = false;
+    const renderNav = () => {
+      const inUse = nav.classList.contains("menu-open") || group.classList.contains("open") || nav.contains(document.activeElement);
+      const sheet = panel.classList.contains("open");
+      nav.classList.toggle("nav-hidden", !inUse && (sheet || (away && !pointerTop)));
+    };
+    const setGroup = open => { group.classList.toggle("open", open); groupBtn.setAttribute("aria-expanded", String(open)); renderNav(); };
+    const setMenu = open => { nav.classList.toggle("menu-open", open); toggle.setAttribute("aria-expanded", String(open)); renderNav(); };
     const closeAll = () => { setGroup(false); setMenu(false); };
 
     const updateSolid = () => nav.classList.toggle("is-solid", getScrollY() > 24);
     onScroll(updateSolid);
     updateSolid();
+    onScroll(() => {
+      const y = getScrollY();
+      if (y < 80) { away = false; lastY = y; }
+      else if (y > lastY + 6) { away = true; lastY = y; }
+      else if (y < lastY - 6) { away = false; lastY = y; }
+      renderNav();
+    });
+    if (matchMedia("(hover: hover) and (pointer: fine)").matches) {
+      document.addEventListener("mousemove", e => {
+        const top = e.clientY < 90;
+        if (top !== pointerTop) { pointerTop = top; renderNav(); }
+      }, { passive: true });
+    }
+    // Closing the sheet brings the bar back
+    new MutationObserver(() => { if (!panel.classList.contains("open")) away = false; renderNav(); })
+      .observe(panel, { attributes: true, attributeFilter: ["class"] });
+    nav.addEventListener("focusin", renderNav);
+    nav.addEventListener("focusout", () => setTimeout(renderNav, 0));
 
     toggle.addEventListener("click", () => setMenu(!nav.classList.contains("menu-open")));
     groupBtn.addEventListener("click", e => { e.stopPropagation(); setGroup(!group.classList.contains("open")); });

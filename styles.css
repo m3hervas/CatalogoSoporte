@@ -125,9 +125,11 @@ h2 { font-size: clamp(28px, 3.6vw, 48px); }
   background: var(--nav-bg); border: 1px solid var(--line);
   -webkit-backdrop-filter: blur(16px) saturate(160%); backdrop-filter: blur(16px) saturate(160%);
   box-shadow: 0 14px 34px -20px rgba(14,21,37,0.35);
-  transition: background 300ms var(--ease);
+  transition: background 300ms var(--ease), transform 320ms var(--ease), opacity 220ms var(--ease);
 }
 .nav.is-scrolled { background: var(--nav-bg-scrolled); }
+/* Hidden while scrolling down; comes back on scrolling up or with the pointer at the top of the window */
+.nav.nav-hidden { transform: translate(-50%, calc(-100% - 28px)); opacity: 0; pointer-events: none; }
 .nav-brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 600; letter-spacing: -0.01em; }
 .nav-brand img { width: auto; height: 42px; object-fit: contain; }
 .footer .nav-brand img { height: 34px; }

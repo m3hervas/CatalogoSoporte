@@ -40,11 +40,33 @@
     setTimeout(function () { splash.classList.add("is-done"); }, 3000);
   }
 
-  // Nav gets a denser background after scrolling
+  // Nav gets a denser background after scrolling; it hides while scrolling down and comes back on scrolling up,
+  // when the pointer goes to the top of the window, or while it has keyboard focus or the WhatsApp card open
   function initNav() {
     var nav = document.getElementById("nav");
-    var onScroll = function () { nav.classList.toggle("is-scrolled", window.scrollY > 40); };
+    var lastY = window.scrollY, away = false, pointerTop = false;
+    var render = function () {
+      var keep = pointerTop || nav.contains(document.activeElement) || !!nav.querySelector('[aria-expanded="true"]');
+      nav.classList.toggle("nav-hidden", away && !keep);
+    };
+    var onScroll = function () {
+      var y = window.scrollY;
+      nav.classList.toggle("is-scrolled", y > 40);
+      if (y < 80) { away = false; lastY = y; }
+      else if (y > lastY + 6) { away = true; lastY = y; }
+      else if (y < lastY - 6) { away = false; lastY = y; }
+      render();
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
+    if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+      document.addEventListener("mousemove", function (e) {
+        var top = e.clientY < 90;
+        if (top !== pointerTop) { pointerTop = top; render(); }
+      }, { passive: true });
+    }
+    nav.addEventListener("focusin", render);
+    nav.addEventListener("focusout", function () { setTimeout(render, 0); });
+    new MutationObserver(render).observe(nav, { subtree: true, attributes: true, attributeFilter: ["aria-expanded"] });
     onScroll();
   }
 
