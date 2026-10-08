@@ -20,6 +20,8 @@ function flushRender(container) {
   });
 }
 const flushAllRenders = () => flushRender(document);
+// What each grid shows, for the search (it needs every category's products without drawing their cards)
+const SEARCH_SOURCES = [];
 function tabletIcon(accent) {
   return `<svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
     <rect x="6" y="4" width="88" height="112" rx="5" fill="#EDEFF2" stroke="${accent}" stroke-width="3"/>
@@ -1288,6 +1290,7 @@ const STORAGE = [
 ];
 
 function renderStorage(items, gridEl) {
+  if (gridEl) SEARCH_SOURCES.push({ grid: gridEl, items, grouped: false });
   deferRender(gridEl, () => drawStorage(items, gridEl));
 }
 
@@ -1914,6 +1917,7 @@ const CARD_INFO = {
 };
 
 function renderModelCards(items, gridEl, info = CARD_INFO.storage) {
+  if (gridEl) SEARCH_SOURCES.push({ grid: gridEl, items, grouped: true });
   deferRender(gridEl, () => drawModelCards(items, gridEl, info));
 }
 
@@ -2572,7 +2576,7 @@ function setupPagination(grid) {
   pager.setAttribute("aria-label", "Páginas");
   grid.after(pager);
 
-  const cards = () => [...grid.querySelectorAll(".storage-card")].filter(c => !c.classList.contains("hidden"));
+  const cards = () => [...grid.querySelectorAll(".storage-card")].filter(c => !c.classList.contains("hidden") && !c.classList.contains("search-miss"));
   function render(scroll) {
     const all = [...grid.querySelectorAll(".storage-card")];
     const shown = cards();
@@ -2939,6 +2943,209 @@ route();
       });
     }));
   }, "filterReset");
+
+  // --- Search: a box at the top right of every category. It filters that category as you type
+  // (accents and capitals don't matter) and suggests matching products from the other categories ---
+  safe(() => {
+    const norm = s => String(s || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+    const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+    const terms = q => norm(q).trim().split(/\s+/).filter(Boolean);
+    // "pilas" also finds "pila", "colores" also finds "color"
+    const hit = (text, t) => text.includes(t) || (t.length > 3 && /s$/.test(t) && text.includes(t.replace(/e?s$/, "")));
+    const matches = (e, ts) => ts.every(t => hit(e.text, t));
+    const score = (e, ts) => ts.reduce((n, t) => n + (e.name.startsWith(t) ? 6 : e.name.includes(t) ? 4 : e.brand.includes(t) ? 3 : 1), 0);
+    const photoOf = p => p.photo || (p.colors && p.colors[0] && p.colors[0].photo) || "";
+
+    // One entry per product card of this catalogue
+    const INDEX = [];
+    SEARCH_SOURCES.forEach(({ grid, items, grouped }) => {
+      const key = Object.keys(views).find(k => views[k].contains(grid));
+      if (!key || !inMode(key)) return;
+      (grouped ? groupByModel(items) : items).forEach(p => {
+        const pid = productId(grid, p);
+        if (HIDDEN_PRODUCTS.has(pid)) return;
+        const specs = (p.specs || []).map(([, v]) => String(v).replace(/<[^>]+>/g, " ")).join(" ");
+        INDEX.push({
+          pid, key, p, name: norm(p.model), brand: norm(p.brand),
+          text: norm([p.model, p.brand, p.type, p.catLabel, p.group, p.color, (p.capacities || []).join(" "), p.speed, p.port, specs, CATEGORY_INFO[key]].join(" "))
+        });
+      });
+    });
+    const BY_PID = new Map(INDEX.map(e => [e.pid, e]));
+
+    // Product name with the searched words in bold (positions match: accents are single characters)
+    const highlight = (text, ts) => {
+      const n = norm(text);
+      const on = new Array(text.length).fill(false);
+      ts.forEach(t => { let i = n.indexOf(t); while (t && i > -1) { for (let j = i; j < i + t.length; j++) on[j] = true; i = n.indexOf(t, i + t.length); } });
+      let out = "", open = false;
+      [...text].forEach((ch, i) => {
+        if (on[i] && !open) { out += "<mark>"; open = true; }
+        if (!on[i] && open) { out += "</mark>"; open = false; }
+        out += esc(ch);
+      });
+      return out + (open ? "</mark>" : "");
+    };
+
+    const boxes = {};
+    const fine = matchMedia("(hover: hover) and (pointer: fine)").matches;
+    let uid = 0;
+
+    // Open a product found in another category: its sheet if it has one, otherwise point at its card
+    function openResult(e) {
+      boxes[e.key]?.set("");
+      goTo(e.key);
+      const card = views[e.key].querySelector(`.storage-card[data-pid="${CSS.escape(e.pid)}"]`);
+      if (!card) return;
+      if (card._product) { openPanel(card._product); return; }
+      boxes[e.key]?.set(e.p.model);
+      setTimeout(() => {
+        views[e.key].classList.remove("is-entering");
+        card.scrollIntoView({ behavior: "smooth", block: "center" });
+        card.classList.remove("is-highlight");
+        void card.offsetWidth;
+        card.classList.add("is-highlight");
+      }, 350);
+    }
+
+    Object.entries(views).forEach(([key, view]) => {
+      if (!inMode(key)) return;
+      const back = view.querySelector(":scope > .back-btn");
+      const grid = view.querySelector(".storage-grid");
+      if (!back || !grid) return;
+      const id = "vs" + (++uid);
+      const label = CATEGORY_INFO[key];
+
+      const top = document.createElement("div");
+      top.className = "view-top";
+      back.before(top);
+      top.appendChild(back);
+      const box = document.createElement("div");
+      box.className = "view-search";
+      box.setAttribute("role", "search");
+      box.innerHTML = `
+        <svg class="vs-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
+        <input class="vs-input" type="search" id="${id}" placeholder="Buscar en ${esc(label)}" aria-label="Buscar en ${esc(label)}"
+          autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search"
+          role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="${id}-list">
+        ${fine ? '<kbd class="vs-kbd" aria-hidden="true">/</kbd>' : ""}
+        <button class="vs-clear" type="button" aria-label="Borrar búsqueda" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+        <div class="vs-pop" id="${id}-list" role="listbox" aria-label="Resultados en otras categorías" hidden></div>`;
+      top.appendChild(box);
+      const status = document.createElement("p");
+      status.className = "vs-status";
+      status.setAttribute("role", "status");
+      status.hidden = true;
+      top.after(status);
+      const empty = document.createElement("div");
+      empty.className = "vs-empty";
+      empty.hidden = true;
+      grid.prepend(empty);
+
+      const input = box.querySelector(".vs-input");
+      const clear = box.querySelector(".vs-clear");
+      const pop = box.querySelector(".vs-pop");
+      let found = [], active = -1;
+
+      const closePop = () => { pop.hidden = true; input.setAttribute("aria-expanded", "false"); input.removeAttribute("aria-activedescendant"); active = -1; };
+      const setActive = i => {
+        const opts = [...pop.querySelectorAll(".vs-opt")];
+        if (!opts.length) return;
+        active = (i + opts.length) % opts.length;
+        opts.forEach((o, n) => o.setAttribute("aria-selected", String(n === active)));
+        input.setAttribute("aria-activedescendant", opts[active].id);
+        opts[active].scrollIntoView({ block: "nearest" });
+      };
+
+      function run(showPop) {
+        const q = input.value.trim();
+        const ts = terms(q);
+        clear.hidden = !q;
+        box.classList.toggle("has-value", !!q);
+        // This category: hide what does not match (works together with the filters)
+        let shown = 0;
+        grid.querySelectorAll(".storage-card").forEach(card => {
+          const e = BY_PID.get(card.dataset.pid);
+          const ok = !ts.length || (e ? matches(e, ts) : ts.every(t => hit(norm(card.textContent), t)));
+          card.classList.toggle("search-miss", !ok);
+          if (ok && !card.classList.contains("hidden")) shown++;
+        });
+        // Other categories
+        found = ts.length ? INDEX.filter(e => e.key !== key && matches(e, ts)).map(e => [score(e, ts), e]).sort((a, b) => b[0] - a[0]).map(x => x[1]) : [];
+
+        status.hidden = !ts.length || !shown;
+        status.textContent = ts.length && shown ? `${shown} ${shown === 1 ? "resultado" : "resultados"} para «${q}»` : "";
+
+        empty.hidden = !(ts.length && !shown);
+        if (!empty.hidden) {
+          const counts = {};
+          found.forEach(e => { counts[e.key] = (counts[e.key] || 0) + 1; });
+          const cats = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+          empty.innerHTML = `<p class="vs-empty-title">No hay resultados para «${esc(q)}» en ${esc(label)}</p>` + (cats.length
+            ? `<p class="vs-empty-sub">Lo tenemos en:</p><div class="vs-chips">${cats.map(([k, n]) => `<button type="button" class="vs-chip" data-key="${k}">${esc(CATEGORY_INFO[k])}<span>${n}</span></button>`).join("")}</div>`
+            : `<p class="vs-empty-sub">Prueba con otra palabra o <button type="button" class="link-btn" data-ask>pídenoslo</button> y te lo buscamos.</p>`);
+          empty.querySelectorAll(".vs-chip").forEach(b => b.addEventListener("click", () => {
+            const k = b.dataset.key;
+            goTo(k);
+            boxes[k]?.set(q);
+          }));
+          empty.querySelector("[data-ask]")?.addEventListener("click", () => openRent());
+        }
+
+        // Suggestions from the other categories
+        if (!showPop || !found.length) { closePop(); return; }
+        const list = found.slice(0, 6);
+        pop.innerHTML = `<div class="vs-pop-head">En otras categorías</div>` + list.map((e, i) => {
+          const photo = photoOf(e.p);
+          const thumb = photo ? `<img src="${esc(photo)}" alt="" decoding="async">` : (e.p.icon || "");
+          return `<div class="vs-opt" role="option" id="${id}-o${i}" aria-selected="false" data-i="${i}">
+            <span class="vs-thumb">${thumb}</span>
+            <span><span class="vs-opt-name">${highlight(e.p.model, ts)}</span><span class="vs-opt-cat">${esc([e.p.brand, CATEGORY_INFO[e.key]].filter(Boolean).join(" · "))}</span></span>
+          </div>`;
+        }).join("") + (found.length > list.length ? `<div class="vs-pop-more">y ${found.length - list.length} más en otras categorías</div>` : "");
+        pop.querySelectorAll(".vs-opt").forEach(o => {
+          o.addEventListener("mousedown", ev => ev.preventDefault());
+          o.addEventListener("click", () => { closePop(); input.blur(); openResult(list[Number(o.dataset.i)]); });
+        });
+        pop.hidden = false;
+        input.setAttribute("aria-expanded", "true");
+        active = -1;
+      }
+
+      boxes[key] = { set: v => { input.value = v; run(false); }, input };
+      input.addEventListener("input", () => run(true));
+      input.addEventListener("focus", () => { if (input.value.trim()) run(true); });
+      input.addEventListener("blur", () => setTimeout(closePop, 120));
+      input.addEventListener("keydown", e => {
+        if (e.key === "ArrowDown" && !pop.hidden) { e.preventDefault(); setActive(active + 1); }
+        else if (e.key === "ArrowUp" && !pop.hidden) { e.preventDefault(); setActive(active - 1); }
+        else if (e.key === "Enter") {
+          e.preventDefault();
+          if (active > -1 && !pop.hidden) { const pick = found[active]; closePop(); input.blur(); openResult(pick); }
+          else { closePop(); if (!fine) input.blur(); }
+        } else if (e.key === "Escape") {
+          e.stopPropagation();
+          if (!pop.hidden) closePop();
+          else if (input.value) { input.value = ""; run(false); }
+          else input.blur();
+        }
+      });
+      clear.addEventListener("click", () => { input.value = ""; run(false); input.focus(); });
+      // "Quitar filtros" also clears the search
+      view.querySelector(".filter-reset")?.addEventListener("click", () => { if (input.value) { input.value = ""; run(false); } });
+    });
+
+    // "/" jumps to the search of the category on screen
+    document.addEventListener("keydown", e => {
+      if (e.key !== "/" || e.ctrlKey || e.metaKey || e.altKey) return;
+      if (e.target.closest && e.target.closest("input, textarea, select, [contenteditable]")) return;
+      if (panel.classList.contains("open") || document.getElementById("rentModal").classList.contains("open")) return;
+      const key = Object.keys(boxes).find(k => !views[k].hidden);
+      if (!key) return;
+      e.preventDefault();
+      boxes[key].input.focus();
+    });
+  }, "search");
 
   // Featured slider: crossfade, autoplay driven by the progress bar, pause on hover/focus, swipe
   safe(() => {
