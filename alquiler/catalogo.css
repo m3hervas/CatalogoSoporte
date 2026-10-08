@@ -600,7 +600,16 @@
   }
   .qty button:disabled { opacity: 0.3; cursor: default; }
   .qty button:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
-  .qty-n { min-width: 24px; text-align: center; font: 700 14px/1 'Inter', sans-serif; font-variant-numeric: tabular-nums; }
+  .qty-n {
+    width: 46px; height: 30px; padding: 0; border: 0; border-radius: 7px; background: transparent; color: var(--ink);
+    text-align: center; font: 700 15px/1 'Inter', sans-serif; font-variant-numeric: tabular-nums;
+    -moz-appearance: textfield; appearance: textfield;
+  }
+  .qty-n::-webkit-inner-spin-button, .qty-n::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+  .qty-n:hover { background: rgba(15,23,42,0.05); }
+  .qty-n:focus { outline: none; background: #FFFFFF; box-shadow: 0 0 0 2px var(--accent); }
+  /* Phones: 16px so the page does not zoom in when typing */
+  @media (max-width: 720px), (pointer: coarse) { .qty-n { font-size: 16px; } }
   .panel-added { margin: 10px 0 0; font-size: 13px; line-height: 1.45; color: var(--android-tag); text-align: center; }
   .panel-added[hidden] { display: none; }
   .link-btn { border: 0; background: none; padding: 0; font: inherit; font-weight: 700; color: var(--accent); text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }

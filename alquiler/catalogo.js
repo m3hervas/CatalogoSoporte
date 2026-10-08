@@ -2014,6 +2014,10 @@ function optionGroups(p) {
   return groups;
 }
 
+// Quantities: whole numbers from 1 to 999 (anything else typed becomes the nearest valid amount)
+const MAX_QTY = 999;
+function clampQty(v) { return Math.max(1, Math.min(MAX_QTY, Math.round(Number(v)) || 1)); }
+
 let panelReturnFocus = null;
 function openPanel(p) {
   panelReturnFocus = document.activeElement;
@@ -2060,7 +2064,7 @@ function openPanel(p) {
       </div>`).join("")}
       <div class="pv-buy">
         <div class="qty" role="group" aria-label="Cantidad">
-          <button type="button" data-step="-1" aria-label="Uno menos" disabled>−</button><span class="qty-n" id="panelQty" aria-live="polite">1</span><button type="button" data-step="1" aria-label="Uno más">+</button>
+          <button type="button" data-step="-1" aria-label="Uno menos" disabled>−</button><input class="qty-n" id="panelQty" type="number" inputmode="numeric" min="1" max="999" step="1" value="1" aria-label="Cantidad"><button type="button" data-step="1" aria-label="Uno más">+</button>
         </div>
         <button class="primary-btn pv-add" id="panelRequest" type="button">Añadir a mi lista</button>
         <p class="panel-added" id="panelAdded" role="status" hidden></p>
@@ -2106,16 +2110,20 @@ function openPanel(p) {
     }));
   });
 
+  // Quantity: − / + or type the number
   let qty = 1;
   const qtyN = document.getElementById("panelQty");
-  panel.querySelectorAll(".pv-buy [data-step]").forEach(b => b.addEventListener("click", () => {
-    qty = Math.max(1, Math.min(99, qty + Number(b.dataset.step)));
-    qtyN.textContent = qty;
-    panel.querySelector('.pv-buy [data-step="-1"]').disabled = qty === 1;
-  }));
+  const minus = panel.querySelector('.pv-buy [data-step="-1"]');
+  const setQty = v => { qty = clampQty(v); qtyN.value = qty; minus.disabled = qty === 1; };
+  panel.querySelectorAll(".pv-buy [data-step]").forEach(b => b.addEventListener("click", () => setQty(qty + Number(b.dataset.step))));
+  qtyN.addEventListener("input", () => { if (qtyN.value !== "") { qty = clampQty(qtyN.value); minus.disabled = qty === 1; } });
+  qtyN.addEventListener("change", () => setQty(qtyN.value));
+  qtyN.addEventListener("focus", () => qtyN.select());
+  qtyN.addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); setQty(qtyN.value); qtyN.blur(); } });
 
   const cpu = p.cat === "computer" && !groups.some(g => g.spec === "Procesador") && p.variants && p.variants.length === 1 ? specOf(p, "Procesador") : "";
   document.getElementById("panelRequest").addEventListener("click", () => {
+    setQty(qtyN.value);
     const missing = groups.map((g, gi) => chosen[gi] === null ? gi : -1).filter(gi => gi > -1);
     if (missing.length) {
       missing.forEach(gi => {
@@ -2745,7 +2753,7 @@ function saveList() {
 
 function addToList(name, qty) {
   const item = requestList.find(i => i.name === name);
-  if (item) item.qty = Math.min(99, item.qty + qty);
+  if (item) item.qty = clampQty(item.qty + qty);
   else requestList.push({ name, qty });
   saveList();
   listFab.classList.remove("bump");
@@ -2757,24 +2765,48 @@ function listText() {
   return requestList.map(i => `${i.qty} × ${i.name}`).join(";\n");
 }
 
-function renderList() {
+// Count on the floating button (also updated while a quantity is being typed, without redrawing the list)
+function renderListCount() {
   const units = requestList.reduce((n, i) => n + i.qty, 0);
   listFab.hidden = !requestList.length;
   document.getElementById("listFabN").textContent = units;
   listFab.setAttribute("aria-label", `Mi lista: ${units} ${units === 1 ? "unidad" : "unidades"}`);
+}
+
+function renderList() {
+  renderListCount();
   document.getElementById("reqBox").hidden = !requestList.length;
   document.getElementById("rentMsgLabel").textContent = requestList.length ? "Comentarios (opcional)" : "¿Qué necesitas?";
   rentMsg.placeholder = requestList.length ? (MODE === "compra" ? "Ej.: plazo de entrega, dirección, dudas…" : "Ej.: lugar de entrega, horario, dudas…") : MSG_PLACEHOLDER;
   reqList.replaceChildren(...requestList.map((item, idx) => {
     const li = document.createElement("li");
     li.innerHTML = `<span class="req-name"></span>
-      <div class="qty" role="group" aria-label="Cantidad"><button type="button" data-step="-1" aria-label="Uno menos">−</button><span class="qty-n"></span><button type="button" data-step="1" aria-label="Uno más">+</button></div>
+      <div class="qty" role="group" aria-label="Cantidad"><button type="button" data-step="-1" aria-label="Uno menos">−</button><input class="qty-n" type="number" inputmode="numeric" min="1" max="999" step="1"><button type="button" data-step="1" aria-label="Uno más">+</button></div>
       <button type="button" class="req-remove" aria-label="Quitar de la lista">✕</button>`;
     li.querySelector(".req-name").textContent = item.name;
-    li.querySelector(".qty-n").textContent = item.qty;
+    const box = li.querySelector(".qty-n");
+    box.value = item.qty;
+    box.setAttribute("aria-label", `Cantidad de ${item.name}`);
     li.querySelector('[data-step="-1"]').disabled = item.qty === 1;
+    // Typing: the count follows at once; leaving the box (or Enter) tidies the number and saves
+    box.addEventListener("focus", () => box.select());
+    box.addEventListener("input", () => {
+      if (box.value === "") return;
+      item.qty = clampQty(box.value);
+      li.querySelector('[data-step="-1"]').disabled = item.qty === 1;
+      try { localStorage.setItem(LIST_KEY, JSON.stringify(requestList)); } catch (e) {}
+      renderListCount();
+    });
+    box.addEventListener("change", () => { item.qty = clampQty(box.value); saveList(); });
+    box.addEventListener("keydown", e => {
+      if (e.key !== "Enter") return;
+      e.preventDefault();
+      item.qty = clampQty(box.value);
+      saveList();
+      reqList.children[idx]?.querySelector(".qty-n")?.focus();
+    });
     li.querySelectorAll("[data-step]").forEach(b => b.addEventListener("click", () => {
-      item.qty = Math.max(1, Math.min(99, item.qty + Number(b.dataset.step)));
+      item.qty = clampQty(item.qty + Number(b.dataset.step));
       saveList();
       const again = reqList.children[idx]?.querySelector(`[data-step="${b.dataset.step}"]`);
       (again && !again.disabled ? again : reqList.children[idx]?.querySelector('[data-step="1"]'))?.focus();
