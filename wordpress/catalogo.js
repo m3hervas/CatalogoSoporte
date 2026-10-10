@@ -773,7 +773,7 @@ const ACCESSORIES = [
   },
 {
     cat: "accessory", catLabel: "Accesorio", type: "Funda", group: "iPad", brand: "", brandCode: "", brandColor: "#5C6672",
-    model: "Funda con teclado", photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/funda-con-teclado_SpTV.webp?v=2",
+    model: "Funda con teclado", photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/funda-teclado-ipad-oficial_SpTV.webp",
     icon: accessoryIcon("#5C6672"),
     specs: [
       ["Categoría", "Accesorio · iPad"],
@@ -782,7 +782,7 @@ const ACCESSORIES = [
   },
 {
     cat: "accessory", catLabel: "Accesorio", type: "Funda", group: "iPad", brand: "", brandCode: "", brandColor: "#5C6672",
-    model: "Funda Rugged / Correa", photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/funda-rugged-con-correa_SpTV.webp",
+    model: "Funda Rugged / Correa", photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/funda-rugged-sin-marca_SpTV.webp",
     icon: accessoryIcon("#5C6672"),
     specs: [
       ["Categoría", "Accesorio · iPad"]
