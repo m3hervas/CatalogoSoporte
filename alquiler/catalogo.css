@@ -1313,6 +1313,18 @@
     .catalog-layout .storage-photo img { max-height: 224px; }
   }
 
+  /* Accesorios: smaller cards, up to 5 per row on wide screens (always photo on top) */
+  @media (min-width: 1200px) {
+    .catalog-layout #gridAccessories { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; }
+    #gridAccessories .storage-info { padding: 14px 12px 16px; }
+    #gridAccessories .storage-info h3 { font-size: 15.5px; }
+  }
+  @container cards (min-width: 1734px) {
+    #gridAccessories .storage-card { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+    #gridAccessories .storage-photo { aspect-ratio: 16 / 10; }
+    #gridAccessories .storage-photo img { max-height: 210px; }
+  }
+
   @media (max-width: 1199px) {
     .catalog-layout .storage-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   }

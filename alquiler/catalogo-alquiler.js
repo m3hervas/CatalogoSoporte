@@ -698,7 +698,14 @@ const ACCESSORIES = [
     icon: accessoryIcon("#E4572E"),
     specs: [
       ["Categoría", "Accesorio · Móvil/Cámara"],
-      ["Detalle", "360º / 19 cm"]
+      ["Marca", "Celly"],
+      ["Descripción", "Minitrípode de sobremesa con pinza para móvil y rótula de bola que gira 360°: para grabar o hacer videollamadas con el móvil apoyado en una mesa. También vale para cámaras compactas con rosca de 1/4\"."],
+      ["Rótula", "De bola, giro de 360°"],
+      ["Rosca", "1/4\""],
+      ["Incluye", "Trípode + pinza para móvil"],
+      ["Móviles compatibles", "Hasta 6,2''"],
+      ["Altura", "19 cm"],
+      ["Material", "Plástico"]
     ]
   },
 {
@@ -736,7 +743,13 @@ const ACCESSORIES = [
     icon: accessoryIcon("#6B4FA0"),
     specs: [
       ["Categoría", "Accesorio · Móvil/Cámara"],
-      ["Tipo", "Estabilizador combo para móvil"]
+      ["Marca", "Zhiyun"],
+      ["Descripción", "Estabilizador (gimbal) de 2 ejes para móvil, plegable y del tamaño de la mano, con palo extensible integrado para grabar en mano o como selfie. El kit Combo trae además un minitrípode para dejarlo apoyado."],
+      ["Estabilización", "2 ejes"],
+      ["Palo extensible", "Integrado, 26 cm"],
+      ["Incluye", "Gimbal + minitrípode + funda de transporte"],
+      ["Móviles compatibles", "50–90 mm de ancho · 7,5–9,5 mm de grosor · hasta 235 g"],
+      ["Peso", "246 g"]
     ]
   },
 {
