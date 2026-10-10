@@ -1137,7 +1137,7 @@ const CARD_INFO = {
   connectivity: p => p.type === "eSIM" ? [
     { small: true, icon: STORAGE_ICONS.qr, title: "Activación", text: "Inmediata con QR" },
     { small: true, icon: STORAGE_ICONS.capacity, title: "Datos", text: p.storages.join(" · ") },
-    { icon: STORAGE_ICONS.devices, title: "Compatible con", text: "eSIM Ready" }
+    { icon: STORAGE_ICONS.devices, title: "Compatible con", text: "Móviles, tablets y routers con eSIM" }
   ] : [
     ...(p.group ? [
       { small: true, icon: STORAGE_ICONS.signal, title: "Red", text: p.group.split("|").join(" · ") },

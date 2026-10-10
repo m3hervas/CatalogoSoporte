@@ -1369,10 +1369,10 @@ const CONNECTIVITY = [
     model: "Tarjeta eSIM", photo: "../alquiler/img/esim-tarjeta-datos_SpTV.webp", icon: mifiIcon("#0F8A80"),
     specs: [
       ["Categoría", "Tarjeta eSIM de datos"],
-      ["Descripción", "SIM digital de datos móviles, sin tarjeta física: te enviamos un código QR y, al escanearlo, la línea se activa al momento en el dispositivo. Ideal para dar Internet a móviles, tablets o routers durante un evento o un rodaje sin esperar envíos. Funciona en cualquier dispositivo eSIM Ready, es decir, móviles, tablets y routers de última generación con eSIM. Elige 240 GB o datos ilimitados."],
+      ["Descripción", "SIM digital de datos móviles, sin tarjeta física: te enviamos un código QR y, al escanearlo, la línea se activa al momento en el dispositivo. Ideal para dar Internet a móviles, tablets o routers durante un evento o un rodaje sin esperar envíos. Elige 240 GB o datos ilimitados."],
       ["Activación", "Inmediata: escaneas el código QR y listo"],
       ["Conexión a Internet", "Red móvil 4G / 5G según cobertura"],
-      ["Compatible con", "eSIM Ready"],
+      ["Compatible con", "Móviles, tablets y routers de última generación con eSIM"],
       ["Formato", "Digital, sin tarjeta física"],
       ["Incluye", "Código QR de activación por correo · soporte para instalarla"]
     ]
@@ -1735,7 +1735,7 @@ const CARD_INFO = {
   connectivity: p => p.type === "eSIM" ? [
     { small: true, icon: STORAGE_ICONS.qr, title: "Activación", text: "Inmediata con QR" },
     { small: true, icon: STORAGE_ICONS.capacity, title: "Datos", text: p.storages.join(" · ") },
-    { icon: STORAGE_ICONS.devices, title: "Compatible con", text: "eSIM Ready" }
+    { icon: STORAGE_ICONS.devices, title: "Compatible con", text: "Móviles, tablets y routers con eSIM" }
   ] : [
     ...(p.group ? [
       { small: true, icon: STORAGE_ICONS.signal, title: "Red", text: p.group.split("|").join(" · ") },
