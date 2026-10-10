@@ -1232,11 +1232,13 @@
 
   /* --- Landing v2: 5 cards per row across the page; icon tile, name, what it includes, count and arrow --- */
   .landing:has(.cat-v2) {
-    display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 18px;
-    width: min(1320px, 100%); max-width: none; justify-content: stretch;
+    --cols: 5; --gap: 18px;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: var(--gap);
+    width: min(1320px, 100%); max-width: none;
   }
+  .landing .category-card.cat-v2 { flex: 0 0 calc((100% - (var(--cols) - 1) * var(--gap)) / var(--cols)); }
   .landing .category-card.cat-v2 {
-    width: auto; height: 100%; padding: 22px 22px 18px; gap: 0; align-items: flex-start; text-align: left;
+    width: auto; height: auto; padding: 22px 22px 18px; gap: 0; align-items: flex-start; text-align: left;
     border-radius: 20px; background: #FFFFFF; border: 1px solid #E3E9F2;
     box-shadow: 0 1px 2px rgba(15,23,42,0.04), 0 8px 24px rgba(15,23,42,0.05);
     transition: transform 220ms var(--ease-out), box-shadow 220ms var(--ease-out), border-color 220ms var(--ease-out);
@@ -1252,7 +1254,7 @@
   .landing .cat-v2 .category-sub { margin-top: 6px; font-size: 13.5px; line-height: 1.35; color: #5B6779; }
   .landing .cat-v2 .category-meta {
     margin-top: auto; padding-top: 18px; width: 100%; display: flex; align-items: center; justify-content: space-between;
-    font-size: 12.5px; font-weight: 600; color: #2B79C2;
+    justify-content: flex-end; font-size: 12.5px; font-weight: 600; color: #2B79C2;
   }
   .landing .cat-v2 .category-meta svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; transition: transform 220ms var(--ease-out); }
   @media (hover: hover) and (pointer: fine) {
@@ -1271,11 +1273,11 @@
   @media (hover: hover) and (pointer: fine) {
     [data-theme="dark"] .landing .category-card.cat-v2:hover { background: rgba(61,139,255,0.08); border-color: rgba(61,139,255,0.55); }
   }
-  @media (max-width: 1100px) { .landing:has(.cat-v2) { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-  @media (max-width: 860px) { .landing:has(.cat-v2) { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; } }
+  @media (max-width: 1100px) { .landing:has(.cat-v2) { --cols: 4; } }
+  @media (max-width: 860px) { .landing:has(.cat-v2) { --cols: 3; --gap: 14px; } }
   @media (max-width: 640px) {
-    .landing:has(.cat-v2) { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-    .landing .category-card.cat-v2 { padding: 16px 14px 14px; border-radius: 16px; }
+    .landing:has(.cat-v2) { --cols: 2; --gap: 10px; display: flex; }
+    .landing .category-card.cat-v2 { height: auto; padding: 16px 14px 14px; border-radius: 16px; }
     .landing .cat-v2 .category-icon { width: 48px; height: 48px; padding: 9px; margin-bottom: 12px; border-radius: 13px; }
     .landing .cat-v2 .category-label { font-size: 15.5px; text-align: left; hyphens: none; }
     .landing .cat-v2 .category-sub { font-size: 12px; }

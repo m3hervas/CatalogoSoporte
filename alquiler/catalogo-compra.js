@@ -354,6 +354,8 @@ const STORAGE_ICONS = {
   cpu: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg>`,
   screen: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M9 20h6M12 16v4"/></svg>`,
   signal: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19.5" r="1"/></svg>`,
+  qr: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3M21 14v.01M14 21h3M21 18v3h-3"/></svg>`,
+  devices: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="11" height="16" rx="2"/><rect x="16" y="9" width="5" height="11" rx="1.5"/><path d="M7.5 17h2"/></svg>`,
   users: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8"/><path d="M18 14.2a6.5 6.5 0 0 1 3.5 5.8"/></svg>`,
   tag: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>`,
   capacity: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5.5" rx="7.5" ry="2.5"/><path d="M4.5 5.5v13c0 1.4 3.4 2.5 7.5 2.5s7.5-1.1 7.5-2.5v-13"/><path d="M4.5 12c0 1.4 3.4 2.5 7.5 2.5s7.5-1.1 7.5-2.5"/></svg>`,
@@ -1132,7 +1134,11 @@ const CARD_INFO = {
   },
   monitor: p => ({ icon: STORAGE_ICONS.screen, title: "Pantalla", text: [specOf(p, "Pantalla"), specOf(p, "Resolución")].filter(Boolean).join(" · ") }),
   // MiFi and routers: networks (speed) and data plans; access point: what it includes
-  connectivity: p => [
+  connectivity: p => p.type === "eSIM" ? [
+    { small: true, icon: STORAGE_ICONS.qr, title: "Activación", text: "Inmediata con QR" },
+    { small: true, icon: STORAGE_ICONS.capacity, title: "Datos", text: p.storages.join(" · ") },
+    { icon: STORAGE_ICONS.devices, title: "Compatible con", text: "Móviles, tablets y routers con eSIM" }
+  ] : [
     ...(p.group ? [
       { small: true, icon: STORAGE_ICONS.signal, title: "Red", text: p.group.split("|").join(" · ") },
       { small: true, icon: STORAGE_ICONS.capacity, title: "Datos", text: p.storages.join(" · ") }
@@ -1153,7 +1159,6 @@ function renderModelCards(items, gridEl, info = CARD_INFO.storage) {
   // Values the visible products have (products marked No in the Excel left out): filter options without any are removed
   if (gridEl) {
     const shown = groupByModel(items).filter(p => !HIDDEN_PRODUCTS.has(productId(gridEl, p)));
-    gridEl._count = shown.length;
     gridEl._present = attr => new Set(shown.flatMap(p => String(attr === "brand" ? p.brand || "Sin marca" : p[attr] || "").split("|")).filter(Boolean));
   }
   deferRender(gridEl, () => drawModelCards(items, gridEl, info));
@@ -1621,7 +1626,7 @@ function enhanceLandingCards() {
     `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${LANDING_ICONS[key]}</svg>`;
   card.classList.add("cat-v2");
   card.insertAdjacentHTML("beforeend", `${LANDING_SUBS[key] ? `<span class="category-sub">${LANDING_SUBS[key]}</span>` : ""}
-    <span class="category-meta"><span class="category-count"></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>`);
+    <span class="category-meta"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>`);
 });
 }
 document.getElementById("phoneIconLarge").innerHTML = phoneIcon("#2B79C2");
@@ -1809,18 +1814,9 @@ const ROUTES = {
 const SLUGS = Object.fromEntries(Object.entries(ROUTES).map(([slug, key]) => [key, slug]));
 
 // Hide what belongs to the other catalogue: landing cards, menu and footer links
-// Landing cards: number of products of each category (from the visible products)
-function fillLandingCounts() {
-  document.querySelectorAll(".category-card.cat-v2").forEach(card => {
-    const grid = views[CARD_KEYS[card.id]]?.querySelector(".storage-grid");
-    const n = grid && grid._count;
-    card.querySelector(".category-count").textContent = n ? `${n} ${n === 1 ? "producto" : "productos"}` : "Ver productos";
-  });
-}
 const CARD_KEYS = { goTablets: "tablets", goPhones: "phones", goAccessories: "accessories", goComputers: "computers", goMac: "mac",
   goMonitors: "monitors", goConnectivity: "connectivity", goStorage: "storage", goBatteries: "batteries", goSound: "sound", goStationery: "stationery", goProtection: "protection", goElectric: "electric", goFilmset: "filmset", goDulling: "dulling", goLighting: "lighting", goEffects: "effects", goCleaning: "cleaning", goMarks: "marks", goFastening: "fastening", goTapes: "tapes", goBackdrops: "backdrops", goOthersound: "othersound", goLavacc: "lavacc", goCabins: "cabins", goVideoconf: "videoconf", goPrinters: "printers", goMics: "mics" };
 enhanceLandingCards();
-fillLandingCounts();
 Object.entries(CARD_KEYS).forEach(([id, key]) => { if (!inMode(key)) document.getElementById(id).hidden = true; });
 document.querySelectorAll("[data-route]").forEach(a => { if (!inMode(ROUTES[a.dataset.route])) a.hidden = true; });
 document.querySelectorAll(".footer-col").forEach(col => {
