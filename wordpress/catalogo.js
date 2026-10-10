@@ -1056,7 +1056,7 @@ const COMPUTERS = [
     cat: "computer", catLabel: "CPU", type: "CPU", brand: "HP / Dell / Lenovo", brandCode: "D", brandColor: "#5C6672",
     model: "CPU 16 GB RAM", photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/cpu-formato-tower_SpTV.webp", storages: ["256 GB", "512 GB"],
     // One photo per format: the sheet shows them as a gallery and changes it with the chosen format
-    recommend: { title: "Añade un monitor", items: [["Monitor Desktop", "24''"], ["Monitor Desktop", "27''"]] },
+    recommend: { title: "Añade un monitor", models: ["Monitor Desktop 24''", "Monitor Desktop 27''"] },
     optionPhotos: { Formatos: ["https://m3hervas.github.io/CatalogoSoporte/alquiler/img/cpu-formato-tower_SpTV.webp", "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/cpu-formato-sff_SpTV.webp", "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/cpu-formato-mini_SpTV.webp"] },
     icon: desktopIcon("#5C6672"),
     specs: [
@@ -1247,29 +1247,57 @@ const MACS = [
   }
 ];
 
+// Same rows and order for every monitor / TV
 const MONITORS = [
   {
-    cat: "monitor", catLabel: "Monitor Desktop", type: "Desktop", group: "24''|27''|32''", brand: "HP / Samsung / Philips / LG", brandCode: "H", brandColor: "#5C6672",
-    model: "Monitor Desktop", photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/monitor-led-24_SpTV.webp",
+    cat: "monitor", catLabel: "Monitor Desktop", type: "Desktop", group: "24''", brand: "HP / Samsung / Philips / LG", brandCode: "H", brandColor: "#5C6672",
+    model: "Monitor Desktop 24''", photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/monitor-led-24_SpTV.webp",
     icon: monitorIcon("#5C6672"),
     specs: [
       ["Categoría", "Monitor de sobremesa"],
       ["Marcas disponibles", "HP / Samsung / Philips / LG"],
       ["Descripción", "Monitor de sobremesa para puestos de trabajo, oficinas temporales y eventos. Se entrega con su cable de imagen y de corriente. El modelo concreto puede variar según disponibilidad."],
-      ["Tamaños", "24'' · 27'' · 32''"],
-      ["Pantalla", "24'' a 32'' LED"],
+      ["Pantalla", "24'' LED"],
       ["Resolución", "Full HD o superior"],
       ["Conexiones", "HDMI · DisplayPort"],
       ["Uso recomendado", "Oficina, puestos de trabajo y eventos"]
     ]
   },
   {
-    cat: "monitor", catLabel: "Monitor de estudio", type: "Estudio 4K", group: "24''|27''|32''", brand: "JVC", brandCode: "J", brandColor: "#004098",
+    cat: "monitor", catLabel: "Monitor Desktop", type: "Desktop", group: "27''", brand: "HP / Samsung / Philips / LG", brandCode: "H", brandColor: "#5C6672",
+    model: "Monitor Desktop 27''", photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/monitor-desktop-27_SpTV.webp",
+    icon: monitorIcon("#5C6672"),
+    specs: [
+      ["Categoría", "Monitor de sobremesa"],
+      ["Marcas disponibles", "HP / Samsung / Philips / LG"],
+      ["Descripción", "Monitor de sobremesa para puestos de trabajo, oficinas temporales y eventos. Se entrega con su cable de imagen y de corriente. El modelo concreto puede variar según disponibilidad."],
+      ["Pantalla", "27'' LED"],
+      ["Resolución", "Full HD o superior"],
+      ["Conexiones", "HDMI · DisplayPort"],
+      ["Uso recomendado", "Oficina, puestos de trabajo y eventos"]
+    ]
+  },
+  {
+    cat: "monitor", catLabel: "Monitor Desktop", type: "Desktop", group: "32''", brand: "HP / Samsung / Philips / LG", brandCode: "H", brandColor: "#5C6672",
+    model: "Monitor Desktop 32''", photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/monitor-desktop-32_SpTV.webp",
+    icon: monitorIcon("#5C6672"),
+    specs: [
+      ["Categoría", "Monitor de sobremesa"],
+      ["Marcas disponibles", "HP / Samsung / Philips / LG"],
+      ["Descripción", "Monitor de sobremesa para puestos de trabajo, oficinas temporales y eventos. Se entrega con su cable de imagen y de corriente. El modelo concreto puede variar según disponibilidad."],
+      ["Pantalla", "32'' LED"],
+      ["Resolución", "Full HD o superior"],
+      ["Conexiones", "HDMI · DisplayPort"],
+      ["Uso recomendado", "Oficina, puestos de trabajo y eventos"]
+    ]
+  },
+  {
+    cat: "monitor", catLabel: "Monitor de estudio", type: "Estudio 4K", group: "24''|27''|32''", brand: "JVC / SWIT", brandCode: "J", brandColor: "#004098",
     model: "Monitor de estudio", photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/jvc-monitor-de-estudio-24_SpTV.webp",
     icon: monitorIcon("#004098"),
     specs: [
       ["Categoría", "Monitor de estudio"],
-      ["Marcas disponibles", "JVC"],
+      ["Marcas disponibles", "JVC / SWIT"],
       ["Descripción", "Monitor profesional de referencia para controlar la imagen en rodajes, realización y postproducción, con entradas SDI y HDMI. El modelo concreto puede variar según disponibilidad."],
       ["Tamaños", "24'' · 27'' · 32''"],
       ["Pantalla", "24'' a 32''"],
@@ -1279,15 +1307,56 @@ const MONITORS = [
     ]
   },
   {
-    cat: "monitor", catLabel: "Smart TV 4K", type: "Smart TV", group: "32''|40''|50''|65''", brand: "LG / Philips / Samsung / Xiaomi", brandCode: "L", brandColor: "#A50034",
-    model: "Smart TV 4K", photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/lg-monitor-65-4k_SpTV.webp",
+    cat: "monitor", catLabel: "Smart TV 4K", type: "Smart TV", group: "32''", brand: "LG / Philips / Samsung / Xiaomi", brandCode: "L", brandColor: "#A50034",
+    model: "Smart TV 4K 32''", photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/lg-monitor-65-4k_SpTV.webp",
     icon: monitorIcon("#A50034"),
     specs: [
       ["Categoría", "Smart TV"],
       ["Marcas disponibles", "LG / Philips / Samsung / Xiaomi"],
       ["Descripción", "Televisor inteligente 4K para presentaciones, stands, señalética y salas de espera: reproduce desde USB o por Wi-Fi y se conecta a un portátil por HDMI. El modelo concreto puede variar según disponibilidad."],
-      ["Tamaños", "32'' · 40'' · 50'' · 65''"],
-      ["Pantalla", "32'' a 65'' LED"],
+      ["Pantalla", "32'' LED"],
+      ["Resolución", "4K UHD"],
+      ["Conexiones", "HDMI · USB · Wi-Fi"],
+      ["Uso recomendado", "Presentaciones, stands y señalética"]
+    ]
+  },
+  {
+    cat: "monitor", catLabel: "Smart TV 4K", type: "Smart TV", group: "40''", brand: "LG / Philips / Samsung / Xiaomi", brandCode: "L", brandColor: "#A50034",
+    model: "Smart TV 4K 40''", photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/lg-monitor-65-4k_SpTV.webp",
+    icon: monitorIcon("#A50034"),
+    specs: [
+      ["Categoría", "Smart TV"],
+      ["Marcas disponibles", "LG / Philips / Samsung / Xiaomi"],
+      ["Descripción", "Televisor inteligente 4K para presentaciones, stands, señalética y salas de espera: reproduce desde USB o por Wi-Fi y se conecta a un portátil por HDMI. El modelo concreto puede variar según disponibilidad."],
+      ["Pantalla", "40'' LED"],
+      ["Resolución", "4K UHD"],
+      ["Conexiones", "HDMI · USB · Wi-Fi"],
+      ["Uso recomendado", "Presentaciones, stands y señalética"]
+    ]
+  },
+  {
+    cat: "monitor", catLabel: "Smart TV 4K", type: "Smart TV", group: "50''", brand: "LG / Philips / Samsung / Xiaomi", brandCode: "L", brandColor: "#A50034",
+    model: "Smart TV 4K 50''", photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/lg-monitor-65-4k_SpTV.webp",
+    icon: monitorIcon("#A50034"),
+    specs: [
+      ["Categoría", "Smart TV"],
+      ["Marcas disponibles", "LG / Philips / Samsung / Xiaomi"],
+      ["Descripción", "Televisor inteligente 4K para presentaciones, stands, señalética y salas de espera: reproduce desde USB o por Wi-Fi y se conecta a un portátil por HDMI. El modelo concreto puede variar según disponibilidad."],
+      ["Pantalla", "50'' LED"],
+      ["Resolución", "4K UHD"],
+      ["Conexiones", "HDMI · USB · Wi-Fi"],
+      ["Uso recomendado", "Presentaciones, stands y señalética"]
+    ]
+  },
+  {
+    cat: "monitor", catLabel: "Smart TV 4K", type: "Smart TV", group: "65''", brand: "LG / Philips / Samsung / Xiaomi", brandCode: "L", brandColor: "#A50034",
+    model: "Smart TV 4K 65''", photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/lg-monitor-65-4k_SpTV.webp",
+    icon: monitorIcon("#A50034"),
+    specs: [
+      ["Categoría", "Smart TV"],
+      ["Marcas disponibles", "LG / Philips / Samsung / Xiaomi"],
+      ["Descripción", "Televisor inteligente 4K para presentaciones, stands, señalética y salas de espera: reproduce desde USB o por Wi-Fi y se conecta a un portátil por HDMI. El modelo concreto puede variar según disponibilidad."],
+      ["Pantalla", "65'' LED"],
       ["Resolución", "4K UHD"],
       ["Conexiones", "HDMI · USB · Wi-Fi"],
       ["Uso recomendado", "Presentaciones, stands y señalética"]
@@ -1295,41 +1364,48 @@ const MONITORS = [
   }
 ];
 
-// MiFi y routers: cada combinación de red (4G/5G) y plan de datos
-const DATA_PLANS = [
-  { key: "240 GB", label: "Tarjeta de datos 240 GB", short: "240 GB" },
-  { key: "Ilimitados", label: "Línea de datos ilimitados", short: "Datos ilimitados" }
+// Same rows and order for the three: Categoría, Descripción, Conexión a Internet, Wi-Fi, Dispositivos conectados, Incluye.
+// MiFi and router: network (4G / 5G) and data plan are chosen in the sheet (Red, Datos)
+const CONNECTIVITY = [
+  {
+    cat: "connectivity", catLabel: "MiFi", type: "MiFi", group: "4G|5G", storages: ["240 GB", "Ilimitados"], storageLabel: "Datos",
+    model: "MiFi portátil", photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/tp-link-m8550-mifi_SpTV.webp", icon: mifiIcon("#0F8A80"),
+    specs: [
+      ["Categoría", "Router portátil (MiFi)"],
+      ["Descripción", "Router de bolsillo con batería que crea una red Wi-Fi 6 en cualquier sitio a partir de una SIM 4G o 5G: hasta 50 dispositivos conectados a la vez. Ideal para rodajes, eventos y trabajo en movilidad. El modelo concreto puede variar según disponibilidad."],
+      ["Red", "4G · 5G"],
+      ["Conexión a Internet", "Red móvil 4G o 5G (SIM incluida)"],
+      ["Wi-Fi", "Wi-Fi 6"],
+      ["Dispositivos conectados", "Hasta 50"],
+      ["Incluye", "SIM con datos y llamadas ilimitadas · cargador"]
+    ]
+  },
+  {
+    cat: "connectivity", catLabel: "Router", type: "Router", group: "4G|5G", storages: ["240 GB", "Ilimitados"], storageLabel: "Datos",
+    model: "Router con SIM", photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/tp-link-archer-nx600-router_SpTV.webp", icon: routerIcon("#0F8A80"),
+    specs: [
+      ["Categoría", "Router con SIM"],
+      ["Descripción", "Router de sobremesa con SIM 4G o 5G para dar Internet por Wi-Fi 6 y por cable a una oficina, stand o set de rodaje sin línea fija: hasta 50 dispositivos conectados a la vez. El modelo concreto puede variar según disponibilidad."],
+      ["Red", "4G · 5G"],
+      ["Conexión a Internet", "Red móvil 4G o 5G (SIM incluida)"],
+      ["Wi-Fi", "Wi-Fi 6"],
+      ["Dispositivos conectados", "Hasta 50"],
+      ["Incluye", "SIM con datos y llamadas ilimitadas · fuente de alimentación"]
+    ]
+  },
+  {
+    cat: "connectivity", catLabel: "Punto de acceso", type: "Punto de acceso", brand: "Ubiquiti", brandCode: "U", brandColor: "#0559C9",
+    model: "Punto de acceso inalámbrico Ubiquiti", photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/ubiquiti-punto-de-acceso_SpTV.webp", icon: accessPointIcon("#0559C9"),
+    specs: [
+      ["Categoría", "Punto de acceso Wi-Fi"],
+      ["Descripción", "Punto de acceso profesional que amplía la red Wi-Fi 6 del recinto con buena cobertura y estabilidad: hasta 50 dispositivos conectados a la vez. Lo instalamos y configuramos nosotros."],
+      ["Conexión a Internet", "Por cable, desde la red del recinto"],
+      ["Wi-Fi", "Wi-Fi 6"],
+      ["Dispositivos conectados", "Hasta 50"],
+      ["Incluye", "Instalación y configuración"]
+    ]
+  }
 ];
-const CONNECTIVITY = [];
-["MiFi", "Router"].forEach(device => {
-  ["4G", "5G"].forEach(net => {
-    DATA_PLANS.forEach(plan => {
-      // One card per device: networks and data plans are shown in the blue boxes
-      CONNECTIVITY.push({
-        cat: "connectivity", catLabel: device, type: device, group: net, storage: plan.key, storageLabel: "Datos",
-        model: device === "MiFi" ? "MiFi portátil" : "Router con SIM",
-        photo: device === "MiFi" ? "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/mifi-portatil_SpTV.webp?v=2" : "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/router-con-sim_SpTV.webp?v=2",
-        icon: device === "MiFi" ? mifiIcon("#0F8A80") : routerIcon("#0F8A80"),
-        specs: [
-          ["Categoría", device],
-          ["Red", net],
-          ["Incluye", plan.label],
-          ["Llamadas", "Ilimitadas"]
-        ]
-      });
-    });
-  });
-});
-CONNECTIVITY.push({
-  cat: "connectivity", catLabel: "Punto de acceso", type: "Punto de acceso", brand: "Ubiquiti", brandCode: "U", brandColor: "#0559C9",
-  model: "Punto de acceso inalámbrico Ubiquiti", photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/ubiquiti-punto-de-acceso_SpTV.webp",
-  icon: accessPointIcon("#0559C9"),
-  specs: [
-    ["Categoría", "Punto de acceso inalámbrico"],
-    ["Marca", "Ubiquiti"],
-    ["Incluye", "Instalación"]
-  ]
-});
 
 const VIDEOCONF = [
   {
@@ -1507,7 +1583,7 @@ const scrim = shadow.getElementById("scrim");
 const panel = shadow.getElementById("panel");
 
 // Small brand icon next to the brand name (https://m3hervas.github.io/CatalogoSoporte/alquiler/img/marcas/, from each brand's own website); brands without one keep the letter
-const BRAND_LOGOS = {"3 en 1": "3_en_1.webp", "3M": "3m.webp", "Adam Hall": "adam_hall.webp", "Apli": "apli.webp", "BIC": "bic.webp", "Bubblebee Industries": "bubblebee_industries.webp", "Cap It": "cap_it.webp", "Ceys": "ceys.webp", "CGE Tools": "cge_tools.webp", "CRC": "crc.webp", "Dell": "dell.webp", "Dirty Rigger": "dirty_rigger.webp", "Dodot": "dodot.webp", "Duracell": "duracell.webp", "Dylan Stoel": "dylan_stoel.webp", "edding": "edding.webp", "EDM": "edm.webp", "Energizer": "energizer.webp", "Ewent": "ewent.webp", "Focus Rat": "focus_rat.webp", "Foogy": "foogy.webp", "Goobay": "goobay.webp", "Gorilla": "gorilla.webp", "Green Clean": "green_clean.webp", "Hama": "hama.webp", "Hansaplast": "hansaplast.webp", "Hide-a-mic": "hide_a_mic.webp", "Hollyland": "hollyland.webp", "HP": "hp.webp", "Insta360": "insta360.webp", "Jabra": "jabra.webp", "JJC": "jjc.webp", "Joe's Sticky Stuff": "joe_s_sticky_stuff.webp", "JVC": "jvc.webp", "K-Line": "k_line.webp", "Kenro": "kenro.webp", "Kimberly-Clark": "kimberly_clark.webp", "Kleenslate": "kleenslate.webp", "Kupo": "kupo.webp", "Lenovo": "lenovo.webp", "LG": "lg.webp", "Loctite": "loctite.webp", "Logitech": "logitech.webp", "Manfrotto": "manfrotto.webp", "Maxell": "maxell.webp", "Microsoft": "microsoft.webp", "Modern Studio": "modern_studio.webp", "Motorola": "motorola.webp", "Nichiban": "nichiban.webp", "Pentel": "pentel.webp", "Philips": "philips.webp", "Phonak": "phonak.webp", "Photographic Solutions": "photographic_solutions.webp", "Piher": "piher.webp", "Pilot": "pilot.webp", "Precygrap": "precygrap.webp", "Procab": "procab.webp", "Progaff": "progaff.webp", "QNAP": "qnap.webp", "Rain-X": "rain_x.webp", "Rayovac": "rayovac.webp", "Renata": "renata.webp", "Rosco": "rosco.webp", "Rycote": "rycote.webp", "RØDE": "røde.webp", "Samsung": "samsung.webp", "SanDisk": "sandisk.webp", "SanDisk Professional": "sandisk_professional.webp", "Sanytol": "sanytol.webp", "Sennheiser": "sennheiser.svg", "Sharpie": "sharpie.webp", "Shurtape": "shurtape.webp", "Sony": "sony.webp", "Soudal": "soudal.webp", "Staedtler": "staedtler.webp", "Stardom": "stardom.webp", "StarTech": "startech.webp", "Synology": "synology.webp", "Tenba": "tenba.webp", "tesa": "tesa.webp", "Ubiquiti": "ubiquiti.webp", "Ursa Straps": "ursa_straps.webp", "Varta": "varta.webp", "VELCRO": "velcro.webp", "Viviana": "viviana.webp", "Wacom": "wacom.webp", "WD": "wd.webp", "WD-40": "wd_40.webp", "WD_BLACK": "wd_black.webp", "Wolfcraft": "wolfcraft.webp", "Xiaomi": "xiaomi.webp", "Zeiss": "zeiss.webp", "Zhiyun": "zhiyun.webp"};
+const BRAND_LOGOS = {"SWIT": "swit.webp", "3 en 1": "3_en_1.webp", "3M": "3m.webp", "Adam Hall": "adam_hall.webp", "Apli": "apli.webp", "BIC": "bic.webp", "Bubblebee Industries": "bubblebee_industries.webp", "Cap It": "cap_it.webp", "Ceys": "ceys.webp", "CGE Tools": "cge_tools.webp", "CRC": "crc.webp", "Dell": "dell.webp", "Dirty Rigger": "dirty_rigger.webp", "Dodot": "dodot.webp", "Duracell": "duracell.webp", "Dylan Stoel": "dylan_stoel.webp", "edding": "edding.webp", "EDM": "edm.webp", "Energizer": "energizer.webp", "Ewent": "ewent.webp", "Focus Rat": "focus_rat.webp", "Foogy": "foogy.webp", "Goobay": "goobay.webp", "Gorilla": "gorilla.webp", "Green Clean": "green_clean.webp", "Hama": "hama.webp", "Hansaplast": "hansaplast.webp", "Hide-a-mic": "hide_a_mic.webp", "Hollyland": "hollyland.webp", "HP": "hp.webp", "Insta360": "insta360.webp", "Jabra": "jabra.webp", "JJC": "jjc.webp", "Joe's Sticky Stuff": "joe_s_sticky_stuff.webp", "JVC": "jvc.webp", "K-Line": "k_line.webp", "Kenro": "kenro.webp", "Kimberly-Clark": "kimberly_clark.webp", "Kleenslate": "kleenslate.webp", "Kupo": "kupo.webp", "Lenovo": "lenovo.webp", "LG": "lg.webp", "Loctite": "loctite.webp", "Logitech": "logitech.webp", "Manfrotto": "manfrotto.webp", "Maxell": "maxell.webp", "Microsoft": "microsoft.webp", "Modern Studio": "modern_studio.webp", "Motorola": "motorola.webp", "Nichiban": "nichiban.webp", "Pentel": "pentel.webp", "Philips": "philips.webp", "Phonak": "phonak.webp", "Photographic Solutions": "photographic_solutions.webp", "Piher": "piher.webp", "Pilot": "pilot.webp", "Precygrap": "precygrap.webp", "Procab": "procab.webp", "Progaff": "progaff.webp", "QNAP": "qnap.webp", "Rain-X": "rain_x.webp", "Rayovac": "rayovac.webp", "Renata": "renata.webp", "Rosco": "rosco.webp", "Rycote": "rycote.webp", "RØDE": "røde.webp", "Samsung": "samsung.webp", "SanDisk": "sandisk.webp", "SanDisk Professional": "sandisk_professional.webp", "Sanytol": "sanytol.webp", "Sennheiser": "sennheiser.svg", "Sharpie": "sharpie.webp", "Shurtape": "shurtape.webp", "Sony": "sony.webp", "Soudal": "soudal.webp", "Staedtler": "staedtler.webp", "Stardom": "stardom.webp", "StarTech": "startech.webp", "Synology": "synology.webp", "Tenba": "tenba.webp", "tesa": "tesa.webp", "Ubiquiti": "ubiquiti.webp", "Ursa Straps": "ursa_straps.webp", "Varta": "varta.webp", "VELCRO": "velcro.webp", "Viviana": "viviana.webp", "Wacom": "wacom.webp", "WD": "wd.webp", "WD-40": "wd_40.webp", "WD_BLACK": "wd_black.webp", "Wolfcraft": "wolfcraft.webp", "Xiaomi": "xiaomi.webp", "Zeiss": "zeiss.webp", "Zhiyun": "zhiyun.webp"};
 
 function badgeMarkup(p) {
   if (!p.brand) return "";
@@ -2131,10 +2207,17 @@ const CARD_INFO = {
   },
   monitor: p => ({ icon: STORAGE_ICONS.screen, title: "Pantalla", text: [specOf(p, "Pantalla"), specOf(p, "Resolución")].filter(Boolean).join(" · ") }),
   // MiFi and routers: networks (speed) and data plans; access point: what it includes
-  connectivity: p => p.group ? [
-    { small: true, icon: STORAGE_ICONS.signal, title: "Velocidad", text: p.group.split("|").join(" · ") },
-    { small: true, icon: STORAGE_ICONS.capacity, title: "Datos", text: p.storages.join(" · ") }
-  ] : { icon: STORAGE_ICONS.signal, title: "Conexión", text: `Wi-Fi · Incluye ${specOf(p, "Incluye").toLowerCase()}` },
+  connectivity: p => [
+    ...(p.group ? [
+      { small: true, icon: STORAGE_ICONS.signal, title: "Red", text: p.group.split("|").join(" · ") },
+      { small: true, icon: STORAGE_ICONS.capacity, title: "Datos", text: p.storages.join(" · ") }
+    ] : [
+      { small: true, icon: STORAGE_ICONS.port, title: "Conexión", text: "Por cable" },
+      { small: true, icon: STORAGE_ICONS.tag, title: "Incluye", text: "Instalación" }
+    ]),
+    { small: true, icon: STORAGE_ICONS.signal, title: "Wi-Fi", text: specOf(p, "Wi-Fi") },
+    { small: true, icon: STORAGE_ICONS.tag, title: "Dispositivos", text: `${specOf(p, "Dispositivos conectados")} dispositivos` }
+  ],
   // Products that list their own boxes: [icon, title, text, small?]
   custom: p => p.info.map(([icon, title, text, small]) => ({ icon: STORAGE_ICONS[icon], title, text, small: !!small })),
   accessory: p => ({ icon: STORAGE_ICONS.tag, title: "Uso", text: p.group ? "Para " + p.group.split("|").join(" / ") : p.catLabel })
@@ -2301,9 +2384,7 @@ function openPanel(p) {
     : optPhotos.map((ph, i) => `<button type="button" class="pv-thumb pv-othumb" data-o="${i}" aria-label="Ver ${groups[optGi].options[i]}" aria-pressed="${i === 0}"><img src="${smallPhoto(ph)}" alt="" decoding="async"><span>${groups[optGi].options[i]}</span></button>`).join("");
   const slides = thumbs ? (colors.length ? colors.length : optPhotos.length) : 0;
   // Recommended extras (e.g. a monitor for a CPU): added to the request list straight away
-  const recos = p.recommend ? p.recommend.items
-    .map(([m, size]) => { const r = MONITORS.find(x => x.model === m); return r && { ...r, size, label: `${m} ${size}` }; })
-    .filter(Boolean) : [];
+  const recos = p.recommend ? p.recommend.models.map(m => MONITORS.find(x => x.model === m)).filter(Boolean) : [];
 
   panel.innerHTML = `
     <button class="pv-close" id="closeBtn" type="button" aria-label="Cerrar ficha"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
@@ -2342,7 +2423,7 @@ function openPanel(p) {
       ${recos.length ? `<section class="pv-section pv-recos"><h3>Nuestras recomendaciones</h3><p class="pv-recos-sub">${p.recommend.title}</p>
         <div class="pv-recos-list">${recos.map((r, i) => `<div class="pv-reco">
           <img src="${smallPhoto(r.photo)}" alt="" decoding="async">
-          <div class="pv-reco-text"><strong>${r.label}</strong><span>${specOf(r, "Marcas disponibles") || r.brand}</span></div>
+          <div class="pv-reco-text"><strong>${r.model}</strong><span>${specOf(r, "Marcas disponibles") || r.brand}</span></div>
           <button type="button" class="pv-reco-add" data-r="${i}">Añadir</button>
         </div>`).join("")}</div></section>` : ""}
       ${desc ? `<section class="pv-section"><h3>Sobre este producto</h3><p>${desc}</p></section>` : ""}
@@ -2417,8 +2498,7 @@ function openPanel(p) {
   });
 
   panel.querySelectorAll(".pv-reco-add").forEach(b => b.addEventListener("click", () => {
-    const r = recos[Number(b.dataset.r)];
-    addToList(`${r.model} (tamaño ${r.size})`, 1);
+    addToList(recos[Number(b.dataset.r)].model, 1);
     b.textContent = "Añadido ✓";
     b.classList.add("is-added");
   }));
