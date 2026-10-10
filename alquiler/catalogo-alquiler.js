@@ -397,6 +397,7 @@ const PRODUCTS = [
     icon: tabletIcon("#1428A0"),
     specs: [
       ["Categoría", "Tablet Android"],
+      ["Conectividad", "Wi-Fi / Wi-Fi + Cellular"],
       ["Almacenamiento", "64 GB"],
       ["Procesador", "Octa-core"],
       ["Pantalla", "10,5 ''"]
@@ -410,6 +411,7 @@ const PRODUCTS = [
     icon: tabletIcon("#1428A0"),
     specs: [
       ["Categoría", "Tablet Android"],
+      ["Conectividad", "Wi-Fi / Wi-Fi + Cellular"],
       ["Almacenamiento", "256 GB"],
       ["Tipo de pantalla", "Dynamic AMOLED"],
       ["Pantalla", "14,6 ''"]
@@ -423,7 +425,7 @@ const PRODUCTS = [
     icon: ipadIcon("#5B6470"),
     specs: [
       ["Categoría", "iPad"],
-      ["Conectividad", "Wi-Fi"],
+      ["Conectividad", "Wi-Fi / Wi-Fi + Cellular"],
       ["Pantalla", "9,7 ''"]
     ]
   },
@@ -436,7 +438,7 @@ const PRODUCTS = [
     specs: [
       ["Categoría", "iPad"],
       ["Almacenamiento", "32 GB"],
-      ["Conectividad", "Wi-Fi"],
+      ["Conectividad", "Wi-Fi / Wi-Fi + Cellular"],
       ["Pantalla", "9,7 ''"]
     ]
   },
@@ -449,7 +451,7 @@ const PRODUCTS = [
     specs: [
       ["Categoría", "iPad"],
       ["Almacenamiento", "32 GB"],
-      ["Conectividad", "Wi-Fi"],
+      ["Conectividad", "Wi-Fi / Wi-Fi + Cellular"],
       ["Pantalla", "10,2 ''"]
     ]
   },
@@ -462,7 +464,7 @@ const PRODUCTS = [
     specs: [
       ["Categoría", "iPad"],
       ["Almacenamiento", "64 GB"],
-      ["Conectividad", "Wi-Fi"],
+      ["Conectividad", "Wi-Fi / Wi-Fi + Cellular"],
       ["Pantalla", "10,2 ''"]
     ]
   },
@@ -475,7 +477,7 @@ const PRODUCTS = [
     specs: [
       ["Categoría", "iPad"],
       ["Almacenamiento", "128 GB"],
-      ["Conectividad", "Wi-Fi"],
+      ["Conectividad", "Wi-Fi / Wi-Fi + Cellular"],
       ["Pantalla", "11 ''"]
     ]
   },
@@ -488,7 +490,7 @@ const PRODUCTS = [
     specs: [
       ["Categoría", "iPad"],
       ["Almacenamiento", "64 GB"],
-      ["Conectividad", "Wi-Fi + Cellular"],
+      ["Conectividad", "Wi-Fi / Wi-Fi + Cellular"],
       ["Pantalla", "10,5 ''"]
     ]
   },
@@ -502,7 +504,7 @@ const PRODUCTS = [
       ["Categoría", "iPad"],
       ["Almacenamiento", "128 GB"],
       ["Chip", "M2"],
-      ["Conectividad", "Wi-Fi"],
+      ["Conectividad", "Wi-Fi / Wi-Fi + Cellular"],
       ["Pantalla", "13 ''"]
     ]
   },
@@ -515,7 +517,7 @@ const PRODUCTS = [
     specs: [
       ["Categoría", "iPad"],
       ["Almacenamiento", "128 GB"],
-      ["Conectividad", "Wi-Fi + Cellular"],
+      ["Conectividad", "Wi-Fi / Wi-Fi + Cellular"],
       ["Pantalla", "11 ''"]
     ]
   },
@@ -528,7 +530,7 @@ const PRODUCTS = [
     specs: [
       ["Categoría", "iPad"],
       ["Almacenamiento", "128 GB"],
-      ["Conectividad", "Wi-Fi + Cellular"],
+      ["Conectividad", "Wi-Fi / Wi-Fi + Cellular"],
       ["Pantalla", "12,9 ''"]
     ]
   },
@@ -1508,7 +1510,8 @@ function bindSwatches(root, p, img) {
 const OPTION_SPECS = {
   Almacenamiento: "Capacidad", Procesador: "Procesador", RAM: "RAM", Modelos: "Modelo", Red: "Red", Datos: "Datos",
   Tamaños: "Tamaño", Tallas: "Talla", Medidas: "Medida", Formatos: "Formato", Versiones: "Versión", Puntas: "Punta",
-  Alturas: "Altura", Anchos: "Ancho", Largos: "Largo", Grosores: "Grosor", Apertura: "Apertura", Referencias: "Referencia", Efectos: "Efecto"
+  Alturas: "Altura", Anchos: "Ancho", Largos: "Largo", Grosores: "Grosor", Apertura: "Apertura", Referencias: "Referencia", Efectos: "Efecto",
+  Conectividad: "Conectividad"
 };
 // Technical sheet rows per product type, in this order (the other data stays, but is not shown).
 // Types not listed here show every row.
