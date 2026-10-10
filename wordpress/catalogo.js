@@ -1255,19 +1255,27 @@ const MONITORS = [
     specs: [
       ["Categoría", "Monitor de sobremesa"],
       ["Marcas disponibles", "HP / Samsung / Philips / LG"],
+      ["Descripción", "Monitor de sobremesa para puestos de trabajo, oficinas temporales y eventos. Se entrega con su cable de imagen y de corriente. El modelo concreto puede variar según disponibilidad."],
       ["Tamaños", "24'' · 27'' · 32''"],
-      ["Pantalla", "24'' a 32'' LED"]
+      ["Pantalla", "24'' a 32'' LED"],
+      ["Resolución", "Full HD o superior"],
+      ["Conexiones", "HDMI · DisplayPort"],
+      ["Uso recomendado", "Oficina, puestos de trabajo y eventos"]
     ]
   },
   {
-    cat: "monitor", catLabel: "Monitor de estudio 4K", type: "Estudio 4K", group: "24''", brand: "JVC", brandCode: "J", brandColor: "#004098",
+    cat: "monitor", catLabel: "Monitor de estudio", type: "Estudio 4K", group: "24''|27''|32''", brand: "JVC", brandCode: "J", brandColor: "#004098",
     model: "Monitor de estudio", photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/jvc-monitor-de-estudio-24_SpTV.webp",
     icon: monitorIcon("#004098"),
     specs: [
-      ["Categoría", "Monitor de estudio 4K"],
-      ["Marca", "JVC"],
-      ["Pantalla", "24''"],
-      ["Conexiones", "SDI / HDMI"]
+      ["Categoría", "Monitor de estudio"],
+      ["Marcas disponibles", "JVC"],
+      ["Descripción", "Monitor profesional de referencia para controlar la imagen en rodajes, realización y postproducción, con entradas SDI y HDMI. El modelo concreto puede variar según disponibilidad."],
+      ["Tamaños", "24'' · 27'' · 32''"],
+      ["Pantalla", "24'' a 32''"],
+      ["Resolución", "4K"],
+      ["Conexiones", "SDI · HDMI"],
+      ["Uso recomendado", "Rodaje, realización y control de imagen"]
     ]
   },
   {
@@ -1275,11 +1283,14 @@ const MONITORS = [
     model: "Smart TV 4K", photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/lg-monitor-65-4k_SpTV.webp",
     icon: monitorIcon("#A50034"),
     specs: [
-      ["Categoría", "Smart TV 4K"],
+      ["Categoría", "Smart TV"],
       ["Marcas disponibles", "LG / Philips / Samsung / Xiaomi"],
+      ["Descripción", "Televisor inteligente 4K para presentaciones, stands, señalética y salas de espera: reproduce desde USB o por Wi-Fi y se conecta a un portátil por HDMI. El modelo concreto puede variar según disponibilidad."],
       ["Tamaños", "32'' · 40'' · 50'' · 65''"],
-      ["Pantalla", "32'' a 65''"],
-      ["Resolución", "4K"]
+      ["Pantalla", "32'' a 65'' LED"],
+      ["Resolución", "4K UHD"],
+      ["Conexiones", "HDMI · USB · Wi-Fi"],
+      ["Uso recomendado", "Presentaciones, stands y señalética"]
     ]
   }
 ];
