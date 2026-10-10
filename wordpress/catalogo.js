@@ -32,7 +32,7 @@ fitFullWidth();
 window.addEventListener("resize", fitFullWidth);
 
 // Products marked "No" in the column "¿Se muestra en la web?" of Productos_web_SoporteTV.xlsx (filled in by tools/build_catalogo.py)
-const HIDDEN_PRODUCTS = new Set(["grid|Apple|iPad (5.ª generación)|", "gridAccessories|Apple|Adaptador USB-C a USB|", "gridComputers|HP / Dell / Lenovo|CPU + Monitor 16 GB RAM|"]);
+const HIDDEN_PRODUCTS = new Set(["grid|Apple|iPad (5.ª generación)|", "gridAccessories|Apple|Adaptador USB-C a USB|", "gridComputers|HP / Dell / Lenovo|CPU + Monitor 16 GB RAM|", "gridVideoconf|Motorola|Motorola DP4400|"]);
 const productId = (gridEl, p) => [gridEl.id, p.brand || "", p.model, p.key || ""].join("|");
 // Cards and thumbnails use the 480 px copy of each photo (https://m3hervas.github.io/CatalogoSoporte/alquiler/img/s/, made by tools/build_catalogo.py); the sheet the full one
 const smallPhoto = src => src ? src.replace(/(^|\/)img\/(?!s\/)/, "$1img/s/") : src;
@@ -2225,6 +2225,11 @@ const CARD_INFO = {
 
 function renderModelCards(items, gridEl, info = CARD_INFO.storage) {
   if (gridEl) SEARCH_SOURCES.push({ grid: gridEl, items, grouped: true });
+  // Values the visible products have (products marked No in the Excel left out): filter options without any are removed
+  if (gridEl) {
+    const shown = groupByModel(items).filter(p => !HIDDEN_PRODUCTS.has(productId(gridEl, p)));
+    gridEl._present = attr => new Set(shown.flatMap(p => String(attr === "brand" ? p.brand || "Sin marca" : p[attr] || "").split("|")).filter(Boolean));
+  }
   deferRender(gridEl, () => drawModelCards(items, gridEl, info));
 }
 
@@ -2898,6 +2903,11 @@ catRoot.querySelectorAll("[data-back]").forEach(btn => {
 // --- Generic filters: any combination of dataset attributes per view ---
 // filterDefs: [{ select: <el>, attr: "brand" }, { select: <el>, attr: "storage" }, ...]
 function setupFilters(gridEl, filterDefs) {
+  if (gridEl && gridEl._present) filterDefs.forEach(f => {
+    if (!f.select) return;
+    const present = gridEl._present(f.attr);
+    [...f.select.options].forEach(o => { if (o.value !== "all" && !present.has(o.value)) o.remove(); });
+  });
   const active = {};
   filterDefs.forEach(f => { if (f.select) active[f.attr] = "all"; });
 
