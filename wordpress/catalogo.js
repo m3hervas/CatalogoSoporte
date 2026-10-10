@@ -415,6 +415,7 @@ const PRODUCTS = [
     icon: tabletIcon("#E2231A"),
     specs: [
       ["Categoría", "Tablet Android"],
+      ["Conectividad", "Wi-Fi / Wi-Fi + Cellular"],
       ["RAM", "4 GB"],
       ["Almacenamiento", "128 GB"],
       ["Procesador", "Octa-core"],
