@@ -508,7 +508,7 @@ const PRODUCTS = [
   },
   {
     cat: "ipad", catLabel: "iPad", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "iPad Pro", storages: ["128 GB", "256 GB", "512 GB", "1 TB"],
+    model: "iPad Pro (M5)", storages: ["128 GB", "256 GB", "512 GB", "1 TB"],
     storage: "128 GB",
     photo: "../alquiler/img/apple-ipad-pro_SpTV.webp",
     icon: ipadIcon("#5B6470"),
@@ -534,7 +534,7 @@ const PRODUCTS = [
   },
   {
     cat: "ipad", catLabel: "iPad", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "iPad Pro", storages: ["128 GB", "256 GB", "512 GB", "1 TB"],
+    model: "iPad Pro (M5)", storages: ["128 GB", "256 GB", "512 GB", "1 TB"],
     storage: "256 GB",
     photo: "../alquiler/img/apple-ipad-pro_SpTV.webp",
     icon: ipadIcon("#5B6470"),
@@ -1690,7 +1690,7 @@ document.addEventListener("keydown", e => {
 
 // Tablets: iPad Pro, iPad Air, iPad, then Samsung and Lenovo (newest first inside each group)
 const TABLET_ORDER = [
-  "iPad Pro", "iPad Pro (4.ª generación)",
+  "iPad Pro (M5)", "iPad Pro (4.ª generación)",
   "iPad Air (M2)", "iPad Air",
   "iPad A16 (11.ª generación)", "iPad (9.ª generación)", "iPad (7.ª generación)", "iPad (6.ª generación)", "iPad (5.ª generación)",
   "Galaxy Tab S9 Ultra", "Galaxy Tab A8",
