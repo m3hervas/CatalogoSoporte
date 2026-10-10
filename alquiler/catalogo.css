@@ -419,7 +419,7 @@
   }
   .pv-buy .qty { height: 48px; background: #FFFFFF; }
   .pv-buy .qty button { width: 40px; height: 46px; }
-  .pv-add { width: 100%; height: 48px; padding: 0 20px; }
+  .pv-buy .pv-add { width: 100%; height: 48px; padding: 0 14px; white-space: nowrap; }
   .pv-buy .panel-added, .pv-note { grid-column: 1 / -1; margin: 0; }
   .pv-note { font-size: 12.5px; color: var(--ink-soft); text-align: center; }
 
@@ -477,26 +477,6 @@
   .close-btn { transition: background-color 150ms ease, transform 150ms var(--ease-out); }
   @media (hover: hover) and (pointer: fine) { .close-btn:hover { background: #000; } }
   .close-btn:active { transform: scale(0.92); }
-
-  .rental-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: var(--accent-soft);
-    color: #1B4A78;
-    font-size: 12.5px;
-    font-weight: 700;
-    padding: 6px 14px;
-    border-radius: 999px;
-  }
-
-  .rental-tag::before {
-    content: "";
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #1B4A78;
-  }
 
   .primary-btn {
     font-family: 'Inter', sans-serif;

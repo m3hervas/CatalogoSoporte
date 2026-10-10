@@ -1,6 +1,6 @@
 /* GENERATED from tools/catalogo_fuente.html by tools/build_catalogo.py — do not edit by hand */
 // Products marked "No" in the column "¿Se muestra en la web?" of Productos_web_SoporteTV.xlsx (filled in by tools/build_catalogo.py)
-const HIDDEN_PRODUCTS = new Set(["grid|Apple|iPad (5.ª generación)|"]);
+const HIDDEN_PRODUCTS = new Set(["grid|Apple|iPad (5.ª generación)|", "gridAccessories|Apple|Adaptador USB-C a USB|"]);
 const productId = (gridEl, p) => [gridEl.id, p.brand || "", p.model, p.key || ""].join("|");
 // Cards and thumbnails use the 480 px copy of each photo (../alquiler/img/s/, made by tools/build_catalogo.py); the sheet the full one
 const smallPhoto = src => src ? src.replace(/(^|\/)img\/(?!s\/)/, "$1img/s/") : src;
@@ -1051,7 +1051,36 @@ const LAVACC = [
 ];
 
 // MICS: rental catalogue, RØDE and Hollyland microphones (official photos and data from rode.com/es-es and hollyland.com)
-const MICS = [];
+const MICS = [
+  { cat: "mic", type: "Inalámbrico", brand: "RØDE", brandCode: "R", brandColor: "#111111", model: "Wireless GO (Gen 3)", photo: "../alquiler/img/rode-wireless-go-gen-3_SpTV.webp", color: "Negro", colors: [],
+    info: [["tag", "Tipo", "Inalámbrico", 1], ["signal", "Alcance", "260 m", 1], ["capacity", "Incluye", "2 transmisores + 1 receptor"]],
+    specs: [["Categoría", "Micrófono inalámbrico"], ["Marca", "RØDE"], ["Descripción", "Sistema inalámbrico compacto: dos transmisores con micrófono integrado y un receptor para cámara, móvil u ordenador. Cada transmisor graba además una copia en coma flotante de 32 bits, así que el audio saturado o demasiado bajo se recupera en edición."], ["Incluye", "2 transmisores + 1 receptor"], ["Patrón polar", "Omnidireccional"], ["Alcance", "Hasta 260 m (con visión directa)"], ["Grabación interna", "Coma flotante de 32 bits"], ["Autonomía", "Hasta 7 h"], ["Conexiones", "Salida 3,5 mm TRRS y USB-C · entrada de micro de solapa 3,5 mm con bloqueo"], ["Compatible con", "Cámaras, iPhone, Android y ordenador"]],
+    icon: micsIcon("#111111") },
+  { cat: "mic", type: "Inalámbrico", brand: "RØDE", brandCode: "R", brandColor: "#111111", model: "Wireless PRO", photo: "../alquiler/img/rode-wireless-pro_SpTV.webp", color: "Negro", colors: [],
+    info: [["tag", "Tipo", "Inalámbrico", 1], ["signal", "Alcance", "260 m", 1], ["capacity", "Incluye", "2 transmisores + 1 receptor + estuche de carga"]],
+    specs: [["Categoría", "Micrófono inalámbrico"], ["Marca", "RØDE"], ["Descripción", "El sistema inalámbrico más completo de RØDE: grabación interna en coma flotante de 32 bits, código de tiempo para sincronizar audio y vídeo, y GainAssist para ajustar los niveles solo. Pensado para rodajes profesionales."], ["Incluye", "2 transmisores + 1 receptor + estuche de carga"], ["Patrón polar", "Omnidireccional"], ["Alcance", "Hasta 260 m (con visión directa)"], ["Grabación interna", "Coma flotante de 32 bits"], ["Código de tiempo", "Sí"], ["Autonomía", "Hasta 7 h"], ["Conexiones", "Salida 3,5 mm TRRS y USB-C · entrada de micro de solapa 3,5 mm con bloqueo"]],
+    icon: micsIcon("#111111") },
+  { cat: "mic", type: "Inalámbrico", brand: "RØDE", brandCode: "R", brandColor: "#111111", model: "Wireless ME", photo: "../alquiler/img/rode-wireless-me_SpTV.webp", color: "Negro", colors: [],
+    info: [["tag", "Tipo", "Inalámbrico", 1], ["signal", "Alcance", "100 m", 1], ["capacity", "Incluye", "1 transmisor + 1 receptor"]],
+    specs: [["Categoría", "Micrófono inalámbrico"], ["Marca", "RØDE"], ["Descripción", "Sistema inalámbrico ultracompacto con micrófono tanto en el transmisor como en el receptor: graba a la persona que habla y también a quien está detrás de la cámara, ideal para entrevistas y vídeos sencillos."], ["Incluye", "1 transmisor + 1 receptor"], ["Patrón polar", "Omnidireccional"], ["Alcance", "Hasta 100 m"], ["Calidad", "24 bits · 48 kHz"], ["Autonomía", "Hasta 7 h"], ["Conexiones", "Salida 3,5 mm TRS y USB-C · entrada de micro de solapa"], ["Compatible con", "Cámaras, móviles y ordenador"]],
+    icon: micsIcon("#111111") },
+  { cat: "mic", type: "Inalámbrico", brand: "Hollyland", brandCode: "H", brandColor: "#111111", model: "Lark Max 2", photo: "../alquiler/img/hollyland-lark-max-2_SpTV.webp", color: "Negro", colors: [],
+    info: [["tag", "Tipo", "Inalámbrico", 1], ["signal", "Alcance", "340 m", 1], ["capacity", "Incluye", "2 transmisores + 2 receptores + estuche"]],
+    specs: [["Categoría", "Micrófono inalámbrico"], ["Marca", "Hollyland"], ["Descripción", "Sistema inalámbrico de gama alta para rodajes profesionales: cada transmisor graba además una copia interna en coma flotante de 32 bits, lleva código de tiempo para sincronizar con la cámara y reducción de ruido con IA ajustable. El receptor de cámara tiene pantalla táctil."], ["Incluye", "2 transmisores + receptor de cámara + receptor USB-C + estuche de carga"], ["Patrón polar", "Omnidireccional"], ["Alcance", "Hasta 340 m (con visión directa)"], ["Grabación interna", "Coma flotante de 32 bits · 8 GB por transmisor"], ["Código de tiempo", "Sí"], ["Reducción de ruido", "Con IA, ajustable de 5 a 25 dB"], ["Autonomía", "Transmisor hasta 11 h (36 h con el estuche) · receptor de cámara 12 h"], ["Conexiones", "Receptor de cámara: salida 3,5 mm y USB-C · receptor USB-C para móvil y ordenador"], ["Compatible con", "Cámaras, iPhone, Android y ordenador"]],
+    icon: micsIcon("#111111") },
+  { cat: "mic", type: "Inalámbrico", brand: "Hollyland", brandCode: "H", brandColor: "#111111", model: "Lark M3", photo: "../alquiler/img/hollyland-lark-m3_SpTV.webp", color: "Negro", colors: [],
+    info: [["tag", "Tipo", "Inalámbrico", 1], ["signal", "Alcance", "300 m", 1], ["capacity", "Incluye", "2 transmisores + 2 receptores + estuche"]],
+    specs: [["Categoría", "Micrófono inalámbrico"], ["Marca", "Hollyland"], ["Descripción", "Sistema inalámbrico versátil y muy ligero, para cámara y para móvil: transmisores de 9 g con imán, audio en coma flotante de 32 bits y reducción de ruido con IA de tres niveles."], ["Incluye", "2 transmisores + receptor de cámara + receptor USB-C + estuche de carga"], ["Patrón polar", "Omnidireccional"], ["Alcance", "Hasta 300 m (con visión directa)"], ["Calidad", "48 kHz · 24 bits y coma flotante de 32 bits"], ["Reducción de ruido", "Con IA, 3 niveles (10, 15 y 20 dB)"], ["Autonomía", "Transmisor hasta 8 h (24 h con el estuche) · receptor de cámara 9 h"], ["Conexiones", "Receptor de cámara: salida 3,5 mm · receptor USB-C para móvil y ordenador (certificado MFi)"], ["Compatible con", "Cámaras, iPhone, Android y ordenador"]],
+    icon: micsIcon("#111111") },
+  { cat: "mic", type: "Podcast / estudio", brand: "RØDE", brandCode: "R", brandColor: "#111111", model: "PodMic", photo: "../alquiler/img/rode-podmic_SpTV.webp", color: "Negro", colors: [],
+    info: [["tag", "Tipo", "Podcast / estudio", 1], ["port", "Conexión", "XLR", 1], ["capacity", "Patrón", "Cardioide"]],
+    specs: [["Categoría", "Micrófono dinámico para podcast"], ["Marca", "RØDE"], ["Descripción", "Micrófono dinámico con calidad de radio para podcast, directos y locuciones. Lleva filtro antipop y suspensión antivibraciones internos, y un soporte giratorio para colocarlo fácilmente en un brazo o pie."], ["Tipo", "Dinámico"], ["Patrón polar", "Cardioide"], ["Respuesta de frecuencia", "50 Hz – 15 kHz"], ["Conexión", "XLR"], ["Alimentación", "No necesita"], ["Uso", "Con interfaz de audio o mesa de mezclas con entrada XLR"]],
+    icon: micsIcon("#111111") },
+  { cat: "mic", type: "Kit para móvil", brand: "RØDE", brandCode: "R", brandColor: "#111111", model: "Vlogger Kit Universal", photo: "../alquiler/img/rode-vlogger-kit-universal_SpTV.webp", color: "Negro", colors: [],
+    info: [["tag", "Tipo", "Kit para móvil", 1], ["port", "Conexión", "3,5 mm", 1], ["capacity", "Incluye", "Micrófono, luz, soporte y trípode"]],
+    specs: [["Categoría", "Kit de grabación para móvil"], ["Marca", "RØDE"], ["Descripción", "Todo lo necesario para grabar con el móvil: micrófono VideoMicro direccional, luz MicroLED, soporte SmartGrip y trípode Tripod 2 que también sirve de empuñadura."], ["Incluye", "VideoMicro · MicroLED · SmartGrip · Tripod 2 · soporte de doble zapata DCS-1 · suspensión Rycote Lyre · antiviento de pelo WS9"], ["Micrófono", "VideoMicro, cardioide"], ["Conexión", "3,5 mm TRRS (para móviles con toma de auriculares)"]],
+    icon: micsIcon("#111111") }
+];
 
 // --- Model cards: one card per model; variants that only change storage are grouped ---
 const sizeInGB = v => /ilimitad/i.test(v) ? Infinity : parseFloat(String(v).replace(",", ".")) * (/TB/i.test(v) ? 1000 : 1) || 0;
@@ -1272,7 +1301,6 @@ function openPanel(p) {
       <h2 class="pv-title" id="panel-name">${p.model}</h2>
       ${kind ? `<p class="pv-kind">${kind}</p>` : ""}
       <div class="pv-avail">
-        <span class="rental-tag">${MODE === "compra" ? "Disponible para compra" : "Disponible para alquiler"}</span>
         <span class="pv-price">Precio bajo presupuesto, sin compromiso</span>
       </div>
       ${colors.length ? `<div class="pv-group">
@@ -1576,11 +1604,12 @@ const CATEGORY_INFO = {
 const HEADER_DEFAULT = ["Catálogo de alquiler", "Soporte TV", "Elige una categoría para ver los productos disponibles para alquiler."];
 
 // One catalogue file, two shops: rental (alquiler/) and purchase (compra/, generated by tools/build_compra.py).
-// Each category belongs to one of them; the other one's links are hidden and its addresses redirect.
+// Each category belongs to one of them or to both ("mics": rental and sale); the other one's links are hidden and its
+// addresses redirect.
 const MODE = document.documentElement.dataset.mode === "compra" ? "compra" : "alquiler";
 const MODE_KEYS = {
   alquiler: ["tablets", "phones", "accessories", "computers", "mac", "monitors", "connectivity", "cabins", "videoconf", "printers", "mics"],
-  compra: ["storage", "batteries", "sound", "stationery", "protection", "electric", "filmset", "dulling", "lighting", "effects", "cleaning", "marks", "fastening", "tapes", "backdrops", "othersound", "lavacc"]
+  compra: ["storage", "batteries", "sound", "stationery", "protection", "electric", "filmset", "dulling", "lighting", "effects", "cleaning", "marks", "fastening", "tapes", "backdrops", "othersound", "lavacc", "mics"]
 };
 const OTHER_CATALOG = MODE === "compra" ? "../alquiler/" : "../compra/";
 const inMode = key => MODE_KEYS[MODE].includes(key);
