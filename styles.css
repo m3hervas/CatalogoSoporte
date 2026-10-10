@@ -285,6 +285,7 @@ section { position: relative; }
 .marquee-track .logo-rosco { height: 27px; }
 .marquee-track .logo-ursa { height: 38px; }
 .marquee-track .logo-viviana { height: 44px; }
+.marquee-track .logo-rode { height: 26px; }
 /* Dark mode: logos in white so they read on the dark background */
 [data-theme="dark"] .marquee-track img { filter: brightness(0) invert(1); opacity: 0.8; }
 /* tesa: white lettering on its own red label, keep its colours */

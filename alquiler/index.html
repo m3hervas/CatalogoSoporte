@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Soporte TV — Catálogo</title>
 <link href="../assets/fonts/fonts.css?v=20261004" rel="stylesheet">
-<link rel="stylesheet" href="catalogo.css?v=407142a557">
+<link rel="stylesheet" href="catalogo.css?v=6e66db58f1">
 <!-- WhatsApp contact button (shared with the home page; not included in the WordPress build) -->
 <link rel="icon" href="img/logo-soporte-tv-icono_SpTV.webp?v=20261004e" type="image/webp">
 <script src="../assets/whatsapp.js?v=20261004p" data-logo="img/logo-soporte-tv-icono_SpTV.webp?v=20261004e" data-source="alquiler" defer></script>
@@ -75,6 +75,7 @@
         <a href="#accesorios" data-route="accesorios">Accesorios<small>Estabilizadores, luz, fundas y más</small></a>
         <a href="#videoconferencia" data-route="videoconferencia">Videoconferencia PRO<small>Videoconferencia, intercom y walkies</small></a>
         <a href="#impresoras" data-route="impresoras">Impresoras<small>Multifunción A4 / A3 con coste por página</small></a>
+        <a href="#microfonos" data-route="microfonos">Micrófonos<small>Inalámbricos, podcast y kits para móvil</small></a>
       </div>
     </div>
     <a class="nav-link" href="#contacto" data-nav="contact">Contacto</a>
@@ -109,6 +110,10 @@
   <button class="category-card" id="goAccessories">
     <div class="category-icon" id="accessoryIconLarge"></div>
     <span class="category-label">Accesorios</span>
+  </button>
+  <button class="category-card" id="goMics">
+    <div class="category-icon" id="micsIconLarge"></div>
+    <span class="category-label">Micrófonos</span>
   </button>
   <button class="category-card" id="goMac">
     <div class="category-icon" id="macIconLarge"></div>
@@ -981,6 +986,30 @@
   </div>
 </div>
 
+<div class="catalog-view" id="viewMics" hidden>
+  <button class="back-btn" data-back>← Volver</button>
+
+  <div class="catalog-layout">
+    <aside class="filter-panel" aria-label="Filtros">
+      <p class="filter-panel-title">Filtrar</p>
+      <div class="filter-row">
+        <span class="filter-label">Tipo</span>
+        <select class="filter-select" id="micsTypeSelect">
+          <option value="all">Todos</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Marca</span>
+        <select class="filter-select" id="micsBrandSelect">
+          <option value="all">Todas las marcas</option>
+        </select>
+      </div>
+      <button class="filter-reset" type="button">Quitar filtros</button>
+    </aside>
+    <div class="storage-grid" id="gridMics"></div>
+  </div>
+</div>
+
 <div class="catalog-view" id="viewCabins" hidden>
   <button class="back-btn" data-back>← Volver</button>
 
@@ -1164,6 +1193,7 @@
       <a href="#accesorios" data-route="accesorios">Accesorios</a>
       <a href="#videoconferencia" data-route="videoconferencia">Videoconferencia PRO</a>
       <a href="#impresoras" data-route="impresoras">Impresoras</a>
+      <a href="#microfonos" data-route="microfonos">Micrófonos</a>
     </div>
   </div>
   <div class="footer-bottom">
@@ -1247,7 +1277,7 @@
       <li><strong>Pinzas de madera de 7 vueltas</strong> — «Clothespin-2459e», por David R. Tribble (Loadmaster). Licencia <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Clothespin-2459e.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
       <li><strong>Pinza de plástico</strong> — «Red clamp 01 ies», por Frank Vincentz. Licencia <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a>, vía <a href="https://commons.wikimedia.org/wiki/File:Red_clamp_01_ies.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Adaptada (fondo blanco, recorte y formato WebP).</li>
   </ul>
-  <p class="credits-note">Las fotos de accesorios, conectividad, pilas, papelería, protección, conectividad, rodaje, limpieza, marcas de foco y sujeción genéricos son orientativas: el material entregado puede ser de otra marca o modelo equivalente. Resto de fotos de producto: imágenes oficiales de los fabricantes (Apple, Samsung, LG, JVC, Microsoft, HP, Dell, Lenovo, SanDisk / Western Digital, Areca, Stardom, TerraMaster, QNAP, Synology, Jabra, Phonak, Hollyland, Motorola, Ursa Straps, Rycote, Bubblebee Industries, Pilot, BIC, 3M / Scotch, Staedtler, Gorilla, Goobay, Loctite, edding, Sharpie, Pentel, Apli, Cap It, Tenba, Hama, Xiaomi, HP, Dirty Rigger, Bluestar, KleenSlate, Kenro, SW Kenyon (K-Line), Rosco, Dirty Down, Honeyrose, Ewent, tesa, Photographic Solutions, Pancro, Rain-X, Soudal, 3-En-Uno, WD-40, Sanytol, Zeiss, Foogy, Kimberly-Clark, Dodot, Green Clean, JJC, EDM, JAZ, Focus Rat, CGE Tools, Dylan Stoel, Modern Studio, Starlite, Bongo Ties, Procab, Precygrap, StarTech, VELCRO, Kupo, 3M, Sprig, Piher, Wolfcraft, tesa, Progaff / Le Mark, Gorilla, Ceys, 3M / Solventum, Walker Tape, Joe's Sticky Stuff, Hide-a-mic, EDM, Shurtape, C-Tape, Nichiban, Pro Tapes, 3B Scientific, Adam Hall, Sennheiser, Sony, Logitech, Viviana, ORCA, Ricoh, Zhiyun, Wacom, Celly, Targus y Ubiquiti) o aportadas por Soporte TV.</p>
+  <p class="credits-note">Las fotos de accesorios, conectividad, pilas, papelería, protección, conectividad, rodaje, limpieza, marcas de foco y sujeción genéricos son orientativas: el material entregado puede ser de otra marca o modelo equivalente. Resto de fotos de producto: imágenes oficiales de los fabricantes (Apple, Samsung, LG, JVC, Microsoft, HP, Dell, Lenovo, SanDisk / Western Digital, Areca, Stardom, TerraMaster, QNAP, Synology, Jabra, Phonak, Hollyland, Motorola, Ursa Straps, Rycote, Bubblebee Industries, Pilot, BIC, 3M / Scotch, Staedtler, Gorilla, Goobay, Loctite, edding, Sharpie, Pentel, Apli, Cap It, Tenba, Hama, Xiaomi, HP, Dirty Rigger, Bluestar, KleenSlate, Kenro, SW Kenyon (K-Line), Rosco, Dirty Down, Honeyrose, Ewent, tesa, Photographic Solutions, Pancro, Rain-X, Soudal, 3-En-Uno, WD-40, Sanytol, Zeiss, Foogy, Kimberly-Clark, Dodot, Green Clean, JJC, EDM, JAZ, Focus Rat, CGE Tools, Dylan Stoel, Modern Studio, Starlite, Bongo Ties, Procab, Precygrap, StarTech, VELCRO, Kupo, 3M, Sprig, Piher, Wolfcraft, tesa, Progaff / Le Mark, Gorilla, Ceys, 3M / Solventum, Walker Tape, Joe's Sticky Stuff, Hide-a-mic, EDM, Shurtape, C-Tape, Nichiban, Pro Tapes, 3B Scientific, Adam Hall, Sennheiser, Sony, Logitech, Viviana, ORCA, RØDE, Ricoh, Zhiyun, Wacom, Celly, Targus y Ubiquiti) o aportadas por Soporte TV.</p>
 </div>
 <div class="scrim rent-scrim" id="rentScrim"></div>
 <div class="rent-modal" id="rentModal" role="dialog" aria-modal="true" aria-labelledby="rentTitle">
@@ -1311,7 +1341,7 @@
 
 </div>
 
-<script src="catalogo-alquiler.js?v=5949017072"></script>
+<script src="catalogo-alquiler.js?v=efc2397ef7"></script>
 
 </body>
 </html>

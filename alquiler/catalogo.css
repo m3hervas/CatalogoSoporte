@@ -690,7 +690,7 @@
   /* --- Storage: wide cards, two per row --- */
   /* Cards keep their size (459px); up to 3 per row when the screen is wide enough */
   #viewStorage, #viewTablets, #viewPhones, #viewAccessories, #viewComputers,
-  #viewMac, #viewCabins, #viewVideoconf, #viewPrinters, #viewMonitors, #viewConnectivity, #viewBatteries, #viewSound, #viewStationery, #viewProtection, #viewElectric, #viewFilmset, #viewDulling, #viewLighting, #viewEffects, #viewCleaning, #viewMarks, #viewFastening, #viewTapes, #viewBackdrops, #viewOthersound, #viewLavacc { max-width: none; }
+  #viewMac, #viewCabins, #viewVideoconf, #viewPrinters, #viewMonitors, #viewConnectivity, #viewBatteries, #viewSound, #viewStationery, #viewProtection, #viewElectric, #viewFilmset, #viewDulling, #viewLighting, #viewEffects, #viewCleaning, #viewMarks, #viewFastening, #viewTapes, #viewBackdrops, #viewOthersound, #viewLavacc, #viewMics { max-width: none; }
 
   .storage-grid {
     display: grid;

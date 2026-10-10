@@ -340,6 +340,16 @@ function lavaccIcon(accent) {
   </svg>`;
 }
 
+// Icon for the "Micrófonos" card
+function micsIcon(accent) {
+  return `<svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="46" y="10" width="28" height="48" rx="14" fill="#EDEFF2" stroke="${accent}" stroke-width="3.5"/>
+    <path d="M52 24h16M52 32h16M52 40h16" stroke="#D9DEE4" stroke-width="3" stroke-linecap="round"/>
+    <path d="M36 44a24 24 0 0 0 48 0" fill="none" stroke="${accent}" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M60 68v14M46 86h28" stroke="${accent}" stroke-width="3.5" stroke-linecap="round"/>
+  </svg>`;
+}
+
 const STORAGE_ICONS = {
   cpu: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg>`,
   screen: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M9 20h6M12 16v4"/></svg>`,
@@ -1040,6 +1050,9 @@ const LAVACC = [
   { cat: "lavacc", type: "Organizador", brand: "Viviana", brandCode: "V", brandColor: "#5C6672", model: "Viviana Big Bag", photo: "../alquiler/img/viviana-big-bag-unico_SpTV.webp", color: "Único", colors: [], info: [["tag", "Tipo", "Organizador", 1], ["palette", "Color", "Único", 1]], specs: [["Categoría", "Organizador"], ["Marca", "Viviana"], ["Descripción", "Bolsa organizadora grande de Viviana para correas, petacas y accesorios."], ["Tamaño", "Grande"], ["Colores", "Único"]], icon: lavaccIcon("#5C6672") }
 ];
 
+// MICS: rental catalogue, RØDE microphones (official photos and data from rode.com/es-es)
+const MICS = [];
+
 // --- Model cards: one card per model; variants that only change storage are grouped ---
 const sizeInGB = v => /ilimitad/i.test(v) ? Infinity : parseFloat(String(v).replace(",", ".")) * (/TB/i.test(v) ? 1000 : 1) || 0;
 
@@ -1420,6 +1433,8 @@ setupDataFilters(LAVACC, "lavacc");
 renderModelCards(CABINS, document.getElementById("gridCabins"), CARD_INFO.custom);
 renderModelCards(VIDEOCONF, document.getElementById("gridVideoconf"), CARD_INFO.custom);
 renderModelCards(PRINTERS, document.getElementById("gridPrinters"), CARD_INFO.custom);
+renderModelCards(MICS, document.getElementById("gridMics"), CARD_INFO.custom);
+setupDataFilters(MICS, "mics");
 
 // Categories whose filter options come from their data: <prefix>TypeSelect, BrandSelect, ColorSelect
 function setupDataFilters(items, prefix) {
@@ -1493,6 +1508,7 @@ document.getElementById("othersoundIconLarge").innerHTML = othersoundIcon("#2B79
 document.getElementById("lavaccIconLarge").innerHTML = lavaccIcon("#2B79C2");
 document.getElementById("videoconfIconLarge").innerHTML = videoconfIcon("#2B79C2");
 document.getElementById("printerIconLarge").innerHTML = printerIcon("#2B79C2");
+document.getElementById("micsIconLarge").innerHTML = micsIcon("#2B79C2");
 
 const viewLanding = document.getElementById("viewLanding");
 const views = {
@@ -1522,7 +1538,8 @@ const views = {
   othersound: document.getElementById("viewOthersound"),
   lavacc: document.getElementById("viewLavacc"),
   videoconf: document.getElementById("viewVideoconf"),
-  printers: document.getElementById("viewPrinters")
+  printers: document.getElementById("viewPrinters"),
+  mics: document.getElementById("viewMics")
 };
 
 // Name shown at the top of each category
@@ -1553,7 +1570,8 @@ const CATEGORY_INFO = {
   othersound: "Otros sonidos",
   lavacc: "Accesorios Petaca/Micro",
   videoconf: "Videoconferencia PRO",
-  printers: "Impresoras"
+  printers: "Impresoras",
+  mics: "Micrófonos"
 };
 const HEADER_DEFAULT = ["Catálogo de alquiler", "Soporte TV", "Elige una categoría para ver los productos disponibles para alquiler."];
 
@@ -1561,7 +1579,7 @@ const HEADER_DEFAULT = ["Catálogo de alquiler", "Soporte TV", "Elige una catego
 // Each category belongs to one of them; the other one's links are hidden and its addresses redirect.
 const MODE = document.documentElement.dataset.mode === "compra" ? "compra" : "alquiler";
 const MODE_KEYS = {
-  alquiler: ["tablets", "phones", "accessories", "computers", "mac", "monitors", "connectivity", "cabins", "videoconf", "printers"],
+  alquiler: ["tablets", "phones", "accessories", "computers", "mac", "monitors", "connectivity", "cabins", "videoconf", "printers", "mics"],
   compra: ["storage", "batteries", "sound", "stationery", "protection", "electric", "filmset", "dulling", "lighting", "effects", "cleaning", "marks", "fastening", "tapes", "backdrops", "othersound", "lavacc"]
 };
 const OTHER_CATALOG = MODE === "compra" ? "../alquiler/" : "../compra/";
@@ -1640,13 +1658,14 @@ const ROUTES = {
   "otros-sonidos": "othersound",
   "accesorios-petaca-micro": "lavacc",
   videoconferencia: "videoconf",
-  impresoras: "printers"
+  impresoras: "printers",
+  microfonos: "mics"
 };
 const SLUGS = Object.fromEntries(Object.entries(ROUTES).map(([slug, key]) => [key, slug]));
 
 // Hide what belongs to the other catalogue: landing cards, menu and footer links
 const CARD_KEYS = { goTablets: "tablets", goPhones: "phones", goAccessories: "accessories", goComputers: "computers", goMac: "mac",
-  goMonitors: "monitors", goConnectivity: "connectivity", goStorage: "storage", goBatteries: "batteries", goSound: "sound", goStationery: "stationery", goProtection: "protection", goElectric: "electric", goFilmset: "filmset", goDulling: "dulling", goLighting: "lighting", goEffects: "effects", goCleaning: "cleaning", goMarks: "marks", goFastening: "fastening", goTapes: "tapes", goBackdrops: "backdrops", goOthersound: "othersound", goLavacc: "lavacc", goCabins: "cabins", goVideoconf: "videoconf", goPrinters: "printers" };
+  goMonitors: "monitors", goConnectivity: "connectivity", goStorage: "storage", goBatteries: "batteries", goSound: "sound", goStationery: "stationery", goProtection: "protection", goElectric: "electric", goFilmset: "filmset", goDulling: "dulling", goLighting: "lighting", goEffects: "effects", goCleaning: "cleaning", goMarks: "marks", goFastening: "fastening", goTapes: "tapes", goBackdrops: "backdrops", goOthersound: "othersound", goLavacc: "lavacc", goCabins: "cabins", goVideoconf: "videoconf", goPrinters: "printers", goMics: "mics" };
 Object.entries(CARD_KEYS).forEach(([id, key]) => { if (!inMode(key)) document.getElementById(id).hidden = true; });
 document.querySelectorAll("[data-route]").forEach(a => { if (!inMode(ROUTES[a.dataset.route])) a.hidden = true; });
 document.querySelectorAll(".footer-col").forEach(col => {
@@ -1687,6 +1706,7 @@ document.getElementById("goLavacc").addEventListener("click", () => goTo("lavacc
 document.getElementById("goCabins").addEventListener("click", () => goTo("cabins"));
 document.getElementById("goVideoconf").addEventListener("click", () => goTo("videoconf"));
 document.getElementById("goPrinters").addEventListener("click", () => goTo("printers"));
+document.getElementById("goMics").addEventListener("click", () => goTo("mics"));
 
 document.querySelectorAll("[data-back]").forEach(btn => {
   btn.addEventListener("click", () => {
@@ -1759,6 +1779,11 @@ setupFilters(document.getElementById("gridMonitors"), [
 setupFilters(document.getElementById("gridVideoconf"), [
   { select: document.getElementById("videoconfTypeSelect"), attr: "type" },
   { select: document.getElementById("videoconfBrandSelect"), attr: "brand" }
+]);
+
+setupFilters(document.getElementById("gridMics"), [
+  { select: document.getElementById("micsTypeSelect"), attr: "type" },
+  { select: document.getElementById("micsBrandSelect"), attr: "brand" }
 ]);
 
 setupFilters(document.getElementById("gridPrinters"), [
