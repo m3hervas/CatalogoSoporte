@@ -596,6 +596,17 @@ const PHONES = [
   },
   {
     cat: "phone-android", catLabel: "Móvil Android", brand: "Samsung", brandCode: "S", brandColor: "var(--samsung)",
+    model: "Galaxy S25", storages: ["128 GB", "256 GB", "512 GB"],
+    photo: "../alquiler/img/samsung-galaxy-s25_SpTV.webp",
+    icon: phoneIcon("#1428A0"),
+    specs: [
+      ["Categoría", "Móvil Android"],
+      ["Almacenamiento", "128 GB / 256 GB / 512 GB"],
+      ["Pantalla", "6,2 ''"]
+    ]
+  },
+  {
+    cat: "phone-android", catLabel: "Móvil Android", brand: "Samsung", brandCode: "S", brandColor: "var(--samsung)",
     model: "Galaxy S25 FE", storages: ["128 GB", "256 GB", "512 GB"],
     photo: "../alquiler/img/samsung-galaxy-s25-fe_SpTV.webp",
     icon: phoneIcon("#1428A0"),
