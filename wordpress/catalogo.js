@@ -2030,6 +2030,13 @@ const OPTION_SPECS = {
   Tamaños: "Tamaño", Tallas: "Talla", Medidas: "Medida", Formatos: "Formato", Versiones: "Versión", Puntas: "Punta",
   Alturas: "Altura", Anchos: "Ancho", Largos: "Largo", Grosores: "Grosor", Apertura: "Apertura", Referencias: "Referencia", Efectos: "Efecto"
 };
+// Technical sheet rows per product type, in this order (the other data stays, but is not shown).
+// Types not listed here show every row.
+const SHEET_ROWS = {
+  ipad: ["Categoría", "Pantalla", "Conectividad"],
+  android: ["Categoría", "Pantalla", "Conectividad"]
+};
+
 function optionGroups(p) {
   const groups = [];
   p.specs.forEach(([label, value]) => {
@@ -2062,7 +2069,11 @@ function openPanel(p) {
   const chosen = groups.map(() => null);
   const used = new Set(["Descripción", "Colores", ...groups.map(g => g.spec)]);
   const desc = specOf(p, "Descripción");
-  const rows = p.specs.filter(([l]) => !used.has(l)).map(([l, v]) => `<tr><th scope="row">${l}</th><td>${v}</td></tr>`).join("");
+  const shown = SHEET_ROWS[p.cat]
+    ? SHEET_ROWS[p.cat].map(l => p.specs.find(([x]) => x === l)).filter(Boolean)
+    : p.specs.filter(([l]) => !used.has(l));
+  // 11 '' -> 11''
+  const rows = shown.map(([l, v]) => `<tr><th scope="row">${l}</th><td>${String(v).replace(/\s+''/g, "''")}</td></tr>`).join("");
   const kind = String(p.type || p.catLabel || "").split("|")[0];
   const singleColor = !colors.length && p.color && !String(p.color).includes("|") ? p.color : "";
   const thumbs = colors.filter(c => c.photo).length > 1
