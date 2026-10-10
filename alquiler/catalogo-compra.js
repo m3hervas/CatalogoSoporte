@@ -1591,7 +1591,7 @@ const CATEGORY_INFO = {
   tablets: "Tablets",
   phones: "Móviles",
   accessories: "Accesorios",
-  computers: "Ordenadores",
+  computers: "PC/Portátiles",
   mac: "Mac",
   monitors: "Monitores / TV",
   connectivity: "Conectividad",
