@@ -2214,13 +2214,31 @@ const LANDING_ICONS = {
   connectivity: `<path d="M15.5 17a12 12 0 0 1 17 0"/><path d="M19.5 21a6.3 6.3 0 0 1 9 0"/><circle cx="24" cy="24.5" r="1.4"/><rect x="7" y="29" width="34" height="11" rx="3" class="f"/><path d="M13 29l-2-6M35 29l2-6"/><path d="M13 34.5h.1M18 34.5h.1M23 34.5h.1"/><path d="M31 34.5h5"/>`,
   cabins: `<rect x="10" y="5" width="28" height="38" rx="3.5" class="f"/><rect x="15" y="11" width="18" height="6" rx="1.5"/><rect x="15" y="21" width="18" height="6" rx="1.5"/><rect x="15" y="31" width="18" height="6" rx="1.5"/><path d="M29.5 14h.1M29.5 24h.1M29.5 34h.1"/>`,
   videoconf: `<rect x="11" y="5" width="26" height="9" rx="4.5" class="f"/><circle cx="24" cy="9.5" r="2.2"/><circle cx="16.5" cy="25" r="4.2"/><path d="M8 41a8.5 8.5 0 0 1 17 0"/><circle cx="31.5" cy="25" r="4.2" class="f"/><path d="M23 41a8.5 8.5 0 0 1 17 0" class="f"/>`,
-  printers: `<path d="M14 12.5V5h20v7.5"/><rect x="5" y="15" width="38" height="16" rx="3.5" class="f"/><path d="M12 25.5h24"/><path d="M36.5 20.5h.1"/><rect x="14" y="33.5" width="20" height="10" rx="1" class="f"/><path d="M18 37.5h12M18 40.5h8"/>`
+  printers: `<path d="M14 12.5V5h20v7.5"/><rect x="5" y="15" width="38" height="16" rx="3.5" class="f"/><path d="M12 25.5h24"/><path d="M36.5 20.5h.1"/><rect x="14" y="33.5" width="20" height="10" rx="1" class="f"/><path d="M18 37.5h12M18 40.5h8"/>`,
+  storage: `<rect x="8" y="5" width="24" height="32" rx="4" class="f"/><path d="M14 30h12"/><circle cx="20" cy="12" r="1.3"/><path d="M20 37v3a4 4 0 0 0 4 4h12"/><rect x="36" y="40.5" width="7" height="7" rx="1.5"/>`,
+  batteries: `<path d="M11 10V7h5v3M24 10V7h5v3"/><rect x="7" y="10" width="13" height="32" rx="2.5" class="f"/><rect x="20" y="10" width="13" height="32" rx="2.5"/><path d="M13.5 19v5M11 21.5h5M24 21.5h5"/><path d="M42 8l-6 12h5l-5 12"/>`,
+  sound: `<rect x="5" y="14" width="30" height="14" rx="7" class="f"/><path d="M10 14l-1-3M15 14l-.5-3.2M20 14v-3.3M25 14l.5-3.2M30 14l1-3M10 28l-1 3M15 28l-.5 3.2M20 28v3.3M25 28l.5 3.2M30 28l1 3M5 21H2"/><path d="M17 31v4h6v-4M20 35v9"/><path d="M35 21h4a3 3 0 0 1 3 3v16"/>`,
+  stationery: `<rect x="6" y="8" width="24" height="35" rx="3" class="f"/><path d="M12 8V4.5M18 8V4.5M24 8V4.5"/><path d="M11.5 18h13M11.5 24h13M11.5 30h8"/><rect x="36" y="5" width="6" height="28" rx="1.5" class="f"/><path d="M36 33l3 7 3-7M42 10h1.8v8"/>`,
+  protection: `<path d="M24 5l15 5v11c0 9.5-6.4 17-15 21-8.6-4-15-11.5-15-21V10z" class="f"/><path d="M17 23.5l5 5 9-10"/>`,
+  electric: `<rect x="19" y="6" width="10" height="11" rx="2.5" class="f"/><path d="M24 6V2M22 17v4M26 17v4"/><rect x="4" y="25" width="40" height="14" rx="3" class="f"/><circle cx="13" cy="32" r="3"/><circle cx="24" cy="32" r="3"/><circle cx="35" cy="32" r="3"/>`,
+  filmset: `<g transform="rotate(-12 6 18)"><rect x="6" y="11" width="36" height="7" rx="1.5" class="f"/><path d="M14 11l-4 7M22 11l-4 7M30 11l-4 7M38 11l-4 7"/></g><rect x="6" y="20" width="36" height="22" rx="2.5" class="f"/><path d="M12 28h24M12 34h14"/>`,
+  dulling: `<rect x="19" y="6" width="7" height="6" rx="1.5"/><path d="M16 16v-2.5a1.5 1.5 0 0 1 1.5-1.5h10a1.5 1.5 0 0 1 1.5 1.5V16"/><rect x="14" y="16" width="17" height="27" rx="3" class="f"/><path d="M14 25h17M14 34h17"/><path d="M31 9h.1M35 6.5h.1M35 11.5h.1M39 9h.1M39 4.5h.1M39 13.5h.1"/>`,
+  lighting: `<rect x="5" y="12" width="22" height="16" rx="3" class="f"/><path d="M27 12l6-5M27 28l6 5M27 12v16"/><path d="M36 15l8-3M37 20h8M36 25l8 3"/><path d="M16 28v6M16 34l-6 9M16 34l6 9"/>`,
+  effects: `<path d="M21 6c1.1 7.4 3.6 9.9 11 11-7.4 1.1-9.9 3.6-11 11-1.1-7.4-3.6-9.9-11-11 7.4-1.1 9.9-3.6 11-11z" class="f"/><path d="M36 27c.6 3.6 1.4 4.4 5 5-3.6.6-4.4 1.4-5 5-.6-3.6-1.4-4.4-5-5 3.6-.6 4.4-1.4 5-5z" class="f"/><circle cx="12" cy="37" r="2"/>`,
+  cleaning: `<circle cx="21" cy="25" r="14" class="f"/><circle cx="21" cy="25" r="7"/><path d="M15.5 20a7 7 0 0 1 4.5-2.5"/><path d="M39 5v7M35.5 8.5h7M42 18v4M40 20h4"/>`,
+  marks: `<path d="M8 9h32v8H28v22h-8V17H8z" class="f"/><path d="M4 44h40"/>`,
+  fastening: `<path d="M29 15.5a13 13 0 1 0 7.5 10"/><rect x="27" y="8" width="11" height="8" rx="1.5" class="f"/><path d="M38 12h7"/><path d="M31 12h4"/>`,
+  tapes: `<circle cx="21" cy="24" r="15" class="f"/><circle cx="21" cy="24" r="6"/><path d="M36 24h6v18l-1.5-1.5-1.5 1.5-1.5-1.5-1.5 1.5z" class="f"/>`,
+  backdrops: `<path d="M5 7h38M8 7v36M40 7v36M4 43h8M36 43h8"/><path d="M12 9h24v24c-4 2.2-8-1.2-12 .8s-8-1.4-12 .8z" class="f"/>`,
+  othersound: `<path d="M9 30v-6a15 15 0 0 1 30 0v6"/><rect x="6" y="28" width="9" height="14" rx="3" class="f"/><rect x="33" y="28" width="9" height="14" rx="3" class="f"/>`,
+  lavacc: `<path d="M4 31c3-1.2 7-2.1 11-2.6M33 28.4c4 .5 8 1.4 11 2.6M4 39c3-1.2 7-2.1 11-2.6M33 36.4c4 .5 8 1.4 11 2.6"/><rect x="15" y="14" width="18" height="27" rx="3" class="f"/><rect x="19" y="19" width="10" height="6" rx="1"/><path d="M29 14V5"/>`
 };
 const LANDING_SUBS = {
   tablets: "iPad y Android", phones: "iPhone y Android", accessories: "Lápices, trípodes, gimbals y más",
   mics: "Inalámbricos y de estudio", mac: "MacBook, iMac, Mac mini y Studio", computers: "Portátiles, sobremesa y workstation",
   monitors: "Monitores y Smart TV 4K", connectivity: "MiFi, routers 5G y redes Wi-Fi", cabins: "NAS y cabinas de discos",
-  videoconf: "Cámaras, altavoces, pantallas e intercom", printers: "Multifunción B/N y color"
+  videoconf: "Cámaras, altavoces, pantallas e intercom", printers: "Multifunción B/N y color",
+  storage: "SSD portátiles y discos externos", batteries: "Pilas, recargables y comprobadores", sound: "Antivientos, soportes y fundas", stationery: "Bolígrafos, rotuladores y pegamentos", protection: "Bolsas, fundas y mochilas", electric: "Clavijas Schuko y regletas", filmset: "Claquetas, letras y talco", dulling: "Sprays matabrillos", lighting: "Gelatinas, Cinefoil y papel negro", effects: "Sprays de efecto y atrezo", cleaning: "Aire comprimido, ópticas y desinfección", marks: "Marcas en T, salchichas y pegatinas", fastening: "Bridas, velcros, cinchas y eslingas", tapes: "Gaffer, cinta de cámara y doble cara", backdrops: "Telas molton y fondos", othersound: "Aislantes, silenciadores y auriculares", lavacc: "Cinturones y bolsas para petaca"
 };
 function enhanceLandingCards() {
   document.querySelectorAll(".category-card").forEach(card => {
