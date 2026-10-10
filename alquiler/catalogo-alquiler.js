@@ -1065,8 +1065,8 @@ const MACS = [
   },
   {
     cat: "mac", catLabel: "MacBook Pro", type: "MacBook Pro", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "MacBook Pro 16'' M5 Pro", photo: "../alquiler/img/apple-macbook-pro-16-m5-negro-espacial_SpTV.webp", storages: ["1 TB", "2 TB", "4 TB"],
-    color: "Negro espacial|Plata", colors: [{"name": "Negro espacial", "hex": "#2E2E30", "photo": "../alquiler/img/apple-macbook-pro-16-m5-negro-espacial_SpTV.webp"}, {"name": "Plata", "hex": "#E3E4E5", "photo": "../alquiler/img/apple-macbook-pro-16-m5-plata_SpTV.webp"}],
+    model: "MacBook Pro 16'' M5 Pro", photo: "../alquiler/img/apple-macbook-pro-16-m5-pro-negro-espacial_SpTV.webp", storages: ["1 TB", "2 TB", "4 TB"],
+    color: "Negro espacial|Plata", colors: [{"name": "Negro espacial", "hex": "#2E2E30", "photo": "../alquiler/img/apple-macbook-pro-16-m5-pro-negro-espacial_SpTV.webp"}, {"name": "Plata", "hex": "#E3E4E5", "photo": "../alquiler/img/apple-macbook-pro-16-m5-pro-plata_SpTV.webp"}],
     icon: laptopIcon("#5B6470"),
     specs: [
       ["Categoría", "MacBook Pro"],
