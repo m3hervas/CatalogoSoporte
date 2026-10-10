@@ -909,16 +909,17 @@ const COMPUTERS = [
   },
 {
     cat: "computer", catLabel: "Portátil", type: "Portátil", brand: "HP", brandCode: "H", brandColor: "#0096D6",
-    model: "HP ZBook", photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/hp-zbook_SpTV.webp",
+    model: "HP ZBook", photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/hp-zbook-8-arquitectura_SpTV.webp", storages: ["512 GB", "1 TB"],
     icon: laptopIcon("#0096D6"),
     specs: [
       ["Categoría", "Portátil"],
       ["Marca", "HP"],
-      ["Procesador", "Intel Core i7"],
-      ["RAM", "32 GB"],
-      ["Almacenamiento", "512 GB SSD"],
-      ["Gráfica", "NVIDIA Quadro M2000"],
-      ["Pantalla", "15,6 ''"],
+      ["Descripción", "Estación de trabajo portátil de HP para diseño, arquitectura, 3D y edición: programas como AutoCAD, Revit o Adobe funcionan con soltura gracias a la gráfica NVIDIA RTX dedicada. El modelo concreto puede variar según disponibilidad."],
+      ["Procesador", "Intel Core i7 a i9"],
+      ["RAM", "16 GB · 32 GB · 64 GB"],
+      ["Almacenamiento", "512 GB o 1 TB SSD"],
+      ["Gráfica", "NVIDIA RTX dedicada"],
+      ["Pantalla", "14'' o 16''"],
       ["Incluye", "Maletín y ratón"]
     ]
   },
