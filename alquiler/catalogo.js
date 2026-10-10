@@ -2,6 +2,6 @@
 (function () {
   var compra = document.documentElement.getAttribute("data-mode") === "compra";
   var s = document.createElement("script");
-  s.src = "../alquiler/" + (compra ? "catalogo-compra.js?v=dd5efb9471" : "catalogo-alquiler.js?v=48995bde51");
+  s.src = "../alquiler/" + (compra ? "catalogo-compra.js?v=5b271914fb" : "catalogo-alquiler.js?v=bf56faafea");
   document.body.appendChild(s);
 })();

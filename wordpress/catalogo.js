@@ -386,6 +386,7 @@ const STORAGE_ICONS = {
   cpu: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg>`,
   screen: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M9 20h6M12 16v4"/></svg>`,
   signal: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19.5" r="1"/></svg>`,
+  users: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8"/><path d="M18 14.2a6.5 6.5 0 0 1 3.5 5.8"/></svg>`,
   tag: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>`,
   capacity: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5.5" rx="7.5" ry="2.5"/><path d="M4.5 5.5v13c0 1.4 3.4 2.5 7.5 2.5s7.5-1.1 7.5-2.5v-13"/><path d="M4.5 12c0 1.4 3.4 2.5 7.5 2.5s7.5-1.1 7.5-2.5"/></svg>`,
   speed: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3 5 14h6l-1 7 8-11h-6z"/></svg>`,
@@ -1395,7 +1396,8 @@ const CONNECTIVITY = [
   },
   {
     cat: "connectivity", catLabel: "Redes inalámbricas", type: "Redes inalámbricas", brand: "Ubiquiti", brandCode: "U", brandColor: "#0559C9",
-    model: "Redes inalámbricas", photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/ubiquiti-punto-de-acceso_SpTV.webp", icon: accessPointIcon("#0559C9"),
+    model: "Redes inalámbricas", photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/redes-inalambricas-esquema_SpTV.webp", icon: accessPointIcon("#0559C9"),
+    gallery: ["https://m3hervas.github.io/CatalogoSoporte/alquiler/img/redes-inalambricas-esquema_SpTV.webp", "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/ubiquiti-punto-de-acceso_SpTV.webp"],
     specs: [
       ["Categoría", "Redes inalámbricas"],
       ["Descripción", "Red inalámbrica Wi-Fi 6 profesional que amplía la conexión del recinto con buena cobertura y estabilidad: hasta 50 dispositivos conectados a la vez. Lo instalamos y configuramos nosotros."],
@@ -2216,7 +2218,7 @@ const CARD_INFO = {
       { small: true, icon: STORAGE_ICONS.tag, title: "Incluye", text: "Instalación" }
     ]),
     { small: true, icon: STORAGE_ICONS.signal, title: "Wi-Fi", text: specOf(p, "Wi-Fi") },
-    { small: true, icon: STORAGE_ICONS.tag, title: "Dispositivos", text: `${specOf(p, "Dispositivos conectados")} dispositivos` }
+    { small: true, icon: STORAGE_ICONS.users, title: "Dispositivos", text: `${specOf(p, "Dispositivos conectados")} dispositivos` }
   ],
   // Products that list their own boxes: [icon, title, text, small?]
   custom: p => p.info.map(([icon, title, text, small]) => ({ icon: STORAGE_ICONS[icon], title, text, small: !!small })),
@@ -2388,7 +2390,9 @@ function openPanel(p) {
   const thumbs = colors.filter(c => c.photo).length > 1
     ? colors.map((c, i) => c.photo ? `<button type="button" class="pv-thumb" data-i="${i}" aria-label="Ver en ${c.name}" aria-pressed="${i === ci()}"><img src="${smallPhoto(c.photo)}" alt="" decoding="async"></button>` : "").join("")
     : optPhotos.map((ph, i) => `<button type="button" class="pv-thumb pv-othumb" data-o="${i}" aria-label="Ver ${groups[optGi].options[i]}" aria-pressed="${i === 0}"><img src="${smallPhoto(ph)}" alt="" decoding="async"><span>${groups[optGi].options[i]}</span></button>`).join("");
-  const slides = thumbs ? (colors.length ? colors.length : optPhotos.length) : 0;
+  const gallery = !thumbs && p.gallery && p.gallery.length > 1 ? p.gallery : [];
+  const galleryThumbs = gallery.map((ph, i) => `<button type="button" class="pv-thumb pv-gthumb" data-g="${i}" aria-label="Foto ${i + 1}" aria-pressed="${i === 0}"><img src="${smallPhoto(ph)}" alt="" decoding="async"></button>`).join("");
+  const slides = thumbs ? (colors.length ? colors.length : optPhotos.length) : gallery.length;
   // Recommended extras (e.g. a monitor for a CPU): added to the request list straight away
   const recos = p.recommend ? p.recommend.models.map(m => MONITORS.find(x => x.model === m)).filter(Boolean) : [];
 
@@ -2401,6 +2405,7 @@ function openPanel(p) {
         <button type="button" class="pv-arrow pv-prev" aria-label="Foto anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
         <button type="button" class="pv-arrow pv-next" aria-label="Foto siguiente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>` : ""}</div>
       ${thumbs ? `<div class="pv-thumbs" role="group" aria-label="${colors.length ? "Fotos por color" : "Fotos por " + groups[optGi].label.toLowerCase()}">${thumbs}</div>` : ""}
+      ${galleryThumbs ? `<div class="pv-thumbs" role="group" aria-label="Fotos">${galleryThumbs}</div>` : ""}
     </div>
     <div class="pv-info">
       ${p.brand ? `<div class="pv-brand">${badgeMarkup(p)}</div>` : ""}
@@ -2456,7 +2461,7 @@ function openPanel(p) {
     const sw = card && card.querySelector(`.swatch[data-i="${i}"]`);
     if (sw && sw.getAttribute("aria-pressed") !== "true") sw.click();
   };
-  panel.querySelectorAll(".pv-color, .pv-thumb:not(.pv-othumb)").forEach(b => b.addEventListener("click", () => pickColor(Number(b.dataset.i))));
+  panel.querySelectorAll(".pv-color, .pv-thumb:not(.pv-othumb):not(.pv-gthumb)").forEach(b => b.addEventListener("click", () => pickColor(Number(b.dataset.i))));
 
   // Option photos: a thumbnail picks that option; picking the option shows its photo
   let shownOpt = 0;
@@ -2470,8 +2475,16 @@ function openPanel(p) {
   panel.querySelectorAll(".pv-othumb").forEach(b => b.addEventListener("click", () => optChip(b.dataset.o).click()));
 
   // Gallery arrows and swipe: next / previous colour or option photo
+  let shownG = 0;
+  const showG = i => {
+    shownG = i;
+    if (img) img.src = gallery[i];
+    panel.querySelectorAll(".pv-gthumb").forEach(b => b.setAttribute("aria-pressed", String(Number(b.dataset.g) === i)));
+  };
+  panel.querySelectorAll(".pv-gthumb").forEach(b => b.addEventListener("click", () => showG(Number(b.dataset.g))));
   const step = d => {
-    if (colors.length) pickColor((ci() + d + colors.length) % colors.length);
+    if (gallery.length) showG((shownG + d + gallery.length) % gallery.length);
+    else if (colors.length) pickColor((ci() + d + colors.length) % colors.length);
     else if (optPhotos.length) optChip((shownOpt + d + optPhotos.length) % optPhotos.length).click();
   };
   panel.querySelector(".pv-prev")?.addEventListener("click", () => step(-1));
