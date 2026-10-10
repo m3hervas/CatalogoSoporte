@@ -1154,7 +1154,7 @@ const CARD_INFO = {
     const screen = specOf(p, "Pantalla").replace(/\s*''$/, "''");
     if (screen) boxes.push({ small: true, icon: STORAGE_ICONS.screen, title: "Pantalla", text: screen });
     const cpu = (specOf(p, "Procesador") || specOf(p, "Chip"))
-      .replace(/\s*\(.*?\)/g, "").replace(/Intel Core (i\d) \/ Intel Core (i\d)/, "Intel Core $1 / $2");
+      .replace(/\s*\(.*?\)/g, "").replace(/Intel Core (i\d) \/ Intel Core (i\d)/, "Intel Core $1 / $2").replace(/Intel Core (i\d) · Intel Core (i\d)/, "Intel Core $1 o $2");
     boxes.push({ small: !!screen, icon: STORAGE_ICONS.cpu, title: "Procesador", text: cpu || "A medida" });
     boxes.push({ icon: STORAGE_ICONS.capacity, title: "Almacenamiento", text: p.storages.length ? p.storages.join(" · ") : "A medida" });
     return boxes;

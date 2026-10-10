@@ -893,43 +893,31 @@ const COMPUTERS = [
   },
 {
     cat: "computer", catLabel: "Portátil", type: "Portátil", brand: "HP / Dell / Lenovo", brandCode: "D", brandColor: "#5C6672",
-    model: "Portátil i5 · 8 GB RAM", photo: "../alquiler/img/portatil-8-gb-ram_SpTV.webp",
+    model: "Portátil ofimática 14''", photo: "../alquiler/img/portatil-8-gb-ram_SpTV.webp", storages: ["256 GB", "512 GB"],
     icon: laptopIcon("#5C6672"),
     specs: [
       ["Categoría", "Portátil"],
       ["Marcas disponibles", "HP / Dell / Lenovo"],
-      ["Procesador", "Intel Core i5"],
-      ["RAM", "8 GB"],
-      ["Almacenamiento", "256 GB SSD"],
+      ["Descripción", "Portátil para trabajo de oficina, correo, navegación, videollamadas y presentaciones. El modelo concreto puede variar según disponibilidad."],
+      ["Procesador", "Intel Core i5 · Intel Core i7"],
+      ["RAM", "8 GB · 16 GB"],
+      ["Almacenamiento", "256 GB / 512 GB SSD"],
       ["Pantalla", "14 ''"],
       ["Incluye", "Maletín y ratón"]
     ]
   },
 {
     cat: "computer", catLabel: "Portátil", type: "Portátil", brand: "HP / Dell / Lenovo", brandCode: "D", brandColor: "#5C6672",
-    model: "Portátil i5 · 16 GB RAM", photo: "../alquiler/img/portatil-16-gb-ram-intel-core-i5_SpTV.webp", key: "portatil-i5-16",
+    model: "Portátil ofimática 16''", photo: "../alquiler/img/portatil-16-gb-ram-intel-core-i5_SpTV.webp", storages: ["256 GB", "512 GB"],
     icon: laptopIcon("#5C6672"),
     specs: [
       ["Categoría", "Portátil"],
       ["Marcas disponibles", "HP / Dell / Lenovo"],
-      ["Procesador", "Intel Core i5"],
-      ["RAM", "16 GB"],
-      ["Almacenamiento", "256 GB SSD"],
-      ["Pantalla", "14 ''"],
-      ["Incluye", "Maletín y ratón"]
-    ]
-  },
-{
-    cat: "computer", catLabel: "Portátil", type: "Portátil", brand: "HP / Dell / Lenovo", brandCode: "D", brandColor: "#5C6672",
-    model: "Portátil i7 · 16 GB RAM", photo: "../alquiler/img/portatil-16-gb-ram-intel-core-i7_SpTV.webp", key: "portatil-i7-16",
-    icon: laptopIcon("#5C6672"),
-    specs: [
-      ["Categoría", "Portátil"],
-      ["Marcas disponibles", "HP / Dell / Lenovo"],
-      ["Procesador", "Intel Core i7"],
-      ["RAM", "16 GB"],
-      ["Almacenamiento", "256 GB SSD"],
-      ["Pantalla", "14 ''"],
+      ["Descripción", "Portátil para trabajo de oficina, correo, navegación, videollamadas y presentaciones. El modelo concreto puede variar según disponibilidad."],
+      ["Procesador", "Intel Core i5 · Intel Core i7"],
+      ["RAM", "8 GB · 16 GB"],
+      ["Almacenamiento", "256 GB / 512 GB SSD"],
+      ["Pantalla", "16 ''"],
       ["Incluye", "Maletín y ratón"]
     ]
   },
@@ -1604,7 +1592,7 @@ const CARD_INFO = {
     const screen = specOf(p, "Pantalla").replace(/\s*''$/, "''");
     if (screen) boxes.push({ small: true, icon: STORAGE_ICONS.screen, title: "Pantalla", text: screen });
     const cpu = (specOf(p, "Procesador") || specOf(p, "Chip"))
-      .replace(/\s*\(.*?\)/g, "").replace(/Intel Core (i\d) \/ Intel Core (i\d)/, "Intel Core $1 / $2");
+      .replace(/\s*\(.*?\)/g, "").replace(/Intel Core (i\d) \/ Intel Core (i\d)/, "Intel Core $1 / $2").replace(/Intel Core (i\d) · Intel Core (i\d)/, "Intel Core $1 o $2");
     boxes.push({ small: !!screen, icon: STORAGE_ICONS.cpu, title: "Procesador", text: cpu || "A medida" });
     boxes.push({ icon: STORAGE_ICONS.capacity, title: "Almacenamiento", text: p.storages.length ? p.storages.join(" · ") : "A medida" });
     return boxes;
