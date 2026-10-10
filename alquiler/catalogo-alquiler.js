@@ -1362,11 +1362,11 @@ const CONNECTIVITY = [
     ]
   },
   {
-    cat: "connectivity", catLabel: "Punto de acceso", type: "Punto de acceso", brand: "Ubiquiti", brandCode: "U", brandColor: "#0559C9",
-    model: "Punto de acceso inalámbrico Ubiquiti", photo: "../alquiler/img/ubiquiti-punto-de-acceso_SpTV.webp", icon: accessPointIcon("#0559C9"),
+    cat: "connectivity", catLabel: "Redes inalámbricas", type: "Redes inalámbricas", brand: "Ubiquiti", brandCode: "U", brandColor: "#0559C9",
+    model: "Redes inalámbricas", photo: "../alquiler/img/ubiquiti-punto-de-acceso_SpTV.webp", icon: accessPointIcon("#0559C9"),
     specs: [
-      ["Categoría", "Punto de acceso Wi-Fi"],
-      ["Descripción", "Punto de acceso profesional que amplía la red Wi-Fi 6 del recinto con buena cobertura y estabilidad: hasta 50 dispositivos conectados a la vez. Lo instalamos y configuramos nosotros."],
+      ["Categoría", "Redes inalámbricas"],
+      ["Descripción", "Red inalámbrica Wi-Fi 6 profesional que amplía la conexión del recinto con buena cobertura y estabilidad: hasta 50 dispositivos conectados a la vez. Lo instalamos y configuramos nosotros."],
       ["Conexión a Internet", "Por cable, desde la red del recinto"],
       ["Wi-Fi", "Wi-Fi 6"],
       ["Dispositivos conectados", "Hasta 50"],
