@@ -32,7 +32,7 @@ fitFullWidth();
 window.addEventListener("resize", fitFullWidth);
 
 // Products marked "No" in the column "¿Se muestra en la web?" of Productos_web_SoporteTV.xlsx (filled in by tools/build_catalogo.py)
-const HIDDEN_PRODUCTS = new Set([]);
+const HIDDEN_PRODUCTS = new Set(["grid|Apple|iPad (5.ª generación)|"]);
 const productId = (gridEl, p) => [gridEl.id, p.brand || "", p.model, p.key || ""].join("|");
 // Cards and thumbnails use the 480 px copy of each photo (https://m3hervas.github.io/CatalogoSoporte/alquiler/img/s/, made by tools/build_catalogo.py); the sheet the full one
 const smallPhoto = src => src ? src.replace(/(^|\/)img\/(?!s\/)/, "$1img/s/") : src;
