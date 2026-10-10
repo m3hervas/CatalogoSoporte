@@ -1045,6 +1045,44 @@ const COMPUTERS = [
 // Apple computers (data and photos: apple.com / support.apple.com)
 const MACS = [
   {
+    cat: "mac", catLabel: "MacBook Pro", type: "MacBook Pro", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
+    model: "MacBook Pro 14'' M5", photo: "../alquiler/img/apple-macbook-pro-14-m5-negro-espacial_SpTV.webp", storages: ["1 TB", "2 TB", "4 TB"],
+    color: "Negro espacial|Plata", colors: [{"name": "Negro espacial", "hex": "#2E2E30", "photo": "../alquiler/img/apple-macbook-pro-14-m5-negro-espacial_SpTV.webp"}, {"name": "Plata", "hex": "#E3E4E5", "photo": "../alquiler/img/apple-macbook-pro-14-m5-plata_SpTV.webp"}],
+    icon: laptopIcon("#5B6470"),
+    specs: [
+      ["Categoría", "MacBook Pro"],
+      ["Procesador", "Apple M5 · Apple M5 Pro"],
+      ["Memoria", "16 GB (M5) · 24 GB (M5 Pro)"],
+      ["Almacenamiento", "1 TB / 2 TB / 4 TB"],
+      ["Pantalla", "14,2 ''"],
+      ["Pantalla (detalle)", "Liquid Retina XDR · ProMotion hasta 120 Hz"],
+      ["Autonomía", "Hasta 24 h de vídeo (M5) · 22 h (M5 Pro)"],
+      ["Conexiones", "3 Thunderbolt · HDMI · ranura SDXC · MagSafe 3 · auriculares"],
+      ["Peso", "1,55 kg (M5) · 1,6 kg (M5 Pro)"],
+      ["Colores", "Negro espacial · Plata"],
+      ["Año", "2025 / 2026"]
+    ]
+  },
+  {
+    cat: "mac", catLabel: "MacBook Pro", type: "MacBook Pro", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
+    model: "MacBook Pro 16'' M5 Pro", photo: "../alquiler/img/apple-macbook-pro-16-m5-negro-espacial_SpTV.webp", storages: ["1 TB", "2 TB", "4 TB"],
+    color: "Negro espacial|Plata", colors: [{"name": "Negro espacial", "hex": "#2E2E30", "photo": "../alquiler/img/apple-macbook-pro-16-m5-negro-espacial_SpTV.webp"}, {"name": "Plata", "hex": "#E3E4E5", "photo": "../alquiler/img/apple-macbook-pro-16-m5-plata_SpTV.webp"}],
+    icon: laptopIcon("#5B6470"),
+    specs: [
+      ["Categoría", "MacBook Pro"],
+      ["Procesador", "Apple M5 Pro"],
+      ["Memoria", "24 GB · 48 GB"],
+      ["Almacenamiento", "1 TB / 2 TB / 4 TB"],
+      ["Pantalla", "16,2 ''"],
+      ["Pantalla (detalle)", "Liquid Retina XDR · ProMotion hasta 120 Hz"],
+      ["Autonomía", "Hasta 24 h de vídeo"],
+      ["Conexiones", "3 Thunderbolt · HDMI · ranura SDXC · MagSafe 3 · auriculares"],
+      ["Peso", "2,14 kg"],
+      ["Colores", "Negro espacial · Plata"],
+      ["Año", "2026"]
+    ]
+  },
+  {
     cat: "mac", catLabel: "MacBook Air", type: "MacBook Air", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
     model: "MacBook Air 13,3'' M1", photo: "../alquiler/img/apple-macbook-air-13-3-m1_SpTV.webp", storages: ["128 GB", "256 GB", "512 GB", "1 TB", "2 TB"],
     icon: laptopIcon("#5B6470"),
@@ -1119,44 +1157,6 @@ const MACS = [
       ["Almacenamiento", "1 TB / 2 TB / 4 TB / 8 TB"],
       ["Pantalla", "16 ''"],
       ["Año", "2019"]
-    ]
-  },
-  {
-    cat: "mac", catLabel: "MacBook Pro", type: "MacBook Pro", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "MacBook Pro 14'' M5", photo: "../alquiler/img/apple-macbook-pro-14-m5-negro-espacial_SpTV.webp", storages: ["1 TB", "2 TB", "4 TB"],
-    color: "Negro espacial|Plata", colors: [{"name": "Negro espacial", "hex": "#2E2E30", "photo": "../alquiler/img/apple-macbook-pro-14-m5-negro-espacial_SpTV.webp"}, {"name": "Plata", "hex": "#E3E4E5", "photo": "../alquiler/img/apple-macbook-pro-14-m5-plata_SpTV.webp"}],
-    icon: laptopIcon("#5B6470"),
-    specs: [
-      ["Categoría", "MacBook Pro"],
-      ["Procesador", "Apple M5 · Apple M5 Pro"],
-      ["Memoria", "16 GB (M5) · 24 GB (M5 Pro)"],
-      ["Almacenamiento", "1 TB / 2 TB / 4 TB"],
-      ["Pantalla", "14,2 ''"],
-      ["Pantalla (detalle)", "Liquid Retina XDR · ProMotion hasta 120 Hz"],
-      ["Autonomía", "Hasta 24 h de vídeo (M5) · 22 h (M5 Pro)"],
-      ["Conexiones", "3 Thunderbolt · HDMI · ranura SDXC · MagSafe 3 · auriculares"],
-      ["Peso", "1,55 kg (M5) · 1,6 kg (M5 Pro)"],
-      ["Colores", "Negro espacial · Plata"],
-      ["Año", "2025 / 2026"]
-    ]
-  },
-  {
-    cat: "mac", catLabel: "MacBook Pro", type: "MacBook Pro", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "MacBook Pro 16'' M5 Pro", photo: "../alquiler/img/apple-macbook-pro-16-m5-negro-espacial_SpTV.webp", storages: ["1 TB", "2 TB", "4 TB"],
-    color: "Negro espacial|Plata", colors: [{"name": "Negro espacial", "hex": "#2E2E30", "photo": "../alquiler/img/apple-macbook-pro-16-m5-negro-espacial_SpTV.webp"}, {"name": "Plata", "hex": "#E3E4E5", "photo": "../alquiler/img/apple-macbook-pro-16-m5-plata_SpTV.webp"}],
-    icon: laptopIcon("#5B6470"),
-    specs: [
-      ["Categoría", "MacBook Pro"],
-      ["Procesador", "Apple M5 Pro"],
-      ["Memoria", "24 GB · 48 GB"],
-      ["Almacenamiento", "1 TB / 2 TB / 4 TB"],
-      ["Pantalla", "16,2 ''"],
-      ["Pantalla (detalle)", "Liquid Retina XDR · ProMotion hasta 120 Hz"],
-      ["Autonomía", "Hasta 24 h de vídeo"],
-      ["Conexiones", "3 Thunderbolt · HDMI · ranura SDXC · MagSafe 3 · auriculares"],
-      ["Peso", "2,14 kg"],
-      ["Colores", "Negro espacial · Plata"],
-      ["Año", "2026"]
     ]
   },
   {
