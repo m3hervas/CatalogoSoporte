@@ -308,6 +308,11 @@
 
   .brand-badge.brand-logo { background: #FFFFFF; box-shadow: inset 0 0 0 1px #E3E8EF; padding: 1px; overflow: hidden; }
   .brand-logos { display: inline-flex; gap: 3px; flex-shrink: 0; }
+  /* Several brands: slightly bigger icons on their own row, the names below on one line */
+  .brand-logos:has(> :nth-child(2)) { gap: 5px; }
+  .brand-logos:has(> :nth-child(2)) .brand-badge { width: 22px; height: 22px; border-radius: 6px; }
+  .brand-line:has(.brand-logos > :nth-child(3)), .pv-brand:has(.brand-logos > :nth-child(3)) { flex-wrap: wrap; row-gap: 5px; }
+  .brand-logos:has(> :nth-child(3)) + .brand-name { flex-basis: 100%; font-size: 11px; }
   .brand-badge.brand-logo img { width: 100%; height: 100%; object-fit: contain; display: block; }
 
   .brand-name {

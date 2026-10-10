@@ -1260,13 +1260,14 @@ const MONITORS = [
     ]
   },
   {
-    cat: "monitor", catLabel: "Monitor 4K", type: "4K", group: "65''", brand: "LG", brandCode: "L", brandColor: "#A50034",
-    model: "Monitor LG 65'' 4K", photo: "../alquiler/img/lg-monitor-65-4k_SpTV.webp",
+    cat: "monitor", catLabel: "Smart TV 4K", type: "Smart TV", group: "32''|40''|50''|65''", brand: "LG / Philips / Samsung / Xiaomi", brandCode: "L", brandColor: "#A50034",
+    model: "Smart TV 4K", photo: "../alquiler/img/lg-monitor-65-4k_SpTV.webp",
     icon: monitorIcon("#A50034"),
     specs: [
-      ["Categoría", "Monitor 4K"],
-      ["Marca", "LG"],
-      ["Pantalla", "65''"],
+      ["Categoría", "Smart TV 4K"],
+      ["Marcas disponibles", "LG / Philips / Samsung / Xiaomi"],
+      ["Tamaños", "32'' · 40'' · 50'' · 65''"],
+      ["Pantalla", "32'' a 65''"],
       ["Resolución", "4K"]
     ]
   }
