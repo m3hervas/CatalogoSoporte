@@ -692,14 +692,6 @@ const ACCESSORIES = [
     ]
   },
 {
-    cat: "accessory", catLabel: "Accesorio", group: "Móvil/Cámara", brand: "", brandCode: "", brandColor: "#5C6672",
-    model: "Micrófono inalámbrico", photo: "../alquiler/img/microfono-inalambrico_SpTV.webp",
-    icon: accessoryIcon("#5C6672"),
-    specs: [
-      ["Categoría", "Accesorio · Móvil/Cámara"]
-    ]
-  },
-{
     cat: "accessory", catLabel: "Accesorio", group: "iPad", brand: "", brandCode: "", brandColor: "#5C6672",
     model: "Funda con teclado", photo: "../alquiler/img/funda-con-teclado_SpTV.webp?v=2",
     icon: accessoryIcon("#5C6672"),
