@@ -1230,6 +1230,58 @@
 
   .category-card:focus-visible { outline: 2px solid var(--accent-2); }
 
+  /* --- Landing v2: 5 cards per row across the page; icon tile, name, what it includes, count and arrow --- */
+  .landing:has(.cat-v2) {
+    display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 18px;
+    width: min(1320px, 100%); max-width: none; justify-content: stretch;
+  }
+  .landing .category-card.cat-v2 {
+    width: auto; height: 100%; padding: 22px 22px 18px; gap: 0; align-items: flex-start; text-align: left;
+    border-radius: 20px; background: #FFFFFF; border: 1px solid #E3E9F2;
+    box-shadow: 0 1px 2px rgba(15,23,42,0.04), 0 8px 24px rgba(15,23,42,0.05);
+    transition: transform 220ms var(--ease-out), box-shadow 220ms var(--ease-out), border-color 220ms var(--ease-out);
+  }
+  .landing .cat-v2 .category-icon {
+    width: 78px; height: 78px; padding: 13px; margin-bottom: 18px; border-radius: 20px;
+    color: #1B4A78; background: linear-gradient(145deg, #EEF5FF 0%, #DCEAFD 100%);
+    --ic-fill: rgba(61,139,255,0.16);
+    transition: background 220ms var(--ease-out), color 220ms var(--ease-out);
+  }
+  .landing .cat-v2 .category-icon svg .f { fill: var(--ic-fill); }
+  .landing .cat-v2 .category-label { font-size: 18px; font-weight: 700; letter-spacing: -0.02em; color: #0F172A; line-height: 1.2; }
+  .landing .cat-v2 .category-sub { margin-top: 6px; font-size: 13.5px; line-height: 1.35; color: #5B6779; }
+  .landing .cat-v2 .category-meta {
+    margin-top: auto; padding-top: 18px; width: 100%; display: flex; align-items: center; justify-content: space-between;
+    font-size: 12.5px; font-weight: 600; color: #2B79C2;
+  }
+  .landing .cat-v2 .category-meta svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; transition: transform 220ms var(--ease-out); }
+  @media (hover: hover) and (pointer: fine) {
+    .landing .category-card.cat-v2:hover {
+      transform: translateY(-4px); border-color: rgba(61,139,255,0.55);
+      box-shadow: 0 0 0 1px rgba(61,139,255,0.15), 0 18px 40px rgba(27,74,120,0.14);
+    }
+    .landing .cat-v2:hover .category-icon { color: #FFFFFF; background: linear-gradient(145deg, #3D8BFF 0%, #2B79C2 100%); --ic-fill: rgba(255,255,255,0.22); }
+    .landing .cat-v2:hover .category-meta svg { transform: translateX(4px); }
+  }
+  [data-theme="dark"] .landing .category-card.cat-v2 { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.09); box-shadow: none; }
+  [data-theme="dark"] .landing .cat-v2 .category-icon { color: #D6E6FF; background: linear-gradient(145deg, rgba(61,139,255,0.22) 0%, rgba(61,139,255,0.10) 100%); --ic-fill: rgba(61,139,255,0.25); }
+  [data-theme="dark"] .landing .cat-v2 .category-label { color: #F1F5FB; }
+  [data-theme="dark"] .landing .cat-v2 .category-sub { color: #A9B8CC; }
+  [data-theme="dark"] .landing .cat-v2 .category-meta { color: #7FB2FF; }
+  @media (hover: hover) and (pointer: fine) {
+    [data-theme="dark"] .landing .category-card.cat-v2:hover { background: rgba(61,139,255,0.08); border-color: rgba(61,139,255,0.55); }
+  }
+  @media (max-width: 1100px) { .landing:has(.cat-v2) { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  @media (max-width: 860px) { .landing:has(.cat-v2) { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; } }
+  @media (max-width: 640px) {
+    .landing:has(.cat-v2) { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .landing .category-card.cat-v2 { padding: 16px 14px 14px; border-radius: 16px; }
+    .landing .cat-v2 .category-icon { width: 48px; height: 48px; padding: 9px; margin-bottom: 12px; border-radius: 13px; }
+    .landing .cat-v2 .category-label { font-size: 15.5px; text-align: left; hyphens: none; }
+    .landing .cat-v2 .category-sub { font-size: 12px; }
+    .landing .cat-v2 .category-meta { padding-top: 12px; font-size: 11.5px; }
+  }
+
   /* Product cards keep their white panel (product photos) with a refined blue frame */
   .storage-card { border: 1.5px solid rgba(61,139,255,0.75); border-radius: 18px; }
   .storage-info h3 { font-family: 'Inter', sans-serif; font-weight: 700; letter-spacing: -0.015em; }

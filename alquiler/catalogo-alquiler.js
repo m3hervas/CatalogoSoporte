@@ -1708,6 +1708,7 @@ function renderModelCards(items, gridEl, info = CARD_INFO.storage) {
   // Values the visible products have (products marked No in the Excel left out): filter options without any are removed
   if (gridEl) {
     const shown = groupByModel(items).filter(p => !HIDDEN_PRODUCTS.has(productId(gridEl, p)));
+    gridEl._count = shown.length;
     gridEl._present = attr => new Set(shown.flatMap(p => String(attr === "brand" ? p.brand || "Sin marca" : p[attr] || "").split("|")).filter(Boolean));
   }
   deferRender(gridEl, () => drawModelCards(items, gridEl, info));
@@ -2142,6 +2143,37 @@ function setupStorageFilters() {
 
 // --- View navigation ---
 document.getElementById("tabletIconLarge").innerHTML = tabletIconLarge("#2B79C2");
+// Landing (rental): line icons drawn for each category; they take the card colour (currentColor) and a soft fill
+const LANDING_ICONS = {
+  tablets: `<rect x="8" y="5" width="25" height="37" rx="3.5" class="f"/><path d="M17 37.5h7"/><path d="M38.5 11.5l3.6 1.4-7.4 21.3-3.3 2.6-.7-4.1z" class="f"/><path d="M37.2 15.3l3.6 1.3"/>`,
+  phones: `<rect x="20" y="5" width="18" height="32" rx="3.5"/><rect x="10" y="11" width="18" height="32" rx="3.5" class="f"/><path d="M16.5 15h5"/><path d="M17.5 38.5h3"/>`,
+  accessories: `<rect x="16" y="6" width="16" height="9" rx="2.5" class="f"/><circle cx="24" cy="10.5" r="2.2"/><path d="M24 15v4"/><path d="M24 19l-10 22M24 19l10 22M24 19v20"/><path d="M19.5 27.5h9"/>`,
+  mics: `<rect x="17" y="4" width="14" height="22" rx="7" class="f"/><path d="M17 12h5M17 17h5M17 22h5"/><path d="M12 21v1.5a12 12 0 0 0 24 0V21"/><path d="M24 34.5V41M17 41h14"/>`,
+  mac: `<rect x="9" y="9" width="30" height="21" rx="2.5" class="f"/><path d="M21.5 9.5h5"/><path d="M4.5 34h39l-2.2 4H6.7z"/><path d="M20 34v1.4h8V34"/>`,
+  computers: `<rect x="4" y="9" width="27" height="19" rx="2.5" class="f"/><path d="M17.5 28v5M11.5 33.5h12"/><rect x="34" y="8" width="10" height="27" rx="2.5" class="f"/><circle cx="39" cy="13.5" r="1.2"/><path d="M37 30h4"/>`,
+  monitors: `<rect x="3.5" y="7" width="41" height="26" rx="2.5" class="f"/><path d="M21 15.5l7.5 4.5-7.5 4.5z"/><path d="M12 33l-2.5 6M36 33l2.5 6M8 39h8M32 39h8"/>`,
+  connectivity: `<path d="M15.5 17a12 12 0 0 1 17 0"/><path d="M19.5 21a6.3 6.3 0 0 1 9 0"/><circle cx="24" cy="24.5" r="1.4"/><rect x="7" y="29" width="34" height="11" rx="3" class="f"/><path d="M13 29l-2-6M35 29l2-6"/><path d="M13 34.5h.1M18 34.5h.1M23 34.5h.1"/><path d="M31 34.5h5"/>`,
+  cabins: `<rect x="10" y="5" width="28" height="38" rx="3.5" class="f"/><rect x="15" y="11" width="18" height="6" rx="1.5"/><rect x="15" y="21" width="18" height="6" rx="1.5"/><rect x="15" y="31" width="18" height="6" rx="1.5"/><path d="M29.5 14h.1M29.5 24h.1M29.5 34h.1"/>`,
+  videoconf: `<rect x="11" y="5" width="26" height="9" rx="4.5" class="f"/><circle cx="24" cy="9.5" r="2.2"/><circle cx="16.5" cy="25" r="4.2"/><path d="M8 41a8.5 8.5 0 0 1 17 0"/><circle cx="31.5" cy="25" r="4.2" class="f"/><path d="M23 41a8.5 8.5 0 0 1 17 0" class="f"/>`,
+  printers: `<path d="M14 15V6h20v9"/><rect x="5" y="15" width="38" height="17" rx="3.5" class="f"/><path d="M13 27h22v15H13z" class="f"/><path d="M17.5 32h13M17.5 36.5h9"/><path d="M36.5 21h.1"/>`
+};
+const LANDING_SUBS = {
+  tablets: "iPad y Android", phones: "iPhone y Android", accessories: "Lápices, trípodes, gimbals y más",
+  mics: "Inalámbricos y de estudio", mac: "MacBook, iMac, Mac mini y Studio", computers: "Portátiles, sobremesa y workstation",
+  monitors: "Monitores y Smart TV 4K", connectivity: "MiFi, routers 5G y redes Wi-Fi", cabins: "NAS y cabinas de discos",
+  videoconf: "Videoconferencia e intercom", printers: "Multifunción B/N y color"
+};
+function enhanceLandingCards() {
+  document.querySelectorAll(".category-card").forEach(card => {
+  const key = CARD_KEYS[card.id];
+  if (!key) return;
+  if (LANDING_ICONS[key]) card.querySelector(".category-icon").innerHTML =
+    `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${LANDING_ICONS[key]}</svg>`;
+  card.classList.add("cat-v2");
+  card.insertAdjacentHTML("beforeend", `${LANDING_SUBS[key] ? `<span class="category-sub">${LANDING_SUBS[key]}</span>` : ""}
+    <span class="category-meta"><span class="category-count"></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>`);
+});
+}
 document.getElementById("phoneIconLarge").innerHTML = phoneIcon("#2B79C2");
 document.getElementById("accessoryIconLarge").innerHTML = accessoryIcon("#2B79C2");
 document.getElementById("computerIconLarge").innerHTML = desktopIcon("#2B79C2");
@@ -2327,8 +2359,18 @@ const ROUTES = {
 const SLUGS = Object.fromEntries(Object.entries(ROUTES).map(([slug, key]) => [key, slug]));
 
 // Hide what belongs to the other catalogue: landing cards, menu and footer links
+// Landing cards: number of products of each category (from the visible products)
+function fillLandingCounts() {
+  document.querySelectorAll(".category-card.cat-v2").forEach(card => {
+    const grid = views[CARD_KEYS[card.id]]?.querySelector(".storage-grid");
+    const n = grid && grid._count;
+    card.querySelector(".category-count").textContent = n ? `${n} ${n === 1 ? "producto" : "productos"}` : "Ver productos";
+  });
+}
 const CARD_KEYS = { goTablets: "tablets", goPhones: "phones", goAccessories: "accessories", goComputers: "computers", goMac: "mac",
   goMonitors: "monitors", goConnectivity: "connectivity", goStorage: "storage", goBatteries: "batteries", goSound: "sound", goStationery: "stationery", goProtection: "protection", goElectric: "electric", goFilmset: "filmset", goDulling: "dulling", goLighting: "lighting", goEffects: "effects", goCleaning: "cleaning", goMarks: "marks", goFastening: "fastening", goTapes: "tapes", goBackdrops: "backdrops", goOthersound: "othersound", goLavacc: "lavacc", goCabins: "cabins", goVideoconf: "videoconf", goPrinters: "printers", goMics: "mics" };
+enhanceLandingCards();
+fillLandingCounts();
 Object.entries(CARD_KEYS).forEach(([id, key]) => { if (!inMode(key)) document.getElementById(id).hidden = true; });
 document.querySelectorAll("[data-route]").forEach(a => { if (!inMode(ROUTES[a.dataset.route])) a.hidden = true; });
 document.querySelectorAll(".footer-col").forEach(col => {
