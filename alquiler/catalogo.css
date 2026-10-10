@@ -132,7 +132,7 @@
   }
 
   /* Items that belong to the other catalogue (rental / purchase) */
-  .category-card[hidden], .field-row[hidden], .footer-col[hidden], .nav-dropdown a[hidden], .footer-col a[hidden] { display: none !important; }
+  .category-card[hidden], .field-row[hidden], .filter-row[hidden], .footer-col[hidden], .nav-dropdown a[hidden], .footer-col a[hidden] { display: none !important; }
 
   .landing[hidden], .catalog-view[hidden] {
     display: none !important;
