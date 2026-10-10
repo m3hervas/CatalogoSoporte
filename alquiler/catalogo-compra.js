@@ -389,7 +389,7 @@ const PRODUCTS = [];
 // Order: iPhone (newest first), Galaxy, then other brands. Storage options from each brand's official store.
 const PHONES = [];
 
-// Ordered from most to least expensive (approximate retail price)
+// Grouped by type: digital pencils, tripods, then the rest
 const ACCESSORIES = [];
 
 const COMPUTERS = [];
@@ -1050,7 +1050,7 @@ const LAVACC = [
   { cat: "lavacc", type: "Organizador", brand: "Viviana", brandCode: "V", brandColor: "#5C6672", model: "Viviana Big Bag", photo: "../alquiler/img/viviana-big-bag-unico_SpTV.webp", color: "Único", colors: [], info: [["tag", "Tipo", "Organizador", 1], ["palette", "Color", "Único", 1]], specs: [["Categoría", "Organizador"], ["Marca", "Viviana"], ["Descripción", "Bolsa organizadora grande de Viviana para correas, petacas y accesorios."], ["Tamaño", "Grande"], ["Colores", "Único"]], icon: lavaccIcon("#5C6672") }
 ];
 
-// MICS: rental catalogue, RØDE microphones (official photos and data from rode.com/es-es)
+// MICS: rental catalogue, RØDE and Hollyland microphones (official photos and data from rode.com/es-es and hollyland.com)
 const MICS = [];
 
 // --- Model cards: one card per model; variants that only change storage are grouped ---
@@ -1757,7 +1757,7 @@ setupFilters(document.getElementById("gridPhones"), [
 ]);
 
 setupFilters(document.getElementById("gridAccessories"), [
-  { select: document.getElementById("accessoryTypeSelect"), attr: "group" },
+  { select: document.getElementById("accessoryTypeSelect"), attr: "type" },
   { select: document.getElementById("accessoryBrandSelect"), attr: "brand" }
 ]);
 

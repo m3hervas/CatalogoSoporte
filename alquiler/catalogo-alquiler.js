@@ -672,10 +672,10 @@ const PHONES = [
   }
 ];
 
-// Ordered from most to least expensive (approximate retail price)
+// Grouped by type: digital pencils, tripods, then the rest
 const ACCESSORIES = [
 {
-    cat: "accessory", catLabel: "Accesorio", group: "iPad", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
+    cat: "accessory", catLabel: "Accesorio", type: "Lápiz digital", group: "iPad", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
     model: "Apple Pencil", photo: "../alquiler/img/apple-pencil_SpTV.webp?v=2",
     icon: accessoryIcon("#5B6470"),
     specs: [
@@ -684,16 +684,7 @@ const ACCESSORIES = [
     ]
   },
 {
-    cat: "accessory", catLabel: "Accesorio", group: "Móvil/Cámara", brand: "Zhiyun", brandCode: "Z", brandColor: "#6B4FA0",
-    model: "Smooth X Combo", photo: "../alquiler/img/zhiyun-smooth-x-combo_SpTV.webp",
-    icon: accessoryIcon("#6B4FA0"),
-    specs: [
-      ["Categoría", "Accesorio · Móvil/Cámara"],
-      ["Tipo", "Estabilizador combo para móvil"]
-    ]
-  },
-{
-    cat: "accessory", catLabel: "Accesorio", group: "iPad", brand: "Wacom", brandCode: "W", brandColor: "#0090C8",
+    cat: "accessory", catLabel: "Accesorio", type: "Lápiz digital", group: "iPad", brand: "Wacom", brandCode: "W", brandColor: "#0090C8",
     model: "Bamboo Fineline", photo: "../alquiler/img/wacom-bamboo-fineline_SpTV.webp",
     icon: accessoryIcon("#0090C8"),
     specs: [
@@ -702,7 +693,54 @@ const ACCESSORIES = [
     ]
   },
 {
-    cat: "accessory", catLabel: "Accesorio", group: "iPad", brand: "", brandCode: "", brandColor: "#5C6672",
+    cat: "accessory", catLabel: "Accesorio", type: "Trípode", group: "Móvil/Cámara", brand: "Celly", brandCode: "C", brandColor: "#E4572E",
+    model: "Trípode", photo: "../alquiler/img/celly-tripode_SpTV.webp",
+    icon: accessoryIcon("#E4572E"),
+    specs: [
+      ["Categoría", "Accesorio · Móvil/Cámara"],
+      ["Detalle", "360º / 19 cm"]
+    ]
+  },
+{
+    cat: "accessory", catLabel: "Accesorio", type: "Trípode", group: "Móvil/Cámara", brand: "RØDE", brandCode: "R", brandColor: "#111111",
+    model: "Tripod 2", photo: "../alquiler/img/rode-tripod-2_SpTV.webp",
+    icon: accessoryIcon("#111111"),
+    specs: [
+      ["Categoría", "Accesorio · Móvil/Cámara"],
+      ["Marca", "RØDE"],
+      ["Descripción", "Minitrípode de sobremesa que también sirve de empuñadura para grabar a mano. Rótula de bola y tres posiciones de patas; vale para cámaras, móviles con soporte, micrófonos y luces."],
+      ["Rosca", "1/4\" (incluye adaptador a 3/8\" para micrófonos)"],
+      ["Carga máxima", "2 kg"],
+      ["Altura", "20,5 cm plegado · 10,9 cm abierto"],
+      ["Peso", "200 g"]
+    ]
+  },
+{
+    cat: "accessory", catLabel: "Accesorio", type: "Trípode", group: "Móvil/Cámara", brand: "Manfrotto", brandCode: "M", brandColor: "#111111",
+    model: "PIXI con pinza para smartphone", photo: "../alquiler/img/manfrotto-pixi-pinza-smartphone_SpTV.webp",
+    icon: accessoryIcon("#111111"),
+    specs: [
+      ["Categoría", "Accesorio · Móvil/Cámara"],
+      ["Marca", "Manfrotto"],
+      ["Descripción", "Minitrípode PIXI con pinza universal para smartphone. Rótula de bola con botón de bloqueo; las patas plegadas sirven de empuñadura. Vale también para cámaras compactas y sin espejo."],
+      ["Referencia", "MKPIXICLMII-BK"],
+      ["Incluye", "Minitrípode PIXI + pinza universal para smartphone"],
+      ["Carga máxima", "1 kg"],
+      ["Altura", "13,5 cm (18,5 cm plegado)"],
+      ["Peso", "170 g"]
+    ]
+  },
+{
+    cat: "accessory", catLabel: "Accesorio", type: "Estabilizador", group: "Móvil/Cámara", brand: "Zhiyun", brandCode: "Z", brandColor: "#6B4FA0",
+    model: "Smooth X Combo", photo: "../alquiler/img/zhiyun-smooth-x-combo_SpTV.webp",
+    icon: accessoryIcon("#6B4FA0"),
+    specs: [
+      ["Categoría", "Accesorio · Móvil/Cámara"],
+      ["Tipo", "Estabilizador combo para móvil"]
+    ]
+  },
+{
+    cat: "accessory", catLabel: "Accesorio", type: "Funda", group: "iPad", brand: "", brandCode: "", brandColor: "#5C6672",
     model: "Funda con teclado", photo: "../alquiler/img/funda-con-teclado_SpTV.webp?v=2",
     icon: accessoryIcon("#5C6672"),
     specs: [
@@ -711,7 +749,15 @@ const ACCESSORIES = [
     ]
   },
 {
-    cat: "accessory", catLabel: "Accesorio", group: "Móvil/Cámara", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
+    cat: "accessory", catLabel: "Accesorio", type: "Funda", group: "iPad", brand: "", brandCode: "", brandColor: "#5C6672",
+    model: "Funda Rugged / Correa", photo: "../alquiler/img/funda-rugged-con-correa_SpTV.webp",
+    icon: accessoryIcon("#5C6672"),
+    specs: [
+      ["Categoría", "Accesorio · iPad"]
+    ]
+  },
+{
+    cat: "accessory", catLabel: "Accesorio", type: "Adaptador", group: "Móvil/Cámara", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
     model: "Adaptador USB-C a USB", photo: "../alquiler/img/apple-adaptador-usb-c-a-usb_SpTV.webp",
     icon: accessoryIcon("#5B6470"),
     specs: [
@@ -720,7 +766,7 @@ const ACCESSORIES = [
     ]
   },
 {
-    cat: "accessory", catLabel: "Accesorio", group: "Móvil/Cámara", brand: "", brandCode: "", brandColor: "#5C6672",
+    cat: "accessory", catLabel: "Accesorio", type: "Iluminación", group: "Móvil/Cámara", brand: "", brandCode: "", brandColor: "#5C6672",
     model: "Aro de luz", photo: "../alquiler/img/aro-de-luz_SpTV.webp?v=2",
     icon: accessoryIcon("#5C6672"),
     specs: [
@@ -728,30 +774,13 @@ const ACCESSORIES = [
     ]
   },
 {
-    cat: "accessory", catLabel: "Accesorio", group: "iPad", brand: "", brandCode: "", brandColor: "#5C6672",
-    model: "Funda Rugged / Correa", photo: "../alquiler/img/funda-rugged-con-correa_SpTV.webp",
-    icon: accessoryIcon("#5C6672"),
-    specs: [
-      ["Categoría", "Accesorio · iPad"]
-    ]
-  },
-{
-    cat: "accessory", catLabel: "Accesorio", group: "Móvil/Cámara", brand: "", brandCode: "", brandColor: "#5C6672",
+    cat: "accessory", catLabel: "Accesorio", type: "Batería externa", group: "Móvil/Cámara", brand: "", brandCode: "", brandColor: "#5C6672",
     model: "Power bank", photo: "../alquiler/img/power-bank_SpTV.webp?v=2",
     icon: accessoryIcon("#5C6672"),
     specs: [
       ["Categoría", "Accesorio · Móvil/Cámara"],
       ["Capacidad", "10000 mAh"],
       ["Conector", "USB-C"]
-    ]
-  },
-{
-    cat: "accessory", catLabel: "Accesorio", group: "Móvil/Cámara", brand: "Celly", brandCode: "C", brandColor: "#E4572E",
-    model: "Trípode", photo: "../alquiler/img/celly-tripode_SpTV.webp",
-    icon: accessoryIcon("#E4572E"),
-    specs: [
-      ["Categoría", "Accesorio · Móvil/Cámara"],
-      ["Detalle", "360º / 19 cm"]
     ]
   }
 ];
@@ -1358,7 +1387,7 @@ const OTHERSOUND = [];
 // colors: one photo per colour; the dots on the card swap the photo (generated by tools/build_sonido_data.py)
 const LAVACC = [];
 
-// MICS: rental catalogue, RØDE microphones (official photos and data from rode.com/es-es)
+// MICS: rental catalogue, RØDE and Hollyland microphones (official photos and data from rode.com/es-es and hollyland.com)
 const MICS = [
   { cat: "mic", type: "Inalámbrico", brand: "RØDE", brandCode: "R", brandColor: "#111111", model: "Wireless GO (Gen 3)", photo: "../alquiler/img/rode-wireless-go-gen-3_SpTV.webp", color: "Negro", colors: [],
     info: [["tag", "Tipo", "Inalámbrico", 1], ["signal", "Alcance", "260 m", 1], ["capacity", "Incluye", "2 transmisores + 1 receptor"]],
@@ -1371,6 +1400,14 @@ const MICS = [
   { cat: "mic", type: "Inalámbrico", brand: "RØDE", brandCode: "R", brandColor: "#111111", model: "Wireless ME", photo: "../alquiler/img/rode-wireless-me_SpTV.webp", color: "Negro", colors: [],
     info: [["tag", "Tipo", "Inalámbrico", 1], ["signal", "Alcance", "100 m", 1], ["capacity", "Incluye", "1 transmisor + 1 receptor"]],
     specs: [["Categoría", "Micrófono inalámbrico"], ["Marca", "RØDE"], ["Descripción", "Sistema inalámbrico ultracompacto con micrófono tanto en el transmisor como en el receptor: graba a la persona que habla y también a quien está detrás de la cámara, ideal para entrevistas y vídeos sencillos."], ["Incluye", "1 transmisor + 1 receptor"], ["Patrón polar", "Omnidireccional"], ["Alcance", "Hasta 100 m"], ["Calidad", "24 bits · 48 kHz"], ["Autonomía", "Hasta 7 h"], ["Conexiones", "Salida 3,5 mm TRS y USB-C · entrada de micro de solapa"], ["Compatible con", "Cámaras, móviles y ordenador"]],
+    icon: micsIcon("#111111") },
+  { cat: "mic", type: "Inalámbrico", brand: "Hollyland", brandCode: "H", brandColor: "#111111", model: "Lark Max 2", photo: "../alquiler/img/hollyland-lark-max-2_SpTV.webp", color: "Negro", colors: [],
+    info: [["tag", "Tipo", "Inalámbrico", 1], ["signal", "Alcance", "340 m", 1], ["capacity", "Incluye", "2 transmisores + 2 receptores + estuche"]],
+    specs: [["Categoría", "Micrófono inalámbrico"], ["Marca", "Hollyland"], ["Descripción", "Sistema inalámbrico de gama alta para rodajes profesionales: cada transmisor graba además una copia interna en coma flotante de 32 bits, lleva código de tiempo para sincronizar con la cámara y reducción de ruido con IA ajustable. El receptor de cámara tiene pantalla táctil."], ["Incluye", "2 transmisores + receptor de cámara + receptor USB-C + estuche de carga"], ["Patrón polar", "Omnidireccional"], ["Alcance", "Hasta 340 m (con visión directa)"], ["Grabación interna", "Coma flotante de 32 bits · 8 GB por transmisor"], ["Código de tiempo", "Sí"], ["Reducción de ruido", "Con IA, ajustable de 5 a 25 dB"], ["Autonomía", "Transmisor hasta 11 h (36 h con el estuche) · receptor de cámara 12 h"], ["Conexiones", "Receptor de cámara: salida 3,5 mm y USB-C · receptor USB-C para móvil y ordenador"], ["Compatible con", "Cámaras, iPhone, Android y ordenador"]],
+    icon: micsIcon("#111111") },
+  { cat: "mic", type: "Inalámbrico", brand: "Hollyland", brandCode: "H", brandColor: "#111111", model: "Lark M3", photo: "../alquiler/img/hollyland-lark-m3_SpTV.webp", color: "Negro", colors: [],
+    info: [["tag", "Tipo", "Inalámbrico", 1], ["signal", "Alcance", "300 m", 1], ["capacity", "Incluye", "2 transmisores + 2 receptores + estuche"]],
+    specs: [["Categoría", "Micrófono inalámbrico"], ["Marca", "Hollyland"], ["Descripción", "Sistema inalámbrico versátil y muy ligero, para cámara y para móvil: transmisores de 9 g con imán, audio en coma flotante de 32 bits y reducción de ruido con IA de tres niveles."], ["Incluye", "2 transmisores + receptor de cámara + receptor USB-C + estuche de carga"], ["Patrón polar", "Omnidireccional"], ["Alcance", "Hasta 300 m (con visión directa)"], ["Calidad", "48 kHz · 24 bits y coma flotante de 32 bits"], ["Reducción de ruido", "Con IA, 3 niveles (10, 15 y 20 dB)"], ["Autonomía", "Transmisor hasta 8 h (24 h con el estuche) · receptor de cámara 9 h"], ["Conexiones", "Receptor de cámara: salida 3,5 mm · receptor USB-C para móvil y ordenador (certificado MFi)"], ["Compatible con", "Cámaras, iPhone, Android y ordenador"]],
     icon: micsIcon("#111111") },
   { cat: "mic", type: "Podcast / estudio", brand: "RØDE", brandCode: "R", brandColor: "#111111", model: "PodMic", photo: "../alquiler/img/rode-podmic_SpTV.webp", color: "Negro", colors: [],
     info: [["tag", "Tipo", "Podcast / estudio", 1], ["port", "Conexión", "XLR", 1], ["capacity", "Patrón", "Cardioide"]],
@@ -2092,7 +2129,7 @@ setupFilters(document.getElementById("gridPhones"), [
 ]);
 
 setupFilters(document.getElementById("gridAccessories"), [
-  { select: document.getElementById("accessoryTypeSelect"), attr: "group" },
+  { select: document.getElementById("accessoryTypeSelect"), attr: "type" },
   { select: document.getElementById("accessoryBrandSelect"), attr: "brand" }
 ]);
 
