@@ -1008,15 +1008,15 @@ const COMPUTERS = [
   },
 {
     cat: "computer", catLabel: "AIO", type: "AIO", brand: "HP / Dell / Lenovo", brandCode: "D", brandColor: "#5C6672",
-    model: "AIO (Todo en uno) 16 GB RAM", photo: "../alquiler/img/aio-todo-en-uno-16-gb-ram_SpTV.webp",
+    model: "AIO (Todo en uno) 16 GB RAM", photo: "../alquiler/img/aio-todo-en-uno-16-gb-ram_SpTV.webp", storages: ["256 GB", "512 GB"],
     icon: desktopIcon("#5C6672"),
     specs: [
       ["Categoría", "AIO (Todo en uno)"],
       ["Marcas disponibles", "HP / Dell / Lenovo"],
-      ["Procesador", "Intel Core i5"],
+      ["Procesador", "Intel Core i5 · Intel Core i7"],
       ["RAM", "16 GB"],
-      ["Almacenamiento", "256 GB SSD"],
-      ["Pantalla", "23,6 ''"],
+      ["Almacenamiento", "256 GB / 512 GB SSD"],
+      ["Pantalla", "23,6'' o 27''"],
       ["Incluye", "Ratón y teclado"]
     ]
   },
