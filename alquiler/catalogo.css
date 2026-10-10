@@ -306,6 +306,9 @@
     flex-shrink: 0;
   }
 
+  .brand-badge.brand-logo { background: #FFFFFF; box-shadow: inset 0 0 0 1px #E3E8EF; padding: 1px; overflow: hidden; }
+  .brand-badge.brand-logo img { width: 100%; height: 100%; object-fit: contain; display: block; }
+
   .brand-name {
     font-size: 12px;
     font-weight: 600;

@@ -389,7 +389,7 @@ const PRODUCTS = [];
 // Order: iPhone (newest first), Galaxy, then other brands. Storage options from each brand's official store.
 const PHONES = [];
 
-// Grouped by type: digital pencils, tripods, then the rest
+// Grouped by type: digital pencils, tripods, gimbals, then the rest
 const ACCESSORIES = [];
 
 const COMPUTERS = [];
@@ -537,9 +537,17 @@ function drawStorage(items, gridEl) {
 const scrim = document.getElementById("scrim");
 const panel = document.getElementById("panel");
 
+// Small brand icon next to the brand name (../alquiler/img/marcas/, from each brand's own website); brands without one keep the letter
+const BRAND_LOGOS = {"3 en 1": "3_en_1.webp", "3M": "3m.webp", "Adam Hall": "adam_hall.webp", "Apli": "apli.webp", "BIC": "bic.webp", "Bubblebee Industries": "bubblebee_industries.webp", "Cap It": "cap_it.webp", "Ceys": "ceys.webp", "CGE Tools": "cge_tools.webp", "CRC": "crc.webp", "Dirty Rigger": "dirty_rigger.webp", "Dodot": "dodot.webp", "Duracell": "duracell.webp", "Dylan Stoel": "dylan_stoel.webp", "edding": "edding.webp", "EDM": "edm.webp", "Energizer": "energizer.webp", "Ewent": "ewent.webp", "Focus Rat": "focus_rat.webp", "Foogy": "foogy.webp", "Goobay": "goobay.webp", "Gorilla": "gorilla.webp", "Green Clean": "green_clean.webp", "Hama": "hama.webp", "Hansaplast": "hansaplast.webp", "Hide-a-mic": "hide_a_mic.webp", "Hollyland": "hollyland.webp", "HP": "hp.webp", "Insta360": "insta360.webp", "Jabra": "jabra.webp", "JJC": "jjc.webp", "Joe's Sticky Stuff": "joe_s_sticky_stuff.webp", "JVC": "jvc.webp", "K-Line": "k_line.webp", "Kenro": "kenro.webp", "Kimberly-Clark": "kimberly_clark.webp", "Kleenslate": "kleenslate.webp", "Kupo": "kupo.webp", "Lenovo": "lenovo.webp", "LG": "lg.webp", "Loctite": "loctite.webp", "Logitech": "logitech.webp", "Manfrotto": "manfrotto.webp", "Maxell": "maxell.webp", "Microsoft": "microsoft.webp", "Modern Studio": "modern_studio.webp", "Motorola": "motorola.webp", "Nichiban": "nichiban.webp", "Pentel": "pentel.webp", "Philips": "philips.webp", "Phonak": "phonak.webp", "Photographic Solutions": "photographic_solutions.webp", "Piher": "piher.webp", "Pilot": "pilot.webp", "Precygrap": "precygrap.webp", "Procab": "procab.webp", "Progaff": "progaff.webp", "QNAP": "qnap.webp", "Rain-X": "rain_x.webp", "Rayovac": "rayovac.webp", "Renata": "renata.webp", "Rosco": "rosco.webp", "Rycote": "rycote.webp", "RØDE": "røde.webp", "Samsung": "samsung.webp", "SanDisk": "sandisk.webp", "SanDisk Professional": "sandisk_professional.webp", "Sanytol": "sanytol.webp", "Sennheiser": "sennheiser.svg", "Sharpie": "sharpie.webp", "Shurtape": "shurtape.webp", "Sony": "sony.webp", "Soudal": "soudal.webp", "Staedtler": "staedtler.webp", "Stardom": "stardom.webp", "StarTech": "startech.webp", "Synology": "synology.webp", "Tenba": "tenba.webp", "tesa": "tesa.webp", "Ubiquiti": "ubiquiti.webp", "Ursa Straps": "ursa_straps.webp", "Varta": "varta.webp", "VELCRO": "velcro.webp", "Viviana": "viviana.webp", "Wacom": "wacom.webp", "WD": "wd.webp", "WD-40": "wd_40.webp", "WD_BLACK": "wd_black.webp", "Wolfcraft": "wolfcraft.webp", "Xiaomi": "xiaomi.webp", "Zeiss": "zeiss.webp", "Zhiyun": "zhiyun.webp"};
+
 function badgeMarkup(p) {
   if (!p.brand) return "";
   const isApple = p.brand === "Apple";
+  const logo = BRAND_LOGOS[p.brand];
+  if (logo) return `
+    <span class="brand-badge brand-logo"><img src="${"../alquiler/img/marcas/" + logo}" alt="" width="18" height="18" loading="lazy" decoding="async"></span>
+    <span class="brand-name">${p.brand}</span>
+  `;
   const badgeStyle = isApple ? "background:#ECEDEF; padding:3px;" : `background:${p.brandColor}`;
   const badgeContent = isApple ? appleBadge() : p.brandCode;
   return `
