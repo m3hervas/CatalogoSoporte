@@ -640,7 +640,7 @@ const PHONES = [
   {
     cat: "phone-android", catLabel: "Móvil Android", brand: "Samsung", brandCode: "S", brandColor: "var(--samsung)",
     model: "Galaxy S25 FE", storages: ["128 GB", "256 GB", "512 GB"],
-    photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/samsung-galaxy-s25-fe_SpTV.webp",
+    photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/samsung-galaxy-s25-fe-oficial_SpTV.webp",
     icon: phoneIcon("#1428A0"),
     specs: [
       ["Categoría", "Móvil Android"],
@@ -651,7 +651,7 @@ const PHONES = [
   {
     cat: "phone-android", catLabel: "Móvil Android", brand: "Samsung", brandCode: "S", brandColor: "var(--samsung)",
     model: "Galaxy S24", storages: ["128 GB", "256 GB"],
-    photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/samsung-galaxy-s24_SpTV.webp",
+    photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/samsung-galaxy-s24-oficial_SpTV.webp",
     icon: phoneIcon("#1428A0"),
     specs: [
       ["Categoría", "Móvil Android"],
