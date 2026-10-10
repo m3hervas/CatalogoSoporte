@@ -1193,7 +1193,10 @@ function drawModelCards(items, gridEl, info) {
     card.dataset.voltage = p.voltage || "";
     card.dataset.color = p.color || "";
     card.setAttribute("aria-haspopup", "dialog");
-    const media = p.photo ? `<img src="${smallPhoto(p.photo)}" alt="${p.model}" loading="lazy" decoding="async">` : p.icon;
+    const cardPhotos = p.optionPhotos ? Object.values(p.optionPhotos)[0] : [];
+    const media = (p.photo ? `<img src="${smallPhoto(p.photo)}" alt="${p.model}" loading="lazy" decoding="async">` : p.icon) + (cardPhotos.length > 1 ? `
+      <span class="card-arrow card-prev" role="button" tabindex="0" aria-label="Foto anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></span>
+      <span class="card-arrow card-next" role="button" tabindex="0" aria-label="Foto siguiente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span>` : "");
     const box = info(p);
     const boxes = Array.isArray(box) ? box : [box];
     card.innerHTML = `
@@ -1210,6 +1213,20 @@ function drawModelCards(items, gridEl, info) {
     bindSwatches(card, p, card.querySelector(".storage-photo img"));
     card.addEventListener("click", () => openPanel(p));
     card._product = p;
+    if (cardPhotos.length > 1) {
+      const cardImg = card.querySelector(".storage-photo img");
+      const move = (e, d) => {
+        e.preventDefault();
+        e.stopPropagation();
+        p._optShown = ((p._optShown || 0) + d + cardPhotos.length) % cardPhotos.length;
+        cardImg.src = smallPhoto(cardPhotos[p._optShown]);
+      };
+      card.querySelectorAll(".card-arrow").forEach(a => {
+        const d = a.classList.contains("card-next") ? 1 : -1;
+        a.addEventListener("click", e => move(e, d));
+        a.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") move(e, d); });
+      });
+    }
     p._grid = gridEl;
     card.style.setProperty("--i", gridEl.children.length);
     gridEl.appendChild(card);
@@ -1315,7 +1332,9 @@ function openPanel(p) {
     : optPhotos.map((ph, i) => `<button type="button" class="pv-thumb pv-othumb" data-o="${i}" aria-label="Ver ${groups[optGi].options[i]}" aria-pressed="${i === 0}"><img src="${smallPhoto(ph)}" alt="" decoding="async"><span>${groups[optGi].options[i]}</span></button>`).join("");
   const slides = thumbs ? (colors.length ? colors.length : optPhotos.length) : 0;
   // Recommended extras (e.g. a monitor for a CPU): added to the request list straight away
-  const recos = p.recommend ? p.recommend.models.map(m => MONITORS.find(x => x.model === m)).filter(Boolean) : [];
+  const recos = p.recommend ? p.recommend.items
+    .map(([m, size]) => { const r = MONITORS.find(x => x.model === m); return r && { ...r, size, label: `${m} ${size}` }; })
+    .filter(Boolean) : [];
 
   panel.innerHTML = `
     <button class="pv-close" id="closeBtn" type="button" aria-label="Cerrar ficha"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
@@ -1354,7 +1373,7 @@ function openPanel(p) {
       ${recos.length ? `<section class="pv-section pv-recos"><h3>Nuestras recomendaciones</h3><p class="pv-recos-sub">${p.recommend.title}</p>
         <div class="pv-recos-list">${recos.map((r, i) => `<div class="pv-reco">
           <img src="${smallPhoto(r.photo)}" alt="" decoding="async">
-          <div class="pv-reco-text"><strong>${r.model}</strong><span>${[specOf(r, "Pantalla").replace(/\s+''/g, "''"), specOf(r, "Resolución")].filter(Boolean).join(" · ")}</span></div>
+          <div class="pv-reco-text"><strong>${r.label}</strong><span>${specOf(r, "Marcas disponibles") || r.brand}</span></div>
           <button type="button" class="pv-reco-add" data-r="${i}">Añadir</button>
         </div>`).join("")}</div></section>` : ""}
       ${desc ? `<section class="pv-section"><h3>Sobre este producto</h3><p>${desc}</p></section>` : ""}
@@ -1391,6 +1410,7 @@ function openPanel(p) {
     panel.querySelectorAll(".pv-othumb").forEach(b => b.setAttribute("aria-pressed", String(Number(b.dataset.o) === i)));
   };
   const optChip = i => panel.querySelector(`.pv-group[data-g="${optGi}"] .pv-chip[data-oi="${i}"]`);
+  if (optPhotos.length && p._optShown) showOpt(p._optShown);
   panel.querySelectorAll(".pv-othumb").forEach(b => b.addEventListener("click", () => optChip(b.dataset.o).click()));
 
   // Gallery arrows and swipe: next / previous colour or option photo
@@ -1428,7 +1448,8 @@ function openPanel(p) {
   });
 
   panel.querySelectorAll(".pv-reco-add").forEach(b => b.addEventListener("click", () => {
-    addToList(recos[Number(b.dataset.r)].model, 1);
+    const r = recos[Number(b.dataset.r)];
+    addToList(`${r.model} (tamaño ${r.size})`, 1);
     b.textContent = "Añadido ✓";
     b.classList.add("is-added");
   }));

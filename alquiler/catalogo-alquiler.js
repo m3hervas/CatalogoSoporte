@@ -1024,7 +1024,7 @@ const COMPUTERS = [
     cat: "computer", catLabel: "CPU", type: "CPU", brand: "HP / Dell / Lenovo", brandCode: "D", brandColor: "#5C6672",
     model: "CPU 16 GB RAM", photo: "../alquiler/img/cpu-formato-tower_SpTV.webp", storages: ["256 GB", "512 GB"],
     // One photo per format: the sheet shows them as a gallery and changes it with the chosen format
-    recommend: { title: "Añade un monitor", models: ["Monitor LED 24''", "Monitor LED 27''"] },
+    recommend: { title: "Añade un monitor", items: [["Monitor Desktop", "24''"], ["Monitor Desktop", "27''"]] },
     optionPhotos: { Formatos: ["../alquiler/img/cpu-formato-tower_SpTV.webp", "../alquiler/img/cpu-formato-sff_SpTV.webp", "../alquiler/img/cpu-formato-mini_SpTV.webp"] },
     icon: desktopIcon("#5C6672"),
     specs: [
@@ -1217,40 +1217,19 @@ const MACS = [
 
 const MONITORS = [
   {
-    cat: "monitor", catLabel: "Monitor LED", type: "LED", group: "24''", brand: "Samsung / HP", brandCode: "S", brandColor: "var(--samsung)",
-    model: "Monitor LED 24''", photo: "../alquiler/img/monitor-led-24_SpTV.webp",
-    icon: monitorIcon("#1428A0"),
+    cat: "monitor", catLabel: "Monitor Desktop", type: "Desktop", group: "24''|27''|32''", brand: "HP / Samsung / Philips / LG", brandCode: "H", brandColor: "#5C6672",
+    model: "Monitor Desktop", photo: "../alquiler/img/monitor-led-24_SpTV.webp",
+    icon: monitorIcon("#5C6672"),
     specs: [
-      ["Categoría", "Monitor LED"],
-      ["Marcas disponibles", "Samsung / HP"],
-      ["Pantalla", "24'' LED"]
-    ]
-  },
-  {
-    cat: "monitor", catLabel: "Monitor LED", type: "LED", group: "27''", brand: "LG / Nilox", brandCode: "L", brandColor: "#A50034",
-    model: "Monitor LED 27''", photo: "../alquiler/img/monitor-led-27_SpTV.webp",
-    icon: monitorIcon("#A50034"),
-    specs: [
-      ["Categoría", "Monitor LED"],
-      ["Marcas disponibles", "LG / Nilox"],
-      ["Pantalla", "27'' LED"]
-    ]
-  },
-  {
-    cat: "monitor", catLabel: "Monitor 4K", type: "4K", group: "27''", brand: "Samsung", brandCode: "S", brandColor: "var(--samsung)",
-    model: "Samsung Odyssey 27''", photo: "../alquiler/img/samsung-odyssey-27_SpTV.webp",
-    icon: monitorIcon("#1428A0"),
-    specs: [
-      ["Categoría", "Monitor 4K"],
-      ["Marca", "Samsung"],
-      ["Modelo", "Odyssey"],
-      ["Pantalla", "27''"],
-      ["Resolución", "QHD"]
+      ["Categoría", "Monitor de sobremesa"],
+      ["Marcas disponibles", "HP / Samsung / Philips / LG"],
+      ["Tamaños", "24'' · 27'' · 32''"],
+      ["Pantalla", "24'' a 32'' LED"]
     ]
   },
   {
     cat: "monitor", catLabel: "Monitor de estudio 4K", type: "Estudio 4K", group: "24''", brand: "JVC", brandCode: "J", brandColor: "#004098",
-    model: "Monitor de estudio JVC 24''", photo: "../alquiler/img/jvc-monitor-de-estudio-24_SpTV.webp",
+    model: "Monitor de estudio", photo: "../alquiler/img/jvc-monitor-de-estudio-24_SpTV.webp",
     icon: monitorIcon("#004098"),
     specs: [
       ["Categoría", "Monitor de estudio 4K"],
@@ -1652,7 +1631,10 @@ function drawModelCards(items, gridEl, info) {
     card.dataset.voltage = p.voltage || "";
     card.dataset.color = p.color || "";
     card.setAttribute("aria-haspopup", "dialog");
-    const media = p.photo ? `<img src="${smallPhoto(p.photo)}" alt="${p.model}" loading="lazy" decoding="async">` : p.icon;
+    const cardPhotos = p.optionPhotos ? Object.values(p.optionPhotos)[0] : [];
+    const media = (p.photo ? `<img src="${smallPhoto(p.photo)}" alt="${p.model}" loading="lazy" decoding="async">` : p.icon) + (cardPhotos.length > 1 ? `
+      <span class="card-arrow card-prev" role="button" tabindex="0" aria-label="Foto anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></span>
+      <span class="card-arrow card-next" role="button" tabindex="0" aria-label="Foto siguiente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span>` : "");
     const box = info(p);
     const boxes = Array.isArray(box) ? box : [box];
     card.innerHTML = `
@@ -1669,6 +1651,20 @@ function drawModelCards(items, gridEl, info) {
     bindSwatches(card, p, card.querySelector(".storage-photo img"));
     card.addEventListener("click", () => openPanel(p));
     card._product = p;
+    if (cardPhotos.length > 1) {
+      const cardImg = card.querySelector(".storage-photo img");
+      const move = (e, d) => {
+        e.preventDefault();
+        e.stopPropagation();
+        p._optShown = ((p._optShown || 0) + d + cardPhotos.length) % cardPhotos.length;
+        cardImg.src = smallPhoto(cardPhotos[p._optShown]);
+      };
+      card.querySelectorAll(".card-arrow").forEach(a => {
+        const d = a.classList.contains("card-next") ? 1 : -1;
+        a.addEventListener("click", e => move(e, d));
+        a.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") move(e, d); });
+      });
+    }
     p._grid = gridEl;
     card.style.setProperty("--i", gridEl.children.length);
     gridEl.appendChild(card);
@@ -1774,7 +1770,9 @@ function openPanel(p) {
     : optPhotos.map((ph, i) => `<button type="button" class="pv-thumb pv-othumb" data-o="${i}" aria-label="Ver ${groups[optGi].options[i]}" aria-pressed="${i === 0}"><img src="${smallPhoto(ph)}" alt="" decoding="async"><span>${groups[optGi].options[i]}</span></button>`).join("");
   const slides = thumbs ? (colors.length ? colors.length : optPhotos.length) : 0;
   // Recommended extras (e.g. a monitor for a CPU): added to the request list straight away
-  const recos = p.recommend ? p.recommend.models.map(m => MONITORS.find(x => x.model === m)).filter(Boolean) : [];
+  const recos = p.recommend ? p.recommend.items
+    .map(([m, size]) => { const r = MONITORS.find(x => x.model === m); return r && { ...r, size, label: `${m} ${size}` }; })
+    .filter(Boolean) : [];
 
   panel.innerHTML = `
     <button class="pv-close" id="closeBtn" type="button" aria-label="Cerrar ficha"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
@@ -1813,7 +1811,7 @@ function openPanel(p) {
       ${recos.length ? `<section class="pv-section pv-recos"><h3>Nuestras recomendaciones</h3><p class="pv-recos-sub">${p.recommend.title}</p>
         <div class="pv-recos-list">${recos.map((r, i) => `<div class="pv-reco">
           <img src="${smallPhoto(r.photo)}" alt="" decoding="async">
-          <div class="pv-reco-text"><strong>${r.model}</strong><span>${[specOf(r, "Pantalla").replace(/\s+''/g, "''"), specOf(r, "Resolución")].filter(Boolean).join(" · ")}</span></div>
+          <div class="pv-reco-text"><strong>${r.label}</strong><span>${specOf(r, "Marcas disponibles") || r.brand}</span></div>
           <button type="button" class="pv-reco-add" data-r="${i}">Añadir</button>
         </div>`).join("")}</div></section>` : ""}
       ${desc ? `<section class="pv-section"><h3>Sobre este producto</h3><p>${desc}</p></section>` : ""}
@@ -1850,6 +1848,7 @@ function openPanel(p) {
     panel.querySelectorAll(".pv-othumb").forEach(b => b.setAttribute("aria-pressed", String(Number(b.dataset.o) === i)));
   };
   const optChip = i => panel.querySelector(`.pv-group[data-g="${optGi}"] .pv-chip[data-oi="${i}"]`);
+  if (optPhotos.length && p._optShown) showOpt(p._optShown);
   panel.querySelectorAll(".pv-othumb").forEach(b => b.addEventListener("click", () => optChip(b.dataset.o).click()));
 
   // Gallery arrows and swipe: next / previous colour or option photo
@@ -1887,7 +1886,8 @@ function openPanel(p) {
   });
 
   panel.querySelectorAll(".pv-reco-add").forEach(b => b.addEventListener("click", () => {
-    addToList(recos[Number(b.dataset.r)].model, 1);
+    const r = recos[Number(b.dataset.r)];
+    addToList(`${r.model} (tamaño ${r.size})`, 1);
     b.textContent = "Añadido ✓";
     b.classList.add("is-added");
   }));
