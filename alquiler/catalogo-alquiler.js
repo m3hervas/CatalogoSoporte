@@ -510,13 +510,13 @@ const PRODUCTS = [
   },
   {
     cat: "ipad", catLabel: "iPad", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "iPad Pro (M5)", storages: ["128 GB", "256 GB", "512 GB", "1 TB"],
-    storage: "128 GB",
+    model: "iPad Pro (M5)", storages: ["256 GB", "512 GB", "1 TB", "2 TB"],
+    storage: "256 GB",
     photo: "../alquiler/img/apple-ipad-pro_SpTV.webp",
     icon: ipadIcon("#5B6470"),
     specs: [
       ["Categoría", "iPad"],
-      ["Almacenamiento", "128 GB"],
+      ["Almacenamiento", "256 GB / 512 GB / 1 TB / 2 TB"],
       ["Conectividad", "Wi-Fi / Wi-Fi + Cellular"],
       ["Pantalla", "11 ''"]
     ]
@@ -532,18 +532,6 @@ const PRODUCTS = [
       ["Almacenamiento", "128 GB"],
       ["Conectividad", "Wi-Fi / Wi-Fi + Cellular"],
       ["Pantalla", "12,9 ''"]
-    ]
-  },
-  {
-    cat: "ipad", catLabel: "iPad", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "iPad Pro (M5)", storages: ["128 GB", "256 GB", "512 GB", "1 TB"],
-    storage: "256 GB",
-    photo: "../alquiler/img/apple-ipad-pro_SpTV.webp",
-    icon: ipadIcon("#5B6470"),
-    specs: [
-      ["Categoría", "iPad"],
-      ["Almacenamiento", "256 GB"],
-      ["Pantalla", "11 ''"]
     ]
   }
 ];
