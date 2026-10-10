@@ -1448,7 +1448,7 @@ const VIDEOCONF = [
   },
   {
     cat: "videoconf", catLabel: "Pantalla", type: "Pantalla", brand: "", brandCode: "", brandColor: "#1A1A1A",
-    model: "Pantalla con soporte de ruedas", photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/pantalla-soporte-ruedas_SpTV.webp",
+    model: "Pantalla con soporte de ruedas", photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/pantalla-soporte-ruedas-real_SpTV.webp",
     icon: videoconfIcon("#1A1A1A"),
     info: [["screen", "Pantalla", "50'' a 65''", 1], ["tag", "Soporte", "Con ruedas", 1], ["port", "Conexión", "HDMI para portátil o cámara"]],
     specs: [["Categoría", "Pantalla con soporte móvil"], ["Descripción", "Pantalla grande montada en un soporte de suelo con ruedas: se lleva de una sala a otra sin obras ni anclajes. Perfecta para videoconferencias, presentaciones o formación; el soporte tiene bandeja para la cámara o el portátil. El modelo concreto puede variar según disponibilidad."], ["Tamaños", "50'' · 55'' · 65''"], ["Pantalla", "50'' a 65'' 4K"], ["Soporte", "De suelo con ruedas con freno, altura regulable y bandeja"], ["Conexiones", "HDMI · USB"], ["Uso recomendado", "Videoconferencia, presentaciones y formación"], ["Incluye", "Pantalla, soporte con ruedas y cables"]]
