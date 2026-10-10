@@ -843,13 +843,36 @@ const ACCESSORIES = [
     ]
   },
 {
-    cat: "accessory", catLabel: "Accesorio", type: "Batería externa", group: "Móvil/Cámara", brand: "", brandCode: "", brandColor: "#5C6672",
-    model: "Power bank", photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/power-bank_SpTV.webp?v=2",
-    icon: accessoryIcon("#5C6672"),
+    cat: "accessory", catLabel: "Accesorio", type: "Batería externa", group: "Móvil/Cámara", brand: "Xiaomi", brandCode: "X", brandColor: "#FF6900",
+    model: "Magnetic Power Bank 10000 con soporte", photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/xiaomi-magnetic-power-bank-10000-azul_SpTV.webp", color: "Azul|Beige|Gris|Púrpura", colors: [{"name": "Azul", "hex": "#AFC0F0", "photo": "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/xiaomi-magnetic-power-bank-10000-azul_SpTV.webp"}, {"name": "Beige", "hex": "#E6DED0", "photo": "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/xiaomi-magnetic-power-bank-10000-beige_SpTV.webp"}, {"name": "Gris", "hex": "#2E2F33", "photo": "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/xiaomi-magnetic-power-bank-10000-gris_SpTV.webp"}, {"name": "Púrpura", "hex": "#D9CBF2", "photo": "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/xiaomi-magnetic-power-bank-10000-purpura_SpTV.webp"}],
+    icon: accessoryIcon("#FF6900"),
     specs: [
       ["Categoría", "Accesorio · Móvil/Cámara"],
+      ["Marca", "Xiaomi"],
+      ["Descripción", "Batería externa magnética con soporte plegable: se pega a la parte trasera del iPhone y lo carga sin cables, y el soporte lo deja de pie para ver vídeos o hacer videollamadas. Lleva además un cable USB-C integrado."],
       ["Capacidad", "10000 mAh"],
-      ["Conector", "USB-C"]
+      ["Carga con cable", "Hasta 33 W (cable USB-C integrado y puerto USB-C)"],
+      ["Carga inalámbrica", "Magnética · iPhone 12 o posterior (excepto iPhone 16e)"],
+      ["Fuerza magnética", "13 N"],
+      ["Soporte", "Integrado, hasta unos 80°"],
+      ["Medidas", "108,8 × 68,9 × 20,3 mm"],
+      ["Peso", "229 g"],
+      ["Colores", "Azul · Beige · Gris · Púrpura"]
+    ]
+  },
+{
+    cat: "accessory", catLabel: "Accesorio", type: "Batería externa", group: "Móvil/Cámara", brand: "Xiaomi", brandCode: "X", brandColor: "#FF6900",
+    model: "33W Power Bank 10000 con cable integrado", photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/xiaomi-33w-power-bank-10000-azul_SpTV.webp", color: "Azul|Tan", colors: [{"name": "Azul", "hex": "#2F3768", "photo": "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/xiaomi-33w-power-bank-10000-azul_SpTV.webp"}, {"name": "Tan", "hex": "#EDE4D5", "photo": "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/xiaomi-33w-power-bank-10000-tan_SpTV.webp"}],
+    icon: accessoryIcon("#FF6900"),
+    specs: [
+      ["Categoría", "Accesorio · Móvil/Cámara"],
+      ["Marca", "Xiaomi"],
+      ["Descripción", "Batería externa compacta con cable USB-C integrado que también sirve de cordón para colgarla. Carga rápida de 33 W y tres salidas para cargar varios dispositivos a la vez."],
+      ["Capacidad", "10000 mAh"],
+      ["Carga rápida", "Hasta 33 W"],
+      ["Salidas", "Cable USB-C integrado · USB-C · USB-A"],
+      ["Medidas", "80,9 × 65,9 × 26 mm"],
+      ["Colores", "Azul · Tan"]
     ]
   }
 ];
@@ -2146,6 +2169,8 @@ const SHEET_ROWS = {
   ipad: ["Categoría", "Pantalla", "Conectividad"],
   android: ["Categoría", "Pantalla", "Conectividad"]
 };
+// Rows kept in the data (and the Excel) but not shown in the sheet
+const SHEET_HIDE = { mac: ["Año"] };
 
 function optionGroups(p) {
   const groups = [];
@@ -2181,7 +2206,7 @@ function openPanel(p) {
   const desc = specOf(p, "Descripción");
   const shown = SHEET_ROWS[p.cat]
     ? SHEET_ROWS[p.cat].map(l => p.specs.find(([x]) => x === l)).filter(Boolean)
-    : p.specs.filter(([l]) => !used.has(l));
+    : p.specs.filter(([l]) => !used.has(l) && !(SHEET_HIDE[p.cat] || []).includes(l));
   // 11 '' -> 11''
   const rows = shown.map(([l, v]) => `<tr><th scope="row">${l}</th><td>${String(v).replace(/\s+''/g, "''")}</td></tr>`).join("");
   const kind = String(p.type || p.catLabel || "").split("|")[0];
@@ -2519,6 +2544,8 @@ const MODE_KEYS = {
   alquiler: ["tablets", "phones", "accessories", "computers", "mac", "monitors", "connectivity", "cabins", "videoconf", "printers", "mics"],
   compra: ["storage", "batteries", "sound", "stationery", "protection", "electric", "filmset", "dulling", "lighting", "effects", "cleaning", "marks", "fastening", "tapes", "backdrops", "othersound", "lavacc", "mics"]
 };
+// «Modelos destacados» slider on the rental landing: switched off (10/10). Its markup and code are kept; true shows it again
+const SHOW_FEATURED = false;
 const OTHER_CATALOG = MODE === "compra" ? "../alquiler/" : "https://m3hervas.github.io/CatalogoSoporte/compra/";
 const inMode = key => MODE_KEYS[MODE].includes(key);
 
@@ -2535,7 +2562,7 @@ function setCatalogHeader(key) {
   shadow.getElementById("catBadge").hidden = !(info && CATEGORY_BADGES[key]);
   shadow.getElementById("catPending").hidden = !(info && CATEGORY_PENDING[key]);
   const featured = shadow.getElementById("destacados");
-  if (featured) featured.hidden = !!info || MODE === "compra";
+  if (featured) featured.hidden = !SHOW_FEATURED || !!info || MODE === "compra";
   shadow.getElementById("catalogo").classList.toggle("in-category", !!info);
   shadow.getElementById("catEyebrow").hidden = !!info;
   shadow.getElementById("catDesc").hidden = !!info;

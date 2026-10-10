@@ -1252,6 +1252,8 @@ const SHEET_ROWS = {
   ipad: ["Categoría", "Pantalla", "Conectividad"],
   android: ["Categoría", "Pantalla", "Conectividad"]
 };
+// Rows kept in the data (and the Excel) but not shown in the sheet
+const SHEET_HIDE = { mac: ["Año"] };
 
 function optionGroups(p) {
   const groups = [];
@@ -1287,7 +1289,7 @@ function openPanel(p) {
   const desc = specOf(p, "Descripción");
   const shown = SHEET_ROWS[p.cat]
     ? SHEET_ROWS[p.cat].map(l => p.specs.find(([x]) => x === l)).filter(Boolean)
-    : p.specs.filter(([l]) => !used.has(l));
+    : p.specs.filter(([l]) => !used.has(l) && !(SHEET_HIDE[p.cat] || []).includes(l));
   // 11 '' -> 11''
   const rows = shown.map(([l, v]) => `<tr><th scope="row">${l}</th><td>${String(v).replace(/\s+''/g, "''")}</td></tr>`).join("");
   const kind = String(p.type || p.catLabel || "").split("|")[0];
@@ -1619,6 +1621,8 @@ const MODE_KEYS = {
   alquiler: ["tablets", "phones", "accessories", "computers", "mac", "monitors", "connectivity", "cabins", "videoconf", "printers", "mics"],
   compra: ["storage", "batteries", "sound", "stationery", "protection", "electric", "filmset", "dulling", "lighting", "effects", "cleaning", "marks", "fastening", "tapes", "backdrops", "othersound", "lavacc", "mics"]
 };
+// «Modelos destacados» slider on the rental landing: switched off (10/10). Its markup and code are kept; true shows it again
+const SHOW_FEATURED = false;
 const OTHER_CATALOG = MODE === "compra" ? "../alquiler/" : "../compra/";
 const inMode = key => MODE_KEYS[MODE].includes(key);
 
@@ -1635,7 +1639,7 @@ function setCatalogHeader(key) {
   document.getElementById("catBadge").hidden = !(info && CATEGORY_BADGES[key]);
   document.getElementById("catPending").hidden = !(info && CATEGORY_PENDING[key]);
   const featured = document.getElementById("destacados");
-  if (featured) featured.hidden = !!info || MODE === "compra";
+  if (featured) featured.hidden = !SHOW_FEATURED || !!info || MODE === "compra";
   document.getElementById("catalogo").classList.toggle("in-category", !!info);
   document.getElementById("catEyebrow").hidden = !!info;
   document.getElementById("catDesc").hidden = !!info;
