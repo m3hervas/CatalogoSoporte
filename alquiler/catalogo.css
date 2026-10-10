@@ -543,6 +543,9 @@
 
   .rent-scrim { z-index: 70; }
 
+  /* Title and close button on one line */
+  .rent-modal .panel-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; margin-bottom: 8px; }
+
   .rent-modal h2 {
     font-family: 'Inter', sans-serif;
     font-weight: 700;
@@ -593,6 +596,21 @@
   /* The request form stays white in dark mode, so its small print keeps a dark grey */
   .rent-modal .consent-note { color: #64748B; }
 
+  /* Same questions as the home page contact form */
+  .field label small { font-weight: 500; color: var(--ink-soft); }
+  .interest-field { border: 0; padding: 0; min-width: 0; }
+  .interest-field legend { padding: 0; margin-bottom: 6px; font-size: 12.5px; font-weight: 700; color: var(--ink); }
+  .interest-choices { display: flex; flex-wrap: wrap; gap: 8px; }
+  .interest-choices label { position: relative; cursor: pointer; }
+  .interest-choices input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .interest-choices span {
+    display: inline-flex; align-items: center; min-height: 38px; padding: 0 16px; border-radius: 999px;
+    border: 1.5px solid var(--panel-line); background: #F5F7FA; color: var(--ink); font-size: 13.5px; font-weight: 600;
+    transition: border-color 150ms ease, background-color 150ms ease;
+  }
+  .interest-choices input:checked + span { border-color: #2B79C2; background: #EEF5FC; color: #14467A; }
+  .interest-choices input:focus-visible + span { outline: 3px solid #BFE0FF; outline-offset: 2px; }
+  .hp-field { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
   .rent-modal .primary-btn { width: 100%; margin-top: 4px; }
   .rent-modal .primary-btn:disabled { opacity: 0.6; cursor: wait; transform: none; }
 
@@ -610,11 +628,14 @@
     text-align: center; font: 700 15px/1 'Inter', sans-serif; font-variant-numeric: tabular-nums;
     -moz-appearance: textfield; appearance: textfield;
   }
+  /* Inside the request form the box must not take the form fields' look */
+  .qty input.qty-n { width: 46px; height: 30px; padding: 0; border: 0; border-radius: 7px; background: transparent; font-size: 15px; }
+  .qty input.qty-n:focus { background: #FFFFFF; border: 0; box-shadow: 0 0 0 2px var(--accent); }
   .qty-n::-webkit-inner-spin-button, .qty-n::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
   .qty-n:hover { background: rgba(15,23,42,0.05); }
   .qty-n:focus { outline: none; background: #FFFFFF; box-shadow: 0 0 0 2px var(--accent); }
   /* Phones: 16px so the page does not zoom in when typing */
-  @media (max-width: 720px), (pointer: coarse) { .qty-n { font-size: 16px; } }
+  @media (max-width: 720px), (pointer: coarse) { .qty-n, .qty input.qty-n { font-size: 16px; } }
   .panel-added { margin: 10px 0 0; font-size: 13px; line-height: 1.45; color: var(--android-tag); text-align: center; }
   .panel-added[hidden] { display: none; }
   .link-btn { border: 0; background: none; padding: 0; font: inherit; font-weight: 700; color: var(--accent); text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }

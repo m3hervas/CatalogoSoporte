@@ -1924,10 +1924,14 @@ const rentError = document.getElementById("rentError");
 
 const rentDone = document.getElementById("rentDone");
 const rentSubmit = document.getElementById("rentSubmit");
-if (MODE === "compra") {
-  document.getElementById("rentTitle").textContent = "Solicitar presupuesto de compra";
-  document.getElementById("rentFrom").closest(".field-row").hidden = true;
-}
+if (MODE === "compra") document.getElementById("rentTitle").textContent = "Solicitar presupuesto de compra";
+// "Me interesa" starts on this catalogue (also after the form is reset)
+document.querySelectorAll('input[name="rentInterest"]').forEach(r => {
+  r.defaultChecked = r.value === (MODE === "compra" ? "Compra" : "Alquiler");
+  r.checked = r.defaultChecked;
+});
+// E-mail addresses are written as "user [arroba] domain" and put together here, out of reach of simple robots
+document.querySelectorAll(".js-mail[data-u][data-d]").forEach(el => { el.textContent = el.dataset.u + "@" + el.dataset.d; });
 
 // Request list: products added from the sheets (name with colour/variant + quantity), sent together in one request.
 // Kept in this browser so it survives a reload; one list per catalogue.
@@ -1971,7 +1975,7 @@ function renderList() {
   renderListCount();
   document.getElementById("reqBox").hidden = !requestList.length;
   document.getElementById("rentMsgLabel").textContent = requestList.length ? "Comentarios (opcional)" : "¿Qué necesitas?";
-  rentMsg.placeholder = requestList.length ? (MODE === "compra" ? "Ej.: plazo de entrega, dirección, dudas…" : "Ej.: lugar de entrega, horario, dudas…") : MSG_PLACEHOLDER;
+  rentMsg.placeholder = requestList.length ? (MODE === "compra" ? "Ej.: plazo de entrega, dirección, dudas…" : "Ej.: fechas, lugar de entrega, dudas…") : MSG_PLACEHOLDER;
   reqList.replaceChildren(...requestList.map((item, idx) => {
     const li = document.createElement("li");
     li.innerHTML = `<span class="req-name"></span>
@@ -2041,25 +2045,29 @@ rentForm.addEventListener("input", () => { rentError.textContent = ""; });
 rentForm.addEventListener("submit", async e => {
   e.preventDefault();
   const name = document.getElementById("rentName").value.trim();
+  const company = document.getElementById("rentCompany").value.trim();
   const email = document.getElementById("rentEmail").value.trim();
-  const from = document.getElementById("rentFrom").value;
-  const to = document.getElementById("rentTo").value;
+  const phone = document.getElementById("rentPhone").value.trim();
+  const interest = (rentForm.querySelector('input[name="rentInterest"]:checked') || {}).value || "Alquiler";
   const msg = document.getElementById("rentMsg").value.trim();
 
-  if (!name || !email || (!msg && !requestList.length)) {
-    rentError.textContent = requestList.length ? "Rellena tu nombre y tu correo." : "Rellena tu nombre, tu correo y qué necesitas.";
+  if (!name || !company || !email || (!msg && !requestList.length)) {
+    rentError.textContent = requestList.length ? "Rellena tu nombre, tu empresa y tu correo." : "Rellena tu nombre, tu empresa, tu correo y qué necesitas.";
     return;
   }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     rentError.textContent = "Revisa tu correo, no parece válido.";
     return;
   }
-  if (from && to && to < from) {
-    rentError.textContent = "La fecha final no puede ser anterior a la inicial.";
-    return;
-  }
   if (!document.getElementById("rentPrivacy").checked) {
     rentError.textContent = "Para enviarla, acepta la política de privacidad.";
+    return;
+  }
+  // Robots fill in the hidden field: show it as sent and drop it
+  if (document.getElementById("rentHoney").value) {
+    rentForm.reset();
+    rentForm.hidden = true;
+    rentDone.hidden = false;
     return;
   }
 
@@ -2070,14 +2078,17 @@ rentForm.addEventListener("submit", async e => {
       method: "POST",
       headers: { "Content-Type": "application/json", "Accept": "application/json" },
       body: JSON.stringify({
-        _subject: `${MODE === "compra" ? "Solicitud de compra" : "Solicitud de alquiler"} — ${name}`,
+        _subject: `Solicitud desde el catálogo de ${MODE === "compra" ? "compra" : "alquiler"} (${interest}) — ${name}`,
         _template: "table",
         _captcha: "false",
         Nombre: name,
+        Empresa: company,
         email: email,
-        ...(MODE === "compra" ? {} : { Fechas: `${from || "—"} a ${to || "—"}` }),
+        "Teléfono": phone || "—",
+        "Le interesa": interest,
         ...(requestList.length ? { "Material solicitado": listText(), Comentarios: msg || "—" } : { "Qué necesita": msg }),
-        "Política de privacidad": "Aceptada"
+        "Política de privacidad": "Aceptada",
+        _honey: ""
       })
     });
     const data = await res.json().catch(() => ({}));

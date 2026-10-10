@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Soporte TV — Catálogo</title>
 <link href="../assets/fonts/fonts.css?v=20261004" rel="stylesheet">
-<link rel="stylesheet" href="catalogo.css?v=82487d168f">
+<link rel="stylesheet" href="catalogo.css?v=a29301cdef">
 <!-- WhatsApp contact button (shared with the home page; not included in the WordPress build) -->
 <link rel="icon" href="img/logo-soporte-tv-icono_SpTV.webp?v=20261004e" type="image/webp">
 <script src="../assets/whatsapp.js?v=20261004p" data-logo="img/logo-soporte-tv-icono_SpTV.webp?v=20261004e" data-source="alquiler" defer></script>
@@ -1261,30 +1261,42 @@
       <span class="req-head">Tu lista <button type="button" class="link-btn" id="reqClear">Vaciar lista</button></span>
       <ul class="req-list" id="reqList"></ul>
     </div>
-    <div class="field">
-      <label for="rentName">Nombre</label>
-      <input id="rentName" type="text" autocomplete="name" required>
-    </div>
-    <div class="field">
-      <label for="rentEmail">Tu correo</label>
-      <input id="rentEmail" type="email" autocomplete="email" required>
+    <div class="field-row">
+      <div class="field">
+        <label for="rentName">Nombre</label>
+        <input id="rentName" type="text" autocomplete="name" required>
+      </div>
+      <div class="field">
+        <label for="rentCompany">Empresa</label>
+        <input id="rentCompany" type="text" autocomplete="organization" required>
+      </div>
     </div>
     <div class="field-row">
       <div class="field">
-        <label for="rentFrom">Desde</label>
-        <input id="rentFrom" type="date">
+        <label for="rentEmail">Correo</label>
+        <input id="rentEmail" type="email" autocomplete="email" required>
       </div>
       <div class="field">
-        <label for="rentTo">Hasta</label>
-        <input id="rentTo" type="date">
+        <label for="rentPhone">Teléfono <small>(opcional)</small></label>
+        <input id="rentPhone" type="tel" autocomplete="tel">
       </div>
     </div>
+    <fieldset class="field interest-field">
+      <legend>Me interesa</legend>
+      <div class="interest-choices">
+        <label><input type="radio" name="rentInterest" value="Alquiler" checked><span>Alquiler</span></label>
+        <label><input type="radio" name="rentInterest" value="Compra"><span>Compra</span></label>
+        <label><input type="radio" name="rentInterest" value="Alquiler y compra"><span>Ambos</span></label>
+      </div>
+    </fieldset>
     <div class="field">
       <label for="rentMsg" id="rentMsgLabel">¿Qué necesitas?</label>
-      <textarea id="rentMsg" placeholder="Ej.: 4 iPad y 2 portátiles para un evento" required></textarea>
+      <textarea id="rentMsg" placeholder="Material, cantidades, fechas…" required></textarea>
     </div>
+    <!-- anti-spam: invisible to people, robots fill it in and the request is discarded -->
+    <div class="hp-field" aria-hidden="true"><label>No rellenar este campo<input type="text" id="rentHoney" tabindex="-1" autocomplete="off"></label></div>
     <label class="consent"><input type="checkbox" id="rentPrivacy" required><span>He leído y acepto la <a href="../legal/privacidad.html" target="_blank" rel="noopener">política de privacidad</a>.</span></label>
-    <p class="consent-note"><strong>Responsable:</strong> Soporte Pyme, S.L. (Soporte TV). <strong>Finalidad:</strong> responder a tu solicitud y enviarte presupuesto. <strong>Derechos:</strong> acceso, rectificación, supresión y otros, escribiendo a info@soportetv.es. Más información en la <a href="../legal/privacidad.html" target="_blank" rel="noopener">política de privacidad</a>.</p>
+    <p class="consent-note"><strong>Responsable:</strong> Soporte Pyme, S.L. (Soporte TV). <strong>Finalidad:</strong> responder a tu solicitud y enviarte presupuesto. <strong>Derechos:</strong> acceso, rectificación, supresión y otros, escribiendo a <span class="js-mail" data-u="info" data-d="soportetv.es">info [arroba] soportetv.es</span>. Más información en la <a href="../legal/privacidad.html" target="_blank" rel="noopener">política de privacidad</a>.</p>
     <p class="field-error" id="rentError" role="alert"></p>
     <button type="submit" class="primary-btn" id="rentSubmit">Enviar solicitud</button>
   </form>
@@ -1299,7 +1311,7 @@
 
 </div>
 
-<script src="catalogo-alquiler.js?v=e62e77b002"></script>
+<script src="catalogo-alquiler.js?v=909b839361"></script>
 
 </body>
 </html>
