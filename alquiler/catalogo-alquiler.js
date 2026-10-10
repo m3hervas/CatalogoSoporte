@@ -922,6 +922,21 @@ const COMPUTERS = [
     ]
   },
 {
+    cat: "computer", catLabel: "Portátil", type: "Portátil", brand: "HP / Dell / Lenovo", brandCode: "D", brandColor: "#5C6672",
+    model: "Portátil convertible", photo: "../alquiler/img/hp-elitebook-x360-convertible_SpTV.webp", storages: ["256 GB", "512 GB"],
+    icon: laptopIcon("#5C6672"),
+    specs: [
+      ["Categoría", "Portátil"],
+      ["Marcas disponibles", "HP / Dell / Lenovo"],
+      ["Descripción", "Portátil convertible 2 en 1 con pantalla táctil: la pantalla gira 360° para usarlo como portátil, en modo tienda para presentaciones o como tableta. El modelo concreto puede variar según disponibilidad."],
+      ["Procesador", "Intel Core i5 · Intel Core i7"],
+      ["RAM", "8 GB · 16 GB"],
+      ["Almacenamiento", "256 GB / 512 GB SSD"],
+      ["Pantalla", "13,3'' o 14'' táctil"],
+      ["Incluye", "Maletín y ratón"]
+    ]
+  },
+{
     cat: "computer", catLabel: "Surface", type: "Surface", brand: "Microsoft", brandCode: "M", brandColor: "#00A4EF",
     model: "Surface Pro 7",
     photo: "../alquiler/img/microsoft-surface-pro-7_SpTV.webp", cpu: "i5", storage: "128 GB", storages: ["128 GB", "256 GB", "512 GB", "1 TB"],
