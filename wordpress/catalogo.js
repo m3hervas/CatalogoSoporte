@@ -1426,25 +1426,25 @@ const CONNECTIVITY = [
 
 const VIDEOCONF = [
   {
-    cat: "videoconf", catLabel: "Videoconferencia", type: "Videoconferencia", brand: "Jabra", brandCode: "J", brandColor: "#1A1A1A",
-    model: "Jabra PanaCast", photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/jabra-panacast_SpTV.webp",
+    cat: "videoconf", catLabel: "Videoconferencia", type: "Videoconferencia", brand: "", brandCode: "", brandColor: "#1A1A1A",
+    model: "WebCam Gran Angular 4K", photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/jabra-panacast_SpTV.webp",
     icon: videoconfIcon("#1A1A1A"),
-    info: [["screen", "Vídeo", "4K panorámico 180°", 1], ["signal", "Audio", "2 micrófonos", 1], ["port", "Conexión", "USB-C"]],
-    specs: [["Categoría", "Cámara panorámica de videoconferencia para salas pequeñas"], ["Marca", "Jabra"], ["Cámara", "3 cámaras de 13 MP con unión de imagen en tiempo real · 4K panorámico (3840 × 1080) · campo de visión 180°"], ["Audio", "2 micrófonos integrados"], ["Funciones", "Zoom inteligente que encuadra a todos los asistentes · HDR automático según la luz de la sala"], ["Compatibilidad", "Microsoft Teams, Zoom y las principales plataformas de videollamada · conectar y usar"], ["Conexión", "USB-C"]]
+    info: [["screen", "Vídeo", "4K gran angular", 1], ["signal", "Audio", "Micrófonos integrados", 1], ["port", "Conexión", "USB-C, sin instalación"]],
+    specs: [["Categoría", "Cámara de videoconferencia gran angular"], ["Descripción", "Cámara 4K de gran angular para salas pequeñas: capta a todos los asistentes sin tener que moverla y encuadra automáticamente a quien está en la reunión. Se conecta por USB al portátil y funciona con Teams, Zoom y Google Meet. El modelo concreto puede variar según disponibilidad."], ["Vídeo", "4K · gran angular (hasta 180°)"], ["Encuadre", "Automático: sigue y encuadra a los asistentes"], ["Audio", "Micrófonos integrados"], ["Conexión", "USB-C al ordenador, sin instalar nada"], ["Sala recomendada", "Salas pequeñas, de 2 a 6 personas"], ["Incluye", "Cámara, soporte y cable USB"]]
   },
   {
-    cat: "videoconf", catLabel: "Videoconferencia", type: "Videoconferencia", brand: "Logitech", brandCode: "L", brandColor: "#1A1A1A",
-    model: "Logitech MeetUp", photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/logitech-meetup_SpTV.webp",
+    cat: "videoconf", catLabel: "Videoconferencia", type: "Videoconferencia", brand: "", brandCode: "", brandColor: "#1A1A1A",
+    model: "Barra videoconferencia", photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/logitech-meetup_SpTV.webp",
     icon: videoconfIcon("#1A1A1A"),
-    info: [["screen", "Vídeo", "4K · 120° · zoom 5x", 1], ["signal", "Audio", "3 micrófonos + altavoz", 1], ["port", "Conexión", "USB, sin instalación"]],
-    specs: [["Categoría", "Cámara de videoconferencia todo en uno (cámara + micrófono + altavoz)"], ["Marca", "Logitech"], ["Descripción", "Barra de videoconferencia para salas pequeñas: cámara, micrófonos y altavoz en un solo equipo. Se conecta por USB al portátil y funciona con Teams, Zoom, Google Meet y cualquier otra aplicación, sin instalar nada."], ["Cámara", "Sensor 4K · campo de visión de 120° · zoom 5x · giro e inclinación motorizados"], ["Audio", "3 micrófonos con formación de haz · altavoz integrado · conversación natural sin cortes (full dúplex)"], ["Alcance de los micrófonos", "Hasta 4 m"], ["Sala recomendada", "Salas pequeñas, de 4 a 6 personas"], ["Conexión", "USB al ordenador · Bluetooth para llamadas desde el móvil"], ["Incluye", "Cámara, mando a distancia, soporte y cables"]]
+    info: [["screen", "Vídeo", "4K con zoom", 1], ["signal", "Audio", "Micrófonos + altavoz", 1], ["port", "Conexión", "USB, sin instalación"]],
+    specs: [["Categoría", "Barra de videoconferencia todo en uno"], ["Descripción", "Cámara, micrófonos y altavoz en una sola barra que se coloca encima o debajo de la pantalla. Todos se ven y se oyen bien sin cables por la mesa. Se conecta por USB al portátil y funciona con Teams, Zoom y Google Meet. El modelo concreto puede variar según disponibilidad."], ["Vídeo", "4K · gran angular · zoom"], ["Audio", "Micrófonos de largo alcance y altavoz integrado · conversación sin cortes (full dúplex)"], ["Conexión", "USB al ordenador · Bluetooth para llamadas desde el móvil"], ["Sala recomendada", "Salas pequeñas, de 4 a 6 personas"], ["Incluye", "Barra, mando a distancia, soporte y cables"]]
   },
   {
-    cat: "videoconf", catLabel: "Audioconferencia", type: "Audioconferencia", brand: "Jabra", brandCode: "J", brandColor: "#1A1A1A",
-    model: "Jabra Speak2 75", photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/jabra-speak2-75_SpTV.webp",
+    cat: "videoconf", catLabel: "Audioconferencia", type: "Audioconferencia", brand: "", brandCode: "", brandColor: "#1A1A1A",
+    model: "Altavoz + Micrófono videoconferencia", photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/jabra-speak2-75_SpTV.webp",
     icon: videoconfIcon("#1A1A1A"),
-    info: [["signal", "Audio", "4 micrófonos · 2,5 m", 1], ["speed", "Batería", "Hasta 32 h", 1], ["port", "Conexión", "USB-C · Bluetooth · adaptador inalámbrico"]],
-    specs: [["Categoría", "Altavoz de conferencias con micrófono"], ["Marca", "Jabra"], ["Descripción", "Altavoz de manos libres para reuniones: se pone en el centro de la mesa y todos se oyen y hablan con naturalidad. Inalámbrico y portátil, con batería para toda la jornada. Funciona con Teams, Zoom y Google Meet."], ["Micrófonos", "4 micrófonos con captación de voz de hasta 2,5 m"], ["Altavoz", "65 mm, sonido de banda ancha"], ["Conversación", "Full dúplex: se puede hablar y escuchar a la vez, como en persona"], ["Sala recomendada", "Hasta 4,5 × 4,5 m (unas 6 personas)"], ["Batería", "Hasta 32 h de conversación"], ["Conexión", "USB-C · Bluetooth 5.2 (hasta 30 m) · adaptador Bluetooth Jabra Link"], ["Resistencia", "IP64 (polvo y salpicaduras)"], ["Peso", "466 g"]]
+    info: [["signal", "Audio", "Micrófonos 360°", 1], ["speed", "Batería", "Toda la jornada", 1], ["port", "Conexión", "USB · Bluetooth"]],
+    specs: [["Categoría", "Altavoz con micrófono para reuniones"], ["Descripción", "Altavoz manos libres que se pone en el centro de la mesa: capta las voces de todos los asistentes y se oye con claridad, como si estuvieran en la misma sala. Inalámbrico y con batería. Funciona con Teams, Zoom y Google Meet. El modelo concreto puede variar según disponibilidad."], ["Audio", "Micrófonos con captación de 360° · altavoz de banda ancha"], ["Conversación", "Full dúplex: se puede hablar y escuchar a la vez"], ["Conexión", "USB · Bluetooth (también desde el móvil)"], ["Batería", "Para toda la jornada"], ["Sala recomendada", "Mesas de reunión de hasta 6 personas"], ["Incluye", "Altavoz, cable USB y funda"]]
   },
   {
     cat: "videoconf", catLabel: "Pantalla", type: "Pantalla", brand: "", brandCode: "", brandColor: "#1A1A1A",
@@ -1454,11 +1454,11 @@ const VIDEOCONF = [
     specs: [["Categoría", "Pantalla con soporte móvil"], ["Descripción", "Pantalla grande montada en un soporte de suelo con ruedas: se lleva de una sala a otra sin obras ni anclajes. Perfecta para videoconferencias, presentaciones o formación; el soporte tiene bandeja para la cámara o el portátil. El modelo concreto puede variar según disponibilidad."], ["Tamaños", "50'' · 55'' · 65''"], ["Pantalla", "50'' a 65'' 4K"], ["Soporte", "De suelo con ruedas con freno, altura regulable y bandeja"], ["Conexiones", "HDMI · USB"], ["Uso recomendado", "Videoconferencia, presentaciones y formación"], ["Incluye", "Pantalla, soporte con ruedas y cables"]]
   },
   {
-    cat: "videoconf", catLabel: "Presentación", type: "Presentación", brand: "Logitech", brandCode: "L", brandColor: "#1A1A1A",
-    model: "Logitech R500s", photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/logitech-r500s_SpTV.webp",
+    cat: "videoconf", catLabel: "Presentación", type: "Presentación", brand: "", brandCode: "", brandColor: "#1A1A1A",
+    model: "Puntero Láser", photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/logitech-r500s_SpTV.webp",
     icon: videoconfIcon("#1A1A1A"),
     info: [["tag", "Tipo", "Puntero láser", 1], ["signal", "Alcance", "Hasta 20 m", 1], ["port", "Conexión", "USB o Bluetooth"]],
-    specs: [["Categoría", "Presentador con puntero láser"], ["Marca", "Logitech"], ["Descripción", "Mando para pasar las diapositivas a distancia, con puntero láser rojo. Se conecta con su receptor USB o por Bluetooth y funciona con PowerPoint, Keynote y Google Slides."], ["Puntero", "Láser rojo"], ["Alcance", "Hasta 20 m"], ["Conexión", "Receptor USB (se guarda dentro del mando) o Bluetooth"], ["Compatible con", "Windows, macOS, ChromeOS y Linux"], ["Alimentación", "1 pila AAA (incluida)"], ["Peso", "48 g"]]
+    specs: [["Categoría", "Presentador inalámbrico con puntero láser"], ["Descripción", "Mando para pasar las diapositivas a distancia, con puntero láser rojo para señalar en la pantalla. Funciona con PowerPoint, Keynote y Google Slides. El modelo concreto puede variar según disponibilidad."], ["Puntero", "Láser rojo"], ["Alcance", "Hasta 20 m"], ["Conexión", "Receptor USB o Bluetooth"], ["Compatible con", "Windows, macOS, ChromeOS y Linux"], ["Alimentación", "Pila AAA (incluida)"]]
   },
   {
     cat: "videoconf", catLabel: "Intercom", type: "Intercom", brand: "Hollyland", brandCode: "H", brandColor: "#E60012",
