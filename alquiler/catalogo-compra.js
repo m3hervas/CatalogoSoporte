@@ -1,6 +1,6 @@
 /* GENERATED from tools/catalogo_fuente.html by tools/build_catalogo.py — do not edit by hand */
 // Products marked "No" in the column "¿Se muestra en la web?" of Productos_web_SoporteTV.xlsx (filled in by tools/build_catalogo.py)
-const HIDDEN_PRODUCTS = new Set(["grid|Apple|iPad (5.ª generación)|", "gridAccessories|Apple|Adaptador USB-C a USB|"]);
+const HIDDEN_PRODUCTS = new Set(["grid|Apple|iPad (5.ª generación)|", "gridAccessories|Apple|Adaptador USB-C a USB|", "gridComputers|HP / Dell / Lenovo|CPU + Monitor 16 GB RAM|"]);
 const productId = (gridEl, p) => [gridEl.id, p.brand || "", p.model, p.key || ""].join("|");
 // Cards and thumbnails use the 480 px copy of each photo (../alquiler/img/s/, made by tools/build_catalogo.py); the sheet the full one
 const smallPhoto = src => src ? src.replace(/(^|\/)img\/(?!s\/)/, "$1img/s/") : src;
@@ -1153,9 +1153,10 @@ const CARD_INFO = {
     const boxes = [];
     const screen = specOf(p, "Pantalla").replace(/\s*''$/, "''");
     if (screen) boxes.push({ small: true, icon: STORAGE_ICONS.screen, title: "Pantalla", text: screen });
+    else if (specOf(p, "Formatos")) boxes.push({ small: true, icon: STORAGE_ICONS.bays, title: "Formato", text: specOf(p, "Formatos") });
     const cpu = (specOf(p, "Procesador") || specOf(p, "Chip"))
       .replace(/\s*\(.*?\)/g, "").replace(/Intel Core (i\d) \/ Intel Core (i\d)/, "Intel Core $1 / $2").replace(/Intel Core (i\d) · Intel Core (i\d)/, "Intel Core $1 o $2");
-    boxes.push({ small: !!screen, icon: STORAGE_ICONS.cpu, title: "Procesador", text: cpu || "A medida" });
+    boxes.push({ small: boxes.length > 0, icon: STORAGE_ICONS.cpu, title: "Procesador", text: cpu || "A medida" });
     boxes.push({ icon: STORAGE_ICONS.capacity, title: "Almacenamiento", text: p.storages.length ? p.storages.join(" · ") : "A medida" });
     return boxes;
   },
@@ -1305,17 +1306,26 @@ function openPanel(p) {
   const rows = shown.map(([l, v]) => `<tr><th scope="row">${l}</th><td>${String(v).replace(/\s+''/g, "''")}</td></tr>`).join("");
   const kind = String(p.type || p.catLabel || "").split("|")[0];
   const singleColor = !colors.length && p.color && !String(p.color).includes("|") ? p.color : "";
+  // Photos per option (e.g. CPU formats): gallery tied to that option's choice
+  const optKey = !colors.length && p.optionPhotos ? Object.keys(p.optionPhotos)[0] : "";
+  const optGi = optKey ? groups.findIndex(g => g.spec === optKey) : -1;
+  const optPhotos = optGi > -1 ? p.optionPhotos[optKey] : [];
   const thumbs = colors.filter(c => c.photo).length > 1
     ? colors.map((c, i) => c.photo ? `<button type="button" class="pv-thumb" data-i="${i}" aria-label="Ver en ${c.name}" aria-pressed="${i === ci()}"><img src="${smallPhoto(c.photo)}" alt="" decoding="async"></button>` : "").join("")
-    : "";
+    : optPhotos.map((ph, i) => `<button type="button" class="pv-thumb pv-othumb" data-o="${i}" aria-label="Ver ${groups[optGi].options[i]}" aria-pressed="${i === 0}"><img src="${smallPhoto(ph)}" alt="" decoding="async"><span>${groups[optGi].options[i]}</span></button>`).join("");
+  const slides = thumbs ? (colors.length ? colors.length : optPhotos.length) : 0;
+  // Recommended extras (e.g. a monitor for a CPU): added to the request list straight away
+  const recos = p.recommend ? p.recommend.models.map(m => MONITORS.find(x => x.model === m)).filter(Boolean) : [];
 
   panel.innerHTML = `
     <button class="pv-close" id="closeBtn" type="button" aria-label="Cerrar ficha"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
     <div class="pv-media">
       <div class="pv-stage">${photo
         ? `<img id="pvImg" src="${photo}" alt="${p.model}${colors.length ? ` (${colors[ci()].name})` : ""}" decoding="async">`
-        : `<div class="pv-icon">${p.icon || ""}</div>`}</div>
-      ${thumbs ? `<div class="pv-thumbs" role="group" aria-label="Fotos por color">${thumbs}</div>` : ""}
+        : `<div class="pv-icon">${p.icon || ""}</div>`}${slides > 1 ? `
+        <button type="button" class="pv-arrow pv-prev" aria-label="Foto anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <button type="button" class="pv-arrow pv-next" aria-label="Foto siguiente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>` : ""}</div>
+      ${thumbs ? `<div class="pv-thumbs" role="group" aria-label="${colors.length ? "Fotos por color" : "Fotos por " + groups[optGi].label.toLowerCase()}">${thumbs}</div>` : ""}
     </div>
     <div class="pv-info">
       ${p.brand ? `<div class="pv-brand">${badgeMarkup(p)}</div>` : ""}
@@ -1341,6 +1351,12 @@ function openPanel(p) {
         <p class="panel-added" id="panelAdded" role="status" hidden></p>
         <p class="pv-note">Te enviamos el presupuesto por correo, sin compromiso.</p>
       </div>
+      ${recos.length ? `<section class="pv-section pv-recos"><h3>Nuestras recomendaciones</h3><p class="pv-recos-sub">${p.recommend.title}</p>
+        <div class="pv-recos-list">${recos.map((r, i) => `<div class="pv-reco">
+          <img src="${smallPhoto(r.photo)}" alt="" decoding="async">
+          <div class="pv-reco-text"><strong>${r.model}</strong><span>${[specOf(r, "Pantalla").replace(/\s+''/g, "''"), specOf(r, "Resolución")].filter(Boolean).join(" · ")}</span></div>
+          <button type="button" class="pv-reco-add" data-r="${i}">Añadir</button>
+        </div>`).join("")}</div></section>` : ""}
       ${desc ? `<section class="pv-section"><h3>Sobre este producto</h3><p>${desc}</p></section>` : ""}
       ${rows ? `<section class="pv-section"><h3>Ficha técnica</h3><div class="pv-specs-wrap"><table class="pv-specs"><tbody>${rows}</tbody></table></div></section>` : ""}
     </div>
@@ -1365,7 +1381,36 @@ function openPanel(p) {
     const sw = card && card.querySelector(`.swatch[data-i="${i}"]`);
     if (sw && sw.getAttribute("aria-pressed") !== "true") sw.click();
   };
-  panel.querySelectorAll(".pv-color, .pv-thumb").forEach(b => b.addEventListener("click", () => pickColor(Number(b.dataset.i))));
+  panel.querySelectorAll(".pv-color, .pv-thumb:not(.pv-othumb)").forEach(b => b.addEventListener("click", () => pickColor(Number(b.dataset.i))));
+
+  // Option photos: a thumbnail picks that option; picking the option shows its photo
+  let shownOpt = 0;
+  const showOpt = i => {
+    shownOpt = i;
+    if (img) { img.src = optPhotos[i]; img.alt = `${p.model} (${groups[optGi].options[i]})`; }
+    panel.querySelectorAll(".pv-othumb").forEach(b => b.setAttribute("aria-pressed", String(Number(b.dataset.o) === i)));
+  };
+  const optChip = i => panel.querySelector(`.pv-group[data-g="${optGi}"] .pv-chip[data-oi="${i}"]`);
+  panel.querySelectorAll(".pv-othumb").forEach(b => b.addEventListener("click", () => optChip(b.dataset.o).click()));
+
+  // Gallery arrows and swipe: next / previous colour or option photo
+  const step = d => {
+    if (colors.length) pickColor((ci() + d + colors.length) % colors.length);
+    else if (optPhotos.length) optChip((shownOpt + d + optPhotos.length) % optPhotos.length).click();
+  };
+  panel.querySelector(".pv-prev")?.addEventListener("click", () => step(-1));
+  panel.querySelector(".pv-next")?.addEventListener("click", () => step(1));
+  if (slides > 1) {
+    const stage = panel.querySelector(".pv-stage");
+    let touchX = null;
+    stage.addEventListener("touchstart", e => { touchX = e.touches[0].clientX; }, { passive: true });
+    stage.addEventListener("touchend", e => {
+      if (touchX === null) return;
+      const dx = e.changedTouches[0].clientX - touchX;
+      touchX = null;
+      if (Math.abs(dx) > 40) step(dx < 0 ? 1 : -1);
+    });
+  }
 
   // Other choices (size, capacity, format...)
   panel.querySelectorAll(".pv-group[data-g]").forEach(groupEl => {
@@ -1378,8 +1423,15 @@ function openPanel(p) {
       pick.classList.remove("pv-pick");
       groupEl.classList.remove("is-missing");
       groupEl.querySelector(".pv-need").hidden = true;
+      if (gi === optGi) showOpt(chosen[gi]);
     }));
   });
+
+  panel.querySelectorAll(".pv-reco-add").forEach(b => b.addEventListener("click", () => {
+    addToList(recos[Number(b.dataset.r)].model, 1);
+    b.textContent = "Añadido ✓";
+    b.classList.add("is-added");
+  }));
 
   // Quantity: − / + or type the number
   let qty = 1;
