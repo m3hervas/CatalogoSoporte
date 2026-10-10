@@ -1137,7 +1137,7 @@ const CARD_INFO = {
   connectivity: p => p.type === "eSIM" ? [
     { small: true, icon: STORAGE_ICONS.qr, title: "Activación", text: "Inmediata con QR" },
     { small: true, icon: STORAGE_ICONS.capacity, title: "Datos", text: p.storages.join(" · ") },
-    { icon: STORAGE_ICONS.devices, title: "Compatible con", text: "Móviles, tablets y routers con eSIM" }
+    { icon: STORAGE_ICONS.devices, title: "Compatible con", text: "eSIM Ready" }
   ] : [
     ...(p.group ? [
       { small: true, icon: STORAGE_ICONS.signal, title: "Red", text: p.group.split("|").join(" · ") },
@@ -1616,7 +1616,7 @@ const LANDING_SUBS = {
   tablets: "iPad y Android", phones: "iPhone y Android", accessories: "Lápices, trípodes, gimbals y más",
   mics: "Inalámbricos y de estudio", mac: "MacBook, iMac, Mac mini y Studio", computers: "Portátiles, sobremesa y workstation",
   monitors: "Monitores y Smart TV 4K", connectivity: "MiFi, routers 5G y redes Wi-Fi", cabins: "NAS y cabinas de discos",
-  videoconf: "Videoconferencia e intercom", printers: "Multifunción B/N y color"
+  videoconf: "Cámaras, altavoces, pantallas e intercom", printers: "Multifunción B/N y color"
 };
 function enhanceLandingCards() {
   document.querySelectorAll(".category-card").forEach(card => {

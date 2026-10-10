@@ -1369,10 +1369,10 @@ const CONNECTIVITY = [
     model: "Tarjeta eSIM", photo: "../alquiler/img/esim-tarjeta-datos_SpTV.webp", icon: mifiIcon("#0F8A80"),
     specs: [
       ["Categoría", "Tarjeta eSIM de datos"],
-      ["Descripción", "SIM digital de datos móviles, sin tarjeta física: te enviamos un código QR y, al escanearlo, la línea se activa al momento en el dispositivo. Ideal para dar Internet a móviles, tablets o routers durante un evento o un rodaje sin esperar envíos. Elige 240 GB o datos ilimitados."],
+      ["Descripción", "SIM digital de datos móviles, sin tarjeta física: te enviamos un código QR y, al escanearlo, la línea se activa al momento en el dispositivo. Ideal para dar Internet a móviles, tablets o routers durante un evento o un rodaje sin esperar envíos. Funciona en cualquier dispositivo eSIM Ready, es decir, móviles, tablets y routers de última generación con eSIM. Elige 240 GB o datos ilimitados."],
       ["Activación", "Inmediata: escaneas el código QR y listo"],
       ["Conexión a Internet", "Red móvil 4G / 5G según cobertura"],
-      ["Compatible con", "Móviles, tablets y routers de última generación con eSIM"],
+      ["Compatible con", "eSIM Ready"],
       ["Formato", "Digital, sin tarjeta física"],
       ["Incluye", "Código QR de activación por correo · soporte para instalarla"]
     ]
@@ -1399,6 +1399,34 @@ const VIDEOCONF = [
     icon: videoconfIcon("#1A1A1A"),
     info: [["screen", "Vídeo", "4K panorámico 180°", 1], ["signal", "Audio", "2 micrófonos", 1], ["port", "Conexión", "USB-C"]],
     specs: [["Categoría", "Cámara panorámica de videoconferencia para salas pequeñas"], ["Marca", "Jabra"], ["Cámara", "3 cámaras de 13 MP con unión de imagen en tiempo real · 4K panorámico (3840 × 1080) · campo de visión 180°"], ["Audio", "2 micrófonos integrados"], ["Funciones", "Zoom inteligente que encuadra a todos los asistentes · HDR automático según la luz de la sala"], ["Compatibilidad", "Microsoft Teams, Zoom y las principales plataformas de videollamada · conectar y usar"], ["Conexión", "USB-C"]]
+  },
+  {
+    cat: "videoconf", catLabel: "Videoconferencia", type: "Videoconferencia", brand: "Logitech", brandCode: "L", brandColor: "#1A1A1A",
+    model: "Logitech MeetUp", photo: "../alquiler/img/logitech-meetup_SpTV.webp",
+    icon: videoconfIcon("#1A1A1A"),
+    info: [["screen", "Vídeo", "4K · 120° · zoom 5x", 1], ["signal", "Audio", "3 micrófonos + altavoz", 1], ["port", "Conexión", "USB, sin instalación"]],
+    specs: [["Categoría", "Cámara de videoconferencia todo en uno (cámara + micrófono + altavoz)"], ["Marca", "Logitech"], ["Descripción", "Barra de videoconferencia para salas pequeñas: cámara, micrófonos y altavoz en un solo equipo. Se conecta por USB al portátil y funciona con Teams, Zoom, Google Meet y cualquier otra aplicación, sin instalar nada."], ["Cámara", "Sensor 4K · campo de visión de 120° · zoom 5x · giro e inclinación motorizados"], ["Audio", "3 micrófonos con formación de haz · altavoz integrado · conversación natural sin cortes (full dúplex)"], ["Alcance de los micrófonos", "Hasta 4 m"], ["Sala recomendada", "Salas pequeñas, de 4 a 6 personas"], ["Conexión", "USB al ordenador · Bluetooth para llamadas desde el móvil"], ["Incluye", "Cámara, mando a distancia, soporte y cables"]]
+  },
+  {
+    cat: "videoconf", catLabel: "Audioconferencia", type: "Audioconferencia", brand: "Jabra", brandCode: "J", brandColor: "#1A1A1A",
+    model: "Jabra Speak2 75", photo: "../alquiler/img/jabra-speak2-75_SpTV.webp",
+    icon: videoconfIcon("#1A1A1A"),
+    info: [["signal", "Audio", "4 micrófonos · 2,5 m", 1], ["speed", "Batería", "Hasta 32 h", 1], ["port", "Conexión", "USB-C · Bluetooth · adaptador inalámbrico"]],
+    specs: [["Categoría", "Altavoz de conferencias con micrófono"], ["Marca", "Jabra"], ["Descripción", "Altavoz de manos libres para reuniones: se pone en el centro de la mesa y todos se oyen y hablan con naturalidad. Inalámbrico y portátil, con batería para toda la jornada. Funciona con Teams, Zoom y Google Meet."], ["Micrófonos", "4 micrófonos con captación de voz de hasta 2,5 m"], ["Altavoz", "65 mm, sonido de banda ancha"], ["Conversación", "Full dúplex: se puede hablar y escuchar a la vez, como en persona"], ["Sala recomendada", "Hasta 4,5 × 4,5 m (unas 6 personas)"], ["Batería", "Hasta 32 h de conversación"], ["Conexión", "USB-C · Bluetooth 5.2 (hasta 30 m) · adaptador Bluetooth Jabra Link"], ["Resistencia", "IP64 (polvo y salpicaduras)"], ["Peso", "466 g"]]
+  },
+  {
+    cat: "videoconf", catLabel: "Pantalla", type: "Pantalla", brand: "", brandCode: "", brandColor: "#1A1A1A",
+    model: "Pantalla con soporte de ruedas", photo: "../alquiler/img/pantalla-soporte-ruedas_SpTV.webp",
+    icon: videoconfIcon("#1A1A1A"),
+    info: [["screen", "Pantalla", "50'' a 65''", 1], ["tag", "Soporte", "Con ruedas", 1], ["port", "Conexión", "HDMI para portátil o cámara"]],
+    specs: [["Categoría", "Pantalla con soporte móvil"], ["Descripción", "Pantalla grande montada en un soporte de suelo con ruedas: se lleva de una sala a otra sin obras ni anclajes. Perfecta para videoconferencias, presentaciones o formación; el soporte tiene bandeja para la cámara o el portátil. El modelo concreto puede variar según disponibilidad."], ["Tamaños", "50'' · 55'' · 65''"], ["Pantalla", "50'' a 65'' 4K"], ["Soporte", "De suelo con ruedas con freno, altura regulable y bandeja"], ["Conexiones", "HDMI · USB"], ["Uso recomendado", "Videoconferencia, presentaciones y formación"], ["Incluye", "Pantalla, soporte con ruedas y cables"]]
+  },
+  {
+    cat: "videoconf", catLabel: "Presentación", type: "Presentación", brand: "Logitech", brandCode: "L", brandColor: "#1A1A1A",
+    model: "Logitech R500s", photo: "../alquiler/img/logitech-r500s_SpTV.webp",
+    icon: videoconfIcon("#1A1A1A"),
+    info: [["tag", "Tipo", "Puntero láser", 1], ["signal", "Alcance", "Hasta 20 m", 1], ["port", "Conexión", "USB o Bluetooth"]],
+    specs: [["Categoría", "Presentador con puntero láser"], ["Marca", "Logitech"], ["Descripción", "Mando para pasar las diapositivas a distancia, con puntero láser rojo. Se conecta con su receptor USB o por Bluetooth y funciona con PowerPoint, Keynote y Google Slides."], ["Puntero", "Láser rojo"], ["Alcance", "Hasta 20 m"], ["Conexión", "Receptor USB (se guarda dentro del mando) o Bluetooth"], ["Compatible con", "Windows, macOS, ChromeOS y Linux"], ["Alimentación", "1 pila AAA (incluida)"], ["Peso", "48 g"]]
   },
   {
     cat: "videoconf", catLabel: "Intercom", type: "Intercom", brand: "Hollyland", brandCode: "H", brandColor: "#E60012",
@@ -1707,7 +1735,7 @@ const CARD_INFO = {
   connectivity: p => p.type === "eSIM" ? [
     { small: true, icon: STORAGE_ICONS.qr, title: "Activación", text: "Inmediata con QR" },
     { small: true, icon: STORAGE_ICONS.capacity, title: "Datos", text: p.storages.join(" · ") },
-    { icon: STORAGE_ICONS.devices, title: "Compatible con", text: "Móviles, tablets y routers con eSIM" }
+    { icon: STORAGE_ICONS.devices, title: "Compatible con", text: "eSIM Ready" }
   ] : [
     ...(p.group ? [
       { small: true, icon: STORAGE_ICONS.signal, title: "Red", text: p.group.split("|").join(" · ") },
@@ -2192,7 +2220,7 @@ const LANDING_SUBS = {
   tablets: "iPad y Android", phones: "iPhone y Android", accessories: "Lápices, trípodes, gimbals y más",
   mics: "Inalámbricos y de estudio", mac: "MacBook, iMac, Mac mini y Studio", computers: "Portátiles, sobremesa y workstation",
   monitors: "Monitores y Smart TV 4K", connectivity: "MiFi, routers 5G y redes Wi-Fi", cabins: "NAS y cabinas de discos",
-  videoconf: "Videoconferencia e intercom", printers: "Multifunción B/N y color"
+  videoconf: "Cámaras, altavoces, pantallas e intercom", printers: "Multifunción B/N y color"
 };
 function enhanceLandingCards() {
   document.querySelectorAll(".category-card").forEach(card => {
