@@ -1206,6 +1206,7 @@ function drawModelCards(items, gridEl, info) {
     bindSwatches(card, p, card.querySelector(".storage-photo img"));
     card.addEventListener("click", () => openPanel(p));
     card._product = p;
+    p._grid = gridEl;
     card.style.setProperty("--i", gridEl.children.length);
     gridEl.appendChild(card);
   });
@@ -1278,6 +1279,13 @@ const MAX_QTY = 999;
 function clampQty(v) { return Math.max(1, Math.min(MAX_QTY, Math.round(Number(v)) || 1)); }
 
 let panelReturnFocus = null;
+// Catalogues that offer the product: those whose categories include the one it is drawn in (microphones: both)
+function availableIn(p) {
+  const key = p._grid && Object.keys(views).find(k => views[k].contains(p._grid));
+  const modes = key ? ["alquiler", "compra"].filter(m => MODE_KEYS[m].includes(key)) : [];
+  return modes.length ? modes : [MODE];
+}
+
 function openPanel(p) {
   panelReturnFocus = document.activeElement;
   const colors = p.colors && p.colors.length > 1 ? p.colors : [];
@@ -1310,9 +1318,7 @@ function openPanel(p) {
       ${p.brand ? `<div class="pv-brand">${badgeMarkup(p)}</div>` : ""}
       <h2 class="pv-title" id="panel-name">${p.model}</h2>
       ${kind ? `<p class="pv-kind">${kind}</p>` : ""}
-      <div class="pv-avail">
-        <span class="pv-price">Precio bajo presupuesto, sin compromiso</span>
-      </div>
+      <div class="pv-avail" aria-label="Disponible para">${availableIn(p).map(m => `<span class="pv-mode">${m === "compra" ? "Compra" : "Alquiler"}</span>`).join("")}</div>
       ${colors.length ? `<div class="pv-group">
         <p class="pv-group-label">Color: <strong id="pvColorName">${colors[ci()].name}</strong></p>
         <div class="pv-choices" role="group" aria-label="Color">${colors.map((c, i) =>
