@@ -2145,17 +2145,17 @@ function setupStorageFilters() {
 document.getElementById("tabletIconLarge").innerHTML = tabletIconLarge("#2B79C2");
 // Landing (rental): line icons drawn for each category; they take the card colour (currentColor) and a soft fill
 const LANDING_ICONS = {
-  tablets: `<rect x="8" y="5" width="25" height="37" rx="3.5" class="f"/><path d="M17 37.5h7"/><path d="M38.5 11.5l3.6 1.4-7.4 21.3-3.3 2.6-.7-4.1z" class="f"/><path d="M37.2 15.3l3.6 1.3"/>`,
-  phones: `<rect x="20" y="5" width="18" height="32" rx="3.5"/><rect x="10" y="11" width="18" height="32" rx="3.5" class="f"/><path d="M16.5 15h5"/><path d="M17.5 38.5h3"/>`,
+  tablets: `<rect x="5" y="5" width="26" height="38" rx="3.5" class="f"/><path d="M14.5 38.5h7"/><rect x="37" y="7" width="5.5" height="26" rx="1.5" class="f"/><path d="M37 12h5.5"/><path d="M37 33l2.75 6.5L42.5 33"/>`,
+  phones: `<rect x="13" y="4" width="22" height="40" rx="5" class="f"/><path d="M21 8.5h6"/><path d="M20 39h8"/>`,
   accessories: `<rect x="16" y="6" width="16" height="9" rx="2.5" class="f"/><circle cx="24" cy="10.5" r="2.2"/><path d="M24 15v4"/><path d="M24 19l-10 22M24 19l10 22M24 19v20"/><path d="M19.5 27.5h9"/>`,
-  mics: `<rect x="17" y="4" width="14" height="22" rx="7" class="f"/><path d="M17 12h5M17 17h5M17 22h5"/><path d="M12 21v1.5a12 12 0 0 0 24 0V21"/><path d="M24 34.5V41M17 41h14"/>`,
-  mac: `<rect x="9" y="9" width="30" height="21" rx="2.5" class="f"/><path d="M21.5 9.5h5"/><path d="M4.5 34h39l-2.2 4H6.7z"/><path d="M20 34v1.4h8V34"/>`,
+  mics: `<circle cx="24" cy="10.5" r="6.5" class="f"/><path d="M20.5 8.5h7M19.5 11.5h9"/><rect x="19.5" y="17" width="9" height="8.5" rx="1.8" class="f"/><path d="M19.5 21h9"/><path d="M24 25.5c0 6.5-11 4.5-11 10.5 0 5 9 6.5 16.5 3.5"/><rect x="29.5" y="36.5" width="10" height="5" rx="1.5" class="f"/><path d="M39.5 39h3"/>`,
+  mac: `<rect x="5" y="5" width="38" height="27" rx="3" class="f"/><path d="M20.5 32l-1.5 7h10l-1.5-7"/><path d="M15 40h18"/><path d="M16.4 12.9c0-2.1 1.7-3.1 1.8-3.2-1-1.4-2.5-1.6-3-1.6-1.3-.1-2.5.8-3.1.8-.6 0-1.6-.7-2.7-.7-1.4 0-2.6.8-3.3 2-1.4 2.5-.4 6.1 1 8.1.7 1 1.5 2.1 2.6 2 1-.1 1.4-.7 2.7-.7 1.2 0 1.6.7 2.7.6 1.1 0 1.8-1 2.5-2 .8-1.2 1.1-2.3 1.1-2.4-.1 0-2.2-.8-2.2-3.3zM14.2 6.4c.6-.7 1-1.7.9-2.7-.9.1-1.9.6-2.5 1.3-.5.6-1 1.6-.9 2.6 1 .1 1.9-.5 2.5-1.2z" transform="translate(24 18.6) scale(0.66) translate(-11.9 -12.1)" fill="currentColor" stroke="none"/>`,
   computers: `<rect x="4" y="9" width="27" height="19" rx="2.5" class="f"/><path d="M17.5 28v5M11.5 33.5h12"/><rect x="34" y="8" width="10" height="27" rx="2.5" class="f"/><circle cx="39" cy="13.5" r="1.2"/><path d="M37 30h4"/>`,
   monitors: `<rect x="3.5" y="7" width="41" height="26" rx="2.5" class="f"/><path d="M21 15.5l7.5 4.5-7.5 4.5z"/><path d="M12 33l-2.5 6M36 33l2.5 6M8 39h8M32 39h8"/>`,
   connectivity: `<path d="M15.5 17a12 12 0 0 1 17 0"/><path d="M19.5 21a6.3 6.3 0 0 1 9 0"/><circle cx="24" cy="24.5" r="1.4"/><rect x="7" y="29" width="34" height="11" rx="3" class="f"/><path d="M13 29l-2-6M35 29l2-6"/><path d="M13 34.5h.1M18 34.5h.1M23 34.5h.1"/><path d="M31 34.5h5"/>`,
   cabins: `<rect x="10" y="5" width="28" height="38" rx="3.5" class="f"/><rect x="15" y="11" width="18" height="6" rx="1.5"/><rect x="15" y="21" width="18" height="6" rx="1.5"/><rect x="15" y="31" width="18" height="6" rx="1.5"/><path d="M29.5 14h.1M29.5 24h.1M29.5 34h.1"/>`,
   videoconf: `<rect x="11" y="5" width="26" height="9" rx="4.5" class="f"/><circle cx="24" cy="9.5" r="2.2"/><circle cx="16.5" cy="25" r="4.2"/><path d="M8 41a8.5 8.5 0 0 1 17 0"/><circle cx="31.5" cy="25" r="4.2" class="f"/><path d="M23 41a8.5 8.5 0 0 1 17 0" class="f"/>`,
-  printers: `<path d="M14 15V6h20v9"/><rect x="5" y="15" width="38" height="17" rx="3.5" class="f"/><path d="M13 27h22v15H13z" class="f"/><path d="M17.5 32h13M17.5 36.5h9"/><path d="M36.5 21h.1"/>`
+  printers: `<path d="M14 12.5V5h20v7.5"/><rect x="5" y="15" width="38" height="16" rx="3.5" class="f"/><path d="M12 25.5h24"/><path d="M36.5 20.5h.1"/><rect x="14" y="33.5" width="20" height="10" rx="1" class="f"/><path d="M18 37.5h12M18 40.5h8"/>`
 };
 const LANDING_SUBS = {
   tablets: "iPad y Android", phones: "iPhone y Android", accessories: "Lápices, trípodes, gimbals y más",
