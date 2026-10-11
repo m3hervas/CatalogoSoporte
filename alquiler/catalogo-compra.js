@@ -2602,6 +2602,76 @@ route();
       }, 350);
     }
 
+    // Left column, under the filters: every category of this catalogue with an arrow that unfolds its products
+    // (one open at a time). The category name opens the category; a product opens its sheet
+    const NAV_KEYS = [...document.querySelectorAll(".category-card")]
+      .map(c => CARD_KEYS[c.id]).filter(k => k && inMode(k) && views[k]);
+    const chevron = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>';
+    const narrow = matchMedia("(max-width: 900px)");
+    NAV_KEYS.forEach(key => {
+      const view = views[key];
+      const layout = view.querySelector(".catalog-layout");
+      if (!layout) return;
+      const side = document.createElement("div");
+      side.className = "side-col";
+      layout.prepend(side);
+      const filters = layout.querySelector(":scope > .filter-panel");
+      if (filters) side.appendChild(filters);
+
+      const nav = document.createElement("details");
+      nav.className = "cat-nav";
+      nav.open = !narrow.matches;
+      nav.innerHTML = `<summary class="cat-nav-title">Categorías${chevron}</summary><ul class="cat-nav-list">${NAV_KEYS.map(k => `
+        <li class="cat-nav-item${k === key ? " is-current" : ""}" data-key="${k}">
+          <div class="cat-nav-row">
+            <a href="#${SLUGS[k]}" class="cat-nav-link"${k === key ? ' aria-current="page"' : ""}>${esc(CATEGORY_INFO[k])}</a>
+            <button type="button" class="cat-nav-toggle" aria-expanded="false" aria-controls="cn-${key}-${k}" aria-label="Ver productos de ${esc(CATEGORY_INFO[k])}">${chevron}</button>
+          </div>
+          <ul class="cat-nav-products" id="cn-${key}-${k}" hidden></ul>
+        </li>`).join("")}</ul>`;
+      side.appendChild(nav);
+
+      const setOpen = (item, open) => {
+        const list = item.querySelector(".cat-nav-products");
+        if (open && !list.childElementCount) {
+          list.innerHTML = INDEX.filter(e => e.key === item.dataset.key)
+            .map(e => `<li><a href="#${SLUGS[e.key]}" data-pid="${esc(e.pid)}">${esc(e.p.model)}</a></li>`).join("");
+        }
+        list.hidden = !open;
+        item.classList.toggle("is-open", open);
+        item.querySelector(".cat-nav-toggle").setAttribute("aria-expanded", String(open));
+      };
+      setOpen(nav.querySelector(".is-current"), true);
+
+      nav.addEventListener("click", e => {
+        const toggle = e.target.closest(".cat-nav-toggle");
+        if (toggle) {
+          const item = toggle.closest(".cat-nav-item");
+          const open = !item.classList.contains("is-open");
+          nav.querySelectorAll(".cat-nav-item.is-open").forEach(other => { if (other !== item) setOpen(other, false); });
+          setOpen(item, open);
+          return;
+        }
+        const product = e.target.closest("a[data-pid]");
+        if (product) {
+          e.preventDefault();
+          const entry = BY_PID.get(product.dataset.pid);
+          if (!entry) return;
+          const card = view.querySelector(`.storage-card[data-pid="${CSS.escape(entry.pid)}"]`);
+          if (entry.key === key && card && card._product) openPanel(card._product);
+          else openResult(entry);
+          return;
+        }
+        const link = e.target.closest(".cat-nav-link");
+        if (link) {
+          e.preventDefault();
+          const k = link.closest(".cat-nav-item").dataset.key;
+          if (k === key) { view.querySelector(".filter-reset")?.click(); window.scrollTo({ top: 0, behavior: "smooth" }); }
+          else { views[k].querySelector(".filter-reset")?.click(); goTo(k); }
+        }
+      });
+    });
+
     Object.entries(views).forEach(([key, view]) => {
       if (!inMode(key)) return;
       const back = view.querySelector(":scope > .back-btn");
@@ -2614,6 +2684,37 @@ route();
       top.className = "view-top";
       back.before(top);
       top.appendChild(back);
+
+      // Where you are: Inicio › Alquiler › Category (› subcategory when its "Tipo" filter is on); each step links back
+      const crumbs = document.createElement("nav");
+      crumbs.className = "crumbs";
+      crumbs.setAttribute("aria-label", "Estás en");
+      const homeHref = document.querySelector(".nav-brand")?.getAttribute("href") || "../";
+      const rows = [...view.querySelectorAll(".filter-panel .filter-row")];
+      const labelOf = r => (r.querySelector(".filter-label")?.textContent || "").trim().toLowerCase();
+      const subRow = ["tipo", "marca", "formato"].map(l => rows.find(r => labelOf(r) === l && !r.hidden)).find(Boolean);
+      const subSelect = subRow ? subRow.querySelector("select") : null;
+      const sep = '<span class="crumbs-sep" aria-hidden="true">›</span>';
+      const drawCrumbs = () => {
+        const sub = subSelect && subSelect.value !== "all" ? subSelect.options[subSelect.selectedIndex].text : "";
+        crumbs.innerHTML = `<a href="${esc(homeHref)}" data-crumb="home">Inicio</a>${sep}`
+          + `<a href="${esc(location.pathname + location.search)}" data-crumb="catalog">${MODE === "compra" ? "Compra" : "Alquiler"}</a>${sep}`
+          + (sub
+            ? `<a href="#${SLUGS[key]}" data-crumb="category">${esc(label)}</a>${sep}<span aria-current="page">${esc(sub)}</span>`
+            : `<span aria-current="page">${esc(label)}</span>`);
+      };
+      drawCrumbs();
+      subSelect?.addEventListener("change", drawCrumbs);
+      view.querySelector(".filter-reset")?.addEventListener("click", () => setTimeout(drawCrumbs, 0));
+      crumbs.addEventListener("click", e => {
+        const link = e.target.closest("a[data-crumb]");
+        if (!link || link.dataset.crumb === "home") return;
+        e.preventDefault();
+        if (link.dataset.crumb === "catalog") { history.pushState(null, "", location.pathname + location.search); route(); }
+        else { view.querySelector(".filter-reset")?.click(); window.scrollTo({ top: 0, behavior: "smooth" }); }
+      });
+      top.appendChild(crumbs);
+
       const box = document.createElement("div");
       box.className = "view-search";
       box.setAttribute("role", "search");
