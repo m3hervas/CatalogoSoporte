@@ -901,6 +901,7 @@
     min-width: 0;
   }
 
+  .card-lead { margin: 0; font-size: 13.5px; line-height: 1.45; color: var(--ink-soft); }
   .storage-info .brand-line { display: flex; align-items: center; gap: 8px; }
   .storage-info h3 {
     font-family: 'Inter', sans-serif;
@@ -1418,6 +1419,22 @@
     .catalog-layout .storage-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
 
+  /* Conectividad: only a few products, so bigger cards (2 per row, photo left, information right) */
+  @media (min-width: 900px) {
+    .catalog-layout #gridConnectivity { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+    #gridConnectivity .storage-card { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); min-height: 300px; }
+    #gridConnectivity .storage-photo { aspect-ratio: auto; padding: 22px; }
+    #gridConnectivity .storage-photo img { max-height: 250px; }
+    #gridConnectivity .storage-info { padding: 26px 24px 22px; gap: 12px; justify-content: center; }
+    #gridConnectivity .storage-info h3 { font-size: 22px; letter-spacing: -0.02em; }
+    #gridConnectivity .storage-icons { gap: 8px; }
+    #gridConnectivity .storage-icon { padding: 11px 10px; border-radius: 12px; }
+    #gridConnectivity .storage-icon svg { width: 20px; height: 20px; }
+    #gridConnectivity .storage-icon span { font-size: 12.5px; }
+    #gridConnectivity .card-hint { font-size: 12px; }
+    #gridConnectivity .card-lead { margin: 0; font-size: 14.5px; line-height: 1.5; color: var(--ink-soft); }
+  }
+
   @media (max-width: 640px) {
     .catalog-layout .storage-grid { grid-template-columns: minmax(0, 1fr); }
   }
@@ -1810,6 +1827,7 @@
   [data-theme="dark"] .catalog-layout .storage-info h3 { color: #F1F5FB; }
   [data-theme="dark"] .catalog-layout .storage-info .brand-name { color: #A9B7C8; }
   [data-theme="dark"] .catalog-layout .model-card .card-hint { color: #8FA0B5; }
+  [data-theme="dark"] .card-lead, [data-theme="dark"] #gridConnectivity .card-lead { color: #A9B8CC; }
   [data-theme="dark"] .catalog-layout .storage-icon { background: rgba(61,139,255,0.16); color: #D6E6FF; }
 
   /* --- Phones: keep a grid instead of one long column --- */
@@ -1833,6 +1851,7 @@
     .storage-icon, .model-card .storage-icon-small, .storage-icon-wide { padding: 6px 4px; gap: 4px; border-radius: 8px; }
     .storage-icon svg, .model-card .storage-icon-small svg { width: 14px; height: 14px; }
     .storage-icon span { font-size: 10px; overflow-wrap: anywhere; }
+    .card-lead { font-size: 11.5px; line-height: 1.4; }
     .model-card .storage-icon-small { flex-direction: column; }
     .model-card .card-hint { display: none; }
   }

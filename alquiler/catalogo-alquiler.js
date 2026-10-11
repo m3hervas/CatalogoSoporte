@@ -391,7 +391,7 @@ const PRODUCTS = [
   {
     cat: "android", catLabel: "Tablet Android", brand: "Lenovo", brandCode: "L", brandColor: "var(--lenovo)",
     model: "Lenovo Tab", storages: ["64 GB", "128 GB"],
-    photo: "../alquiler/img/lenovo-tab_SpTV.webp",
+    photo: "../alquiler/img/lenovo-tab_SpTV.webp?v=11",
     storage: "128 GB",
     icon: tabletIcon("#E2231A"),
     specs: [
@@ -406,7 +406,7 @@ const PRODUCTS = [
   {
     cat: "android", catLabel: "Tablet Android", brand: "Samsung", brandCode: "S", brandColor: "var(--samsung)",
     model: "Galaxy Tab A8", storages: ["32 GB", "64 GB", "128 GB"],
-    photo: "../alquiler/img/samsung-galaxy-tab-a8_SpTV.webp",
+    photo: "../alquiler/img/samsung-galaxy-tab-a8_SpTV.webp?v=11",
     storage: "64 GB",
     icon: tabletIcon("#1428A0"),
     specs: [
@@ -421,7 +421,7 @@ const PRODUCTS = [
     cat: "android", catLabel: "Tablet Android", brand: "Samsung", brandCode: "S", brandColor: "var(--samsung)",
     model: "Galaxy Tab S9 Ultra", storages: ["256 GB", "512 GB", "1 TB"],
     storage: "256 GB",
-    photo: "../alquiler/img/samsung-galaxy-tab-s9-ultra_SpTV.webp",
+    photo: "../alquiler/img/samsung-galaxy-tab-s9-ultra_SpTV.webp?v=11",
     icon: tabletIcon("#1428A0"),
     specs: [
       ["Categoría", "Tablet Android"],
@@ -434,7 +434,7 @@ const PRODUCTS = [
   {
     cat: "ipad", catLabel: "iPad", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
     model: "iPad (5.ª generación)", storages: ["32 GB", "128 GB"],
-    photo: "../alquiler/img/apple-ipad-5-generacion_SpTV.webp",
+    photo: "../alquiler/img/apple-ipad-5-generacion_SpTV.webp?v=11",
     storage: "No especificado",
     icon: ipadIcon("#5B6470"),
     specs: [
@@ -447,7 +447,7 @@ const PRODUCTS = [
     cat: "ipad", catLabel: "iPad", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
     model: "iPad (6.ª generación)", storages: ["32 GB", "128 GB"],
     storage: "32 GB",
-    photo: "../alquiler/img/apple-ipad-6-generacion_SpTV.webp",
+    photo: "../alquiler/img/apple-ipad-6-generacion_SpTV.webp?v=11",
     icon: ipadIcon("#5B6470"),
     specs: [
       ["Categoría", "iPad"],
@@ -459,7 +459,7 @@ const PRODUCTS = [
   {
     cat: "ipad", catLabel: "iPad", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
     model: "iPad (7.ª generación)", storages: ["32 GB", "128 GB"],
-    photo: "../alquiler/img/apple-ipad-7-generacion_SpTV.webp",
+    photo: "../alquiler/img/apple-ipad-7-generacion_SpTV.webp?v=11",
     storage: "32 GB",
     icon: ipadIcon("#5B6470"),
     specs: [
@@ -473,7 +473,7 @@ const PRODUCTS = [
     cat: "ipad", catLabel: "iPad", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
     model: "iPad (9.ª generación)", storages: ["64 GB", "256 GB"],
     storage: "64 GB",
-    photo: "../alquiler/img/apple-ipad-9-generacion_SpTV.webp",
+    photo: "../alquiler/img/apple-ipad-9-generacion_SpTV.webp?v=11",
     icon: ipadIcon("#5B6470"),
     specs: [
       ["Categoría", "iPad"],
@@ -485,7 +485,7 @@ const PRODUCTS = [
   {
     cat: "ipad", catLabel: "iPad", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
     model: "iPad A16 (11.ª generación)", storages: ["128 GB", "256 GB", "512 GB"],
-    photo: "../alquiler/img/apple-ipad-a16-11-generacion_SpTV.webp",
+    photo: "../alquiler/img/apple-ipad-a16-11-generacion_SpTV.webp?v=11",
     storage: "128 GB",
     icon: ipadIcon("#5B6470"),
     specs: [
@@ -498,7 +498,7 @@ const PRODUCTS = [
   {
     cat: "ipad", catLabel: "iPad", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
     model: "iPad Air", storages: ["64 GB", "256 GB"],
-    photo: "../alquiler/img/apple-ipad-air_SpTV.webp",
+    photo: "../alquiler/img/apple-ipad-air_SpTV.webp?v=11",
     storage: "64 GB",
     icon: ipadIcon("#5B6470"),
     specs: [
@@ -511,7 +511,7 @@ const PRODUCTS = [
   {
     cat: "ipad", catLabel: "iPad", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
     model: "iPad Air (M2)", storages: ["128 GB", "256 GB", "512 GB", "1 TB"],
-    photo: "../alquiler/img/apple-ipad-air-m2_SpTV.webp",
+    photo: "../alquiler/img/apple-ipad-air-m2_SpTV.webp?v=11",
     storage: "128 GB",
     icon: ipadIcon("#5B6470"),
     specs: [
@@ -526,7 +526,7 @@ const PRODUCTS = [
     cat: "ipad", catLabel: "iPad", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
     model: "iPad Pro (M5)", storages: ["256 GB", "512 GB", "1 TB", "2 TB"],
     storage: "256 GB",
-    photo: "../alquiler/img/apple-ipad-pro_SpTV.webp",
+    photo: "../alquiler/img/apple-ipad-pro_SpTV.webp?v=11",
     icon: ipadIcon("#5B6470"),
     specs: [
       ["Categoría", "iPad"],
@@ -538,7 +538,7 @@ const PRODUCTS = [
   {
     cat: "ipad", catLabel: "iPad", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
     model: "iPad Pro (4.ª generación)", storages: ["128 GB", "256 GB", "512 GB", "1 TB"],
-    photo: "../alquiler/img/apple-ipad-pro-4-generacion_SpTV.webp",
+    photo: "../alquiler/img/apple-ipad-pro-4-generacion_SpTV.webp?v=11",
     storage: "128 GB",
     icon: ipadIcon("#5B6470"),
     specs: [
@@ -555,7 +555,7 @@ const PHONES = [
   {
     cat: "phone-apple", catLabel: "iPhone", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
     model: "iPhone 18 Pro", storages: ["256 GB", "512 GB", "1 TB", "2 TB"],
-    photo: "../alquiler/img/apple-iphone-18-pro_SpTV.webp",
+    photo: "../alquiler/img/apple-iphone-18-pro_SpTV.webp?v=11",
     icon: phoneIcon("#5B6470"),
     specs: [
       ["Categoría", "iPhone"],
@@ -566,7 +566,7 @@ const PHONES = [
   {
     cat: "phone-apple", catLabel: "iPhone", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
     model: "iPhone 17 Pro", storages: ["256 GB", "512 GB", "1 TB"],
-    photo: "../alquiler/img/apple-iphone-17-pro_SpTV.webp",
+    photo: "../alquiler/img/apple-iphone-17-pro_SpTV.webp?v=11",
     icon: phoneIcon("#5B6470"),
     specs: [
       ["Categoría", "iPhone"],
@@ -577,7 +577,7 @@ const PHONES = [
   {
     cat: "phone-apple", catLabel: "iPhone", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
     model: "iPhone 17", storages: ["256 GB", "512 GB"],
-    photo: "../alquiler/img/apple-iphone-17_SpTV.webp",
+    photo: "../alquiler/img/apple-iphone-17_SpTV.webp?v=11",
     icon: phoneIcon("#5B6470"),
     specs: [
       ["Categoría", "iPhone"],
@@ -588,7 +588,7 @@ const PHONES = [
   {
     cat: "phone-apple", catLabel: "iPhone", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
     model: "iPhone 16 Pro", storages: ["128 GB", "256 GB", "512 GB", "1 TB"],
-    photo: "../alquiler/img/apple-iphone-16-pro_SpTV.webp",
+    photo: "../alquiler/img/apple-iphone-16-pro_SpTV.webp?v=11",
     icon: phoneIcon("#5B6470"),
     specs: [
       ["Categoría", "iPhone"],
@@ -599,7 +599,7 @@ const PHONES = [
   {
     cat: "phone-android", catLabel: "Móvil Android", brand: "Samsung", brandCode: "S", brandColor: "var(--samsung)",
     model: "Galaxy S26", storages: ["256 GB", "512 GB"],
-    photo: "../alquiler/img/samsung-galaxy-s26_SpTV.webp",
+    photo: "../alquiler/img/samsung-galaxy-s26_SpTV.webp?v=11",
     icon: phoneIcon("#1428A0"),
     specs: [
       ["Categoría", "Móvil Android"],
@@ -610,7 +610,7 @@ const PHONES = [
   {
     cat: "phone-android", catLabel: "Móvil Android", brand: "Samsung", brandCode: "S", brandColor: "var(--samsung)",
     model: "Galaxy S25", storages: ["128 GB", "256 GB", "512 GB"],
-    photo: "../alquiler/img/samsung-galaxy-s25_SpTV.webp",
+    photo: "../alquiler/img/samsung-galaxy-s25_SpTV.webp?v=11",
     icon: phoneIcon("#1428A0"),
     specs: [
       ["Categoría", "Móvil Android"],
@@ -621,7 +621,7 @@ const PHONES = [
   {
     cat: "phone-android", catLabel: "Móvil Android", brand: "Samsung", brandCode: "S", brandColor: "var(--samsung)",
     model: "Galaxy S25 FE", storages: ["128 GB", "256 GB", "512 GB"],
-    photo: "../alquiler/img/samsung-galaxy-s25-fe-oficial_SpTV.webp",
+    photo: "../alquiler/img/samsung-galaxy-s25-fe-oficial_SpTV.webp?v=11",
     icon: phoneIcon("#1428A0"),
     specs: [
       ["Categoría", "Móvil Android"],
@@ -632,7 +632,7 @@ const PHONES = [
   {
     cat: "phone-android", catLabel: "Móvil Android", brand: "Samsung", brandCode: "S", brandColor: "var(--samsung)",
     model: "Galaxy S24", storages: ["128 GB", "256 GB"],
-    photo: "../alquiler/img/samsung-galaxy-s24-oficial_SpTV.webp",
+    photo: "../alquiler/img/samsung-galaxy-s24-oficial_SpTV.webp?v=11",
     icon: phoneIcon("#1428A0"),
     specs: [
       ["Categoría", "Móvil Android"],
@@ -643,7 +643,7 @@ const PHONES = [
   {
     cat: "phone-android", catLabel: "Móvil Android", brand: "Xiaomi", brandCode: "X", brandColor: "#FF6900",
     model: "Redmi 15C", storages: ["128 GB", "256 GB"],
-    photo: "../alquiler/img/xiaomi-redmi-15c_SpTV.webp",
+    photo: "../alquiler/img/xiaomi-redmi-15c_SpTV.webp?v=11",
     icon: phoneIcon("#FF6900"),
     specs: [
       ["Categoría", "Móvil Android"],
@@ -654,7 +654,7 @@ const PHONES = [
   {
     cat: "phone-android", catLabel: "Móvil Android", brand: "Xiaomi", brandCode: "X", brandColor: "#FF6900",
     model: "Redmi Note 14", storages: ["128 GB", "256 GB"],
-    photo: "../alquiler/img/xiaomi-redmi-note-14_SpTV.webp",
+    photo: "../alquiler/img/xiaomi-redmi-note-14_SpTV.webp?v=11",
     icon: phoneIcon("#FF6900"),
     specs: [
       ["Categoría", "Móvil Android"],
@@ -665,7 +665,7 @@ const PHONES = [
   {
     cat: "phone-android", catLabel: "Móvil Android", brand: "Xiaomi", brandCode: "X", brandColor: "#FF6900",
     model: "Redmi 10 5G", storages: ["64 GB", "128 GB"],
-    photo: "../alquiler/img/xiaomi-redmi-10-5g_SpTV.webp",
+    photo: "../alquiler/img/xiaomi-redmi-10-5g_SpTV.webp?v=11",
     icon: phoneIcon("#FF6900"),
     specs: [
       ["Categoría", "Móvil Android"],
@@ -679,7 +679,7 @@ const PHONES = [
 const ACCESSORIES = [
 {
     cat: "accessory", catLabel: "Accesorio", type: "Lápiz digital", group: "iPad", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "Apple Pencil", photo: "../alquiler/img/apple-pencil_SpTV.webp?v=2",
+    model: "Apple Pencil", photo: "../alquiler/img/apple-pencil_SpTV.webp?v=11",
     icon: accessoryIcon("#5B6470"),
     specs: [
       ["Categoría", "Accesorio · iPad"],
@@ -688,7 +688,7 @@ const ACCESSORIES = [
   },
 {
     cat: "accessory", catLabel: "Accesorio", type: "Lápiz digital", group: "iPad", brand: "Wacom", brandCode: "W", brandColor: "#0090C8",
-    model: "Bamboo Fineline", photo: "../alquiler/img/wacom-bamboo-fineline_SpTV.webp",
+    model: "Bamboo Fineline", photo: "../alquiler/img/wacom-bamboo-fineline_SpTV.webp?v=11",
     icon: accessoryIcon("#0090C8"),
     specs: [
       ["Categoría", "Accesorio · iPad"],
@@ -697,7 +697,7 @@ const ACCESSORIES = [
   },
 {
     cat: "accessory", catLabel: "Accesorio", type: "Trípode", group: "Móvil/Cámara", brand: "Celly", brandCode: "C", brandColor: "#E4572E",
-    model: "Trípode", photo: "../alquiler/img/celly-tripode_SpTV.webp",
+    model: "Trípode", photo: "../alquiler/img/celly-tripode_SpTV.webp?v=11",
     icon: accessoryIcon("#E4572E"),
     specs: [
       ["Categoría", "Accesorio · Móvil/Cámara"],
@@ -713,7 +713,7 @@ const ACCESSORIES = [
   },
 {
     cat: "accessory", catLabel: "Accesorio", type: "Trípode", group: "Móvil/Cámara", brand: "RØDE", brandCode: "R", brandColor: "#111111",
-    model: "Tripod 2", photo: "../alquiler/img/rode-tripod-2_SpTV.webp",
+    model: "Tripod 2", photo: "../alquiler/img/rode-tripod-2_SpTV.webp?v=11",
     icon: accessoryIcon("#111111"),
     specs: [
       ["Categoría", "Accesorio · Móvil/Cámara"],
@@ -727,7 +727,7 @@ const ACCESSORIES = [
   },
 {
     cat: "accessory", catLabel: "Accesorio", type: "Trípode", group: "Móvil/Cámara", brand: "Manfrotto", brandCode: "M", brandColor: "#111111",
-    model: "PIXI con pinza para smartphone", photo: "../alquiler/img/manfrotto-pixi-pinza-smartphone_SpTV.webp",
+    model: "PIXI con pinza para smartphone", photo: "../alquiler/img/manfrotto-pixi-pinza-smartphone_SpTV.webp?v=11",
     icon: accessoryIcon("#111111"),
     specs: [
       ["Categoría", "Accesorio · Móvil/Cámara"],
@@ -742,7 +742,7 @@ const ACCESSORIES = [
   },
 {
     cat: "accessory", catLabel: "Accesorio", type: "Gimbal", group: "Móvil/Cámara", brand: "Zhiyun", brandCode: "Z", brandColor: "#6B4FA0",
-    model: "Smooth X Combo", photo: "../alquiler/img/zhiyun-smooth-x-combo_SpTV.webp",
+    model: "Smooth X Combo", photo: "../alquiler/img/zhiyun-smooth-x-combo_SpTV.webp?v=11",
     icon: accessoryIcon("#6B4FA0"),
     specs: [
       ["Categoría", "Accesorio · Móvil/Cámara"],
@@ -757,7 +757,7 @@ const ACCESSORIES = [
   },
 {
     cat: "accessory", catLabel: "Accesorio", type: "Gimbal", group: "Móvil/Cámara", brand: "Insta360", brandCode: "I", brandColor: "#111111",
-    model: "Flow 2 Pro", photo: "../alquiler/img/insta360-flow-2-pro_SpTV.webp",
+    model: "Flow 2 Pro", photo: "../alquiler/img/insta360-flow-2-pro_SpTV.webp?v=11",
     icon: accessoryIcon("#111111"),
     specs: [
       ["Categoría", "Accesorio · Móvil/Cámara"],
@@ -776,7 +776,7 @@ const ACCESSORIES = [
   },
 {
     cat: "accessory", catLabel: "Accesorio", type: "Gimbal", group: "Móvil/Cámara", brand: "Insta360", brandCode: "I", brandColor: "#111111",
-    model: "Flow 2", photo: "../alquiler/img/insta360-flow-2_SpTV.webp",
+    model: "Flow 2", photo: "../alquiler/img/insta360-flow-2_SpTV.webp?v=11",
     icon: accessoryIcon("#111111"),
     specs: [
       ["Categoría", "Accesorio · Móvil/Cámara"],
@@ -794,7 +794,7 @@ const ACCESSORIES = [
   },
 {
     cat: "accessory", catLabel: "Accesorio", type: "Funda", group: "iPad", brand: "", brandCode: "", brandColor: "#5C6672",
-    model: "Funda con teclado", photo: "../alquiler/img/funda-teclado-ipad-oficial_SpTV.webp",
+    model: "Funda con teclado", photo: "../alquiler/img/funda-teclado-ipad-oficial_SpTV.webp?v=11",
     icon: accessoryIcon("#5C6672"),
     specs: [
       ["Categoría", "Accesorio · iPad"],
@@ -803,7 +803,7 @@ const ACCESSORIES = [
   },
 {
     cat: "accessory", catLabel: "Accesorio", type: "Funda", group: "iPad", brand: "", brandCode: "", brandColor: "#5C6672",
-    model: "Funda Rugged / Correa", photo: "../alquiler/img/funda-rugged-sin-marca_SpTV.webp",
+    model: "Funda Rugged / Correa", photo: "../alquiler/img/funda-rugged-sin-marca_SpTV.webp?v=11",
     icon: accessoryIcon("#5C6672"),
     specs: [
       ["Categoría", "Accesorio · iPad"]
@@ -811,7 +811,7 @@ const ACCESSORIES = [
   },
 {
     cat: "accessory", catLabel: "Accesorio", type: "Adaptador", group: "Móvil/Cámara", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "Adaptador USB-C a USB", photo: "../alquiler/img/apple-adaptador-usb-c-a-usb_SpTV.webp",
+    model: "Adaptador USB-C a USB", photo: "../alquiler/img/apple-adaptador-usb-c-a-usb_SpTV.webp?v=11",
     icon: accessoryIcon("#5B6470"),
     specs: [
       ["Categoría", "Accesorio · Móvil/Cámara"],
@@ -820,7 +820,7 @@ const ACCESSORIES = [
   },
 {
     cat: "accessory", catLabel: "Accesorio", type: "Iluminación", group: "Móvil/Cámara", brand: "", brandCode: "", brandColor: "#5C6672",
-    model: "Aro de luz", photo: "../alquiler/img/aro-de-luz_SpTV.webp?v=2",
+    model: "Aro de luz", photo: "../alquiler/img/aro-de-luz_SpTV.webp?v=11",
     icon: accessoryIcon("#5C6672"),
     specs: [
       ["Categoría", "Accesorio · Móvil/Cámara"]
@@ -828,7 +828,7 @@ const ACCESSORIES = [
   },
 {
     cat: "accessory", catLabel: "Accesorio", type: "Batería externa", group: "Móvil/Cámara", brand: "Xiaomi", brandCode: "X", brandColor: "#FF6900",
-    model: "Magnetic Power Bank 10000 con soporte", photo: "../alquiler/img/xiaomi-magnetic-power-bank-10000-azul_SpTV.webp", color: "Azul|Beige|Gris|Púrpura", colors: [{"name": "Azul", "hex": "#AFC0F0", "photo": "../alquiler/img/xiaomi-magnetic-power-bank-10000-azul_SpTV.webp"}, {"name": "Beige", "hex": "#E6DED0", "photo": "../alquiler/img/xiaomi-magnetic-power-bank-10000-beige_SpTV.webp"}, {"name": "Gris", "hex": "#2E2F33", "photo": "../alquiler/img/xiaomi-magnetic-power-bank-10000-gris_SpTV.webp"}, {"name": "Púrpura", "hex": "#D9CBF2", "photo": "../alquiler/img/xiaomi-magnetic-power-bank-10000-purpura_SpTV.webp"}],
+    model: "Magnetic Power Bank 10000 con soporte", photo: "../alquiler/img/xiaomi-magnetic-power-bank-10000-azul_SpTV.webp?v=11", color: "Azul|Beige|Gris|Púrpura", colors: [{"name": "Azul", "hex": "#AFC0F0", "photo": "../alquiler/img/xiaomi-magnetic-power-bank-10000-azul_SpTV.webp?v=11"}, {"name": "Beige", "hex": "#E6DED0", "photo": "../alquiler/img/xiaomi-magnetic-power-bank-10000-beige_SpTV.webp?v=11"}, {"name": "Gris", "hex": "#2E2F33", "photo": "../alquiler/img/xiaomi-magnetic-power-bank-10000-gris_SpTV.webp?v=11"}, {"name": "Púrpura", "hex": "#D9CBF2", "photo": "../alquiler/img/xiaomi-magnetic-power-bank-10000-purpura_SpTV.webp?v=11"}],
     icon: accessoryIcon("#FF6900"),
     specs: [
       ["Categoría", "Accesorio · Móvil/Cámara"],
@@ -846,7 +846,7 @@ const ACCESSORIES = [
   },
 {
     cat: "accessory", catLabel: "Accesorio", type: "Batería externa", group: "Móvil/Cámara", brand: "Xiaomi", brandCode: "X", brandColor: "#FF6900",
-    model: "33W Power Bank 10000 con cable integrado", photo: "../alquiler/img/xiaomi-33w-power-bank-10000-azul_SpTV.webp", color: "Azul|Tan", colors: [{"name": "Azul", "hex": "#2F3768", "photo": "../alquiler/img/xiaomi-33w-power-bank-10000-azul_SpTV.webp"}, {"name": "Tan", "hex": "#EDE4D5", "photo": "../alquiler/img/xiaomi-33w-power-bank-10000-tan_SpTV.webp"}],
+    model: "33W Power Bank 10000 con cable integrado", photo: "../alquiler/img/xiaomi-33w-power-bank-10000-azul_SpTV.webp?v=11", color: "Azul|Tan", colors: [{"name": "Azul", "hex": "#2F3768", "photo": "../alquiler/img/xiaomi-33w-power-bank-10000-azul_SpTV.webp?v=11"}, {"name": "Tan", "hex": "#EDE4D5", "photo": "../alquiler/img/xiaomi-33w-power-bank-10000-tan_SpTV.webp?v=11"}],
     icon: accessoryIcon("#FF6900"),
     specs: [
       ["Categoría", "Accesorio · Móvil/Cámara"],
@@ -864,7 +864,7 @@ const ACCESSORIES = [
 const COMPUTERS = [
 {
     cat: "computer", catLabel: "Portátil", type: "Portátil", brand: "HP / Dell / Lenovo", brandCode: "H", brandColor: "#0096D6",
-    model: "Portátil gaming", photo: "../alquiler/img/hp-victus_SpTV.webp", storages: ["512 GB", "1 TB"],
+    model: "Portátil gaming", photo: "../alquiler/img/hp-victus_SpTV.webp?v=11", storages: ["512 GB", "1 TB"],
     icon: laptopIcon("#0096D6"),
     specs: [
       ["Categoría", "Portátil"],
@@ -880,7 +880,7 @@ const COMPUTERS = [
   },
 {
     cat: "computer", catLabel: "Portátil", type: "Portátil", brand: "HP", brandCode: "H", brandColor: "#0096D6",
-    model: "HP ZBook", photo: "../alquiler/img/hp-zbook-8-arquitectura_SpTV.webp", storages: ["512 GB", "1 TB"],
+    model: "HP ZBook", photo: "../alquiler/img/hp-zbook-8-arquitectura_SpTV.webp?v=11", storages: ["512 GB", "1 TB"],
     icon: laptopIcon("#0096D6"),
     specs: [
       ["Categoría", "Portátil"],
@@ -896,7 +896,7 @@ const COMPUTERS = [
   },
 {
     cat: "computer", catLabel: "Portátil", type: "Portátil", brand: "HP / Dell / Lenovo", brandCode: "D", brandColor: "#5C6672",
-    model: "Portátil ofimática 14''", photo: "../alquiler/img/portatil-8-gb-ram_SpTV.webp", storages: ["256 GB", "512 GB"],
+    model: "Portátil ofimática 14''", photo: "../alquiler/img/portatil-8-gb-ram_SpTV.webp?v=11", storages: ["256 GB", "512 GB"],
     icon: laptopIcon("#5C6672"),
     specs: [
       ["Categoría", "Portátil"],
@@ -911,7 +911,7 @@ const COMPUTERS = [
   },
 {
     cat: "computer", catLabel: "Portátil", type: "Portátil", brand: "HP / Dell / Lenovo", brandCode: "D", brandColor: "#5C6672",
-    model: "Portátil ofimática 16''", photo: "../alquiler/img/portatil-16-gb-ram-intel-core-i5_SpTV.webp", storages: ["256 GB", "512 GB"],
+    model: "Portátil ofimática 16''", photo: "../alquiler/img/portatil-16-gb-ram-intel-core-i5_SpTV.webp?v=11", storages: ["256 GB", "512 GB"],
     icon: laptopIcon("#5C6672"),
     specs: [
       ["Categoría", "Portátil"],
@@ -926,7 +926,7 @@ const COMPUTERS = [
   },
 {
     cat: "computer", catLabel: "Portátil", type: "Portátil", brand: "HP / Dell / Lenovo", brandCode: "D", brandColor: "#5C6672",
-    model: "Portátil convertible", photo: "../alquiler/img/hp-elitebook-x360-convertible_SpTV.webp", storages: ["256 GB", "512 GB"],
+    model: "Portátil convertible", photo: "../alquiler/img/hp-elitebook-x360-convertible_SpTV.webp?v=11", storages: ["256 GB", "512 GB"],
     icon: laptopIcon("#5C6672"),
     specs: [
       ["Categoría", "Portátil"],
@@ -942,7 +942,7 @@ const COMPUTERS = [
 {
     cat: "computer", catLabel: "Surface", type: "Surface", brand: "Microsoft", brandCode: "M", brandColor: "#00A4EF",
     model: "Surface Pro 7",
-    photo: "../alquiler/img/microsoft-surface-pro-7_SpTV.webp", cpu: "i5", storage: "128 GB", storages: ["128 GB", "256 GB", "512 GB", "1 TB"],
+    photo: "../alquiler/img/microsoft-surface-pro-7_SpTV.webp?v=11", cpu: "i5", storage: "128 GB", storages: ["128 GB", "256 GB", "512 GB", "1 TB"],
     icon: surfaceIcon("#00A4EF"),
     specs: [
       ["Categoría", "Surface (portátil 2 en 1)"],
@@ -956,7 +956,7 @@ const COMPUTERS = [
 {
     cat: "computer", catLabel: "Surface", type: "Surface", brand: "Microsoft", brandCode: "M", brandColor: "#00A4EF",
     model: "Surface Pro 7",
-    photo: "../alquiler/img/microsoft-surface-pro-7_SpTV.webp", cpu: "i5", storage: "256 GB",
+    photo: "../alquiler/img/microsoft-surface-pro-7_SpTV.webp?v=11", cpu: "i5", storage: "256 GB",
     icon: surfaceIcon("#00A4EF"),
     specs: [
       ["Categoría", "Surface (portátil 2 en 1)"],
@@ -970,7 +970,7 @@ const COMPUTERS = [
 {
     cat: "computer", catLabel: "Surface", type: "Surface", brand: "Microsoft", brandCode: "M", brandColor: "#00A4EF",
     model: "Surface Pro 7",
-    photo: "../alquiler/img/microsoft-surface-pro-7_SpTV.webp", cpu: "i5", storage: "256 GB",
+    photo: "../alquiler/img/microsoft-surface-pro-7_SpTV.webp?v=11", cpu: "i5", storage: "256 GB",
     icon: surfaceIcon("#00A4EF"),
     specs: [
       ["Categoría", "Surface (portátil 2 en 1)"],
@@ -984,7 +984,7 @@ const COMPUTERS = [
 {
     cat: "computer", catLabel: "Surface", type: "Surface", brand: "Microsoft", brandCode: "M", brandColor: "#00A4EF",
     model: "Surface Pro 7",
-    photo: "../alquiler/img/microsoft-surface-pro-7_SpTV.webp", cpu: "i7", storage: "256 GB",
+    photo: "../alquiler/img/microsoft-surface-pro-7_SpTV.webp?v=11", cpu: "i7", storage: "256 GB",
     icon: surfaceIcon("#00A4EF"),
     specs: [
       ["Categoría", "Surface (portátil 2 en 1)"],
@@ -998,7 +998,7 @@ const COMPUTERS = [
 {
     cat: "computer", catLabel: "Surface", type: "Surface", brand: "Microsoft", brandCode: "M", brandColor: "#00A4EF",
     model: "Surface Pro 7",
-    photo: "../alquiler/img/microsoft-surface-pro-7_SpTV.webp", cpu: "i7", storage: "512 GB",
+    photo: "../alquiler/img/microsoft-surface-pro-7_SpTV.webp?v=11", cpu: "i7", storage: "512 GB",
     icon: surfaceIcon("#00A4EF"),
     specs: [
       ["Categoría", "Surface (portátil 2 en 1)"],
@@ -1011,7 +1011,7 @@ const COMPUTERS = [
   },
 {
     cat: "computer", catLabel: "AIO", type: "AIO", brand: "HP / Dell / Lenovo", brandCode: "D", brandColor: "#5C6672",
-    model: "AIO (Todo en uno) 16 GB RAM", photo: "../alquiler/img/aio-todo-en-uno-16-gb-ram_SpTV.webp", storages: ["256 GB", "512 GB"],
+    model: "AIO (Todo en uno) 16 GB RAM", photo: "../alquiler/img/aio-todo-en-uno-16-gb-ram_SpTV.webp?v=11", storages: ["256 GB", "512 GB"],
     icon: desktopIcon("#5C6672"),
     specs: [
       ["Categoría", "AIO (Todo en uno)"],
@@ -1025,10 +1025,10 @@ const COMPUTERS = [
   },
 {
     cat: "computer", catLabel: "CPU", type: "CPU", brand: "HP / Dell / Lenovo", brandCode: "D", brandColor: "#5C6672",
-    model: "CPU 16 GB RAM", photo: "../alquiler/img/cpu-formato-tower_SpTV.webp", storages: ["256 GB", "512 GB"],
+    model: "CPU 16 GB RAM", photo: "../alquiler/img/cpu-formato-tower_SpTV.webp?v=11", storages: ["256 GB", "512 GB"],
     // One photo per format: the sheet shows them as a gallery and changes it with the chosen format
     recommend: { title: "Añade un monitor", models: ["Monitor Desktop 24''", "Monitor Desktop 27''"] },
-    optionPhotos: { Formatos: ["../alquiler/img/cpu-formato-tower_SpTV.webp", "../alquiler/img/cpu-formato-sff_SpTV.webp", "../alquiler/img/cpu-formato-mini_SpTV.webp"] },
+    optionPhotos: { Formatos: ["../alquiler/img/cpu-formato-tower_SpTV.webp?v=11", "../alquiler/img/cpu-formato-sff_SpTV.webp?v=11", "../alquiler/img/cpu-formato-mini_SpTV.webp?v=11"] },
     icon: desktopIcon("#5C6672"),
     specs: [
       ["Categoría", "CPU"],
@@ -1043,7 +1043,7 @@ const COMPUTERS = [
   },
 {
     cat: "computer", catLabel: "CPU + Monitor", type: "CPU + Monitor", brand: "HP / Dell / Lenovo", brandCode: "D", brandColor: "#5C6672",
-    model: "CPU + Monitor 16 GB RAM", photo: "../alquiler/img/cpu-monitor-16-gb-ram_SpTV.webp",
+    model: "CPU + Monitor 16 GB RAM", photo: "../alquiler/img/cpu-monitor-16-gb-ram_SpTV.webp?v=11",
     icon: desktopIcon("#5C6672"),
     specs: [
       ["Categoría", "CPU + Monitor"],
@@ -1056,7 +1056,7 @@ const COMPUTERS = [
   },
 {
     cat: "computer", catLabel: "CPU", type: "CPU", brand: "HP", brandCode: "H", brandColor: "#0096D6",
-    model: "HP Workstation", photo: "../alquiler/img/hp-z8-fury-workstation_SpTV.webp",
+    model: "HP Workstation", photo: "../alquiler/img/hp-z8-fury-workstation_SpTV.webp?v=11",
     icon: desktopIcon("#0096D6"),
     specs: [
       ["Categoría", "Workstation"],
@@ -1072,8 +1072,8 @@ const COMPUTERS = [
 const MACS = [
   {
     cat: "mac", catLabel: "MacBook Pro", type: "MacBook Pro", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "MacBook Pro 14'' M5", photo: "../alquiler/img/apple-macbook-pro-14-m5-negro-espacial_SpTV.webp", storages: ["1 TB", "2 TB", "4 TB"],
-    color: "Negro espacial|Plata", colors: [{"name": "Negro espacial", "hex": "#2E2E30", "photo": "../alquiler/img/apple-macbook-pro-14-m5-negro-espacial_SpTV.webp"}, {"name": "Plata", "hex": "#E3E4E5", "photo": "../alquiler/img/apple-macbook-pro-14-m5-plata_SpTV.webp"}],
+    model: "MacBook Pro 14'' M5", photo: "../alquiler/img/apple-macbook-pro-14-m5-negro-espacial_SpTV.webp?v=11", storages: ["1 TB", "2 TB", "4 TB"],
+    color: "Negro espacial|Plata", colors: [{"name": "Negro espacial", "hex": "#2E2E30", "photo": "../alquiler/img/apple-macbook-pro-14-m5-negro-espacial_SpTV.webp?v=11"}, {"name": "Plata", "hex": "#E3E4E5", "photo": "../alquiler/img/apple-macbook-pro-14-m5-plata_SpTV.webp?v=11"}],
     icon: laptopIcon("#5B6470"),
     specs: [
       ["Categoría", "MacBook Pro"],
@@ -1091,8 +1091,8 @@ const MACS = [
   },
   {
     cat: "mac", catLabel: "MacBook Pro", type: "MacBook Pro", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "MacBook Pro 16'' M5 Pro", photo: "../alquiler/img/apple-macbook-pro-16-m5-pro-negro-espacial_SpTV.webp", storages: ["1 TB", "2 TB", "4 TB"],
-    color: "Negro espacial|Plata", colors: [{"name": "Negro espacial", "hex": "#2E2E30", "photo": "../alquiler/img/apple-macbook-pro-16-m5-pro-negro-espacial_SpTV.webp"}, {"name": "Plata", "hex": "#E3E4E5", "photo": "../alquiler/img/apple-macbook-pro-16-m5-pro-plata_SpTV.webp"}],
+    model: "MacBook Pro 16'' M5 Pro", photo: "../alquiler/img/apple-macbook-pro-16-m5-pro-negro-espacial_SpTV.webp?v=11", storages: ["1 TB", "2 TB", "4 TB"],
+    color: "Negro espacial|Plata", colors: [{"name": "Negro espacial", "hex": "#2E2E30", "photo": "../alquiler/img/apple-macbook-pro-16-m5-pro-negro-espacial_SpTV.webp?v=11"}, {"name": "Plata", "hex": "#E3E4E5", "photo": "../alquiler/img/apple-macbook-pro-16-m5-pro-plata_SpTV.webp?v=11"}],
     icon: laptopIcon("#5B6470"),
     specs: [
       ["Categoría", "MacBook Pro"],
@@ -1110,7 +1110,7 @@ const MACS = [
   },
   {
     cat: "mac", catLabel: "MacBook Air", type: "MacBook Air", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "MacBook Air 13,3'' M1", photo: "../alquiler/img/apple-macbook-air-13-3-m1_SpTV.webp", storages: ["128 GB", "256 GB", "512 GB", "1 TB", "2 TB"],
+    model: "MacBook Air 13,3'' M1", photo: "../alquiler/img/apple-macbook-air-13-3-m1_SpTV.webp?v=11", storages: ["128 GB", "256 GB", "512 GB", "1 TB", "2 TB"],
     icon: laptopIcon("#5B6470"),
     specs: [
       ["Categoría", "MacBook Air"],
@@ -1123,7 +1123,7 @@ const MACS = [
   },
   {
     cat: "mac", catLabel: "MacBook Air", type: "MacBook Air", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "MacBook Air 13,6'' M2", photo: "../alquiler/img/apple-macbook-air-13-6-m2_SpTV.webp", storages: ["256 GB", "512 GB", "1 TB", "2 TB"],
+    model: "MacBook Air 13,6'' M2", photo: "../alquiler/img/apple-macbook-air-13-6-m2_SpTV.webp?v=11", storages: ["256 GB", "512 GB", "1 TB", "2 TB"],
     icon: laptopIcon("#5B6470"),
     specs: [
       ["Categoría", "MacBook Air"],
@@ -1136,7 +1136,7 @@ const MACS = [
   },
   {
     cat: "mac", catLabel: "MacBook Air", type: "MacBook Air", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "MacBook Air 13,6'' M4", photo: "../alquiler/img/apple-macbook-air-13-6-m4_SpTV.webp", storages: ["256 GB", "512 GB", "1 TB", "2 TB"],
+    model: "MacBook Air 13,6'' M4", photo: "../alquiler/img/apple-macbook-air-13-6-m4_SpTV.webp?v=11", storages: ["256 GB", "512 GB", "1 TB", "2 TB"],
     icon: laptopIcon("#5B6470"),
     specs: [
       ["Categoría", "MacBook Air"],
@@ -1149,7 +1149,7 @@ const MACS = [
   },
   {
     cat: "mac", catLabel: "MacBook Pro", type: "MacBook Pro", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "MacBook Pro 13''", photo: "../alquiler/img/apple-macbook-pro-13_SpTV.webp", storages: ["256 GB", "512 GB", "1 TB", "2 TB"],
+    model: "MacBook Pro 13''", photo: "../alquiler/img/apple-macbook-pro-13_SpTV.webp?v=11", storages: ["256 GB", "512 GB", "1 TB", "2 TB"],
     icon: laptopIcon("#5B6470"),
     specs: [
       ["Categoría", "MacBook Pro"],
@@ -1161,7 +1161,7 @@ const MACS = [
   },
   {
     cat: "mac", catLabel: "MacBook Pro", type: "MacBook Pro", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "MacBook Pro 14'' M1 Pro", photo: "../alquiler/img/apple-macbook-pro-14-m1-pro_SpTV.webp", storages: ["512 GB", "1 TB", "2 TB", "4 TB", "8 TB"],
+    model: "MacBook Pro 14'' M1 Pro", photo: "../alquiler/img/apple-macbook-pro-14-m1-pro_SpTV.webp?v=11", storages: ["512 GB", "1 TB", "2 TB", "4 TB", "8 TB"],
     icon: laptopIcon("#5B6470"),
     specs: [
       ["Categoría", "MacBook Pro"],
@@ -1174,7 +1174,7 @@ const MACS = [
   },
   {
     cat: "mac", catLabel: "MacBook Pro", type: "MacBook Pro", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "MacBook Pro 16''", photo: "../alquiler/img/apple-macbook-pro-16_SpTV.webp", storages: ["1 TB", "2 TB", "4 TB", "8 TB"],
+    model: "MacBook Pro 16''", photo: "../alquiler/img/apple-macbook-pro-16_SpTV.webp?v=11", storages: ["1 TB", "2 TB", "4 TB", "8 TB"],
     icon: laptopIcon("#5B6470"),
     specs: [
       ["Categoría", "MacBook Pro"],
@@ -1187,7 +1187,7 @@ const MACS = [
   },
   {
     cat: "mac", catLabel: "iMac", type: "iMac", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "iMac 24''", photo: "../alquiler/img/apple-imac-24_SpTV.webp", storages: ["256 GB", "512 GB", "1 TB", "2 TB"],
+    model: "iMac 24''", photo: "../alquiler/img/apple-imac-24_SpTV.webp?v=11", storages: ["256 GB", "512 GB", "1 TB", "2 TB"],
     icon: desktopIcon("#5B6470"),
     specs: [
       ["Categoría", "iMac"],
@@ -1198,7 +1198,7 @@ const MACS = [
   },
   {
     cat: "mac", catLabel: "Mac mini", type: "Mac mini", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "Mac mini", photo: "../alquiler/img/apple-mac-mini_SpTV.webp", storages: ["256 GB", "512 GB", "1 TB", "2 TB", "4 TB", "8 TB"],
+    model: "Mac mini", photo: "../alquiler/img/apple-mac-mini_SpTV.webp?v=11", storages: ["256 GB", "512 GB", "1 TB", "2 TB", "4 TB", "8 TB"],
     icon: desktopIcon("#5B6470"),
     specs: [
       ["Categoría", "Mac mini"],
@@ -1208,7 +1208,7 @@ const MACS = [
   },
   {
     cat: "mac", catLabel: "Mac Studio", type: "Mac Studio", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "Mac Studio", photo: "../alquiler/img/apple-mac-studio_SpTV.webp", storages: ["512 GB", "1 TB", "2 TB", "4 TB", "8 TB", "16 TB"],
+    model: "Mac Studio", photo: "../alquiler/img/apple-mac-studio_SpTV.webp?v=11", storages: ["512 GB", "1 TB", "2 TB", "4 TB", "8 TB", "16 TB"],
     icon: desktopIcon("#5B6470"),
     specs: [
       ["Categoría", "Mac Studio"],
@@ -1222,7 +1222,7 @@ const MACS = [
 const MONITORS = [
   {
     cat: "monitor", catLabel: "Monitor Desktop", type: "Desktop", group: "24''", brand: "HP / Samsung / Philips / LG", brandCode: "H", brandColor: "#5C6672",
-    model: "Monitor Desktop 24''", photo: "../alquiler/img/monitor-led-24_SpTV.webp",
+    model: "Monitor Desktop 24''", photo: "../alquiler/img/monitor-led-24_SpTV.webp?v=11",
     icon: monitorIcon("#5C6672"),
     specs: [
       ["Categoría", "Monitor de sobremesa"],
@@ -1236,7 +1236,7 @@ const MONITORS = [
   },
   {
     cat: "monitor", catLabel: "Monitor Desktop", type: "Desktop", group: "27''", brand: "HP / Samsung / Philips / LG", brandCode: "H", brandColor: "#5C6672",
-    model: "Monitor Desktop 27''", photo: "../alquiler/img/monitor-desktop-27_SpTV.webp",
+    model: "Monitor Desktop 27''", photo: "../alquiler/img/monitor-desktop-27_SpTV.webp?v=11",
     icon: monitorIcon("#5C6672"),
     specs: [
       ["Categoría", "Monitor de sobremesa"],
@@ -1250,7 +1250,7 @@ const MONITORS = [
   },
   {
     cat: "monitor", catLabel: "Monitor Desktop", type: "Desktop", group: "32''", brand: "HP / Samsung / Philips / LG", brandCode: "H", brandColor: "#5C6672",
-    model: "Monitor Desktop 32''", photo: "../alquiler/img/monitor-desktop-32_SpTV.webp",
+    model: "Monitor Desktop 32''", photo: "../alquiler/img/monitor-desktop-32_SpTV.webp?v=11",
     icon: monitorIcon("#5C6672"),
     specs: [
       ["Categoría", "Monitor de sobremesa"],
@@ -1264,7 +1264,7 @@ const MONITORS = [
   },
   {
     cat: "monitor", catLabel: "Monitor de estudio", type: "Estudio 4K", group: "24''|27''|32''", brand: "JVC / SWIT", brandCode: "J", brandColor: "#004098",
-    model: "Monitor de estudio", photo: "../alquiler/img/jvc-monitor-de-estudio-24_SpTV.webp",
+    model: "Monitor de estudio", photo: "../alquiler/img/jvc-monitor-de-estudio-24_SpTV.webp?v=11",
     icon: monitorIcon("#004098"),
     specs: [
       ["Categoría", "Monitor de estudio"],
@@ -1279,7 +1279,7 @@ const MONITORS = [
   },
   {
     cat: "monitor", catLabel: "Smart TV 4K", type: "Smart TV", group: "32''", brand: "LG / Philips / Samsung / Xiaomi", brandCode: "L", brandColor: "#A50034",
-    model: "Smart TV 4K 32''", photo: "../alquiler/img/lg-monitor-65-4k_SpTV.webp",
+    model: "Smart TV 4K 32''", photo: "../alquiler/img/lg-monitor-65-4k_SpTV.webp?v=11",
     icon: monitorIcon("#A50034"),
     specs: [
       ["Categoría", "Smart TV"],
@@ -1293,7 +1293,7 @@ const MONITORS = [
   },
   {
     cat: "monitor", catLabel: "Smart TV 4K", type: "Smart TV", group: "40''", brand: "LG / Philips / Samsung / Xiaomi", brandCode: "L", brandColor: "#A50034",
-    model: "Smart TV 4K 40''", photo: "../alquiler/img/lg-monitor-65-4k_SpTV.webp",
+    model: "Smart TV 4K 40''", photo: "../alquiler/img/lg-monitor-65-4k_SpTV.webp?v=11",
     icon: monitorIcon("#A50034"),
     specs: [
       ["Categoría", "Smart TV"],
@@ -1307,7 +1307,7 @@ const MONITORS = [
   },
   {
     cat: "monitor", catLabel: "Smart TV 4K", type: "Smart TV", group: "50''", brand: "LG / Philips / Samsung / Xiaomi", brandCode: "L", brandColor: "#A50034",
-    model: "Smart TV 4K 50''", photo: "../alquiler/img/lg-monitor-65-4k_SpTV.webp",
+    model: "Smart TV 4K 50''", photo: "../alquiler/img/lg-monitor-65-4k_SpTV.webp?v=11",
     icon: monitorIcon("#A50034"),
     specs: [
       ["Categoría", "Smart TV"],
@@ -1321,7 +1321,7 @@ const MONITORS = [
   },
   {
     cat: "monitor", catLabel: "Smart TV 4K", type: "Smart TV", group: "65''", brand: "LG / Philips / Samsung / Xiaomi", brandCode: "L", brandColor: "#A50034",
-    model: "Smart TV 4K 65''", photo: "../alquiler/img/lg-monitor-65-4k_SpTV.webp",
+    model: "Smart TV 4K 65''", photo: "../alquiler/img/lg-monitor-65-4k_SpTV.webp?v=11",
     icon: monitorIcon("#A50034"),
     specs: [
       ["Categoría", "Smart TV"],
@@ -1340,7 +1340,7 @@ const MONITORS = [
 const CONNECTIVITY = [
   {
     cat: "connectivity", catLabel: "MiFi", type: "MiFi", group: "4G|5G", storages: ["240 GB", "Ilimitados"], storageLabel: "Datos",
-    model: "MiFi portátil", photo: "../alquiler/img/tp-link-m8550-mifi_SpTV.webp", icon: mifiIcon("#0F8A80"),
+    lead: "Wi-Fi 4G / 5G de bolsillo: Internet para tus dispositivos en cualquier lugar.", model: "MiFi portátil", photo: "../alquiler/img/tp-link-m8550-mifi_SpTV.webp?v=11", icon: mifiIcon("#0F8A80"),
     specs: [
       ["Categoría", "Router portátil (MiFi)"],
       ["Descripción", "Router de bolsillo con batería que crea una red Wi-Fi 6 en cualquier sitio a partir de una SIM 4G o 5G: hasta 50 dispositivos conectados a la vez. Ideal para rodajes, eventos y trabajo en movilidad. El modelo concreto puede variar según disponibilidad."],
@@ -1353,7 +1353,7 @@ const CONNECTIVITY = [
   },
   {
     cat: "connectivity", catLabel: "Router", type: "Router", group: "4G|5G", storages: ["240 GB", "Ilimitados"], storageLabel: "Datos",
-    model: "Router con SIM", photo: "../alquiler/img/tp-link-archer-nx600-router_SpTV.webp", icon: routerIcon("#0F8A80"),
+    lead: "Internet 4G / 5G para oficinas, eventos y rodajes, sin obras ni instalación.", model: "Router con SIM", photo: "../alquiler/img/tp-link-archer-nx600-router_SpTV.webp?v=11", icon: routerIcon("#0F8A80"),
     specs: [
       ["Categoría", "Router con SIM"],
       ["Descripción", "Router de sobremesa con SIM 4G o 5G para dar Internet por Wi-Fi 6 y por cable a una oficina, stand o set de rodaje sin línea fija: hasta 50 dispositivos conectados a la vez. El modelo concreto puede variar según disponibilidad."],
@@ -1366,7 +1366,7 @@ const CONNECTIVITY = [
   },
   {
     cat: "connectivity", catLabel: "eSIM", type: "eSIM", storages: ["240 GB", "Ilimitados"], storageLabel: "Datos",
-    model: "Tarjeta eSIM", photo: "../alquiler/img/esim-tarjeta-datos_SpTV.webp", icon: mifiIcon("#0F8A80"),
+    lead: "Datos móviles al instante: escaneas el código QR y ya tienes conexión.", model: "Tarjeta eSIM", photo: "../alquiler/img/esim-tarjeta-datos_SpTV.webp?v=11", icon: mifiIcon("#0F8A80"),
     specs: [
       ["Categoría", "Tarjeta eSIM de datos"],
       ["Descripción", "SIM digital de datos móviles, sin tarjeta física: te enviamos un código QR y, al escanearlo, la línea se activa al momento en el dispositivo. Ideal para dar Internet a móviles, tablets o routers durante un evento o un rodaje sin esperar envíos. Elige 240 GB o datos ilimitados."],
@@ -1379,8 +1379,8 @@ const CONNECTIVITY = [
   },
   {
     cat: "connectivity", catLabel: "Redes inalámbricas", type: "Redes inalámbricas", brand: "Ubiquiti", brandCode: "U", brandColor: "#0559C9",
-    model: "Redes inalámbricas", photo: "../alquiler/img/redes-inalambricas-esquema_SpTV.webp", icon: accessPointIcon("#0559C9"),
-    gallery: ["../alquiler/img/redes-inalambricas-esquema_SpTV.webp", "../alquiler/img/ubiquiti-punto-de-acceso_SpTV.webp"],
+    lead: "Red Wi-Fi profesional con puntos de acceso para cubrir espacios grandes.", model: "Redes inalámbricas", photo: "../alquiler/img/redes-inalambricas-esquema_SpTV.webp", icon: accessPointIcon("#0559C9"),
+    gallery: ["../alquiler/img/redes-inalambricas-esquema_SpTV.webp", "../alquiler/img/ubiquiti-punto-de-acceso_SpTV.webp?v=11"],
     specs: [
       ["Categoría", "Redes inalámbricas"],
       ["Descripción", "Red inalámbrica Wi-Fi 6 profesional que amplía la conexión del recinto con buena cobertura y estabilidad: hasta 50 dispositivos conectados a la vez. Lo instalamos y configuramos nosotros."],
@@ -1395,49 +1395,49 @@ const CONNECTIVITY = [
 const VIDEOCONF = [
   {
     cat: "videoconf", catLabel: "Videoconferencia", type: "Videoconferencia", brand: "", brandCode: "", brandColor: "#1A1A1A",
-    model: "WebCam Gran Angular 4K", photo: "../alquiler/img/jabra-panacast_SpTV.webp",
+    model: "WebCam Gran Angular 4K", photo: "../alquiler/img/jabra-panacast_SpTV.webp?v=11",
     icon: videoconfIcon("#1A1A1A"),
     info: [["screen", "Vídeo", "4K gran angular", 1], ["signal", "Audio", "Micrófonos integrados", 1], ["port", "Conexión", "USB-C, sin instalación"]],
     specs: [["Categoría", "Cámara de videoconferencia gran angular"], ["Descripción", "Cámara 4K de gran angular para salas pequeñas: capta a todos los asistentes sin tener que moverla y encuadra automáticamente a quien está en la reunión. Se conecta por USB al portátil y funciona con Teams, Zoom y Google Meet. El modelo concreto puede variar según disponibilidad."], ["Vídeo", "4K · gran angular (hasta 180°)"], ["Encuadre", "Automático: sigue y encuadra a los asistentes"], ["Audio", "Micrófonos integrados"], ["Conexión", "USB-C al ordenador, sin instalar nada"], ["Sala recomendada", "Salas pequeñas, de 2 a 6 personas"], ["Incluye", "Cámara, soporte y cable USB"]]
   },
   {
     cat: "videoconf", catLabel: "Videoconferencia", type: "Videoconferencia", brand: "", brandCode: "", brandColor: "#1A1A1A",
-    model: "Barra videoconferencia", photo: "../alquiler/img/logitech-meetup_SpTV.webp",
+    model: "Barra videoconferencia", photo: "../alquiler/img/logitech-meetup_SpTV.webp?v=11",
     icon: videoconfIcon("#1A1A1A"),
     info: [["screen", "Vídeo", "4K con zoom", 1], ["signal", "Audio", "Micrófonos + altavoz", 1], ["port", "Conexión", "USB, sin instalación"]],
     specs: [["Categoría", "Barra de videoconferencia todo en uno"], ["Descripción", "Cámara, micrófonos y altavoz en una sola barra que se coloca encima o debajo de la pantalla. Todos se ven y se oyen bien sin cables por la mesa. Se conecta por USB al portátil y funciona con Teams, Zoom y Google Meet. El modelo concreto puede variar según disponibilidad."], ["Vídeo", "4K · gran angular · zoom"], ["Audio", "Micrófonos de largo alcance y altavoz integrado · conversación sin cortes (full dúplex)"], ["Conexión", "USB al ordenador · Bluetooth para llamadas desde el móvil"], ["Sala recomendada", "Salas pequeñas, de 4 a 6 personas"], ["Incluye", "Barra, mando a distancia, soporte y cables"]]
   },
   {
     cat: "videoconf", catLabel: "Audioconferencia", type: "Audioconferencia", brand: "", brandCode: "", brandColor: "#1A1A1A",
-    model: "Altavoz + Micrófono videoconferencia", photo: "../alquiler/img/jabra-speak2-75_SpTV.webp",
+    model: "Altavoz + Micrófono videoconferencia", photo: "../alquiler/img/jabra-speak2-75_SpTV.webp?v=11",
     icon: videoconfIcon("#1A1A1A"),
     info: [["signal", "Audio", "Micrófonos 360°", 1], ["speed", "Batería", "Toda la jornada", 1], ["port", "Conexión", "USB · Bluetooth"]],
     specs: [["Categoría", "Altavoz con micrófono para reuniones"], ["Descripción", "Altavoz manos libres que se pone en el centro de la mesa: capta las voces de todos los asistentes y se oye con claridad, como si estuvieran en la misma sala. Inalámbrico y con batería. Funciona con Teams, Zoom y Google Meet. El modelo concreto puede variar según disponibilidad."], ["Audio", "Micrófonos con captación de 360° · altavoz de banda ancha"], ["Conversación", "Full dúplex: se puede hablar y escuchar a la vez"], ["Conexión", "USB · Bluetooth (también desde el móvil)"], ["Batería", "Para toda la jornada"], ["Sala recomendada", "Mesas de reunión de hasta 6 personas"], ["Incluye", "Altavoz, cable USB y funda"]]
   },
   {
     cat: "videoconf", catLabel: "Pantalla", type: "Pantalla", brand: "", brandCode: "", brandColor: "#1A1A1A",
-    model: "Pantalla con soporte de ruedas", photo: "../alquiler/img/pantalla-soporte-ruedas-real_SpTV.webp",
+    model: "Pantalla con soporte de ruedas", photo: "../alquiler/img/pantalla-soporte-ruedas-real_SpTV.webp?v=11",
     icon: videoconfIcon("#1A1A1A"),
     info: [["screen", "Pantalla", "50'' a 65''", 1], ["tag", "Soporte", "Con ruedas", 1], ["port", "Conexión", "HDMI para portátil o cámara"]],
     specs: [["Categoría", "Pantalla con soporte móvil"], ["Descripción", "Pantalla grande montada en un soporte de suelo con ruedas: se lleva de una sala a otra sin obras ni anclajes. Perfecta para videoconferencias, presentaciones o formación; el soporte tiene bandeja para la cámara o el portátil. El modelo concreto puede variar según disponibilidad."], ["Tamaños", "50'' · 55'' · 65''"], ["Pantalla", "50'' a 65'' 4K"], ["Soporte", "De suelo con ruedas con freno, altura regulable y bandeja"], ["Conexiones", "HDMI · USB"], ["Uso recomendado", "Videoconferencia, presentaciones y formación"], ["Incluye", "Pantalla, soporte con ruedas y cables"]]
   },
   {
     cat: "videoconf", catLabel: "Presentación", type: "Presentación", brand: "", brandCode: "", brandColor: "#1A1A1A",
-    model: "Puntero Láser", photo: "../alquiler/img/logitech-r500s_SpTV.webp",
+    model: "Puntero Láser", photo: "../alquiler/img/logitech-r500s_SpTV.webp?v=11",
     icon: videoconfIcon("#1A1A1A"),
     info: [["tag", "Tipo", "Puntero láser", 1], ["signal", "Alcance", "Hasta 20 m", 1], ["port", "Conexión", "USB o Bluetooth"]],
     specs: [["Categoría", "Presentador inalámbrico con puntero láser"], ["Descripción", "Mando para pasar las diapositivas a distancia, con puntero láser rojo para señalar en la pantalla. Funciona con PowerPoint, Keynote y Google Slides. El modelo concreto puede variar según disponibilidad."], ["Puntero", "Láser rojo"], ["Alcance", "Hasta 20 m"], ["Conexión", "Receptor USB o Bluetooth"], ["Compatible con", "Windows, macOS, ChromeOS y Linux"], ["Alimentación", "Pila AAA (incluida)"]]
   },
   {
     cat: "videoconf", catLabel: "Intercom", type: "Intercom", brand: "Hollyland", brandCode: "H", brandColor: "#E60012",
-    model: "Hollyland Solidcom C1 Pro", photo: "../alquiler/img/hollyland-solidcom-c1-pro_SpTV.webp",
+    model: "Hollyland Solidcom C1 Pro", photo: "../alquiler/img/hollyland-solidcom-c1-pro_SpTV.webp?v=11",
     icon: videoconfIcon("#E60012"),
     info: [["tag", "Sets", "De 2 a 8 cascos", 1], ["signal", "Alcance", "350 m", 1], ["speed", "Batería", "Más de 10 h por casco"]],
     specs: [["Categoría", "Intercom inalámbrico (cascos)"], ["Marca", "Hollyland"], ["Sets disponibles", "2, 3, 4, 6 u 8 cascos (1 principal + remotos)"], ["Conversación", "Full dúplex: todos hablan a la vez, sin estación base · botón TALK / MUTE"], ["Audio", "Doble micrófono con cancelación de ruido (ENC) y de eco"], ["Alcance", "Hasta 350 m con visión directa · DECT 1,9 GHz"], ["Batería", "Más de 10 h (casco remoto) · más de 5 h (casco principal) · carga en unas 2,5 h"], ["Peso", "Unos 170 g por casco"]]
   },
   {
     cat: "videoconf", catLabel: "Walkies", type: "Walkies", brand: "Motorola", brandCode: "M", brandColor: "#005EB8",
-    model: "Motorola DP4400", photo: "../alquiler/img/motorola-dp4400_SpTV.webp",
+    model: "Motorola DP4400", photo: "../alquiler/img/motorola-dp4400_SpTV.webp?v=11",
     icon: videoconfIcon("#005EB8"),
     info: [["signal", "Tecnología", "Digital DMR + analógico", 1], ["tag", "Canales", "64", 1], ["speed", "Batería", "Hasta 28 h · IP68"]],
     specs: [["Categoría", "Walkie-talkie profesional (MOTOTRBO)"], ["Marca", "Motorola Solutions"], ["Tecnología", "Digital DMR y analógico"], ["Canales", "64 (sin teclado ni pantalla)"], ["Potencia", "VHF 1 / 5 W · UHF 1 / 4 W"], ["Batería", "Hasta 28 h"], ["Resistencia", "IP68 (sumergible) y estándar militar"], ["Otros", "Botón de emergencia y cancelación de ruido"]]
@@ -1447,7 +1447,7 @@ const VIDEOCONF = [
 const PRINTERS = [
   {
     cat: "printer", catLabel: "B/N|Color", type: "B/N|Color", group: "A4|A3", brand: "", brandCode: "", brandColor: "#5C6672",
-    model: "Impresora multifunción", photo: "../alquiler/img/impresora-multifuncion_SpTV.webp",
+    model: "Impresora multifunción", photo: "../alquiler/img/impresora-multifuncion_SpTV.webp?v=11",
     icon: printerIcon("#5C6672"),
     info: [["tag", "Formato", "A4 · A3", 1], ["screen", "Impresión", "B/N · Color", 1], ["capacity", "Tarifa", "Coste por página"]],
     specs: [["Categoría", "Impresora multifunción láser"], ["Formato", "A4 y A3"], ["Impresión", "Blanco y negro o color"], ["Funciones", "Imprimir, copiar, escanear (a correo, carpeta o USB) y fax opcional"], ["Otros", "Doble cara automática, alimentador de documentos, pantalla táctil y acceso con PIN"], ["Conexión", "Red (Ethernet) · Wi-Fi opcional · impresión desde móvil"], ["Tarifa", "Coste por página impresa (consúltanos)"]]
@@ -1457,42 +1457,42 @@ const PRINTERS = [
 const CABINS = [
   {
     cat: "cabin", catLabel: "Cabina de discos", type: "Cabina de discos", brand: "Areca", brandCode: "A", brandColor: "#C8102E",
-    model: "Areca ARC-8050T3U", photo: "../alquiler/img/areca-arc-8050t3u_SpTV.webp",
+    model: "Areca ARC-8050T3U", photo: "../alquiler/img/areca-arc-8050t3u_SpTV.webp?v=11",
     icon: cabinIcon("#C8102E"),
     info: [["bays", "Bahías", "4 · 6 · 8", 1], ["raid", "RAID", "0, 1, 5, 6, 10", 1], ["port", "Conexión", "Thunderbolt 3 · USB-C"]],
     specs: [["Categoría", "Cabina de discos (DAS) con RAID por hardware"], ["Marca", "Areca"], ["Modelos", "ARC-8050T3U-4 / -6 / -8"], ["Bahías", "4 / 6 / 8 · discos 3,5'' / 2,5'' SAS o SATA"], ["Conexión", "2 × Thunderbolt 3 (40 Gb/s, USB-C) · en USB-C normal funciona como USB 3.2 Gen 2 (10 Gb/s) · DisplayPort"], ["RAID", "0, 1, 3, 5, 6, 10, JBOD (30 / 50 / 60 desde 6 bahías)"]]
   },
   {
     cat: "cabin", catLabel: "Cabina de discos", type: "Cabina de discos", brand: "Stardom", brandCode: "S", brandColor: "#1F6FB2",
-    model: "Stardom SOHORAID", photo: "../alquiler/img/stardom-sohoraid_SpTV.webp",
+    model: "Stardom SOHORAID", photo: "../alquiler/img/stardom-sohoraid_SpTV.webp?v=11",
     icon: cabinIcon("#1F6FB2"),
     info: [["bays", "Bahías", "Desde 2", 1], ["raid", "RAID", "0, 1, JBOD", 1], ["port", "Conexión", "USB-C (USB 3.2 Gen 2)"]],
     specs: [["Categoría", "Cabina de discos (DAS)"], ["Marca", "Stardom (RAIDON)"], ["Modelos", "ST2-B31A (2 bahías) · ST4R-B32 / ST4-B32 (4 bahías)"], ["Bahías", "Desde 2 · discos 3,5'' / 2,5'' SATA, extraíbles en caliente"], ["Conexión", "USB-C · USB 3.2 Gen 2 (10 Gb/s) en 2 bahías, Gen 2x2 (20 Gb/s) en 4 bahías · compatible Thunderbolt 3/4"], ["RAID", "0, 1, JBOD, BIG"]]
   },
   {
     cat: "cabin", catLabel: "Cabina de discos", type: "Cabina de discos", brand: "TerraMaster", brandCode: "T", brandColor: "#E95513",
-    model: "TerraMaster D5 / D8", photo: "../alquiler/img/terramaster-d5-d8_SpTV.webp",
+    model: "TerraMaster D5 / D8", photo: "../alquiler/img/terramaster-d5-d8_SpTV.webp?v=11",
     icon: cabinIcon("#E95513"),
     info: [["bays", "Bahías", "5 · 8", 1], ["raid", "RAID", "0, 1, 5, 10", 1], ["port", "Conexión", "Thunderbolt 3 (40 Gb/s)"]],
     specs: [["Categoría", "Cabina de discos (DAS) con RAID por hardware"], ["Marca", "TerraMaster"], ["Modelos", "D5 Thunderbolt 3 · D8-332"], ["Bahías", "5 / 8 · discos 3,5'' SATA o SSD 2,5''"], ["Conexión", "2 × Thunderbolt 3 (40 Gb/s), encadenable · solo dispositivos Thunderbolt 3/4"], ["Velocidad", "Hasta 1035 MB/s (D5) · hasta 1600 MB/s (D8-332)"], ["RAID", "0, 1, 5, 10, JBOD, Single"], ["Capacidad máxima", "120 TB (D5) · 160 TB (D8-332)"]]
   },
   {
     cat: "cabin", catLabel: "NAS", type: "NAS", brand: "QNAP", brandCode: "Q", brandColor: "#2F6BB3",
-    model: "QNAP TS-464", photo: "../alquiler/img/qnap-ts-464_SpTV.webp",
+    model: "QNAP TS-464", photo: "../alquiler/img/qnap-ts-464_SpTV.webp?v=11",
     icon: cabinIcon("#2F6BB3"),
     info: [["bays", "Bahías", "4 + 2 M.2", 1], ["raid", "RAID", "0, 1, 5, 6, 10", 1], ["port", "Conexión", "2 × 2,5 GbE (10 GbE opcional)"]],
     specs: [["Categoría", "NAS de sobremesa"], ["Marca", "QNAP"], ["Bahías", "4 × 3,5'' / 2,5'' SATA · 2 × M.2 NVMe (caché SSD)"], ["Procesador", "Intel Celeron N5095 (4 núcleos, hasta 2,9 GHz)"], ["RAM", "8 GB DDR4 (máx. 16 GB)"], ["Conexión", "2 × 2,5 GbE · 10 GbE opcional (PCIe) · 2 × USB 3.2 Gen 2 · HDMI"], ["RAID", "0, 1, 5, 6, 10, JBOD, Single"]]
   },
   {
     cat: "cabin", catLabel: "NAS", type: "NAS", brand: "QNAP", brandCode: "Q", brandColor: "#2F6BB3",
-    model: "QNAP TS-1264U-RP", photo: "../alquiler/img/qnap-ts-1264u-rp_SpTV.webp",
+    model: "QNAP TS-1264U-RP", photo: "../alquiler/img/qnap-ts-1264u-rp_SpTV.webp?v=11",
     icon: cabinIcon("#2F6BB3"),
     info: [["bays", "Bahías", "12 · rack 2U", 1], ["raid", "RAID", "0–60", 1], ["port", "Conexión", "2 × 2,5 GbE (10 GbE opcional)"]],
     specs: [["Categoría", "NAS de rack 2U"], ["Marca", "QNAP"], ["Bahías", "12 × 3,5'' / 2,5'' SATA, extraíbles en caliente"], ["Procesador", "Intel Celeron N5095 (4 núcleos, hasta 2,9 GHz)"], ["RAM", "8 GB DDR4 (máx. 16 GB)"], ["Conexión", "2 × 2,5 GbE · 10 GbE opcional (PCIe) · 2 × USB 3.2 Gen 2"], ["Alimentación", "Doble fuente redundante de 300 W"], ["RAID", "0, 1, 5, 6, 10, 50, 60, JBOD, Single"]]
   },
   {
     cat: "cabin", catLabel: "NAS", type: "NAS", brand: "Synology", brandCode: "S", brandColor: "#4B4B4B",
-    model: "Synology DiskStation DS1825+", photo: "../alquiler/img/synology-diskstation-ds1825-plus_SpTV.webp",
+    model: "Synology DiskStation DS1825+", photo: "../alquiler/img/synology-diskstation-ds1825-plus_SpTV.webp?v=11",
     icon: cabinIcon("#4B4B4B"),
     info: [["bays", "Bahías", "8 (hasta 18)", 1], ["raid", "RAID", "SHR, 0, 1, 5, 6, 10", 1], ["port", "Conexión", "2 × 2,5 GbE (10/25 GbE opcional)"]],
     specs: [["Categoría", "NAS de sobremesa"], ["Marca", "Synology"], ["Bahías", "8 × 3,5'' / 2,5'' SATA (hasta 18 con 2 × DX525) · 2 × M.2 NVMe"], ["Procesador", "AMD Ryzen V1500B (4 núcleos, 2,2 GHz)"], ["RAM", "8 GB DDR4 ECC (máx. 32 GB)"], ["Conexión", "2 × 2,5 GbE · 10 / 25 GbE opcional (PCIe)"], ["Velocidad", "Hasta 2239 MB/s lectura · 1573 MB/s escritura"], ["RAID", "SHR, Basic, JBOD, 0, 1, 5, 6, 10"]]
@@ -1633,31 +1633,31 @@ const LAVACC = [];
 
 // MICS: rental catalogue, RØDE and Hollyland microphones (official photos and data from rode.com/es-es and hollyland.com)
 const MICS = [
-  { cat: "mic", type: "Inalámbrico", brand: "RØDE", brandCode: "R", brandColor: "#111111", model: "Wireless GO (Gen 3)", photo: "../alquiler/img/rode-wireless-go-gen-3_SpTV.webp", color: "Negro", colors: [],
+  { cat: "mic", type: "Inalámbrico", brand: "RØDE", brandCode: "R", brandColor: "#111111", model: "Wireless GO (Gen 3)", photo: "../alquiler/img/rode-wireless-go-gen-3_SpTV.webp?v=11", color: "Negro", colors: [],
     info: [["tag", "Tipo", "Inalámbrico", 1], ["signal", "Alcance", "260 m", 1], ["capacity", "Incluye", "2 transmisores + 1 receptor"]],
     specs: [["Categoría", "Micrófono inalámbrico"], ["Marca", "RØDE"], ["Descripción", "Sistema inalámbrico compacto: dos transmisores con micrófono integrado y un receptor para cámara, móvil u ordenador. Cada transmisor graba además una copia en coma flotante de 32 bits, así que el audio saturado o demasiado bajo se recupera en edición."], ["Incluye", "2 transmisores + 1 receptor"], ["Patrón polar", "Omnidireccional"], ["Alcance", "Hasta 260 m (con visión directa)"], ["Grabación interna", "Coma flotante de 32 bits"], ["Autonomía", "Hasta 7 h"], ["Conexiones", "Salida 3,5 mm TRRS y USB-C · entrada de micro de solapa 3,5 mm con bloqueo"], ["Compatible con", "Cámaras, iPhone, Android y ordenador"]],
     icon: micsIcon("#111111") },
-  { cat: "mic", type: "Inalámbrico", brand: "RØDE", brandCode: "R", brandColor: "#111111", model: "Wireless PRO", photo: "../alquiler/img/rode-wireless-pro_SpTV.webp", color: "Negro", colors: [],
+  { cat: "mic", type: "Inalámbrico", brand: "RØDE", brandCode: "R", brandColor: "#111111", model: "Wireless PRO", photo: "../alquiler/img/rode-wireless-pro_SpTV.webp?v=11", color: "Negro", colors: [],
     info: [["tag", "Tipo", "Inalámbrico", 1], ["signal", "Alcance", "260 m", 1], ["capacity", "Incluye", "2 transmisores + 1 receptor + estuche de carga"]],
     specs: [["Categoría", "Micrófono inalámbrico"], ["Marca", "RØDE"], ["Descripción", "El sistema inalámbrico más completo de RØDE: grabación interna en coma flotante de 32 bits, código de tiempo para sincronizar audio y vídeo, y GainAssist para ajustar los niveles solo. Pensado para rodajes profesionales."], ["Incluye", "2 transmisores + 1 receptor + estuche de carga"], ["Patrón polar", "Omnidireccional"], ["Alcance", "Hasta 260 m (con visión directa)"], ["Grabación interna", "Coma flotante de 32 bits"], ["Código de tiempo", "Sí"], ["Autonomía", "Hasta 7 h"], ["Conexiones", "Salida 3,5 mm TRRS y USB-C · entrada de micro de solapa 3,5 mm con bloqueo"]],
     icon: micsIcon("#111111") },
-  { cat: "mic", type: "Inalámbrico", brand: "RØDE", brandCode: "R", brandColor: "#111111", model: "Wireless ME", photo: "../alquiler/img/rode-wireless-me_SpTV.webp", color: "Negro", colors: [],
+  { cat: "mic", type: "Inalámbrico", brand: "RØDE", brandCode: "R", brandColor: "#111111", model: "Wireless ME", photo: "../alquiler/img/rode-wireless-me_SpTV.webp?v=11", color: "Negro", colors: [],
     info: [["tag", "Tipo", "Inalámbrico", 1], ["signal", "Alcance", "100 m", 1], ["capacity", "Incluye", "1 transmisor + 1 receptor"]],
     specs: [["Categoría", "Micrófono inalámbrico"], ["Marca", "RØDE"], ["Descripción", "Sistema inalámbrico ultracompacto con micrófono tanto en el transmisor como en el receptor: graba a la persona que habla y también a quien está detrás de la cámara, ideal para entrevistas y vídeos sencillos."], ["Incluye", "1 transmisor + 1 receptor"], ["Patrón polar", "Omnidireccional"], ["Alcance", "Hasta 100 m"], ["Calidad", "24 bits · 48 kHz"], ["Autonomía", "Hasta 7 h"], ["Conexiones", "Salida 3,5 mm TRS y USB-C · entrada de micro de solapa"], ["Compatible con", "Cámaras, móviles y ordenador"]],
     icon: micsIcon("#111111") },
-  { cat: "mic", type: "Inalámbrico", brand: "Hollyland", brandCode: "H", brandColor: "#111111", model: "Lark Max 2", photo: "../alquiler/img/hollyland-lark-max-2_SpTV.webp", color: "Negro", colors: [],
+  { cat: "mic", type: "Inalámbrico", brand: "Hollyland", brandCode: "H", brandColor: "#111111", model: "Lark Max 2", photo: "../alquiler/img/hollyland-lark-max-2_SpTV.webp?v=11", color: "Negro", colors: [],
     info: [["tag", "Tipo", "Inalámbrico", 1], ["signal", "Alcance", "340 m", 1], ["capacity", "Incluye", "2 transmisores + 2 receptores + estuche"]],
     specs: [["Categoría", "Micrófono inalámbrico"], ["Marca", "Hollyland"], ["Descripción", "Sistema inalámbrico de gama alta para rodajes profesionales: cada transmisor graba además una copia interna en coma flotante de 32 bits, lleva código de tiempo para sincronizar con la cámara y reducción de ruido con IA ajustable. El receptor de cámara tiene pantalla táctil."], ["Incluye", "2 transmisores + receptor de cámara + receptor USB-C + estuche de carga"], ["Patrón polar", "Omnidireccional"], ["Alcance", "Hasta 340 m (con visión directa)"], ["Grabación interna", "Coma flotante de 32 bits · 8 GB por transmisor"], ["Código de tiempo", "Sí"], ["Reducción de ruido", "Con IA, ajustable de 5 a 25 dB"], ["Autonomía", "Transmisor hasta 11 h (36 h con el estuche) · receptor de cámara 12 h"], ["Conexiones", "Receptor de cámara: salida 3,5 mm y USB-C · receptor USB-C para móvil y ordenador"], ["Compatible con", "Cámaras, iPhone, Android y ordenador"]],
     icon: micsIcon("#111111") },
-  { cat: "mic", type: "Inalámbrico", brand: "Hollyland", brandCode: "H", brandColor: "#111111", model: "Lark M3", photo: "../alquiler/img/hollyland-lark-m3_SpTV.webp", color: "Negro", colors: [],
+  { cat: "mic", type: "Inalámbrico", brand: "Hollyland", brandCode: "H", brandColor: "#111111", model: "Lark M3", photo: "../alquiler/img/hollyland-lark-m3_SpTV.webp?v=11", color: "Negro", colors: [],
     info: [["tag", "Tipo", "Inalámbrico", 1], ["signal", "Alcance", "300 m", 1], ["capacity", "Incluye", "2 transmisores + 2 receptores + estuche"]],
     specs: [["Categoría", "Micrófono inalámbrico"], ["Marca", "Hollyland"], ["Descripción", "Sistema inalámbrico versátil y muy ligero, para cámara y para móvil: transmisores de 9 g con imán, audio en coma flotante de 32 bits y reducción de ruido con IA de tres niveles."], ["Incluye", "2 transmisores + receptor de cámara + receptor USB-C + estuche de carga"], ["Patrón polar", "Omnidireccional"], ["Alcance", "Hasta 300 m (con visión directa)"], ["Calidad", "48 kHz · 24 bits y coma flotante de 32 bits"], ["Reducción de ruido", "Con IA, 3 niveles (10, 15 y 20 dB)"], ["Autonomía", "Transmisor hasta 8 h (24 h con el estuche) · receptor de cámara 9 h"], ["Conexiones", "Receptor de cámara: salida 3,5 mm · receptor USB-C para móvil y ordenador (certificado MFi)"], ["Compatible con", "Cámaras, iPhone, Android y ordenador"]],
     icon: micsIcon("#111111") },
-  { cat: "mic", type: "Podcast / estudio", brand: "RØDE", brandCode: "R", brandColor: "#111111", model: "PodMic", photo: "../alquiler/img/rode-podmic_SpTV.webp", color: "Negro", colors: [],
+  { cat: "mic", type: "Podcast / estudio", brand: "RØDE", brandCode: "R", brandColor: "#111111", model: "PodMic", photo: "../alquiler/img/rode-podmic_SpTV.webp?v=11", color: "Negro", colors: [],
     info: [["tag", "Tipo", "Podcast / estudio", 1], ["port", "Conexión", "XLR", 1], ["capacity", "Patrón", "Cardioide"]],
     specs: [["Categoría", "Micrófono dinámico para podcast"], ["Marca", "RØDE"], ["Descripción", "Micrófono dinámico con calidad de radio para podcast, directos y locuciones. Lleva filtro antipop y suspensión antivibraciones internos, y un soporte giratorio para colocarlo fácilmente en un brazo o pie."], ["Tipo", "Dinámico"], ["Patrón polar", "Cardioide"], ["Respuesta de frecuencia", "50 Hz – 15 kHz"], ["Conexión", "XLR"], ["Alimentación", "No necesita"], ["Uso", "Con interfaz de audio o mesa de mezclas con entrada XLR"]],
     icon: micsIcon("#111111") },
-  { cat: "mic", type: "Kit para móvil", brand: "RØDE", brandCode: "R", brandColor: "#111111", model: "Vlogger Kit Universal", photo: "../alquiler/img/rode-vlogger-kit-universal_SpTV.webp", color: "Negro", colors: [],
+  { cat: "mic", type: "Kit para móvil", brand: "RØDE", brandCode: "R", brandColor: "#111111", model: "Vlogger Kit Universal", photo: "../alquiler/img/rode-vlogger-kit-universal_SpTV.webp?v=11", color: "Negro", colors: [],
     info: [["tag", "Tipo", "Kit para móvil", 1], ["port", "Conexión", "3,5 mm", 1], ["capacity", "Incluye", "Micrófono, luz, soporte y trípode"]],
     specs: [["Categoría", "Kit de grabación para móvil"], ["Marca", "RØDE"], ["Descripción", "Todo lo necesario para grabar con el móvil: micrófono VideoMicro direccional, luz MicroLED, soporte SmartGrip y trípode Tripod 2 que también sirve de empuñadura."], ["Incluye", "VideoMicro · MicroLED · SmartGrip · Tripod 2 · soporte de doble zapata DCS-1 · suspensión Rycote Lyre · antiviento de pelo WS9"], ["Micrófono", "VideoMicro, cardioide"], ["Conexión", "3,5 mm TRRS (para móviles con toma de auriculares)"]],
     icon: micsIcon("#111111") }
@@ -1790,6 +1790,7 @@ function drawModelCards(items, gridEl, info) {
       <div class="storage-info">
         ${p.brand ? `<div class="brand-line">${badgeMarkup(p)}</div>` : ""}
         <div class="title-row"><h3>${p.model}</h3>${swatchesMarkup(p, "card-swatches")}</div>
+        ${p.lead ? `<p class="card-lead">${p.lead}</p>` : ""}
         <div class="storage-icons">
           ${boxes.map(b => `<div class="storage-icon ${b.small ? "storage-icon-small" : "storage-icon-wide"}" title="${b.title}">${b.icon}<span>${b.text}</span></div>`).join("")}
         </div>
