@@ -2627,17 +2627,18 @@ route();
             <a href="#${SLUGS[k]}" class="cat-nav-link"${k === key ? ' aria-current="page"' : ""}>${esc(CATEGORY_INFO[k])}</a>
             <button type="button" class="cat-nav-toggle" aria-expanded="false" aria-controls="cn-${key}-${k}" aria-label="Ver productos de ${esc(CATEGORY_INFO[k])}">${chevron}</button>
           </div>
-          <ul class="cat-nav-products" id="cn-${key}-${k}" hidden></ul>
+          <div class="cat-nav-panel" id="cn-${key}-${k}" inert><ul class="cat-nav-products"></ul></div>
         </li>`).join("")}</ul>`;
       side.appendChild(nav);
 
       const setOpen = (item, open) => {
-        const list = item.querySelector(".cat-nav-products");
+        const panel = item.querySelector(".cat-nav-panel");
+        const list = panel.firstElementChild;
         if (open && !list.childElementCount) {
           list.innerHTML = INDEX.filter(e => e.key === item.dataset.key)
             .map(e => `<li><a href="#${SLUGS[e.key]}" data-pid="${esc(e.pid)}">${esc(e.p.model)}</a></li>`).join("");
         }
-        list.hidden = !open;
+        panel.inert = !open;
         item.classList.toggle("is-open", open);
         item.querySelector(".cat-nav-toggle").setAttribute("aria-expanded", String(open));
       };

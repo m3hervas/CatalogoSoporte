@@ -1404,8 +1404,21 @@
   .cat-nav-toggle svg { width: 15px; height: 15px; transition: transform 200ms var(--ease-out); }
   .cat-nav-item.is-open .cat-nav-toggle svg { transform: rotate(90deg); }
   .cat-nav-toggle:focus-visible, .cat-nav-link:focus-visible, .cat-nav-products a:focus-visible, .cat-nav-title:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
-  .cat-nav-products { margin: 2px 0 6px 14px; padding-left: 8px; border-left: 1px solid var(--line); }
-  .cat-nav-products[hidden] { display: none; }
+  /* Unfolding: the panel grows from 0 to its height while the products fade and slide in */
+  .cat-nav-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 260ms var(--ease-out); }
+  .cat-nav-item.is-open > .cat-nav-panel { grid-template-rows: 1fr; }
+  .cat-nav-products {
+    min-height: 0; overflow: hidden; margin: 0 0 0 14px; padding-left: 8px; border-left: 1px solid var(--line);
+    opacity: 0; transform: translateY(-4px); transition: opacity 160ms ease, transform 200ms var(--ease-out), margin 260ms var(--ease-out);
+  }
+  .cat-nav-item.is-open .cat-nav-products { opacity: 1; transform: none; margin: 2px 0 6px 14px; transition-delay: 60ms, 60ms, 0ms; }
+  .cat-nav-row { transition: background-color 200ms ease; }
+  /* The whole "Categorías" box (folded on phones) opens the same way where the browser can animate it */
+  @supports (interpolate-size: allow-keywords) {
+    .cat-nav { interpolate-size: allow-keywords; }
+    .cat-nav::details-content { height: 0; overflow: clip; transition: height 280ms var(--ease-out), content-visibility 280ms allow-discrete; }
+    .cat-nav[open]::details-content { height: auto; }
+  }
   .cat-nav-products a { display: block; padding: 5px 8px; border-radius: 8px; color: #475569; text-decoration: none; font: 400 12.5px/1.35 'Inter', sans-serif; }
   @media (hover: hover) and (pointer: fine) {
     .cat-nav-link:hover, .cat-nav-products a:hover { color: #0F172A; background: rgba(15,23,42,0.05); }
@@ -1429,7 +1442,10 @@
     .cat-nav-link, .cat-nav-products a { padding-top: 9px; padding-bottom: 9px; }
     .cat-nav-toggle { width: 40px; height: 40px; }
   }
-  @media (prefers-reduced-motion: reduce) { .cat-nav svg { transition: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    .cat-nav svg, .cat-nav-panel, .cat-nav-products, .cat-nav-row, .cat-nav::details-content { transition: none !important; }
+    .cat-nav-products { transform: none; }
+  }
 
   .filter-panel .filter-row,
   .filter-panel .filter-row:last-of-type {

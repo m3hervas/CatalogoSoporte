@@ -111,22 +111,31 @@
     });
   }
 
-  // Brands strip: moves on its own; the arrows push it a step back or forward
+  // Brands strips (two rows): they move together at the same pace, stop together while the pointer is over
+  // them, and the arrows push both a step back or forward
   function initMarquee() {
     var wrap = document.querySelector(".marquee-wrap");
-    var track = wrap && wrap.querySelector(".marquee-track");
-    if (!track) return;
-    var DURATION = 54; // seconds for one full set, same pace as the CSS fallback
-    var x = 0, half = 0, last = 0, hover = false, nudge = null;
-    var measure = function () { half = track.scrollWidth / 2; };
+    var tracks = wrap ? [].slice.call(wrap.querySelectorAll(".marquee-track")) : [];
+    if (!tracks.length) return;
+    var DURATION = 54; // seconds for one full set of the first row; the other rows keep the same speed
+    var x = 0, last = 0, hover = false, nudge = null;
+    var rows = tracks.map(function (track) { return { track: track, set: 0 }; });
+    // Width of one set of logos: from the first logo to the first logo of the next copy (the named ones are one set)
+    var measure = function () {
+      rows.forEach(function (row) {
+        var items = row.track.children;
+        var n = row.track.querySelectorAll('img:not([alt=""])').length;
+        row.set = items[n] ? items[n].offsetLeft - items[0].offsetLeft : row.track.scrollWidth / 2;
+      });
+    };
     var ease = function (t) { return 1 - Math.pow(1 - t, 3); };
     measure();
     window.addEventListener("resize", measure);
-    [].slice.call(track.querySelectorAll("img")).forEach(function (img) { img.addEventListener("load", measure); });
-    track.classList.add("is-js");
+    [].slice.call(wrap.querySelectorAll("img")).forEach(function (img) { img.addEventListener("load", measure); });
+    tracks.forEach(function (track) { track.classList.add("is-js"); });
     if (matchMedia("(hover: hover) and (pointer: fine)").matches) {
-      wrap.addEventListener("pointerenter", function () { hover = true; });
-      wrap.addEventListener("pointerleave", function () { hover = false; });
+      wrap.addEventListener("pointerenter", function () { hover = true; wrap.classList.add("is-paused"); });
+      wrap.addEventListener("pointerleave", function () { hover = false; wrap.classList.remove("is-paused"); });
     }
     var push = function (dir) {
       var step = Math.max(160, wrap.clientWidth * 0.35) * dir;
@@ -138,19 +147,24 @@
       btn.hidden = false;
       btn.addEventListener("click", function () { push(btn.classList.contains("next") ? 1 : -1); });
     });
+    var reduced = matchMedia("(prefers-reduced-motion: reduce)");
     var frame = function (now) {
       var dt = Math.min(0.1, (now - (last || now)) / 1000);
       last = now;
+      var speed = rows[0].set / DURATION;
       if (nudge) {
         var p = Math.min(1, (now - nudge.start) / 650);
         x += nudge.delta * (ease(p) - ease(nudge.p));
         nudge.p = p;
         if (p >= 1) nudge = null;
-      } else if (!hover && half) {
-        x += (half / DURATION) * dt;
+      } else if (!hover && !reduced.matches && speed) {
+        x += speed * dt;
       }
-      if (half) x = ((x % half) + half) % half;
-      track.style.transform = "translate3d(" + (-x).toFixed(2) + "px, 0, 0)";
+      rows.forEach(function (row) {
+        if (!row.set) return;
+        var pos = ((x % row.set) + row.set) % row.set;
+        row.track.style.transform = "translate3d(" + (-pos).toFixed(2) + "px, 0, 0)";
+      });
       requestAnimationFrame(frame);
     };
     requestAnimationFrame(frame);
