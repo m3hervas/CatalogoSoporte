@@ -1323,10 +1323,15 @@ function openPanel(p) {
   const gLabels = p.galleryLabels || [];
   const galleryThumbs = gallery.map((ph, i) => `<button type="button" class="pv-thumb pv-gthumb${gLabels[i] ? " pv-lthumb" : ""}" data-g="${i}" aria-label="${gLabels[i] ? "Ver " + gLabels[i] : "Foto " + (i + 1)}" aria-pressed="${i === 0}"><img src="${smallPhoto(ph)}" alt="" decoding="async">${gLabels[i] ? `<span>${gLabels[i]}</span>` : ""}</button>`).join("");
   const slides = thumbs ? (colors.length ? colors.length : optPhotos.length) : gallery.length;
-  // Recommended extras (a monitor for a CPU, connection for a phone): added to the request list straight away
-  const recommend = p.recommend || (String(p.cat).startsWith("phone") && MODE === "alquiler"
-    ? { title: "¿Vas a necesitar Internet? Añade un MiFi portátil o una tarjeta eSIM", models: ["MiFi portátil", "Tarjeta eSIM"] } : null);
-  const recos = recommend ? recommend.models.map(m => [...MONITORS, ...CONNECTIVITY].find(x => x.model === m)).filter(Boolean) : [];
+  // Recommended extras (rental): a monitor for a CPU, connection for a phone, pencil and case for an iPad, connection
+  // or a monitor for a laptop. Added to the request list straight away, as many as the quantity chosen for the product
+  const laptop = (p.cat === "computer" && /^(Portátil|Surface)$/.test(p.catLabel)) || (p.cat === "mac" && /^MacBook/.test(p.catLabel));
+  const recommend = p.recommend || (MODE !== "alquiler" ? null
+    : String(p.cat).startsWith("phone") ? { title: "¿Vas a necesitar Internet? Añade un MiFi portátil o una tarjeta eSIM", models: ["MiFi portátil", "Tarjeta eSIM"] }
+    : p.cat === "ipad" ? { title: "Complétalo con un Apple Pencil o una funda reforzada con correa", models: ["Apple Pencil", "Funda Rugged / Correa"] }
+    : laptop ? { title: "¿Internet en cualquier sitio o una pantalla más grande? Añade un MiFi, una eSIM o un monitor", models: ["MiFi portátil", "Tarjeta eSIM", "Monitor Desktop 24''", "Monitor Desktop 27''"] }
+    : null);
+  const recos = recommend ? recommend.models.map(m => [...MONITORS, ...CONNECTIVITY, ...ACCESSORIES].find(x => x.model === m)).filter(Boolean) : [];
 
   panel.innerHTML = `
     <button class="pv-close" id="closeBtn" type="button" aria-label="Cerrar ficha"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
@@ -1366,7 +1371,7 @@ function openPanel(p) {
       ${recos.length ? `<section class="pv-section pv-recos"><h3>Nuestras recomendaciones</h3><p class="pv-recos-sub">${recommend.title}</p>
         <div class="pv-recos-list">${recos.map((r, i) => `<div class="pv-reco">
           <img src="${smallPhoto(r.photo)}" alt="" decoding="async">
-          <div class="pv-reco-text"><strong>${r.model}</strong><span>${specOf(r, "Marcas disponibles") || r.lead || r.brand}</span></div>
+          <div class="pv-reco-text"><strong>${r.model}</strong><span>${specOf(r, "Marcas disponibles") || r.lead || [r.type, r.brand].filter(Boolean).join(" · ")}</span></div>
           <button type="button" class="pv-reco-add" data-r="${i}">Añadir</button>
         </div>`).join("")}</div></section>` : ""}
       ${desc ? `<section class="pv-section"><h3>Sobre este producto</h3><p>${desc}</p></section>` : ""}
@@ -1450,19 +1455,25 @@ function openPanel(p) {
     }));
   });
 
-  panel.querySelectorAll(".pv-reco-add").forEach(b => b.addEventListener("click", () => {
-    addToList(recos[Number(b.dataset.r)].model, 1);
-    b.textContent = "Añadido ✓";
+  // A recommendation goes in the same quantity as the product (5 phones -> 5 MiFi); its button says how many
+  const recoBtns = [...panel.querySelectorAll(".pv-reco-add")];
+  const syncRecos = () => recoBtns.forEach(b => {
+    b.textContent = b.classList.contains("is-added") ? `Añadido ✓${b._n > 1 ? ` (${b._n})` : ""}` : qty > 1 ? `Añadir ${qty}` : "Añadir";
+  });
+  recoBtns.forEach(b => b.addEventListener("click", () => {
+    addToList(recos[Number(b.dataset.r)].model, qty);
+    b._n = (b._n || 0) + qty;
     b.classList.add("is-added");
+    syncRecos();
   }));
 
   // Quantity: − / + or type the number
   let qty = 1;
   const qtyN = document.getElementById("panelQty");
   const minus = panel.querySelector('.pv-buy [data-step="-1"]');
-  const setQty = v => { qty = clampQty(v); qtyN.value = qty; minus.disabled = qty === 1; };
+  const setQty = v => { qty = clampQty(v); qtyN.value = qty; minus.disabled = qty === 1; syncRecos(); };
   panel.querySelectorAll(".pv-buy [data-step]").forEach(b => b.addEventListener("click", () => setQty(qty + Number(b.dataset.step))));
-  qtyN.addEventListener("input", () => { if (qtyN.value !== "") { qty = clampQty(qtyN.value); minus.disabled = qty === 1; } });
+  qtyN.addEventListener("input", () => { if (qtyN.value !== "") { qty = clampQty(qtyN.value); minus.disabled = qty === 1; syncRecos(); } });
   qtyN.addEventListener("change", () => setQty(qtyN.value));
   qtyN.addEventListener("focus", () => qtyN.select());
   qtyN.addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); setQty(qtyN.value); qtyN.blur(); } });
@@ -1975,6 +1986,28 @@ setupFilters(document.getElementById("gridPrinters"), [
   { select: document.getElementById("printerSizeSelect"), attr: "group" },
   { select: document.getElementById("printerColorSelect"), attr: "type" }
 ]);
+
+// Subcategories (filter options, Catálogo menu, left list and route): [filter value, name shown], in this order
+const SUBCATS = {
+  brandSelect: [["Apple", "iPad"], ["Samsung", "Samsung"], ["Lenovo", "Lenovo"]],
+  phoneBrandSelect: [["Apple", "iPhone"], ["Samsung", "Samsung Galaxy"], ["Xiaomi", "Xiaomi Redmi"]],
+  accessoryTypeSelect: [["Lápiz digital", "Pencil"], ["Trípode", "Trípodes"], ["Gimbal", "Gimbal"], ["Funda", "Fundas"], ["Batería externa", "Power Bank"], ["Iluminación", "Aro de luz"]],
+  micsTypeSelect: [["Inalámbrico", "Micros. inalámbricos"], ["Podcast / estudio", "Podcast / estudio"], ["Kit para móvil", "Kit para móvil"]],
+  macTypeSelect: [["MacBook Pro", "MacBook Pro"], ["MacBook Air", "MacBook Air"], ["iMac", "iMac"], ["Mac mini", "Mac mini"], ["Mac Studio", "Mac Studio"]],
+  monitorTypeSelect: [["Monitores", "Monitores"], ["Smart TV", "Smart TV"]],
+  printerSizeSelect: [["A4", "A4"], ["A3", "A3"]]
+};
+Object.entries(SUBCATS).forEach(([id, list]) => {
+  const sel = document.getElementById(id);
+  if (!sel) return;
+  const listed = list.map(([value, label]) => {
+    const o = [...sel.options].find(x => x.value === value);
+    if (o) o.text = label;
+    return o;
+  }).filter(Boolean);
+  const rest = [...sel.options].filter(o => o.value !== "all" && !listed.includes(o));
+  [...listed, ...rest].forEach(o => sel.appendChild(o));
+});
 
 setupFilters(document.getElementById("gridBatteries"), [
   { select: document.getElementById("batteryTypeSelect"), attr: "type" },
@@ -2500,6 +2533,7 @@ route();
   safe(() => { document.getElementById("footerYear").textContent = new Date().getFullYear(); }, "year");
 
   // Filter options: sizes and capacities from small to large, everything else in alphabetical order
+  // (subcategories keep the order set in SUBCATS)
   safe(() => {
     const size = text => {
       const m = String(text).replace(",", ".").match(/\d+(\.\d+)?/);
@@ -2507,6 +2541,7 @@ route();
       return parseFloat(m[0]) * (/TB/i.test(text) ? 1000 : 1);
     };
     document.querySelectorAll(".filter-select").forEach(sel => {
+      if (SUBCATS[sel.id]) return;
       const opts = [...sel.options].filter(o => o.value !== "all");
       const numeric = opts.every(o => !isNaN(size(o.value)));
       opts.sort((a, b) => numeric ? size(a.value) - size(b.value) : a.text.localeCompare(b.text, "es", { sensitivity: "base" }));
@@ -2630,11 +2665,13 @@ route();
     const NAV_KEYS = [...document.querySelectorAll(".category-card")]
       .map(c => CARD_KEYS[c.id]).filter(k => k && inMode(k) && views[k]);
     const chevron = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>';
-    // Categories whose list shows their types instead of every product (Cabinas: DAS / NAS)
-    const NAV_BY_TYPE = new Set(["cabins"]);
+    // Categories whose list shows their subcategories instead of every product (the same ones as the Catálogo menu:
+    // its "Tipo" filter; "Marca" or "Formato" where there is no type), e.g. Cabinas: DAS / NAS; Tablets: iPad / Samsung / Lenovo
+    const NAV_BY_TYPE = new Set(["cabins", "tablets", "phones", "accessories", "mac", "monitors", "printers", "mics"]);
     const typeSelectOf = k => {
-      const row = [...views[k].querySelectorAll(".filter-panel .filter-row")]
-        .find(r => (r.querySelector(".filter-label")?.textContent || "").trim().toLowerCase() === "tipo");
+      const rows = [...views[k].querySelectorAll(".filter-panel .filter-row")];
+      const labelOf = r => (r.querySelector(".filter-label")?.textContent || "").trim().toLowerCase();
+      const row = ["tipo", "marca", "formato"].map(l => rows.find(r => labelOf(r) === l)).find(Boolean);
       return row ? row.querySelector("select") : null;
     };
     const narrow = matchMedia("(max-width: 900px)");
