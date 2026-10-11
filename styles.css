@@ -59,7 +59,7 @@ img { display: block; max-width: 100%; }
 a { color: inherit; }
 em { font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--accent-text); }
 h1, h2 { margin: 0; font-weight: 600; letter-spacing: -0.025em; line-height: 1.05; }
-h2 { font-size: clamp(28px, 3.6vw, 48px); }
+h2 { font-size: clamp(25px, 3.2vw, 42px); }
 ::selection { background: var(--accent); color: #fff; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
@@ -178,7 +178,7 @@ h2 { font-size: clamp(28px, 3.6vw, 48px); }
 }
 /* Title and intro text share one width: the text ends where "audiovisual" ends */
 .hero-lead { display: grid; width: fit-content; max-width: 100%; }
-.hero-title { font-size: clamp(32px, 4vw, 64px); margin-bottom: 22px; text-align: center; }
+.hero-title { font-size: clamp(29px, 3.5vw, 56px); margin-bottom: 22px; text-align: center; }
 .hero-title .line { white-space: nowrap; }
 .hero-title .line-accent { font-size: 1.3em; line-height: 1; padding: 0.02em 0 0.1em; }
 .hero-title .line-accent em { letter-spacing: -0.01em; }
@@ -240,7 +240,7 @@ section { position: relative; }
 .panel:focus-visible .icon-buy .flap-r, .panel:active .icon-buy .flap-r { transform: rotate(140deg); }
 .panel:focus-visible .icon-buy .item, .panel:active .icon-buy .item { transform: translateY(0); }
 .panel-body { display: flex; flex-direction: column; gap: 8px; }
-.panel-title { font-family: var(--serif); font-style: italic; font-size: clamp(30px, 3vw, 46px); line-height: 0.95; letter-spacing: -0.02em; }
+.panel-title { font-family: var(--serif); font-style: italic; font-size: clamp(27px, 2.7vw, 41px); line-height: 0.95; letter-spacing: -0.02em; }
 .panel-text { color: var(--text-2); font-size: 14.5px; line-height: 1.5; }
 /* Highlighted words: brand blue with a soft light sweeping across now and then */
 .panel-hl {
@@ -525,7 +525,7 @@ section { position: relative; }
   .panel { min-height: 0; justify-content: flex-start; padding: 16px 14px; border-radius: 20px; gap: 12px; }
   .panel-icon { width: 50px; height: 50px; border-radius: 15px; }
   .panel-icon svg { width: 34px; height: 34px; }
-  .panel-title { font-size: 27px; }
+  .panel-title { font-size: 25px; }
   .panel-text { font-size: 13px; }
   .panel-cta { font-size: 13.5px; gap: 6px; }
   .panel-cta svg { width: 18px; height: 18px; }

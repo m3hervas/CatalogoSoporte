@@ -2364,6 +2364,9 @@ const CATEGORY_BADGES = {
   tapes: true,
 };
 
+// Breadcrumb painters, one per category (filled in once the search boxes are built)
+const CRUMB_DRAW = {};
+
 function setCatalogHeader(key) {
   const info = key && CATEGORY_INFO[key];
   document.getElementById("catBadge").hidden = !(info && CATEGORY_BADGES[key]);
@@ -2374,6 +2377,8 @@ function setCatalogHeader(key) {
   document.getElementById("catEyebrow").hidden = !!info;
   document.getElementById("catDesc").hidden = !!info;
   document.getElementById("catTitle").textContent = info || HEADER_DEFAULT[1];
+  document.getElementById("catCrumbs").hidden = !info;
+  if (info && CRUMB_DRAW[key]) CRUMB_DRAW[key](true);
 }
 
 function showView(key) {
@@ -2776,12 +2781,14 @@ function listText() {
   return requestList.map(i => `${i.qty} × ${i.name}`).join(";\n");
 }
 
-// Count on the floating button (also updated while a quantity is being typed, without redrawing the list)
+// Count on the cart of the top bar (also updated while a quantity is being typed, without redrawing the list)
 function renderListCount() {
   const units = requestList.reduce((n, i) => n + i.qty, 0);
-  listFab.hidden = !requestList.length;
-  document.getElementById("listFabN").textContent = units;
-  listFab.setAttribute("aria-label", `Mi lista: ${units} ${units === 1 ? "unidad" : "unidades"}`);
+  const badge = document.getElementById("listFabN");
+  badge.hidden = !units;
+  badge.textContent = units > 99 ? "99+" : units;
+  listFab.classList.toggle("has-items", !!units);
+  listFab.setAttribute("aria-label", units ? `Mi lista: ${units} ${units === 1 ? "unidad" : "unidades"}` : "Mi lista: vacía");
 }
 
 function renderList() {
@@ -3204,6 +3211,14 @@ route();
       }, 350);
     }
 
+    document.getElementById("catCrumbs").addEventListener("click", e => {
+      const link = e.target.closest("a[data-crumb]");
+      if (!link || link.dataset.crumb === "home") return;
+      e.preventDefault();
+      if (link.dataset.crumb === "catalog") { history.pushState(null, "", location.pathname + location.search); route(); }
+      else { views[e.currentTarget.dataset.key]?.querySelector(".filter-reset")?.click(); window.scrollTo({ top: 0, behavior: "smooth" }); }
+    });
+
     // Left column, under the filters: every category of this catalogue with an arrow that unfolds its products
     // (one open at a time). The category name opens the category; a product opens its sheet
     const NAV_KEYS = [...document.querySelectorAll(".category-card")]
@@ -3288,35 +3303,30 @@ route();
       back.before(top);
       top.appendChild(back);
 
-      // Where you are: Inicio › Alquiler › Category (› subcategory when its "Tipo" filter is on); each step links back
-      const crumbs = document.createElement("nav");
-      crumbs.className = "crumbs";
-      crumbs.setAttribute("aria-label", "Estás en");
+      // Where you are: Inicio › Alquiler › Category (› subcategory when its "Tipo" filter is on), centred above the
+      // category title; each step links back. One path in the header, drawn by the category on screen
+      const crumbs = document.getElementById("catCrumbs");
       const homeHref = document.querySelector(".nav-brand")?.getAttribute("href") || "../";
       const rows = [...view.querySelectorAll(".filter-panel .filter-row")];
       const labelOf = r => (r.querySelector(".filter-label")?.textContent || "").trim().toLowerCase();
       const subRow = ["tipo", "marca", "formato"].map(l => rows.find(r => labelOf(r) === l && !r.hidden)).find(Boolean);
       const subSelect = subRow ? subRow.querySelector("select") : null;
       const sep = '<span class="crumbs-sep" aria-hidden="true">›</span>';
-      const drawCrumbs = () => {
+      // force: the header asks for it while the category is being opened (it may still be hidden)
+      const drawCrumbs = force => {
+        if (view.hidden && force !== true) return;
         const sub = subSelect && subSelect.value !== "all" ? subSelect.options[subSelect.selectedIndex].text : "";
+        crumbs.dataset.key = key;
         crumbs.innerHTML = `<a href="${esc(homeHref)}" data-crumb="home">Inicio</a>${sep}`
           + `<a href="${esc(location.pathname + location.search)}" data-crumb="catalog">${MODE === "compra" ? "Compra" : "Alquiler"}</a>${sep}`
           + (sub
             ? `<a href="#${SLUGS[key]}" data-crumb="category">${esc(label)}</a>${sep}<span aria-current="page">${esc(sub)}</span>`
             : `<span aria-current="page">${esc(label)}</span>`);
       };
+      CRUMB_DRAW[key] = drawCrumbs;
       drawCrumbs();
-      subSelect?.addEventListener("change", drawCrumbs);
+      subSelect?.addEventListener("change", () => drawCrumbs());
       view.querySelector(".filter-reset")?.addEventListener("click", () => setTimeout(drawCrumbs, 0));
-      crumbs.addEventListener("click", e => {
-        const link = e.target.closest("a[data-crumb]");
-        if (!link || link.dataset.crumb === "home") return;
-        e.preventDefault();
-        if (link.dataset.crumb === "catalog") { history.pushState(null, "", location.pathname + location.search); route(); }
-        else { view.querySelector(".filter-reset")?.click(); window.scrollTo({ top: 0, behavior: "smooth" }); }
-      });
-      top.appendChild(crumbs);
 
       const box = document.createElement("div");
       box.className = "view-search";
