@@ -1322,8 +1322,10 @@ function openPanel(p) {
   const gallery = !thumbs && p.gallery && p.gallery.length > 1 ? p.gallery : [];
   const galleryThumbs = gallery.map((ph, i) => `<button type="button" class="pv-thumb pv-gthumb" data-g="${i}" aria-label="Foto ${i + 1}" aria-pressed="${i === 0}"><img src="${smallPhoto(ph)}" alt="" decoding="async"></button>`).join("");
   const slides = thumbs ? (colors.length ? colors.length : optPhotos.length) : gallery.length;
-  // Recommended extras (e.g. a monitor for a CPU): added to the request list straight away
-  const recos = p.recommend ? p.recommend.models.map(m => MONITORS.find(x => x.model === m)).filter(Boolean) : [];
+  // Recommended extras (a monitor for a CPU, connection for a phone): added to the request list straight away
+  const recommend = p.recommend || (String(p.cat).startsWith("phone") && MODE === "alquiler"
+    ? { title: "¿Vas a necesitar Internet? Añade un MiFi portátil o una tarjeta eSIM", models: ["MiFi portátil", "Tarjeta eSIM"] } : null);
+  const recos = recommend ? recommend.models.map(m => [...MONITORS, ...CONNECTIVITY].find(x => x.model === m)).filter(Boolean) : [];
 
   panel.innerHTML = `
     <button class="pv-close" id="closeBtn" type="button" aria-label="Cerrar ficha"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
@@ -1360,10 +1362,10 @@ function openPanel(p) {
         <p class="panel-added" id="panelAdded" role="status" hidden></p>
         <p class="pv-note">Te enviamos el presupuesto por correo, sin compromiso.</p>
       </div>
-      ${recos.length ? `<section class="pv-section pv-recos"><h3>Nuestras recomendaciones</h3><p class="pv-recos-sub">${p.recommend.title}</p>
+      ${recos.length ? `<section class="pv-section pv-recos"><h3>Nuestras recomendaciones</h3><p class="pv-recos-sub">${recommend.title}</p>
         <div class="pv-recos-list">${recos.map((r, i) => `<div class="pv-reco">
           <img src="${smallPhoto(r.photo)}" alt="" decoding="async">
-          <div class="pv-reco-text"><strong>${r.model}</strong><span>${specOf(r, "Marcas disponibles") || r.brand}</span></div>
+          <div class="pv-reco-text"><strong>${r.model}</strong><span>${specOf(r, "Marcas disponibles") || r.lead || r.brand}</span></div>
           <button type="button" class="pv-reco-add" data-r="${i}">Añadir</button>
         </div>`).join("")}</div></section>` : ""}
       ${desc ? `<section class="pv-section"><h3>Sobre este producto</h3><p>${desc}</p></section>` : ""}
