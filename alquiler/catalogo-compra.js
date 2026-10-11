@@ -520,7 +520,7 @@ function badgeMarkup(p) {
   if (logos.every(Boolean)) return `
     <span class="brand-logos">${logos.map(l => l === "apple"
       ? `<span class="brand-badge" style="background:#ECEDEF; padding:3px;">${appleBadge()}</span>`
-      : `<span class="brand-badge brand-logo"><img src="${"../alquiler/img/marcas/" + l}" alt="" width="18" height="18" loading="lazy" decoding="async"></span>`).join("")}</span>
+      : `<span class="brand-badge brand-logo"><img src="${"../alquiler/img/marcas/" + l + "?v=2"}" alt="" width="22" height="22" loading="lazy" decoding="async"></span>`).join("")}</span>
     <span class="brand-name">${p.brand}</span>
   `;
   const badgeStyle = isApple ? "background:#ECEDEF; padding:3px;" : `background:${p.brandColor}`;

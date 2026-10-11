@@ -1378,7 +1378,7 @@ const CONNECTIVITY = [
     ]
   },
   {
-    cat: "connectivity", catLabel: "Redes inalámbricas", type: "Redes inalámbricas", brand: "Ubiquiti", brandCode: "U", brandColor: "#0559C9",
+    cat: "connectivity", catLabel: "Redes inalámbricas", type: "Redes inalámbricas", brand: "", brandCode: "", brandColor: "#0559C9",
     lead: "Red Wi-Fi profesional con puntos de acceso para cubrir espacios grandes.", model: "Redes inalámbricas", photo: "../alquiler/img/redes-inalambricas-esquema_SpTV.webp", icon: accessPointIcon("#0559C9"),
     gallery: ["../alquiler/img/redes-inalambricas-esquema_SpTV.webp", "../alquiler/img/ubiquiti-punto-de-acceso_SpTV.webp?v=11"],
     specs: [
@@ -1556,7 +1556,7 @@ function badgeMarkup(p) {
   if (logos.every(Boolean)) return `
     <span class="brand-logos">${logos.map(l => l === "apple"
       ? `<span class="brand-badge" style="background:#ECEDEF; padding:3px;">${appleBadge()}</span>`
-      : `<span class="brand-badge brand-logo"><img src="${"../alquiler/img/marcas/" + l}" alt="" width="18" height="18" loading="lazy" decoding="async"></span>`).join("")}</span>
+      : `<span class="brand-badge brand-logo"><img src="${"../alquiler/img/marcas/" + l + "?v=2"}" alt="" width="22" height="22" loading="lazy" decoding="async"></span>`).join("")}</span>
     <span class="brand-name">${p.brand}</span>
   `;
   const badgeStyle = isApple ? "background:#ECEDEF; padding:3px;" : `background:${p.brandColor}`;
