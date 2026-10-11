@@ -679,7 +679,7 @@ const PHONES = [
 const ACCESSORIES = [
 {
     cat: "accessory", catLabel: "Accesorio", type: "Lápiz digital", group: "iPad", brand: "Apple", brandCode: "A", brandColor: "var(--apple)",
-    model: "Apple Pencil", photo: "../alquiler/img/apple-pencil_SpTV.webp?v=11",
+    model: "Apple Pencil", photo: "../alquiler/img/apple-pencil-usb-c_SpTV.webp",
     icon: accessoryIcon("#5B6470"),
     specs: [
       ["Categoría", "Accesorio · iPad"],
@@ -1431,13 +1431,6 @@ const VIDEOCONF = [
     specs: [["Categoría", "Presentador inalámbrico con puntero láser"], ["Descripción", "Mando para pasar las diapositivas a distancia, con puntero láser rojo para señalar en la pantalla. Funciona con PowerPoint, Keynote y Google Slides. El modelo concreto puede variar según disponibilidad."], ["Puntero", "Láser rojo"], ["Alcance", "Hasta 20 m"], ["Conexión", "Receptor USB o Bluetooth"], ["Compatible con", "Windows, macOS, ChromeOS y Linux"], ["Alimentación", "Pila AAA (incluida)"]]
   },
   {
-    cat: "videoconf", catLabel: "Intercom", type: "Intercom", brand: "Hollyland", brandCode: "H", brandColor: "#E60012",
-    model: "Hollyland Solidcom C1 Pro", photo: "../alquiler/img/hollyland-solidcom-c1-pro_SpTV.webp?v=11",
-    icon: videoconfIcon("#E60012"),
-    info: [["tag", "Sets", "De 2 a 8 cascos", 1], ["signal", "Alcance", "350 m", 1], ["speed", "Batería", "Más de 10 h por casco"]],
-    specs: [["Categoría", "Intercom inalámbrico (cascos)"], ["Marca", "Hollyland"], ["Sets disponibles", "2, 3, 4, 6 u 8 cascos (1 principal + remotos)"], ["Conversación", "Full dúplex: todos hablan a la vez, sin estación base · botón TALK / MUTE"], ["Audio", "Doble micrófono con cancelación de ruido (ENC) y de eco"], ["Alcance", "Hasta 350 m con visión directa · DECT 1,9 GHz"], ["Batería", "Más de 10 h (casco remoto) · más de 5 h (casco principal) · carga en unas 2,5 h"], ["Peso", "Unos 170 g por casco"]]
-  },
-  {
     cat: "videoconf", catLabel: "Walkies", type: "Walkies", brand: "Motorola", brandCode: "M", brandColor: "#005EB8",
     model: "Motorola DP4400", photo: "../alquiler/img/motorola-dp4400_SpTV.webp?v=11",
     icon: videoconfIcon("#005EB8"),
@@ -1451,15 +1444,15 @@ const PRINTERS = [
   // Papel, Otros, Conexión, Uso recomendado, Dimensiones, Tarifa
   {
     cat: "printer", catLabel: "Multifunción A4", type: "B/N|Color", group: "A4", brand: "", brandCode: "", brandColor: "#5C6672",
-    model: "Impresora multifunción A4", photo: "../alquiler/img/impresora-multifuncion-a4_SpTV.webp?v=11",
+    model: "Impresora multifunción A4", photo: "../alquiler/img/impresora-multifuncion-a4-brother_SpTV.webp",
     icon: printerIcon("#5C6672"),
     info: [["tag", "Formato", "A4", 1], ["screen", "Impresión", "B/N · Color", 1], ["capacity", "Tarifa", "Coste por página"]],
-    specs: [["Categoría", "Impresora multifunción láser A4"], ["Marca", "Según disponibilidad (foto orientativa: OKI MC554)"], ["Modelo", "Multifunción A4 en blanco y negro o en color"],
+    specs: [["Categoría", "Impresora multifunción láser A4"], ["Marca", "Según disponibilidad (foto orientativa: Brother MFC-L3760CDW)"], ["Modelo", "Multifunción A4 en blanco y negro o en color"],
       ["Descripción", "Multifunción compacta para oficinas, eventos y producciones: imprime, copia, escanea y envía fax en A4, a doble cara y también desde el móvil."],
       ["Formato", "A4 (y tamaños menores)"], ["Impresión", "Blanco y negro o color"], ["Funciones", "Imprimir, copiar, escanear (a correo, carpeta o USB) y fax"],
-      ["Velocidad", "Unas 30 ppm en A4 (según modelo)"], ["Resolución", "600 × 600 ppp"], ["Papel", "Bandeja de 250 hojas + bandeja multifunción · bandeja adicional opcional"],
+      ["Velocidad", "Unas 26 ppm en A4 (según modelo)"], ["Resolución", "600 × 600 ppp"], ["Papel", "Bandeja de 250 hojas + bandeja multifunción · bandeja adicional opcional"],
       ["Otros", "Doble cara automática, alimentador de documentos, pantalla táctil y acceso con PIN"], ["Conexión", "Red (Ethernet) · USB · Wi-Fi opcional · impresión desde móvil"],
-      ["Uso recomendado", "Grupos pequeños y medianos"], ["Dimensiones", "Unos 41 × 43 × 48 cm (según modelo)"], ["Tarifa", "Coste por página impresa (consúltanos)"]]
+      ["Uso recomendado", "Grupos pequeños y medianos"], ["Dimensiones", "Compacta, de sobremesa: unos 41 × 48 × 41 cm (según modelo)"], ["Tarifa", "Coste por página impresa (consúltanos)"]]
   },
   {
     cat: "printer", catLabel: "Multifunción A3", type: "Color", group: "A3", brand: "", brandCode: "", brandColor: "#5C6672",
@@ -1593,7 +1586,7 @@ const scrim = document.getElementById("scrim");
 const panel = document.getElementById("panel");
 
 // Small brand icon next to the brand name (../alquiler/img/marcas/, from each brand's own website); brands without one keep the letter
-const BRAND_LOGOS = {"SWIT": "swit.webp", "3 en 1": "3_en_1.webp", "3M": "3m.webp", "Adam Hall": "adam_hall.webp", "Apli": "apli.webp", "BIC": "bic.webp", "Bubblebee Industries": "bubblebee_industries.webp", "Cap It": "cap_it.webp", "Ceys": "ceys.webp", "CGE Tools": "cge_tools.webp", "CRC": "crc.webp", "Dell": "dell.webp", "Dirty Rigger": "dirty_rigger.webp", "Dodot": "dodot.webp", "Duracell": "duracell.webp", "Dylan Stoel": "dylan_stoel.webp", "edding": "edding.webp", "EDM": "edm.webp", "Energizer": "energizer.webp", "Ewent": "ewent.webp", "Focus Rat": "focus_rat.webp", "Foogy": "foogy.webp", "Goobay": "goobay.webp", "Gorilla": "gorilla.webp", "Green Clean": "green_clean.webp", "Hama": "hama.webp", "Hansaplast": "hansaplast.webp", "Hide-a-mic": "hide_a_mic.webp", "Hollyland": "hollyland.webp", "HP": "hp.webp", "Insta360": "insta360.webp", "Jabra": "jabra.webp", "JJC": "jjc.webp", "Joe's Sticky Stuff": "joe_s_sticky_stuff.webp", "JVC": "jvc.webp", "K-Line": "k_line.webp", "Kenro": "kenro.webp", "Kimberly-Clark": "kimberly_clark.webp", "Kleenslate": "kleenslate.webp", "Kupo": "kupo.webp", "Lenovo": "lenovo.webp", "LG": "lg.webp", "Loctite": "loctite.webp", "Logitech": "logitech.webp", "Manfrotto": "manfrotto.webp", "Maxell": "maxell.webp", "Microsoft": "microsoft.webp", "Modern Studio": "modern_studio.webp", "Motorola": "motorola.webp", "Nichiban": "nichiban.webp", "Pentel": "pentel.webp", "Philips": "philips.webp", "Phonak": "phonak.webp", "Photographic Solutions": "photographic_solutions.webp", "Piher": "piher.webp", "Pilot": "pilot.webp", "Precygrap": "precygrap.webp", "Procab": "procab.webp", "Progaff": "progaff.webp", "QNAP": "qnap.webp", "Rain-X": "rain_x.webp", "Rayovac": "rayovac.webp", "Renata": "renata.webp", "Rosco": "rosco.webp", "Rycote": "rycote.webp", "RØDE": "røde.webp", "Samsung": "samsung.webp", "SanDisk": "sandisk.webp", "SanDisk Professional": "sandisk_professional.webp", "Sanytol": "sanytol.webp", "Sennheiser": "sennheiser.svg", "Sharpie": "sharpie.webp", "Shurtape": "shurtape.webp", "Sony": "sony.webp", "Soudal": "soudal.webp", "Staedtler": "staedtler.webp", "Stardom": "stardom.webp", "StarTech": "startech.webp", "Synology": "synology.webp", "Tenba": "tenba.webp", "tesa": "tesa.webp", "Ubiquiti": "ubiquiti.webp", "Ursa Straps": "ursa_straps.webp", "Varta": "varta.webp", "VELCRO": "velcro.webp", "Viviana": "viviana.webp", "Wacom": "wacom.webp", "WD": "wd.webp", "WD-40": "wd_40.webp", "WD_BLACK": "wd_black.webp", "Wolfcraft": "wolfcraft.webp", "Xiaomi": "xiaomi.webp", "Zeiss": "zeiss.webp", "Zhiyun": "zhiyun.webp"};
+const BRAND_LOGOS = {"SWIT": "swit.webp", "3 en 1": "3_en_1.webp", "3M": "3m.webp", "Adam Hall": "adam_hall.webp", "Apli": "apli.webp", "BIC": "bic.webp", "Bubblebee Industries": "bubblebee_industries.webp", "Cap It": "cap_it.webp", "Ceys": "ceys.webp", "CGE Tools": "cge_tools.webp", "CRC": "crc.webp", "Dell": "dell.webp", "Dirty Rigger": "dirty_rigger.webp", "Dodot": "dodot.webp", "Duracell": "duracell.webp", "Dylan Stoel": "dylan_stoel.webp", "edding": "edding.webp", "EDM": "edm.webp", "Energizer": "energizer.webp", "Ewent": "ewent.webp", "Focus Rat": "focus_rat.webp", "Foogy": "foogy.webp", "Goobay": "goobay.webp", "Gorilla": "gorilla.webp", "Green Clean": "green_clean.webp", "Hama": "hama.webp", "Hansaplast": "hansaplast.webp", "Hide-a-mic": "hide_a_mic.webp", "Hollyland": "hollyland.webp", "HP": "hp.webp", "Insta360": "insta360.webp", "Jabra": "jabra.webp", "JJC": "jjc.webp", "Joe's Sticky Stuff": "joe_s_sticky_stuff.webp", "JVC": "jvc.webp", "K-Line": "k_line.webp", "Kenro": "kenro.webp", "Kimberly-Clark": "kimberly_clark.webp", "Kleenslate": "kleenslate.webp", "Kupo": "kupo.webp", "Lenovo": "lenovo.webp", "LG": "lg.webp", "Loctite": "loctite.webp", "Logitech": "logitech.webp", "Manfrotto": "manfrotto.webp", "Maxell": "maxell.webp", "Microsoft": "microsoft.webp", "Modern Studio": "modern_studio.webp", "Motorola": "motorola.webp", "Nichiban": "nichiban.webp", "Pentel": "pentel.webp", "Philips": "philips.webp", "Phonak": "phonak.webp", "Photographic Solutions": "photographic_solutions.webp", "Piher": "piher.webp", "Pilot": "pilot.webp", "Precygrap": "precygrap.webp", "Procab": "procab.webp", "Progaff": "progaff.webp", "QNAP": "qnap.webp", "Rain-X": "rain_x.webp", "Rayovac": "rayovac.webp", "Renata": "renata.webp", "Rosco": "rosco.webp", "Rycote": "rycote.webp", "RØDE": "røde.webp", "Samsung": "samsung.webp", "SanDisk": "sandisk.webp", "SanDisk Professional": "sandisk.webp", "Sanytol": "sanytol.webp", "Sennheiser": "sennheiser.svg", "Sharpie": "sharpie.webp", "Shurtape": "shurtape.webp", "Sony": "sony.webp", "Soudal": "soudal.webp", "Staedtler": "staedtler.webp", "Stardom": "stardom.webp", "StarTech": "startech.webp", "Synology": "synology.webp", "Tenba": "tenba.webp", "tesa": "tesa.webp", "Ubiquiti": "ubiquiti.webp", "Ursa Straps": "ursa_straps.webp", "Varta": "varta.webp", "VELCRO": "velcro.webp", "Viviana": "viviana.webp", "Wacom": "wacom.webp", "WD": "wd.webp", "WD-40": "wd_40.webp", "WD_BLACK": "wd.webp", "Wolfcraft": "wolfcraft.webp", "Xiaomi": "xiaomi.webp", "Zeiss": "zeiss.webp", "Zhiyun": "zhiyun.webp"};
 
 function badgeMarkup(p) {
   if (!p.brand) return "";
@@ -1707,7 +1700,11 @@ const MICS = [
   { cat: "mic", type: "Kit para móvil", brand: "RØDE", brandCode: "R", brandColor: "#111111", model: "Vlogger Kit Universal", photo: "../alquiler/img/rode-vlogger-kit-universal_SpTV.webp?v=11", color: "Negro", colors: [],
     info: [["tag", "Tipo", "Kit para móvil", 1], ["port", "Conexión", "3,5 mm", 1], ["capacity", "Incluye", "Micrófono, luz, soporte y trípode"]],
     specs: [["Categoría", "Kit de grabación para móvil"], ["Marca", "RØDE"], ["Descripción", "Todo lo necesario para grabar con el móvil: micrófono VideoMicro direccional, luz MicroLED, soporte SmartGrip y trípode Tripod 2 que también sirve de empuñadura."], ["Incluye", "VideoMicro · MicroLED · SmartGrip · Tripod 2 · soporte de doble zapata DCS-1 · suspensión Rycote Lyre · antiviento de pelo WS9"], ["Micrófono", "VideoMicro, cardioide"], ["Conexión", "3,5 mm TRRS (para móviles con toma de auriculares)"]],
-    icon: micsIcon("#111111") }
+    icon: micsIcon("#111111") },
+  { cat: "mic", type: "Intercom", brand: "Hollyland", brandCode: "H", brandColor: "#E60012", model: "Hollyland Solidcom C1 Pro", photo: "../alquiler/img/hollyland-solidcom-c1-pro_SpTV.webp?v=11", color: "Negro", colors: [],
+    info: [["tag", "Sets", "De 2 a 8 cascos", 1], ["signal", "Alcance", "350 m", 1], ["speed", "Batería", "Más de 10 h por casco"]],
+    specs: [["Categoría", "Intercom inalámbrico (cascos)"], ["Marca", "Hollyland"], ["Sets disponibles", "2, 3, 4, 6 u 8 cascos (1 principal + remotos)"], ["Conversación", "Full dúplex: todos hablan a la vez, sin estación base · botón TALK / MUTE"], ["Audio", "Doble micrófono con cancelación de ruido (ENC) y de eco"], ["Alcance", "Hasta 350 m con visión directa · DECT 1,9 GHz"], ["Batería", "Más de 10 h (casco remoto) · más de 5 h (casco principal) · carga en unas 2,5 h"], ["Peso", "Unos 170 g por casco"]],
+    icon: micsIcon("#E60012") }
 ];
 
 // --- Model cards: one card per model; variants that only change storage are grouped ---
@@ -1942,6 +1939,7 @@ function availableIn(p) {
 }
 
 function openPanel(p) {
+  if (!(history.state && history.state.sheet)) { history.pushState({ sheet: true }, "", location.href); sheetUrl = location.href; }
   panelReturnFocus = document.activeElement;
   const colors = p.colors && p.colors.length > 1 ? p.colors : [];
   const ci = () => p.colorIndex || 0;
@@ -2028,7 +2026,7 @@ function openPanel(p) {
   panel.classList.add("open");
   document.documentElement.classList.add("sheet-open");
   panel.scrollTop = 0;
-  document.getElementById("closeBtn").addEventListener("click", closePanel);
+  document.getElementById("closeBtn").addEventListener("click", closeSheet);
   document.getElementById("closeBtn").focus({ preventScroll: true });
 
   // Colour: buttons and thumbnails change the photo; the card behind shows the same colour
@@ -2160,9 +2158,16 @@ function closePanel() {
   if (wasOpen && panelReturnFocus && document.contains(panelReturnFocus)) panelReturnFocus.focus({ preventScroll: true });
 }
 
-scrim.addEventListener("click", closePanel);
+// Back button / gesture: the sheet's history step (see openPanel). Closing it by hand (✕, outside, Esc) also
+// takes that step back, so no extra steps are left behind
+let sheetUrl = "";
+function closeSheet() {
+  if (panel.classList.contains("open") && history.state && history.state.sheet) history.back();
+  else closePanel();
+}
+scrim.addEventListener("click", closeSheet);
 document.addEventListener("keydown", e => {
-  if (e.key === "Escape") closePanel();
+  if (e.key === "Escape") closeSheet();
 });
 
 // Tablets: iPad Pro, iPad Air, iPad, then Samsung and Lenovo (newest first inside each group)
@@ -2299,9 +2304,9 @@ const LANDING_ICONS = {
 };
 const LANDING_SUBS = {
   tablets: "iPad y Android", phones: "iPhone y Android", accessories: "Lápices, trípodes, gimbals y más",
-  mics: "Inalámbricos y de estudio", mac: "MacBook, iMac, Mac mini y Studio", computers: "Portátiles, sobremesa y workstation",
+  mics: "Inalámbricos, de estudio e intercom", mac: "MacBook, iMac, Mac mini y Studio", computers: "Portátiles, sobremesa y workstation",
   monitors: "Monitores y Smart TV 4K", connectivity: "MiFi, routers 5G y redes Wi-Fi", cabins: "NAS y cabinas de discos",
-  videoconf: "Cámaras, altavoces, pantallas e intercom", printers: "Multifunción B/N y color",
+  videoconf: "Cámaras, altavoces, pantallas y punteros", printers: "Multifunción B/N y color",
   storage: "SSD portátiles y discos externos", batteries: "Pilas, recargables y comprobadores", sound: "Antivientos, soportes y fundas", stationery: "Bolígrafos, rotuladores y pegamentos", protection: "Bolsas, fundas y mochilas", electric: "Clavijas Schuko y regletas", filmset: "Claquetas, letras y talco", dulling: "Sprays matabrillos", lighting: "Gelatinas, Cinefoil y papel negro", effects: "Sprays de efecto y atrezo", cleaning: "Aire comprimido, ópticas y desinfección", marks: "Marcas en T, salchichas y pegatinas", fastening: "Bridas, velcros, cinchas y eslingas", tapes: "Gaffer, cinta de cámara y doble cara", backdrops: "Telas molton y fondos", othersound: "Aislantes, silenciadores y auriculares", lavacc: "Cinturones y bolsas para petaca"
 };
 function enhanceLandingCards() {
@@ -2553,7 +2558,8 @@ document.getElementById("goMics").addEventListener("click", () => goTo("mics"));
 document.querySelectorAll("[data-back]").forEach(btn => {
   btn.addEventListener("click", () => {
     if (navigatedFromLanding) {
-      history.back();
+      // A sheet step left behind (sheet closed from the code) is skipped too
+      history.go(history.state && history.state.sheet ? -2 : -1);
     } else {
       history.replaceState(null, "", location.pathname + location.search);
       route();
@@ -2568,6 +2574,8 @@ function setupFilters(gridEl, filterDefs) {
     if (!f.select) return;
     const present = gridEl._present(f.attr);
     [...f.select.options].forEach(o => { if (o.value !== "all" && !present.has(o.value)) o.remove(); });
+    // A filter with a single choice filters nothing (e.g. every product of the category without a brand)
+    if (f.select.options.length <= 2) f.select.closest(".filter-row").hidden = true;
   });
   const active = {};
   filterDefs.forEach(f => { if (f.select) active[f.attr] = "all"; });
@@ -2643,7 +2651,7 @@ const SUBCATS = {
   brandSelect: [["Apple", "iPad"], ["Samsung", "Samsung"], ["Lenovo", "Lenovo"]],
   phoneBrandSelect: [["Apple", "iPhone"], ["Samsung", "Samsung Galaxy"], ["Xiaomi", "Xiaomi Redmi"]],
   accessoryTypeSelect: [["Lápiz digital", "Pencil"], ["Trípode", "Trípodes"], ["Gimbal", "Gimbal"], ["Funda", "Fundas"], ["Batería externa", "Power Bank"], ["Iluminación", "Aro de luz"]],
-  micsTypeSelect: [["Inalámbrico", "Micros. inalámbricos"], ["Podcast / estudio", "Podcast / estudio"], ["Kit para móvil", "Kit para móvil"]],
+  micsTypeSelect: [["Inalámbrico", "Micros. inalámbricos"], ["Podcast / estudio", "Podcast / estudio"], ["Kit para móvil", "Kit para móvil"], ["Intercom", "Intercom"]],
   macTypeSelect: [["MacBook Pro", "MacBook Pro"], ["MacBook Air", "MacBook Air"], ["iMac", "iMac"], ["Mac mini", "Mac mini"], ["Mac Studio", "Mac Studio"]],
   monitorTypeSelect: [["Monitores", "Monitores"], ["Smart TV", "Smart TV"]],
   printerSizeSelect: [["A4", "A4"], ["A3", "A3"]]
@@ -3029,8 +3037,17 @@ function route() {
   }
 }
 
-window.addEventListener("popstate", route);
+window.addEventListener("popstate", () => {
+  // Back with a product sheet open: close it and stay where you are
+  if (panel.classList.contains("open")) {
+    closePanel();
+    if (location.href === sheetUrl) return;
+  }
+  route();
+});
 window.addEventListener("hashchange", route);
+// A reload keeps the history step of a sheet that is no longer open
+if (history.state && history.state.sheet) history.replaceState(null, "", location.href);
 route();
 
 // --- Professional theme: navigation, reveal on scroll, counters, progress bar, pointer glow ---
@@ -3202,6 +3219,10 @@ route();
       const numeric = opts.every(o => !isNaN(size(o.value)));
       opts.sort((a, b) => numeric ? size(a.value) - size(b.value) : a.text.localeCompare(b.text, "es", { sensitivity: "base" }));
       opts.forEach(o => sel.appendChild(o));
+    });
+    // A filter box left with no filter to show (each one had a single choice) is not shown
+    document.querySelectorAll(".filter-panel").forEach(box => {
+      if (!box.querySelector(".filter-row:not([hidden])")) box.hidden = true;
     });
   }, "filterOrder");
 

@@ -61,7 +61,6 @@ em { font-family: var(--serif); font-style: italic; font-weight: 400; color: var
 h1, h2 { margin: 0; font-weight: 600; letter-spacing: -0.025em; line-height: 1.05; }
 h2 { font-size: clamp(28px, 3.6vw, 48px); }
 ::selection { background: var(--accent); color: #fff; }
-.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 .kicker {
   display: inline-flex; align-items: center; gap: 10px;
@@ -496,7 +495,6 @@ section { position: relative; }
 .reveal { opacity: 0; transform: translateY(26px); transition: opacity 900ms var(--ease), transform 900ms var(--ease); }
 .reveal.is-in { opacity: 1; transform: none; }
 .reveal[data-split] { opacity: 1; transform: none; }
-.no-js .reveal { opacity: 1; transform: none; }
 
 /* --- Tablet --- */
 @media (max-width: 980px) {
