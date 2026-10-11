@@ -742,7 +742,7 @@ const ACCESSORIES = [
   },
 {
     cat: "accessory", catLabel: "Accesorio", type: "Gimbal", group: "Móvil/Cámara", brand: "Zhiyun", brandCode: "Z", brandColor: "#6B4FA0",
-    model: "Smooth X Combo", photo: "../alquiler/img/zhiyun-smooth-x-combo_SpTV.webp?v=11",
+    model: "Gimbal: Smooth X Combo", photo: "../alquiler/img/zhiyun-smooth-x-combo_SpTV.webp?v=11",
     icon: accessoryIcon("#6B4FA0"),
     specs: [
       ["Categoría", "Accesorio · Móvil/Cámara"],
@@ -757,7 +757,7 @@ const ACCESSORIES = [
   },
 {
     cat: "accessory", catLabel: "Accesorio", type: "Gimbal", group: "Móvil/Cámara", brand: "Insta360", brandCode: "I", brandColor: "#111111",
-    model: "Flow 2 Pro", photo: "../alquiler/img/insta360-flow-2-pro_SpTV.webp?v=11",
+    model: "Gimbal: Flow 2 Pro", photo: "../alquiler/img/insta360-flow-2-pro_SpTV.webp?v=11",
     icon: accessoryIcon("#111111"),
     specs: [
       ["Categoría", "Accesorio · Móvil/Cámara"],
@@ -776,7 +776,7 @@ const ACCESSORIES = [
   },
 {
     cat: "accessory", catLabel: "Accesorio", type: "Gimbal", group: "Móvil/Cámara", brand: "Insta360", brandCode: "I", brandColor: "#111111",
-    model: "Flow 2", photo: "../alquiler/img/insta360-flow-2_SpTV.webp?v=11",
+    model: "Gimbal: Flow 2", photo: "../alquiler/img/insta360-flow-2_SpTV.webp?v=11",
     icon: accessoryIcon("#111111"),
     specs: [
       ["Categoría", "Accesorio · Móvil/Cámara"],
@@ -802,11 +802,15 @@ const ACCESSORIES = [
     ]
   },
 {
-    cat: "accessory", catLabel: "Accesorio", type: "Funda", group: "iPad", brand: "", brandCode: "", brandColor: "#5C6672",
-    model: "Funda Rugged / Correa", photo: "../alquiler/img/funda-rugged-sin-marca_SpTV.webp?v=11",
-    icon: accessoryIcon("#5C6672"),
+    cat: "accessory", catLabel: "Accesorio", type: "Funda", group: "iPad", brand: "ProCase", brandCode: "P", brandColor: "#1A1A1A",
+    model: "Funda Rugged / Correa", photo: "../alquiler/img/procase-funda-rugged-correa_SpTV.webp?v=11",
+    icon: accessoryIcon("#1A1A1A"),
     specs: [
-      ["Categoría", "Accesorio · iPad"]
+      ["Categoría", "Accesorio · iPad"],
+      ["Marca", "ProCase"],
+      ["Descripción", "Funda reforzada antigolpes con correa para colgar al hombro (ajustable y extraíble), asa giratoria de 360° para sujetar el iPad con una mano, soporte trasero y hueco para el lápiz. Ideal para rodajes, eventos y trabajo de pie."],
+      ["Compatibilidad", "iPad 10,2'' de 7.ª / 8.ª / 9.ª generación"],
+      ["Incluye", "Funda con protector de pantalla, asa giratoria y correa de hombro"]
     ]
   },
 {
@@ -1443,67 +1447,102 @@ const VIDEOCONF = [
 ];
 
 const PRINTERS = [
+  // Same sheet for both: Categoría, Marca, Modelo, Descripción, Formato, Impresión, Funciones, Velocidad, Resolución,
+  // Papel, Otros, Conexión, Uso recomendado, Dimensiones, Tarifa
   {
-    cat: "printer", catLabel: "B/N|Color", type: "B/N|Color", group: "A4|A3", brand: "", brandCode: "", brandColor: "#5C6672",
-    model: "Impresora multifunción", photo: "../alquiler/img/impresora-multifuncion_SpTV.webp?v=11",
+    cat: "printer", catLabel: "Multifunción A4", type: "B/N|Color", group: "A4", brand: "", brandCode: "", brandColor: "#5C6672",
+    model: "Impresora multifunción A4", photo: "../alquiler/img/impresora-multifuncion-a4_SpTV.webp?v=11",
     icon: printerIcon("#5C6672"),
-    info: [["tag", "Formato", "A4 · A3", 1], ["screen", "Impresión", "B/N · Color", 1], ["capacity", "Tarifa", "Coste por página"]],
-    specs: [["Categoría", "Impresora multifunción láser"], ["Formato", "A4 y A3"], ["Impresión", "Blanco y negro o color"], ["Funciones", "Imprimir, copiar, escanear (a correo, carpeta o USB) y fax opcional"], ["Otros", "Doble cara automática, alimentador de documentos, pantalla táctil y acceso con PIN"], ["Conexión", "Red (Ethernet) · Wi-Fi opcional · impresión desde móvil"], ["Tarifa", "Coste por página impresa (consúltanos)"]]
+    info: [["tag", "Formato", "A4", 1], ["screen", "Impresión", "B/N · Color", 1], ["capacity", "Tarifa", "Coste por página"]],
+    specs: [["Categoría", "Impresora multifunción láser A4"], ["Marca", "Según disponibilidad (foto orientativa: OKI MC554)"], ["Modelo", "Multifunción A4 en blanco y negro o en color"],
+      ["Descripción", "Multifunción compacta para oficinas, eventos y producciones: imprime, copia, escanea y envía fax en A4, a doble cara y también desde el móvil."],
+      ["Formato", "A4 (y tamaños menores)"], ["Impresión", "Blanco y negro o color"], ["Funciones", "Imprimir, copiar, escanear (a correo, carpeta o USB) y fax"],
+      ["Velocidad", "Unas 30 ppm en A4 (según modelo)"], ["Resolución", "600 × 600 ppp"], ["Papel", "Bandeja de 250 hojas + bandeja multifunción · bandeja adicional opcional"],
+      ["Otros", "Doble cara automática, alimentador de documentos, pantalla táctil y acceso con PIN"], ["Conexión", "Red (Ethernet) · USB · Wi-Fi opcional · impresión desde móvil"],
+      ["Uso recomendado", "Grupos pequeños y medianos"], ["Dimensiones", "Unos 41 × 43 × 48 cm (según modelo)"], ["Tarifa", "Coste por página impresa (consúltanos)"]]
+  },
+  {
+    cat: "printer", catLabel: "Multifunción A3", type: "Color", group: "A3", brand: "OKI", brandCode: "O", brandColor: "#E60012",
+    model: "OKI MC883 (A3)", photo: "../alquiler/img/oki-mc883_SpTV.webp?v=11",
+    icon: printerIcon("#E60012"),
+    info: [["tag", "Formato", "A3 · A4", 1], ["screen", "Impresión", "Color · B/N", 1], ["capacity", "Tarifa", "Coste por página"]],
+    specs: [["Categoría", "Impresora multifunción LED A3 en color"], ["Marca", "OKI"], ["Modelo", "MC883dn"],
+      ["Descripción", "Multifunción A3 en color de alta capacidad para oficinas y producciones con mucho volumen: imprime, copia, escanea y envía fax en A3 y A4, a doble cara y con alimentador de documentos."],
+      ["Formato", "A3 y A4 (y tamaños menores)"], ["Impresión", "Color y blanco y negro"], ["Funciones", "Imprimir, copiar, escanear (a correo, carpeta o USB) y fax"],
+      ["Velocidad", "35 ppm en A4 · 20 ppm en A3 (color y B/N)"], ["Resolución", "1200 × 1200 ppp"], ["Papel", "Bandeja de 300 hojas + bandeja multifunción de 100 · bandeja adicional opcional de 535"],
+      ["Otros", "Doble cara automática, alimentador de documentos de 100 hojas, pantalla táctil, disco duro de 250 GB e impresión segura"], ["Conexión", "Red (Gigabit Ethernet) · USB 2.0 · Wi-Fi opcional · impresión desde móvil"],
+      ["Uso recomendado", "Grupos grandes · 10.000 páginas al mes"], ["Dimensiones", "56,3 × 60 × 70 cm · 64 kg"], ["Tarifa", "Coste por página impresa (consúltanos)"]]
   }
 ];
 
 const CABINS = [
+  // Same sheet for every DAS and NAS: Categoría, Marca, Modelo, Número de bahías (chosen in the sheet; the photo follows),
+  // Descripción, Discos, [Procesador, RAM], Conexión, Velocidad, RAID, Capacidad máxima, [Formato, Alimentación], Compatible con
   {
     cat: "cabin", catLabel: "DAS", type: "DAS", brand: "Stardom", brandCode: "S", brandColor: "#1F6FB2",
     model: "Stardom SOHORAID", photo: "../alquiler/img/stardom-sohoraid_SpTV.webp?v=11",
     icon: cabinIcon("#1F6FB2"),
-    info: [["bays", "Bahías", "Desde 2", 1], ["raid", "RAID", "0, 1, JBOD", 1], ["port", "Conexión", "USB-C (USB 3.2 Gen 2)"]],
-    specs: [["Categoría", "Cabina de discos (DAS)"], ["Marca", "Stardom (RAIDON)"], ["Modelos", "ST2-B31A (2 bahías) · ST4R-B32 / ST4-B32 (4 bahías)"], ["Bahías", "Desde 2 · discos 3,5'' / 2,5'' SATA, extraíbles en caliente"], ["Conexión", "USB-C · USB 3.2 Gen 2 (10 Gb/s) en 2 bahías, Gen 2x2 (20 Gb/s) en 4 bahías · compatible Thunderbolt 3/4"], ["RAID", "0, 1, JBOD, BIG"]]
+    info: [["bays", "Bahías", "2 · 4", 1], ["raid", "RAID", "0, 1, JBOD", 1], ["port", "Conexión", "USB-C (USB 3.2)"]],
+    specs: [["Categoría", "Cabina de discos (DAS) con RAID por hardware"], ["Marca", "Stardom (RAIDON)"], ["Modelo", "ST2-B31A (2 bahías) · ST4-B32 / ST4R-B32 (4 bahías)"], ["Número de bahías", "2 bahías · 4 bahías"],
+      ["Descripción", "Cabina de discos compacta por USB-C para copias de seguridad y el trabajo diario, con protección RAID por hardware: se conecta al ordenador y funciona sin instalar programas."],
+      ["Discos", "3,5'' / 2,5'' SATA, extraíbles en caliente"], ["Conexión", "USB-C · USB 3.2 Gen 2 (10 Gb/s) en 2 bahías, Gen 2x2 (20 Gb/s) en 4 bahías · compatible con Thunderbolt 3/4"],
+      ["Velocidad", "Hasta 10 Gb/s (2 bahías) · hasta 20 Gb/s (4 bahías)"], ["RAID", "0, 1, JBOD, BIG"], ["Capacidad máxima", "Según los discos instalados"], ["Compatible con", "Windows y macOS"]]
   },
   {
     cat: "cabin", catLabel: "DAS", type: "DAS", brand: "Areca", brandCode: "A", brandColor: "#C8102E",
     model: "Areca ARC-8050T3U", photo: "../alquiler/img/areca-arc-8050t3u_SpTV.webp?v=11",
-    // Photos per size, with arrows on the card and in the sheet
-    gallery: ["../alquiler/img/areca-arc-8050t3u_SpTV.webp?v=11", "../alquiler/img/areca-arc-8050t3u-4_SpTV.webp?v=11"], galleryLabels: ["8 bahías", "4 bahías"], cardGallery: true,
+    // One photo per number of bays (the card starts on the 8-bay one)
+    optionPhotos: { "Número de bahías": ["../alquiler/img/areca-arc-8050t3u-4_SpTV.webp?v=11", "../alquiler/img/areca-arc-8050t3u-6_SpTV.webp?v=11", "../alquiler/img/areca-arc-8050t3u_SpTV.webp?v=11"] }, _optShown: 2,
     icon: cabinIcon("#C8102E"),
     info: [["bays", "Bahías", "4 · 6 · 8", 1], ["raid", "RAID", "0, 1, 5, 6, 10", 1], ["port", "Conexión", "Thunderbolt 3 · USB-C"]],
-    specs: [["Categoría", "Cabina de discos (DAS) con RAID por hardware"], ["Marca", "Areca"], ["Modelos", "ARC-8050T3U-4 / -6 / -8"], ["Bahías", "4 / 6 / 8 · discos 3,5'' / 2,5'' SAS o SATA"], ["Conexión", "2 × Thunderbolt 3 (40 Gb/s, USB-C) · en USB-C normal funciona como USB 3.2 Gen 2 (10 Gb/s) · DisplayPort"], ["RAID", "0, 1, 3, 5, 6, 10, JBOD (30 / 50 / 60 desde 6 bahías)"]]
+    specs: [["Categoría", "Cabina de discos (DAS) con RAID por hardware"], ["Marca", "Areca"], ["Modelo", "ARC-8050T3U-4 (4 bahías) · ARC-8050T3U-6 (6 bahías) · ARC-8050T3U-8 (8 bahías)"], ["Número de bahías", "4 bahías · 6 bahías · 8 bahías"],
+      ["Descripción", "Cabina RAID profesional por Thunderbolt 3 para edición y postproducción: admite discos SAS o SATA, se encadena con otros dispositivos Thunderbolt y tiene salida de vídeo DisplayPort."],
+      ["Discos", "3,5'' / 2,5'' SAS o SATA, extraíbles en caliente"], ["Conexión", "2 × Thunderbolt 3 (40 Gb/s, USB-C), encadenable · en USB-C normal funciona como USB 3.2 Gen 2 (10 Gb/s) · DisplayPort"],
+      ["Velocidad", "Hasta 40 Gb/s (Thunderbolt 3)"], ["RAID", "0, 1, 3, 5, 6, 10, JBOD · también 30, 50 y 60 desde 6 bahías"], ["Capacidad máxima", "Según los discos instalados"], ["Compatible con", "macOS y Windows"]]
   },
   {
     cat: "cabin", catLabel: "DAS", type: "DAS", brand: "TerraMaster", brandCode: "T", brandColor: "#E95513",
-    model: "TerraMaster D5 / D8", photo: "../alquiler/img/terramaster-d5-d8_SpTV.webp?v=11",
-    gallery: ["../alquiler/img/terramaster-d5-d8_SpTV.webp?v=11", "../alquiler/img/terramaster-d8-332_SpTV.webp?v=11"], galleryLabels: ["D5 · 5 bahías", "D8-332 · 8 bahías"], cardGallery: true,
+    model: "TerraMaster D5 / D8", photo: "../alquiler/img/terramaster-d5_SpTV.webp?v=11",
+    optionPhotos: { "Número de bahías": ["../alquiler/img/terramaster-d5_SpTV.webp?v=11", "../alquiler/img/terramaster-d8-332_SpTV.webp?v=11"] },
     icon: cabinIcon("#E95513"),
     info: [["bays", "Bahías", "5 · 8", 1], ["raid", "RAID", "0, 1, 5, 10", 1], ["port", "Conexión", "Thunderbolt 3 (40 Gb/s)"]],
-    specs: [["Categoría", "Cabina de discos (DAS) con RAID por hardware"], ["Marca", "TerraMaster"], ["Modelos", "D5 Thunderbolt 3 · D8-332"], ["Bahías", "5 / 8 · discos 3,5'' SATA o SSD 2,5''"], ["Conexión", "2 × Thunderbolt 3 (40 Gb/s), encadenable · solo dispositivos Thunderbolt 3/4"], ["Velocidad", "Hasta 1035 MB/s (D5) · hasta 1600 MB/s (D8-332)"], ["RAID", "0, 1, 5, 10, JBOD, Single"], ["Capacidad máxima", "120 TB (D5) · 160 TB (D8-332)"]]
+    specs: [["Categoría", "Cabina de discos (DAS) con RAID por hardware"], ["Marca", "TerraMaster"], ["Modelo", "D5 Thunderbolt 3 (5 bahías) · D8-332 (8 bahías)"], ["Número de bahías", "5 bahías · 8 bahías"],
+      ["Descripción", "Cabina RAID de aluminio por Thunderbolt 3, silenciosa y encadenable, para guardar y editar grandes volúmenes de vídeo directamente desde los discos."],
+      ["Discos", "3,5'' SATA o SSD 2,5'', extraíbles en caliente"], ["Conexión", "2 × Thunderbolt 3 (40 Gb/s), encadenable · solo dispositivos Thunderbolt 3/4"],
+      ["Velocidad", "Hasta 1035 MB/s (D5) · hasta 1600 MB/s (D8-332)"], ["RAID", "0, 1, 5, 10, JBOD, Single"], ["Capacidad máxima", "120 TB (D5) · 160 TB (D8-332)"], ["Compatible con", "macOS y Windows con Thunderbolt 3/4"]]
   },
   {
     cat: "cabin", catLabel: "DAS", type: "DAS", brand: "Promise", brandCode: "P", brandColor: "#0B5CAB",
     model: "Promise Pegasus32 R", photo: "../alquiler/img/promise-pegasus32-r_SpTV.webp?v=11",
     icon: cabinIcon("#0B5CAB"),
     info: [["bays", "Bahías", "4 · 6 · 8", 1], ["raid", "RAID", "0, 1, 5, 6, 10, 50, 60", 1], ["port", "Conexión", "Thunderbolt 3 · USB-C"]],
-    specs: [["Categoría", "Cabina de discos (DAS) con RAID por hardware"], ["Marca", "Promise"], ["Modelos", "Pegasus32 R4 / Pegasus32 R6 / Pegasus32 R8"], ["Descripción", "Cabina RAID para edición de vídeo y fotografía: rápida, silenciosa y con protección de datos por hardware. Se conecta por Thunderbolt 3 o USB-C, puede cargar el portátil y tiene salida de vídeo para un monitor de hasta 8K."], ["Bahías", "4 / 6 / 8 · discos 3,5'' SATA (HDD 7200 rpm o SSD), extraíbles en caliente"], ["Conexión", "2 × USB-C: Thunderbolt 3 (40 Gb/s) o USB 3.2 Gen 2 (10 Gb/s), encadenable · DisplayPort 1.4 (monitor hasta 8K) · carga hasta 85 W"], ["Velocidad", "Hasta 2800 MB/s con SSD"], ["RAID", "0, 1, 5, 6, 10, JBOD (R4) · también 50 (R6) · también 50 y 60 (R8)"], ["Capacidad", "16 TB (R4) · 24 o 48 TB (R6) · de 32 a 144 TB (R8)"], ["Dimensiones", "R4: 19,2 × 18,7 × 24,5 cm · R6: 25,1 × 18,7 × 24,5 cm · R8: 31,0 × 18,7 × 24,5 cm (alto × ancho × fondo)"], ["Peso", "6,8 kg (R4) · 9,1 kg (R6) · 11 kg (R8)"], ["Compatible con", "macOS 10.14 o posterior · Windows 10 (64 bits)"], ["Incluye", "Cable Thunderbolt 3 / USB-C de 0,7 m"]]
+    specs: [["Categoría", "Cabina de discos (DAS) con RAID por hardware"], ["Marca", "Promise"], ["Modelo", "Pegasus32 R4 (4 bahías) · Pegasus32 R6 (6 bahías) · Pegasus32 R8 (8 bahías)"], ["Número de bahías", "4 bahías · 6 bahías · 8 bahías"],
+      ["Descripción", "Cabina RAID para edición de vídeo y fotografía: rápida, silenciosa y con protección de datos por hardware. Se conecta por Thunderbolt 3 o USB-C, puede cargar el portátil y tiene salida de vídeo para un monitor de hasta 8K."],
+      ["Discos", "3,5'' SATA (HDD 7200 rpm o SSD), extraíbles en caliente"], ["Conexión", "2 × USB-C: Thunderbolt 3 (40 Gb/s) o USB 3.2 Gen 2 (10 Gb/s), encadenable · DisplayPort 1.4 (monitor hasta 8K) · carga hasta 85 W"],
+      ["Velocidad", "Hasta 2800 MB/s con SSD"], ["RAID", "0, 1, 5, 6, 10, JBOD (R4) · también 50 (R6) · también 50 y 60 (R8)"], ["Capacidad máxima", "16 TB (R4) · 48 TB (R6) · 144 TB (R8)"], ["Compatible con", "macOS 10.14 o posterior y Windows 10 (64 bits)"]]
   },
   {
-    cat: "cabin", catLabel: "NAS", type: "NAS", brand: "QNAP", brandCode: "Q", brandColor: "#2F6BB3",
-    model: "QNAP TS-464", photo: "../alquiler/img/qnap-ts-464_SpTV.webp?v=11",
-    icon: cabinIcon("#2F6BB3"),
-    info: [["bays", "Bahías", "4 + 2 M.2", 1], ["raid", "RAID", "0, 1, 5, 6, 10", 1], ["port", "Conexión", "2 × 2,5 GbE (10 GbE opcional)"]],
-    specs: [["Categoría", "NAS de sobremesa"], ["Marca", "QNAP"], ["Bahías", "4 × 3,5'' / 2,5'' SATA · 2 × M.2 NVMe (caché SSD)"], ["Procesador", "Intel Celeron N5095 (4 núcleos, hasta 2,9 GHz)"], ["RAM", "8 GB DDR4 (máx. 16 GB)"], ["Conexión", "2 × 2,5 GbE · 10 GbE opcional (PCIe) · 2 × USB 3.2 Gen 2 · HDMI"], ["RAID", "0, 1, 5, 6, 10, JBOD, Single"]]
-  },
-  {
-    cat: "cabin", catLabel: "NAS", type: "NAS", brand: "QNAP", brandCode: "Q", brandColor: "#2F6BB3",
-    model: "QNAP TS-1264U-RP", photo: "../alquiler/img/qnap-ts-1264u-rp_SpTV.webp?v=11",
-    icon: cabinIcon("#2F6BB3"),
-    info: [["bays", "Bahías", "12 · rack 2U", 1], ["raid", "RAID", "0–60", 1], ["port", "Conexión", "2 × 2,5 GbE (10 GbE opcional)"]],
-    specs: [["Categoría", "NAS de rack 2U"], ["Marca", "QNAP"], ["Bahías", "12 × 3,5'' / 2,5'' SATA, extraíbles en caliente"], ["Procesador", "Intel Celeron N5095 (4 núcleos, hasta 2,9 GHz)"], ["RAM", "8 GB DDR4 (máx. 16 GB)"], ["Conexión", "2 × 2,5 GbE · 10 GbE opcional (PCIe) · 2 × USB 3.2 Gen 2"], ["Alimentación", "Doble fuente redundante de 300 W"], ["RAID", "0, 1, 5, 6, 10, 50, 60, JBOD, Single"]]
-  },
-  {
-    cat: "cabin", catLabel: "NAS", type: "NAS", brand: "Synology", brandCode: "S", brandColor: "#4B4B4B",
-    model: "Synology DiskStation DS1825+", photo: "../alquiler/img/synology-diskstation-ds1825-plus_SpTV.webp?v=11",
+    cat: "cabin", catLabel: "NAS", type: "NAS", brand: "Synology / QNAP", brandCode: "N", brandColor: "#4B4B4B",
+    model: "NAS Desktop", photo: "../alquiler/img/nas-desktop_SpTV.webp?v=11",
     icon: cabinIcon("#4B4B4B"),
-    info: [["bays", "Bahías", "8 (hasta 18)", 1], ["raid", "RAID", "SHR, 0, 1, 5, 6, 10", 1], ["port", "Conexión", "2 × 2,5 GbE (10/25 GbE opcional)"]],
-    specs: [["Categoría", "NAS de sobremesa"], ["Marca", "Synology"], ["Bahías", "8 × 3,5'' / 2,5'' SATA (hasta 18 con 2 × DX525) · 2 × M.2 NVMe"], ["Procesador", "AMD Ryzen V1500B (4 núcleos, 2,2 GHz)"], ["RAM", "8 GB DDR4 ECC (máx. 32 GB)"], ["Conexión", "2 × 2,5 GbE · 10 / 25 GbE opcional (PCIe)"], ["Velocidad", "Hasta 2239 MB/s lectura · 1573 MB/s escritura"], ["RAID", "SHR, Basic, JBOD, 0, 1, 5, 6, 10"]]
+    info: [["bays", "Bahías", "2 · 4 · 6 · 8", 1], ["raid", "RAID", "0, 1, 5, 6, 10", 1], ["port", "Conexión", "2 × 2,5 GbE (10 GbE opcional)"]],
+    specs: [["Categoría", "NAS de sobremesa"], ["Marca", "Synology o QNAP, según disponibilidad"], ["Modelo", "Gama DiskStation (Synology) o TS (QNAP), según el número de bahías"], ["Número de bahías", "2 bahías · 4 bahías · 6 bahías · 8 bahías"],
+      ["Descripción", "Almacenamiento en red para la oficina, el estudio o el rodaje: todos acceden a los mismos archivos desde sus ordenadores, con copias de seguridad automáticas y acceso remoto."],
+      ["Discos", "3,5'' / 2,5'' SATA, extraíbles en caliente · 2 × M.2 NVMe (caché SSD)"], ["Procesador", "4 núcleos (Intel Celeron o AMD Ryzen, según modelo)"], ["RAM", "8 GB DDR4 (ampliable)"],
+      ["Conexión", "2 × 2,5 GbE · 10 GbE opcional (PCIe) · 2 × USB 3.2 Gen 2"], ["Velocidad", "Hasta 2,5 Gb/s por puerto de red · 10 Gb/s con la tarjeta opcional"],
+      ["RAID", "0, 1, 5, 6, 10, JBOD (según el número de bahías)"], ["Capacidad máxima", "Según los discos instalados"], ["Compatible con", "Windows, macOS y Linux por la red · app para móvil"]]
+  },
+  {
+    cat: "cabin", catLabel: "NAS", type: "NAS", brand: "Synology / QNAP", brandCode: "N", brandColor: "#4B4B4B",
+    model: "NAS Rack", photo: "../alquiler/img/qnap-ts-1264u-rp_SpTV.webp?v=11",
+    icon: cabinIcon("#4B4B4B"),
+    info: [["bays", "Bahías", "8 · 12 · 14 · 16", 1], ["raid", "RAID", "0–60", 1], ["port", "Conexión", "2 × 2,5 GbE (10 GbE opcional)"]],
+    specs: [["Categoría", "NAS de rack"], ["Marca", "Synology o QNAP, según disponibilidad"], ["Modelo", "Gama RackStation (Synology) o TS-U (QNAP), según el número de bahías"], ["Número de bahías", "8 bahías · 12 bahías · 14 bahías · 16 bahías"],
+      ["Descripción", "NAS para armario rack con mucha capacidad y doble fuente de alimentación: almacenamiento central para productoras, estudios y oficinas, con copias de seguridad automáticas y acceso remoto."],
+      ["Discos", "3,5'' / 2,5'' SATA, extraíbles en caliente"], ["Procesador", "4 núcleos (Intel Celeron o AMD Ryzen, según modelo)"], ["RAM", "8 GB DDR4 (ampliable)"],
+      ["Conexión", "2 × 2,5 GbE · 10 GbE opcional (PCIe) · 2 × USB 3.2 Gen 2"], ["Velocidad", "Hasta 2,5 Gb/s por puerto de red · 10 Gb/s con la tarjeta opcional"],
+      ["RAID", "0, 1, 5, 6, 10, 50, 60, JBOD, Single"], ["Capacidad máxima", "Según los discos instalados"], ["Formato", "Rack de 19'' (2U o 3U, según el número de bahías)"], ["Alimentación", "Doble fuente redundante"],
+      ["Compatible con", "Windows, macOS y Linux por la red · app para móvil"]]
   }
 ];
 
@@ -1861,7 +1900,7 @@ function bindSwatches(root, p, img) {
 const OPTION_SPECS = {
   Almacenamiento: "Capacidad", Procesador: "Procesador", RAM: "RAM", Modelos: "Modelo", Red: "Red", Datos: "Datos",
   Tamaños: "Tamaño", Tallas: "Talla", Medidas: "Medida", Formatos: "Formato", Versiones: "Versión", Puntas: "Punta",
-  Alturas: "Altura", Anchos: "Ancho", Largos: "Largo", Grosores: "Grosor", Apertura: "Apertura", Referencias: "Referencia", Efectos: "Efecto"
+  Alturas: "Altura", Anchos: "Ancho", Largos: "Largo", Grosores: "Grosor", Apertura: "Apertura", Referencias: "Referencia", Efectos: "Efecto", "Número de bahías": "Bahías"
 };
 // Technical sheet rows per product type, in this order (the other data stays, but is not shown).
 // Types not listed here show every row.
@@ -2764,7 +2803,10 @@ document.querySelectorAll('input[name="rentInterest"]').forEach(r => {
   r.checked = r.defaultChecked;
 });
 // E-mail addresses are written as "user [arroba] domain" and put together here, out of reach of simple robots
-document.querySelectorAll(".js-mail[data-u][data-d]").forEach(el => { el.textContent = el.dataset.u + "@" + el.dataset.d; });
+document.querySelectorAll(".js-mail[data-u][data-d]").forEach(el => {
+  el.textContent = el.dataset.u + "@" + el.dataset.d;
+  if (el.tagName === "A") el.href = "mailto:" + el.textContent;
+});
 
 // Request list: products added from the sheets (name with colour/variant + quantity), sent together in one request.
 // Kept in this browser so it survives a reload; one list per catalogue.
@@ -3239,6 +3281,13 @@ route();
     const NAV_KEYS = [...document.querySelectorAll(".category-card")]
       .map(c => CARD_KEYS[c.id]).filter(k => k && inMode(k) && views[k]);
     const chevron = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>';
+    // Categories whose list shows their types instead of every product (Cabinas: DAS / NAS)
+    const NAV_BY_TYPE = new Set(["cabins"]);
+    const typeSelectOf = k => {
+      const row = [...views[k].querySelectorAll(".filter-panel .filter-row")]
+        .find(r => (r.querySelector(".filter-label")?.textContent || "").trim().toLowerCase() === "tipo");
+      return row ? row.querySelector("select") : null;
+    };
     const narrow = matchMedia("(max-width: 900px)");
     NAV_KEYS.forEach(key => {
       const view = views[key];
@@ -3267,8 +3316,13 @@ route();
         const panel = item.querySelector(".cat-nav-panel");
         const list = panel.firstElementChild;
         if (open && !list.childElementCount) {
-          list.innerHTML = INDEX.filter(e => e.key === item.dataset.key)
-            .map(e => `<li><a href="#${SLUGS[e.key]}" data-pid="${esc(e.pid)}">${esc(e.p.model)}</a></li>`).join("");
+          const k = item.dataset.key;
+          const subSel = NAV_BY_TYPE.has(k) ? typeSelectOf(k) : null;
+          list.innerHTML = subSel
+            ? [...subSel.options].filter(o => o.value !== "all")
+              .map(o => `<li><a href="#${SLUGS[k]}" data-sub="${esc(o.value)}">${esc(o.text)}</a></li>`).join("")
+            : INDEX.filter(e => e.key === k)
+              .map(e => `<li><a href="#${SLUGS[e.key]}" data-pid="${esc(e.pid)}">${esc(e.p.model)}</a></li>`).join("");
         }
         panel.inert = !open;
         item.classList.toggle("is-open", open);
@@ -3283,6 +3337,17 @@ route();
           const open = !item.classList.contains("is-open");
           nav.querySelectorAll(".cat-nav-item.is-open").forEach(other => { if (other !== item) setOpen(other, false); });
           setOpen(item, open);
+          return;
+        }
+        const sub = e.target.closest("a[data-sub]");
+        if (sub) {
+          // A type (e.g. DAS / NAS): open its category with only that type showing
+          e.preventDefault();
+          const k = sub.closest(".cat-nav-item").dataset.key;
+          views[k].querySelector(".filter-reset")?.click();
+          if (k !== key) goTo(k); else window.scrollTo({ top: 0, behavior: "smooth" });
+          const sel = typeSelectOf(k);
+          if (sel) { sel.value = sub.dataset.sub; sel.dispatchEvent(new Event("change")); }
           return;
         }
         const product = e.target.closest("a[data-pid]");

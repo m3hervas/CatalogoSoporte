@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Soporte TV — Catálogo</title>
 <link href="../assets/fonts/fonts.css?v=20261004" rel="stylesheet">
-<link rel="stylesheet" href="catalogo.css?v=7734f71d5e">
+<link rel="stylesheet" href="catalogo.css?v=396f772a8a">
 <!-- WhatsApp contact button (shared with the home page; not included in the WordPress build) -->
 <link rel="icon" href="img/logo-soporte-tv-icono_SpTV.webp?v=20261004e" type="image/webp">
 <script src="../assets/whatsapp.js?v=20261004p" data-logo="img/logo-soporte-tv-icono_SpTV.webp?v=20261004e" data-source="alquiler" defer></script>
@@ -1047,9 +1047,8 @@
           <option value="all">Todas las marcas</option>
           <option value="Areca">Areca</option>
           <option value="Promise">Promise</option>
-          <option value="QNAP">QNAP</option>
           <option value="Stardom">Stardom</option>
-          <option value="Synology">Synology</option>
+          <option value="Synology / QNAP">Synology / QNAP</option>
           <option value="TerraMaster">TerraMaster</option>
         </select>
       </div>
@@ -1174,54 +1173,27 @@
   </div>
 </section>
 
-<footer class="site-footer reveal" id="contacto">
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <div class="footer-logo">
-        <img class="brand-logo brand-logo--light" src="img/logo-soporte-tv_SpTV.webp?v=20261004e" alt="Soporte TV" width="128" height="34">
-        <img class="brand-logo brand-logo--dark" src="img/logo-soporte-tv-blanco_SpTV.webp?v=20261004e" alt="" width="128" height="34">
-      </div>
-      <p>Alquiler de dispositivos para eventos, rodajes y producciones. Material configurado y revisado antes de cada entrega.</p>
-      <button class="primary-btn" data-nav="rent">Solicitar alquiler</button>
-    </div>
-    <div class="footer-col">
-      <h4>Catálogo</h4>
-      <a href="#tablets" data-route="tablets">Tablets</a>
-      <a href="#moviles" data-route="moviles">Móviles</a>
-      <a href="#mac" data-route="mac">Mac</a>
-      <a href="#ordenadores" data-route="ordenadores">PC/Portátiles</a>
-    </div>
-    <div class="footer-col">
-      <h4>Más material</h4>
-      <a href="#monitores" data-route="monitores">Monitores / TV</a>
-      <a href="#almacenamiento" data-route="almacenamiento" hidden data-static-hidden>Almacenamiento</a>
-      <a href="#pilas" data-route="pilas" hidden data-static-hidden>Pilas y cargadores</a>
-      <a href="#sonido" data-route="sonido" hidden data-static-hidden>Accesorios de sonido</a>
-      <a href="#papeleria" data-route="papeleria" hidden data-static-hidden>Papelería</a>
-      <a href="#proteccion" data-route="proteccion" hidden data-static-hidden>Protección</a>
-      <a href="#conectividad-tornilleria" data-route="conectividad-tornilleria" hidden data-static-hidden>Conectividad y tornillería</a>
-      <a href="#rodaje" data-route="rodaje" hidden data-static-hidden>Rodaje</a>
-      <a href="#matabrillos" data-route="matabrillos" hidden data-static-hidden>Matabrillos</a>
-      <a href="#iluminacion" data-route="iluminacion" hidden data-static-hidden>Iluminación</a>
-      <a href="#efectos" data-route="efectos" hidden data-static-hidden>Efectos</a>
-      <a href="#limpieza" data-route="limpieza" hidden data-static-hidden>Limpieza</a>
-      <a href="#marcas-de-foco" data-route="marcas-de-foco" hidden data-static-hidden>Marcas de foco</a>
-      <a href="#sujecion" data-route="sujecion" hidden data-static-hidden>Sujeción</a>
-      <a href="#cintas-adhesivas" data-route="cintas-adhesivas" hidden data-static-hidden>Cintas adhesivas</a>
-      <a href="#fondos-telas" data-route="fondos-telas" hidden data-static-hidden>Fondos / Telas</a>
-      <a href="#otros-sonidos" data-route="otros-sonidos" hidden data-static-hidden>Otros sonidos</a>
-      <a href="#accesorios-petaca-micro" data-route="accesorios-petaca-micro" hidden data-static-hidden>Accesorios Petaca/Micro</a>
-      <a href="#cabinas" data-route="cabinas">Cabinas</a>
-      <a href="#conectividad" data-route="conectividad">Conectividad</a>
-      <a href="#accesorios" data-route="accesorios">Accesorios</a>
-      <a href="#videoconferencia" data-route="videoconferencia">Videoconferencia PRO</a>
-      <a href="#impresoras" data-route="impresoras">Impresoras</a>
-      <a href="#microfonos" data-route="microfonos">Micrófonos</a>
-    </div>
+<!-- Same footer as the home page (logo, contact, links, legal); the catalogue only adds the photo credits -->
+<footer class="footer reveal" id="contacto">
+  <div class="footer-top">
+    <a class="nav-brand" href="../" data-nav="portada" aria-label="Soporte TV, inicio">
+      <img class="brand-logo brand-logo--light" src="img/logo-soporte-tv_SpTV.webp?v=20261004e" alt="" width="128" height="34">
+      <img class="brand-logo brand-logo--dark" src="img/logo-soporte-tv-blanco_SpTV.webp?v=20261004e" alt="" width="128" height="34">
+    </a>
+    <p class="footer-contact">
+      <span>Contacto:</span>
+      <a class="js-mail" data-u="comercial" data-d="soportetv.es" href="../#contacto">comercial [arroba] soportetv.es</a>
+    </p>
+    <nav class="footer-links" aria-label="Pie de página">
+      <a href="../alquiler/">Catálogo de alquiler</a>
+      <a href="../compra/">Catálogo de compra</a>
+      <a href="../#nosotros">Quiénes somos</a>
+      <a href="../#contacto">Contacto</a>
+    </nav>
   </div>
-  <div class="footer-bottom">
-    <span>© <span id="footerYear">2026</span> Soporte TV</span>
-    <span class="footer-legal"><a href="../legal/aviso-legal.html">Aviso legal</a> · <a href="../legal/privacidad.html">Política de privacidad</a> · <a href="../legal/cookies.html">Política de cookies</a> · <button class="credits-link" id="openCredits" type="button">Créditos de fotos</button></span>
+  <div class="footer-bottom-line">
+    <p class="footer-copy">© <span id="footerYear">2026</span> Soporte TV</p>
+    <nav class="footer-legal" aria-label="Textos legales"><a href="../legal/aviso-legal.html">Aviso legal</a><a href="../legal/privacidad.html">Política de privacidad</a><a href="../legal/cookies.html">Política de cookies</a><button class="credits-link" id="openCredits" type="button">Créditos de fotos</button></nav>
   </div>
 </footer>
 
@@ -1352,7 +1324,7 @@
 
 </div>
 
-<script src="catalogo-alquiler.js?v=a2e1c290e4"></script>
+<script src="catalogo-alquiler.js?v=aa30f87734"></script>
 
 </body>
 </html>

@@ -1255,7 +1255,7 @@ function bindSwatches(root, p, img) {
 const OPTION_SPECS = {
   Almacenamiento: "Capacidad", Procesador: "Procesador", RAM: "RAM", Modelos: "Modelo", Red: "Red", Datos: "Datos",
   Tamaños: "Tamaño", Tallas: "Talla", Medidas: "Medida", Formatos: "Formato", Versiones: "Versión", Puntas: "Punta",
-  Alturas: "Altura", Anchos: "Ancho", Largos: "Largo", Grosores: "Grosor", Apertura: "Apertura", Referencias: "Referencia", Efectos: "Efecto"
+  Alturas: "Altura", Anchos: "Ancho", Largos: "Largo", Grosores: "Grosor", Apertura: "Apertura", Referencias: "Referencia", Efectos: "Efecto", "Número de bahías": "Bahías"
 };
 // Technical sheet rows per product type, in this order (the other data stays, but is not shown).
 // Types not listed here show every row.
@@ -2152,7 +2152,10 @@ document.querySelectorAll('input[name="rentInterest"]').forEach(r => {
   r.checked = r.defaultChecked;
 });
 // E-mail addresses are written as "user [arroba] domain" and put together here, out of reach of simple robots
-document.querySelectorAll(".js-mail[data-u][data-d]").forEach(el => { el.textContent = el.dataset.u + "@" + el.dataset.d; });
+document.querySelectorAll(".js-mail[data-u][data-d]").forEach(el => {
+  el.textContent = el.dataset.u + "@" + el.dataset.d;
+  if (el.tagName === "A") el.href = "mailto:" + el.textContent;
+});
 
 // Request list: products added from the sheets (name with colour/variant + quantity), sent together in one request.
 // Kept in this browser so it survives a reload; one list per catalogue.
@@ -2627,6 +2630,13 @@ route();
     const NAV_KEYS = [...document.querySelectorAll(".category-card")]
       .map(c => CARD_KEYS[c.id]).filter(k => k && inMode(k) && views[k]);
     const chevron = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>';
+    // Categories whose list shows their types instead of every product (Cabinas: DAS / NAS)
+    const NAV_BY_TYPE = new Set(["cabins"]);
+    const typeSelectOf = k => {
+      const row = [...views[k].querySelectorAll(".filter-panel .filter-row")]
+        .find(r => (r.querySelector(".filter-label")?.textContent || "").trim().toLowerCase() === "tipo");
+      return row ? row.querySelector("select") : null;
+    };
     const narrow = matchMedia("(max-width: 900px)");
     NAV_KEYS.forEach(key => {
       const view = views[key];
@@ -2655,8 +2665,13 @@ route();
         const panel = item.querySelector(".cat-nav-panel");
         const list = panel.firstElementChild;
         if (open && !list.childElementCount) {
-          list.innerHTML = INDEX.filter(e => e.key === item.dataset.key)
-            .map(e => `<li><a href="#${SLUGS[e.key]}" data-pid="${esc(e.pid)}">${esc(e.p.model)}</a></li>`).join("");
+          const k = item.dataset.key;
+          const subSel = NAV_BY_TYPE.has(k) ? typeSelectOf(k) : null;
+          list.innerHTML = subSel
+            ? [...subSel.options].filter(o => o.value !== "all")
+              .map(o => `<li><a href="#${SLUGS[k]}" data-sub="${esc(o.value)}">${esc(o.text)}</a></li>`).join("")
+            : INDEX.filter(e => e.key === k)
+              .map(e => `<li><a href="#${SLUGS[e.key]}" data-pid="${esc(e.pid)}">${esc(e.p.model)}</a></li>`).join("");
         }
         panel.inert = !open;
         item.classList.toggle("is-open", open);
@@ -2671,6 +2686,17 @@ route();
           const open = !item.classList.contains("is-open");
           nav.querySelectorAll(".cat-nav-item.is-open").forEach(other => { if (other !== item) setOpen(other, false); });
           setOpen(item, open);
+          return;
+        }
+        const sub = e.target.closest("a[data-sub]");
+        if (sub) {
+          // A type (e.g. DAS / NAS): open its category with only that type showing
+          e.preventDefault();
+          const k = sub.closest(".cat-nav-item").dataset.key;
+          views[k].querySelector(".filter-reset")?.click();
+          if (k !== key) goTo(k); else window.scrollTo({ top: 0, behavior: "smooth" });
+          const sel = typeSelectOf(k);
+          if (sel) { sel.value = sub.dataset.sub; sel.dispatchEvent(new Event("change")); }
           return;
         }
         const product = e.target.closest("a[data-pid]");
