@@ -1454,25 +1454,35 @@ const PRINTERS = [
 
 const CABINS = [
   {
-    cat: "cabin", catLabel: "Cabina de discos", type: "Cabina de discos", brand: "Areca", brandCode: "A", brandColor: "#C8102E",
-    model: "Areca ARC-8050T3U", photo: "../alquiler/img/areca-arc-8050t3u_SpTV.webp?v=11",
-    icon: cabinIcon("#C8102E"),
-    info: [["bays", "Bahías", "4 · 6 · 8", 1], ["raid", "RAID", "0, 1, 5, 6, 10", 1], ["port", "Conexión", "Thunderbolt 3 · USB-C"]],
-    specs: [["Categoría", "Cabina de discos (DAS) con RAID por hardware"], ["Marca", "Areca"], ["Modelos", "ARC-8050T3U-4 / -6 / -8"], ["Bahías", "4 / 6 / 8 · discos 3,5'' / 2,5'' SAS o SATA"], ["Conexión", "2 × Thunderbolt 3 (40 Gb/s, USB-C) · en USB-C normal funciona como USB 3.2 Gen 2 (10 Gb/s) · DisplayPort"], ["RAID", "0, 1, 3, 5, 6, 10, JBOD (30 / 50 / 60 desde 6 bahías)"]]
-  },
-  {
-    cat: "cabin", catLabel: "Cabina de discos", type: "Cabina de discos", brand: "Stardom", brandCode: "S", brandColor: "#1F6FB2",
+    cat: "cabin", catLabel: "DAS", type: "DAS", brand: "Stardom", brandCode: "S", brandColor: "#1F6FB2",
     model: "Stardom SOHORAID", photo: "../alquiler/img/stardom-sohoraid_SpTV.webp?v=11",
     icon: cabinIcon("#1F6FB2"),
     info: [["bays", "Bahías", "Desde 2", 1], ["raid", "RAID", "0, 1, JBOD", 1], ["port", "Conexión", "USB-C (USB 3.2 Gen 2)"]],
     specs: [["Categoría", "Cabina de discos (DAS)"], ["Marca", "Stardom (RAIDON)"], ["Modelos", "ST2-B31A (2 bahías) · ST4R-B32 / ST4-B32 (4 bahías)"], ["Bahías", "Desde 2 · discos 3,5'' / 2,5'' SATA, extraíbles en caliente"], ["Conexión", "USB-C · USB 3.2 Gen 2 (10 Gb/s) en 2 bahías, Gen 2x2 (20 Gb/s) en 4 bahías · compatible Thunderbolt 3/4"], ["RAID", "0, 1, JBOD, BIG"]]
   },
   {
-    cat: "cabin", catLabel: "Cabina de discos", type: "Cabina de discos", brand: "TerraMaster", brandCode: "T", brandColor: "#E95513",
+    cat: "cabin", catLabel: "DAS", type: "DAS", brand: "Areca", brandCode: "A", brandColor: "#C8102E",
+    model: "Areca ARC-8050T3U", photo: "../alquiler/img/areca-arc-8050t3u_SpTV.webp?v=11",
+    // Photos per size, with arrows on the card and in the sheet
+    gallery: ["../alquiler/img/areca-arc-8050t3u_SpTV.webp?v=11", "../alquiler/img/areca-arc-8050t3u-4_SpTV.webp?v=11"], galleryLabels: ["8 bahías", "4 bahías"], cardGallery: true,
+    icon: cabinIcon("#C8102E"),
+    info: [["bays", "Bahías", "4 · 6 · 8", 1], ["raid", "RAID", "0, 1, 5, 6, 10", 1], ["port", "Conexión", "Thunderbolt 3 · USB-C"]],
+    specs: [["Categoría", "Cabina de discos (DAS) con RAID por hardware"], ["Marca", "Areca"], ["Modelos", "ARC-8050T3U-4 / -6 / -8"], ["Bahías", "4 / 6 / 8 · discos 3,5'' / 2,5'' SAS o SATA"], ["Conexión", "2 × Thunderbolt 3 (40 Gb/s, USB-C) · en USB-C normal funciona como USB 3.2 Gen 2 (10 Gb/s) · DisplayPort"], ["RAID", "0, 1, 3, 5, 6, 10, JBOD (30 / 50 / 60 desde 6 bahías)"]]
+  },
+  {
+    cat: "cabin", catLabel: "DAS", type: "DAS", brand: "TerraMaster", brandCode: "T", brandColor: "#E95513",
     model: "TerraMaster D5 / D8", photo: "../alquiler/img/terramaster-d5-d8_SpTV.webp?v=11",
+    gallery: ["../alquiler/img/terramaster-d5-d8_SpTV.webp?v=11", "../alquiler/img/terramaster-d8-332_SpTV.webp?v=11"], galleryLabels: ["D5 · 5 bahías", "D8-332 · 8 bahías"], cardGallery: true,
     icon: cabinIcon("#E95513"),
     info: [["bays", "Bahías", "5 · 8", 1], ["raid", "RAID", "0, 1, 5, 10", 1], ["port", "Conexión", "Thunderbolt 3 (40 Gb/s)"]],
     specs: [["Categoría", "Cabina de discos (DAS) con RAID por hardware"], ["Marca", "TerraMaster"], ["Modelos", "D5 Thunderbolt 3 · D8-332"], ["Bahías", "5 / 8 · discos 3,5'' SATA o SSD 2,5''"], ["Conexión", "2 × Thunderbolt 3 (40 Gb/s), encadenable · solo dispositivos Thunderbolt 3/4"], ["Velocidad", "Hasta 1035 MB/s (D5) · hasta 1600 MB/s (D8-332)"], ["RAID", "0, 1, 5, 10, JBOD, Single"], ["Capacidad máxima", "120 TB (D5) · 160 TB (D8-332)"]]
+  },
+  {
+    cat: "cabin", catLabel: "DAS", type: "DAS", brand: "Promise", brandCode: "P", brandColor: "#0B5CAB",
+    model: "Promise Pegasus32 R", photo: "../alquiler/img/promise-pegasus32-r_SpTV.webp?v=11",
+    icon: cabinIcon("#0B5CAB"),
+    info: [["bays", "Bahías", "4 · 6 · 8", 1], ["raid", "RAID", "0, 1, 5, 6, 10, 50, 60", 1], ["port", "Conexión", "Thunderbolt 3 · USB-C"]],
+    specs: [["Categoría", "Cabina de discos (DAS) con RAID por hardware"], ["Marca", "Promise"], ["Modelos", "Pegasus32 R4 / Pegasus32 R6 / Pegasus32 R8"], ["Descripción", "Cabina RAID para edición de vídeo y fotografía: rápida, silenciosa y con protección de datos por hardware. Se conecta por Thunderbolt 3 o USB-C, puede cargar el portátil y tiene salida de vídeo para un monitor de hasta 8K."], ["Bahías", "4 / 6 / 8 · discos 3,5'' SATA (HDD 7200 rpm o SSD), extraíbles en caliente"], ["Conexión", "2 × USB-C: Thunderbolt 3 (40 Gb/s) o USB 3.2 Gen 2 (10 Gb/s), encadenable · DisplayPort 1.4 (monitor hasta 8K) · carga hasta 85 W"], ["Velocidad", "Hasta 2800 MB/s con SSD"], ["RAID", "0, 1, 5, 6, 10, JBOD (R4) · también 50 (R6) · también 50 y 60 (R8)"], ["Capacidad", "16 TB (R4) · 24 o 48 TB (R6) · de 32 a 144 TB (R8)"], ["Dimensiones", "R4: 19,2 × 18,7 × 24,5 cm · R6: 25,1 × 18,7 × 24,5 cm · R8: 31,0 × 18,7 × 24,5 cm (alto × ancho × fondo)"], ["Peso", "6,8 kg (R4) · 9,1 kg (R6) · 11 kg (R8)"], ["Compatible con", "macOS 10.14 o posterior · Windows 10 (64 bits)"], ["Incluye", "Cable Thunderbolt 3 / USB-C de 0,7 m"]]
   },
   {
     cat: "cabin", catLabel: "NAS", type: "NAS", brand: "QNAP", brandCode: "Q", brandColor: "#2F6BB3",
@@ -1777,7 +1787,7 @@ function drawModelCards(items, gridEl, info) {
     card.dataset.voltage = p.voltage || "";
     card.dataset.color = p.color || "";
     card.setAttribute("aria-haspopup", "dialog");
-    const cardPhotos = p.optionPhotos ? Object.values(p.optionPhotos)[0] : [];
+    const cardPhotos = p.optionPhotos ? Object.values(p.optionPhotos)[0] : (p.cardGallery && p.gallery) || [];
     const media = (p.photo ? `<img src="${smallPhoto(p.photo)}" alt="${p.model}" loading="lazy" decoding="async">` : p.icon) + (cardPhotos.length > 1 ? `
       <span class="card-arrow card-prev" role="button" tabindex="0" aria-label="Foto anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></span>
       <span class="card-arrow card-next" role="button" tabindex="0" aria-label="Foto siguiente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span>` : "");
@@ -1916,7 +1926,8 @@ function openPanel(p) {
     ? colors.map((c, i) => c.photo ? `<button type="button" class="pv-thumb" data-i="${i}" aria-label="Ver en ${c.name}" aria-pressed="${i === ci()}"><img src="${smallPhoto(c.photo)}" alt="" decoding="async"></button>` : "").join("")
     : optPhotos.map((ph, i) => `<button type="button" class="pv-thumb pv-othumb" data-o="${i}" aria-label="Ver ${groups[optGi].options[i]}" aria-pressed="${i === 0}"><img src="${smallPhoto(ph)}" alt="" decoding="async"><span>${groups[optGi].options[i]}</span></button>`).join("");
   const gallery = !thumbs && p.gallery && p.gallery.length > 1 ? p.gallery : [];
-  const galleryThumbs = gallery.map((ph, i) => `<button type="button" class="pv-thumb pv-gthumb" data-g="${i}" aria-label="Foto ${i + 1}" aria-pressed="${i === 0}"><img src="${smallPhoto(ph)}" alt="" decoding="async"></button>`).join("");
+  const gLabels = p.galleryLabels || [];
+  const galleryThumbs = gallery.map((ph, i) => `<button type="button" class="pv-thumb pv-gthumb${gLabels[i] ? " pv-lthumb" : ""}" data-g="${i}" aria-label="${gLabels[i] ? "Ver " + gLabels[i] : "Foto " + (i + 1)}" aria-pressed="${i === 0}"><img src="${smallPhoto(ph)}" alt="" decoding="async">${gLabels[i] ? `<span>${gLabels[i]}</span>` : ""}</button>`).join("");
   const slides = thumbs ? (colors.length ? colors.length : optPhotos.length) : gallery.length;
   // Recommended extras (a monitor for a CPU, connection for a phone): added to the request list straight away
   const recommend = p.recommend || (String(p.cat).startsWith("phone") && MODE === "alquiler"
@@ -2009,6 +2020,8 @@ function openPanel(p) {
     panel.querySelectorAll(".pv-gthumb").forEach(b => b.setAttribute("aria-pressed", String(Number(b.dataset.g) === i)));
   };
   panel.querySelectorAll(".pv-gthumb").forEach(b => b.addEventListener("click", () => showG(Number(b.dataset.g))));
+  // A card with its own arrows opens the sheet on the photo it was showing
+  if (gallery.length && p.cardGallery && p._optShown) showG(p._optShown);
   const step = d => {
     if (gallery.length) showG((shownG + d + gallery.length) % gallery.length);
     else if (colors.length) pickColor((ci() + d + colors.length) % colors.length);
