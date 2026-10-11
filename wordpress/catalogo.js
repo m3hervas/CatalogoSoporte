@@ -860,7 +860,7 @@ const ACCESSORIES = [
   },
 {
     cat: "accessory", catLabel: "Accesorio", type: "Batería externa", group: "Móvil/Cámara", brand: "Xiaomi", brandCode: "X", brandColor: "#FF6900",
-    model: "Magnetic Power Bank 10000 con soporte", photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/xiaomi-magnetic-power-bank-10000-azul_SpTV.webp?v=11", color: "Azul|Beige|Gris|Púrpura", colors: [{"name": "Azul", "hex": "#AFC0F0", "photo": "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/xiaomi-magnetic-power-bank-10000-azul_SpTV.webp?v=11"}, {"name": "Beige", "hex": "#E6DED0", "photo": "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/xiaomi-magnetic-power-bank-10000-beige_SpTV.webp?v=11"}, {"name": "Gris", "hex": "#2E2F33", "photo": "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/xiaomi-magnetic-power-bank-10000-gris_SpTV.webp?v=11"}, {"name": "Púrpura", "hex": "#D9CBF2", "photo": "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/xiaomi-magnetic-power-bank-10000-purpura_SpTV.webp?v=11"}],
+    model: "Magnetic Power Bank 10000 con soporte", photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/xiaomi-magnetic-power-bank-10000-beige_SpTV.webp?v=11",
     icon: accessoryIcon("#FF6900"),
     specs: [
       ["Categoría", "Accesorio · Móvil/Cámara"],
@@ -872,13 +872,12 @@ const ACCESSORIES = [
       ["Fuerza magnética", "13 N"],
       ["Soporte", "Integrado, hasta unos 80°"],
       ["Medidas", "108,8 × 68,9 × 20,3 mm"],
-      ["Peso", "229 g"],
-      ["Colores", "Azul · Beige · Gris · Púrpura"]
+      ["Peso", "229 g"]
     ]
   },
 {
     cat: "accessory", catLabel: "Accesorio", type: "Batería externa", group: "Móvil/Cámara", brand: "Xiaomi", brandCode: "X", brandColor: "#FF6900",
-    model: "33W Power Bank 10000 con cable integrado", photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/xiaomi-33w-power-bank-10000-azul_SpTV.webp?v=11", color: "Azul|Tan", colors: [{"name": "Azul", "hex": "#2F3768", "photo": "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/xiaomi-33w-power-bank-10000-azul_SpTV.webp?v=11"}, {"name": "Tan", "hex": "#EDE4D5", "photo": "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/xiaomi-33w-power-bank-10000-tan_SpTV.webp?v=11"}],
+    model: "33W Power Bank 10000 con cable integrado", photo: "https://m3hervas.github.io/CatalogoSoporte/alquiler/img/xiaomi-33w-power-bank-10000-tan_SpTV.webp?v=11",
     icon: accessoryIcon("#FF6900"),
     specs: [
       ["Categoría", "Accesorio · Móvil/Cámara"],
@@ -887,8 +886,7 @@ const ACCESSORIES = [
       ["Capacidad", "10000 mAh"],
       ["Carga rápida", "Hasta 33 W"],
       ["Salidas", "Cable USB-C integrado · USB-C · USB-A"],
-      ["Medidas", "80,9 × 65,9 × 26 mm"],
-      ["Colores", "Azul · Tan"]
+      ["Medidas", "80,9 × 65,9 × 26 mm"]
     ]
   }
 ];
