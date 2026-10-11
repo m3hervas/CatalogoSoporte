@@ -1281,7 +1281,7 @@ const MONITORS = [
   },
   {
     cat: "monitor", catLabel: "Smart TV 4K", type: "Smart TV", group: "32''", brand: "LG / Philips / Samsung / Xiaomi", brandCode: "L", brandColor: "#A50034",
-    model: "Smart TV 4K 32''", photo: "../alquiler/img/smart-tv-32_SpTV.webp",
+    model: "Smart TV 4K 32''", photo: "../alquiler/img/smart-tv-32-lg_SpTV.webp",
     icon: monitorIcon("#A50034"),
     specs: [
       ["Categoría", "Smart TV"],
@@ -1295,7 +1295,7 @@ const MONITORS = [
   },
   {
     cat: "monitor", catLabel: "Smart TV 4K", type: "Smart TV", group: "40''", brand: "LG / Philips / Samsung / Xiaomi", brandCode: "L", brandColor: "#A50034",
-    model: "Smart TV 4K 40''", photo: "../alquiler/img/smart-tv-40_SpTV.webp",
+    model: "Smart TV 4K 40''", photo: "../alquiler/img/smart-tv-40-samsung_SpTV.webp",
     icon: monitorIcon("#A50034"),
     specs: [
       ["Categoría", "Smart TV"],
@@ -1309,7 +1309,7 @@ const MONITORS = [
   },
   {
     cat: "monitor", catLabel: "Smart TV 4K", type: "Smart TV", group: "50''", brand: "LG / Philips / Samsung / Xiaomi", brandCode: "L", brandColor: "#A50034",
-    model: "Smart TV 4K 50''", photo: "../alquiler/img/smart-tv-50_SpTV.webp",
+    model: "Smart TV 4K 50''", photo: "../alquiler/img/smart-tv-50-philips_SpTV.webp",
     icon: monitorIcon("#A50034"),
     specs: [
       ["Categoría", "Smart TV"],
@@ -3058,7 +3058,12 @@ route();
       nav.classList.toggle("nav-hidden", !inUse && (sheet || (away && !pointerTop)));
     };
     const setGroup = open => { group.classList.toggle("open", open); groupBtn.setAttribute("aria-expanded", String(open)); renderNav(); };
-    const setMenu = open => { nav.classList.toggle("menu-open", open); toggle.setAttribute("aria-expanded", String(open)); renderNav(); };
+    const setMenu = open => {
+      nav.classList.toggle("menu-open", open);
+      toggle.setAttribute("aria-expanded", String(open));
+      toggle.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+      renderNav();
+    };
     const closeAll = () => { setGroup(false); setMenu(false); };
 
     const updateSolid = () => nav.classList.toggle("is-solid", getScrollY() > 24);

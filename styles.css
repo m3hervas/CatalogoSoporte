@@ -379,6 +379,12 @@ section { position: relative; }
   .marquee-track li > img { padding: 0 20px; zoom: 0.67; }
   .marquee-arrow { width: 36px; height: 36px; }
   .marquee-arrow svg { width: 17px; height: 17px; }
+  /* The arrows go under the strip, side by side, so they never cover a logo */
+  .marquee-wrap { padding-bottom: 44px; }
+  .marquee-arrow { top: auto; bottom: 0; transform: none; }
+  .marquee-arrow:active { transform: scale(0.92); }
+  .marquee-arrow.prev { left: calc(50% - 44px); }
+  .marquee-arrow.next { right: calc(50% - 44px); }
 }
 @media (prefers-reduced-motion: reduce) {
   .marquee-track li, .marquee-track li > img { transition: none; }

@@ -71,6 +71,8 @@
     "#sptvWa .wa-open:active{transform:scale(.97)}",
     "#sptvWa .wa-note{margin:10px 0 0;text-align:center;font-size:12px;color:var(--mute)}",
     "@media (max-width:720px){#sptvWa .wa-fab{width:56px;height:56px}#sptvWa .wa-card{bottom:70px}}",
+    // Phone: room at the end of the page so the button never covers the last footer links
+    "@media (max-width:720px){body::after{content:'';display:block;height:84px}}",
     /* Top-bar mode (wide screens with a [data-wa-open] button): no floating button, card under the bar */
     "#sptvWa.wa-top .wa-fab{display:none}",
     "#sptvWa.wa-top .wa-card{position:fixed;bottom:auto;transform-origin:calc(100% - 24px) -10px;transform:translateY(-8px) scale(.96)}",

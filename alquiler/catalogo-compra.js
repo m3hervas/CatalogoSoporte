@@ -2407,7 +2407,12 @@ route();
       nav.classList.toggle("nav-hidden", !inUse && (sheet || (away && !pointerTop)));
     };
     const setGroup = open => { group.classList.toggle("open", open); groupBtn.setAttribute("aria-expanded", String(open)); renderNav(); };
-    const setMenu = open => { nav.classList.toggle("menu-open", open); toggle.setAttribute("aria-expanded", String(open)); renderNav(); };
+    const setMenu = open => {
+      nav.classList.toggle("menu-open", open);
+      toggle.setAttribute("aria-expanded", String(open));
+      toggle.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+      renderNav();
+    };
     const closeAll = () => { setGroup(false); setMenu(false); };
 
     const updateSolid = () => nav.classList.toggle("is-solid", getScrollY() > 24);
