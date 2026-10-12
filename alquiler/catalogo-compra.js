@@ -1381,7 +1381,6 @@ function openPanel(p) {
         </div>
         <button class="primary-btn pv-add" id="panelRequest" type="button">Añadir a mi lista</button>
         <p class="panel-added" id="panelAdded" role="status" hidden></p>
-        <p class="pv-note">Te enviamos el presupuesto por correo, sin compromiso.</p>
       </div>
       ${recos.length ? `<section class="pv-section pv-recos"><h3>Nuestras recomendaciones</h3><p class="pv-recos-sub">${recommend.title}</p>
         <div class="pv-recos-list">${recos.map((r, i) => `<div class="pv-reco">
@@ -2236,6 +2235,7 @@ function addToList(name, qty) {
   if (item) item.qty = clampQty(item.qty + qty);
   else requestList.push({ name, qty });
   saveList();
+  if (window.sptvTrack) window.sptvTrack("Añadido a Mi lista", { catalogo: MODE === "compra" ? "compra" : "alquiler", producto: name });
   listFab.classList.remove("bump");
   void listFab.offsetWidth;
   listFab.classList.add("bump");
@@ -2377,6 +2377,7 @@ rentForm.addEventListener("submit", async e => {
     });
     const data = await res.json().catch(() => ({}));
     if (!res.ok || String(data.success) !== "true") throw new Error(data.message || res.status);
+    if (window.sptvTrack) window.sptvTrack("Formulario enviado", { formulario: MODE === "compra" ? "catálogo de compra" : "catálogo de alquiler", interes: interest, productos: requestList.length });
     rentForm.reset();
     requestList = [];
     saveList();

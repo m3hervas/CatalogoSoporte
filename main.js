@@ -232,6 +232,7 @@
           if (!res.ok || String(data.success) !== "true") throw new Error(data.message || res.status);
           form.reset();
           success.hidden = false;
+          if (window.sptvTrack) window.sptvTrack("Formulario enviado", { formulario: "portada", interes: interest });
         });
       }).catch(function () {
         error.textContent = "No se ha podido enviar. Inténtalo de nuevo en unos minutos.";

@@ -2,7 +2,7 @@
 <IfModule mod_headers.c>
   # The code now lives in catalogo-alquiler.js / catalogo-compra.js (no inline scripts), so scripts are limited to this site, like the rest of the web.
   # Inline styles stay allowed (style attributes and styles set by the catalogue code).
-  Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://formsubmit.co; form-action 'self' https://formsubmit.co; frame-ancestors 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' https://cloud.umami.is; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://formsubmit.co https://cloud.umami.is https://api-gateway.umami.dev; form-action 'self' https://formsubmit.co; frame-ancestors 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
 
   # Shared code and styles: their address changes (?v=...) whenever their content changes, so the browser can keep them a year
   <FilesMatch "^catalogo(\.css|-alquiler\.js|-compra\.js)$">

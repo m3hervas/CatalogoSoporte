@@ -451,8 +451,7 @@
   .pv-buy .qty { height: 48px; background: #FFFFFF; }
   .pv-buy .qty button { width: 40px; height: 46px; }
   .pv-buy .pv-add { width: 100%; height: 48px; padding: 0 14px; white-space: nowrap; }
-  .pv-buy .panel-added, .pv-note { grid-column: 1 / -1; margin: 0; }
-  .pv-note { font-size: 12.5px; color: var(--ink-soft); text-align: center; }
+  .pv-buy .panel-added { grid-column: 1 / -1; margin: 0; }
 
   .pv-section { margin-bottom: 28px; }
   .pv-section h3 { margin: 0 0 10px; font: 700 16px/1.3 'Inter', sans-serif; color: #0F172A; }

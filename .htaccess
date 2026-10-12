@@ -82,8 +82,8 @@ ServerSignature Off
   Header always set Strict-Transport-Security "max-age=31536000"
   # Nobody can show this site inside a frame on another site (clickjacking)
   Header always set X-Frame-Options "SAMEORIGIN"
-  # Only load code, styles, images and fonts from this site; the forms may only talk to FormSubmit
-  Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://formsubmit.co; form-action 'self' https://formsubmit.co; frame-ancestors 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
+  # Only load code, styles, images and fonts from this site (plus the Umami statistics script); the forms may only talk to FormSubmit
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' https://cloud.umami.is; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://formsubmit.co https://cloud.umami.is https://api-gateway.umami.dev; form-action 'self' https://formsubmit.co; frame-ancestors 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
   # The site never needs camera, microphone, location, payments or USB
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
   # Pages opened in new tabs (WhatsApp, etc.) cannot reach back into this one
