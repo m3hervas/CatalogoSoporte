@@ -12,6 +12,23 @@
 #
 # Doesn't work on Nginx VPS — those need server-level config.
 
+# ----- Never list the contents of a folder (e.g. /alquiler/img/) -----
+Options -Indexes
+
+# ----- Our own "page not found" page (also for blocked files, so they look like they don't exist) -----
+ErrorDocument 404 /404.html
+ErrorDocument 403 /404.html
+
+# ----- Files nobody should be able to open: forgotten ZIPs, backups, notes, scripts and hidden files -----
+<IfModule mod_authz_core.c>
+  <FilesMatch "(^\.|~$|\.(zip|rar|7z|gz|tar|bak|old|orig|save|swp|sql|log|ini|env|psd|py|sh|md|xlsx)$)">
+    Require all denied
+  </FilesMatch>
+</IfModule>
+
+# ----- Do not tell visitors which server software runs the site -----
+ServerSignature Off
+
 # ----- Cache duration -----
 <IfModule mod_expires.c>
   ExpiresActive On
@@ -71,6 +88,12 @@
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
   # Pages opened in new tabs (WhatsApp, etc.) cannot reach back into this one
   Header always set Cross-Origin-Opener-Policy "same-origin"
+  # Other websites cannot load this site's files (photos, code) inside their own pages
+  Header always set Cross-Origin-Resource-Policy "same-origin"
+  # Old plug-ins (Flash, PDF readers) may not read data from this site
+  Header always set X-Permitted-Cross-Domain-Policies "none"
+  # Do not tell visitors which software or version runs the site
+  Header always unset X-Powered-By
 </IfModule>
 
 # ----- Correct MIME types (some shared hosts default wrong) -----
@@ -99,6 +122,15 @@
   RewriteCond %{HTTPS} !=on
   RewriteCond %{HTTP:X-Forwarded-Proto} !https
   RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+  # Hidden folders (.git and the like) look like they don't exist; .well-known (security.txt, SSL) stays open
+  RewriteRule (^|/)\.(?!well-known(/|$)) - [R=404,L]
+
+  # Photos only show inside this site: other websites cannot show them (search engines and link previews can)
+  RewriteCond %{HTTP_REFERER} !^$
+  RewriteCond %{HTTP_REFERER} !^https?://([a-z0-9-]+\.)?soportetv\.es(/|:|$) [NC]
+  RewriteCond %{HTTP_REFERER} !(google\.|bing\.|duckduckgo\.|yahoo\.|ecosia\.|facebook\.|whatsapp\.|linkedin\.|instagram\.|twitter\.|telegram\.|//x\.com|//t\.co) [NC]
+  RewriteRule \.(webp|jpe?g|png|gif|avif)$ - [F,NC,L]
 </IfModule>
 
 # ----- Pretty URLs: serve "/about" as "/about.html" (uncomment if multi-page) -----

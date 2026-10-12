@@ -497,7 +497,7 @@ function drawStorage(items, gridEl) {
         <h3>${d.model}</h3>
         <span class="cat-chip">${d.catLabel}</span>
         <div class="storage-icons">
-          <div class="storage-icon storage-icon-wide" title="Capacidades">${STORAGE_ICONS.capacity}<span>${d.capacities.join(" · ")}</span></div>
+          <div class="storage-icon storage-icon-wide" title="Capacidades">${STORAGE_ICONS.capacity}<span>${boxText(d.capacities.join(" · "))}</span></div>
           <div class="storage-icon" title="Velocidad">${STORAGE_ICONS.speed}<span>${d.speed}</span></div>
           <div class="storage-icon" title="Conexión">${STORAGE_ICONS.port}<span>${d.port}</span></div>
         </div>
@@ -1169,6 +1169,15 @@ function renderModelCards(items, gridEl, info = CARD_INFO.storage) {
   deferRender(gridEl, () => drawModelCards(items, gridEl, info));
 }
 
+// Text for the small boxes on the cards: a number stays with its short unit ("1 TB", "500 ml", "Wi-Fi 6")
+// and a list only breaks after its " · ", so a box never shows half a value on the next line.
+function boxText(t) {
+  return String(t)
+    .replace(/(\d)\s+(?=[A-Za-zµ%×"'″]{1,4}(?![A-Za-zÀ-ÿ]))/g, "$1\u00a0")
+    .replace(/\b(Wi-Fi|USB|PCIe|Gen|Thunderbolt|HDMI|DisplayPort)\s+(?=\d)/g, "$1\u00a0")
+    .replace(/\s+·\s+/g, "\u00a0· ");
+}
+
 function drawModelCards(items, gridEl, info) {
   groupByModel(items).forEach(p => {
     const pid = productId(gridEl, p);
@@ -1199,7 +1208,7 @@ function drawModelCards(items, gridEl, info) {
         <div class="title-row"><h3>${p.model}</h3>${swatchesMarkup(p, "card-swatches")}</div>
         ${p.lead ? `<p class="card-lead">${p.lead}</p>` : ""}
         <div class="storage-icons">
-          ${boxes.map(b => `<div class="storage-icon ${b.small ? "storage-icon-small" : "storage-icon-wide"}" title="${b.title}">${b.icon}<span>${b.text}</span></div>`).join("")}
+          ${boxes.map(b => `<div class="storage-icon ${b.small ? "storage-icon-small" : "storage-icon-wide"}" title="${b.title}">${b.icon}<span>${boxText(b.text)}</span></div>`).join("")}
         </div>
         <span class="card-hint">Toca para ver la ficha técnica</span>
       </div>

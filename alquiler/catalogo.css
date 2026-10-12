@@ -910,6 +910,8 @@
   .model-card .storage-icons { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .model-card .storage-icon-small { flex-direction: row; justify-content: center; gap: 6px; padding: 8px 6px; }
   .model-card .storage-icon-small svg { width: 18px; height: 18px; flex-shrink: 0; }
+  /* A long word ("hidroalcohólico") splits with a hyphen inside its box instead of pushing the icon out */
+  .storage-icon span { min-width: 0; overflow-wrap: break-word; -webkit-hyphens: auto; hyphens: auto; }
 
   .model-card .card-hint { font-size: 11px; color: var(--ink-soft); }
 
@@ -1562,18 +1564,26 @@
     .catalog-layout .storage-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
 
-  /* Conectividad: only a few products, so bigger cards (2 per row, photo left, information right) */
+  /* Conectividad: only a few products, so bigger cards (2 per row). Photo on the left and information on the right
+     only when the cards are wide enough; on narrower screens the photo goes on top, so the boxes never get squeezed. */
   @media (min-width: 900px) {
-    .catalog-layout #gridConnectivity { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
-    #gridConnectivity .storage-card { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); min-height: 300px; }
-    #gridConnectivity .storage-photo { aspect-ratio: auto; padding: 22px; }
-    #gridConnectivity .storage-photo img { max-height: 250px; }
+    .catalog-layout #gridConnectivity { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; container: conngrid / inline-size; }
+    @container conngrid (min-width: 900px) {
+      #gridConnectivity .storage-card { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); min-height: 300px; }
+      #gridConnectivity .storage-photo { aspect-ratio: auto; padding: 22px; }
+      #gridConnectivity .storage-photo img { max-height: 250px; }
+    }
     #gridConnectivity .storage-info { padding: 26px 24px 22px; gap: 12px; justify-content: center; }
     #gridConnectivity .storage-info h3 { font-size: 22px; letter-spacing: -0.02em; }
     #gridConnectivity .storage-icons { gap: 8px; }
     #gridConnectivity .storage-icon { padding: 11px 10px; border-radius: 12px; }
     #gridConnectivity .storage-icon svg { width: 20px; height: 20px; }
     #gridConnectivity .storage-icon span { font-size: 12.5px; }
+    #gridConnectivity .storage-info { container: conninfo / inline-size; }
+    @container conninfo (max-width: 330px) {
+      #gridConnectivity .storage-icon-small { flex-direction: column; gap: 5px; padding: 10px 3px; }
+      #gridConnectivity .storage-icon-small span { font-size: 12px; }
+    }
     #gridConnectivity .card-hint { font-size: 12px; }
     #gridConnectivity .card-lead { margin: 0; font-size: 14.5px; line-height: 1.5; color: var(--ink-soft); }
   }
