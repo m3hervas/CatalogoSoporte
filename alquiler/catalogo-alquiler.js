@@ -43,7 +43,8 @@ function ipadIcon(accent) {
 }
 
 function appleBadge() {
-  return `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  // Explicit size and colour: some phone browsers (Safari) draw an SVG with no size as nothing (only the grey square)
+  return `<svg viewBox="0 0 24 24" width="16" height="16" fill="#1D1D1F" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
     <path d="M16.4 12.9c0-2.1 1.7-3.1 1.8-3.2-1-1.4-2.5-1.6-3-1.6-1.3-.1-2.5.8-3.1.8-.6 0-1.6-.7-2.7-.7-1.4 0-2.6.8-3.3 2-1.4 2.5-.4 6.1 1 8.1.7 1 1.5 2.1 2.6 2 1-.1 1.4-.7 2.7-.7 1.2 0 1.6.7 2.7.6 1.1 0 1.8-1 2.5-2 .8-1.2 1.1-2.3 1.1-2.4-.1 0-2.2-.8-2.2-3.3zM14.2 6.4c.6-.7 1-1.7.9-2.7-.9.1-1.9.6-2.5 1.3-.5.6-1 1.6-.9 2.6 1 .1 1.9-.5 2.5-1.2z" fill="#000"/>
   </svg>`;
 }
@@ -809,7 +810,7 @@ const ACCESSORIES = [
       ["Categoría", "Accesorio · iPad"],
       ["Marca", "ProCase"],
       ["Descripción", "Funda reforzada antigolpes con correa para colgar al hombro (ajustable y extraíble), asa giratoria de 360° para sujetar el iPad con una mano, soporte trasero y hueco para el lápiz. Ideal para rodajes, eventos y trabajo de pie."],
-      ["Compatibilidad", "iPad 10,2'' de 7.ª / 8.ª / 9.ª generación"],
+      ["Compatibilidad", "Todos los modelos de iPad"],
       ["Incluye", "Funda con protector de pantalla, asa giratoria y correa de hombro"]
     ]
   },
